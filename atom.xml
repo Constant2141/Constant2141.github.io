@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-07-12T16:47:50.157Z</updated>
+  <updated>2018-07-14T15:14:33.669Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,13 +17,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>有关http协议</title>
+    <link href="http://yoursite.com/2018/07/14/%E6%9C%89%E5%85%B3http%E5%8D%8F%E8%AE%AE/"/>
+    <id>http://yoursite.com/2018/07/14/有关http协议/</id>
+    <published>2018-07-14T15:08:28.000Z</published>
+    <updated>2018-07-14T15:14:33.669Z</updated>
+    
+    <content type="html"><![CDATA[<p>##关于HTTP协议</p><p>###三次握手<br>第一次握手：建立连接时，客户端发送SYN(同步序列编号)包（syn=j）到服务器<br>第二次握手：服务器收到SYN包，必须确认客户的SYN（ack=j+1），同时自己也发送一个SYN包（syn=k）<br>第三次握手：客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1），此包发送完毕，客户端和服务器进入ESTABLISHED（TCP连接成功）状态，完成三次握手<br>完成三次握手，客户端与服务器开始传送数据</p><p>###CORS跨域<br>在头里面写<br><code>&#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;</code><br><code>&#39;Access-Control-Allow-Headers&#39;: &#39;预请求头的名字&#39;</code><br><code>&#39;Access-Control-Allow-Methods&#39;: &#39;POST,PUT,DELETE&#39;</code><br><code>&#39;Access-Control-Allow-Max-age&#39;: &#39;1000（允许跨域的处理的最大期限，在这个时间内再次发起请求不需要验证了，单位是秒）&#39;</code> </p><h3 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h3><p>要使用缓存的写法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">response.writeHead(stastus,&#123;</span><br><span class="line">&apos;Cache-Control&apos;: &apos;max-age=2 s-maxage= 20private&apos;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p><ol><li>expires 指定一个绝对的过期时间，但是如果客户端和服务端时间不同步会导致问题，而且很容易忘记自己配置的过期时间具体是多少</li><li>max-age 浏览器缓存 指定的是从文档被访问后的存活时间，这个时间是相对的</li><li>s-maxage 代理缓存</li><li>存在max-age的时候会覆盖expires,在代理过程中存在s-maxage的时候会覆盖max-age</li><li>加private表明只允许浏览器用缓存，代理服务器不能用<br> 加no-store表明 都不允许使用缓存<br><img src="有关http协议/cache.jpg" alt="Alt text"></li></ol><h3 id="CSP限制"><a href="#CSP限制" class="headerlink" title="CSP限制"></a>CSP限制</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&apos;Content-Security-Policy&apos;: &apos;default-src http: https:&apos; </span><br><span class="line">**限制跳转的域名</span><br><span class="line"></span><br><span class="line">&apos;Content-Security-Policy&apos;: &apos;default-src \&apos;self\&apos; </span><br><span class="line">**限制跳转的只能是内部链接</span><br><span class="line"></span><br><span class="line">&apos;Content-Security-Policy&apos;: &apos;script-src \&apos;self\&apos; ; form-action \&apos;self\&apos; </span><br><span class="line">**限制js的跳转和表单的提交</span><br><span class="line"></span><br><span class="line">&apos;Content-Security-Policy-Only-Report&apos;:&apos;report-uri /repot&apos;</span><br><span class="line">只做report的请求，即使资源被限制了不想加载，也会执行代码但浏览器仍然会拦截它，并做一个report</span><br></pre></td></tr></table></figure><h3 id="https"><a href="#https" class="headerlink" title="https"></a>https</h3><p>特点也是优势：信道复用、分帧传输</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;##关于HTTP协议&lt;/p&gt;
+&lt;p&gt;###三次握手&lt;br&gt;第一次握手：建立连接时，客户端发送SYN(同步序列编号)包（syn=j）到服务器&lt;br&gt;第二次握手：服务器收到SYN包，必须确认客户的SYN（ack=j+1），同时自己也发送一个SYN包（syn=k）&lt;br&gt;第三次握
+      
+    
+    </summary>
+    
+    
+      <category term="http" scheme="http://yoursite.com/tags/http/"/>
+    
+  </entry>
+  
+  <entry>
     <title>开张第一天</title>
     <link href="http://yoursite.com/2018/07/12/%E5%BC%80%E5%BC%A0%E7%AC%AC%E4%B8%80%E5%A4%A9/"/>
     <id>http://yoursite.com/2018/07/12/开张第一天/</id>
     <published>2018-07-12T13:47:41.000Z</published>
-    <updated>2018-07-12T16:47:50.157Z</updated>
+    <updated>2018-07-13T01:36:48.524Z</updated>
     
-    <content type="html"><![CDATA[<p>蒲公英俱乐部开张第一天<br>安装了putty,phpstudy<br>买了个阿里云服务器<br>了解了一下常用的多人合作git流程<br>热~~~<br><a id="more"></a></p><h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><p>虽然以前是在廖雪峰的官网学过git的各种命令，但是时隔有点久也是生疏了，最主要的还是学到了 多人协作常用的命令流程：<br>一个人开仓库，邀请其他伙伴作为开发者参与，其他人clone后再checkout自己的分支，多人协作一般是在自己的分支干活，需要提交的时候是先切换回master,pull一下看看远程库有没有更新信息，然后将自己的分支与master合并(merge)，合并完再push，如果有冲突处理完再push上去。</p><h2 id="阿里云"><a href="#阿里云" class="headerlink" title="阿里云"></a>阿里云</h2><p>9.9特惠学生套餐<br>有了自己的云服务器和公网IP47.106.21.195</p><h2 id="putty-lnmp"><a href="#putty-lnmp" class="headerlink" title="putty(lnmp)"></a>putty(lnmp)</h2><p>screen -S xxxx创建窗口(这么叫？随便了)<br>screen -ls 查看有哪个窗口<br>screen -d xxxx进入指定窗口</p><p> lnmp一键安装搞定了<br> 然后就可以访问那串IP了 默认是读取index(听说以后博客放这里？)<br> 进去index的路径/home wwwroot/  fault/</p><p> mv 移动文件或者改名字 mv 原名 新名<br> vim 创建编辑模式 ，按i进入编辑模式，否则是观察模式，按esc回到观察模式，打一个冒号然后:wq  退出并保存</p><h2 id="html"><a href="#html" class="headerlink" title="html"></a>html</h2><p>先鸽一天，捋一捋再写</p>]]></content>
+    <content type="html"><![CDATA[<p>蒲公英俱乐部开张第一天<br>安装了putty,phpstudy<br>买了个阿里云服务器<br>了解了一下常用的多人合作git流程<br>热~~~<br><a id="more"></a></p><h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><p>虽然以前是在廖雪峰的官网学过git的各种命令，但是时隔有点久也是生疏了，最主要的还是学到了 多人协作常用的命令流程：<br>一个人开仓库，邀请其他伙伴作为开发者参与，其他人clone后再checkout自己的分支，多人协作一般是在自己的分支干活，需要提交的时候是先切换回master,pull一下看看远程库有没有更新信息，然后将自己的分支与master合并(merge)，合并完再push，如果有冲突处理完再push上去。</p><h2 id="阿里云"><a href="#阿里云" class="headerlink" title="阿里云"></a>阿里云</h2><p>9.9特惠学生套餐<br>有了自己的云服务器和公网IP47.106.21.195</p><h2 id="putty-lnmp"><a href="#putty-lnmp" class="headerlink" title="putty(lnmp)"></a>putty(lnmp)</h2><p>screen -S xxxx创建窗口(这么叫？随便了)<br>screen -ls 查看有哪个窗口<br>screen -r xxxx进入指定窗口</p><p> lnmp一键安装搞定了<br> 然后就可以访问那串IP了 默认是读取index(听说以后博客放这里？)<br> 进去index的路径/home wwwroot/  fault/</p><p> mv 移动文件或者改名字 mv 原名 新名<br> vim 创建编辑模式 ，按i进入编辑模式，否则是观察模式，按esc回到观察模式，打一个冒号然后:wq  退出并保存</p><h2 id="html"><a href="#html" class="headerlink" title="html"></a>html</h2><p>先鸽一天，捋一捋再写</p>]]></content>
     
     <summary type="html">
     
@@ -32,9 +56,9 @@
     </summary>
     
     
-      <category term="git" scheme="http://yoursite.com/tags/git/"/>
-    
       <category term="html" scheme="http://yoursite.com/tags/html/"/>
+    
+      <category term="git" scheme="http://yoursite.com/tags/git/"/>
     
   </entry>
   
@@ -76,11 +100,11 @@
     </summary>
     
     
+      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+    
       <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
     
       <category term="express" scheme="http://yoursite.com/tags/express/"/>
-    
-      <category term="git" scheme="http://yoursite.com/tags/git/"/>
     
       <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
     

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-07-15T09:13:05.400Z</updated>
+  <updated>2018-07-15T17:45:18.544Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,35 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>世界杯决赛日</title>
+    <link href="http://yoursite.com/2018/07/16/%E4%B8%96%E7%95%8C%E6%9D%AF%E5%86%B3%E8%B5%9B%E6%97%A5/"/>
+    <id>http://yoursite.com/2018/07/16/世界杯决赛日/</id>
+    <published>2018-07-15T16:00:00.000Z</published>
+    <updated>2018-07-15T17:45:18.544Z</updated>
+    
+    <content type="html"><![CDATA[<p>Everything runs in parallel except your code!</p><h3 id="事件循环（以及异步，回调）"><a href="#事件循环（以及异步，回调）" class="headerlink" title="事件循环（以及异步，回调）"></a>事件循环（以及异步，回调）</h3><p>js 事件轮询机制</p><blockquote></blockquote><p>在js中同步和异步的任务会分别进入不同的执行场所，同步任务进入主线程异步的进入Event Table并注册函数。当指定的事情完成时，Event Table会将这个函数移入Event Queue。主线程内的任务执行完毕为空，会去Event Queue读取对应的函数，进入主线程执行。上述过程会不断重复，也就是常说的Event Loop(事件循环)。<br><img src="/2018/07/16/世界杯决赛日/2018041120124254.png" alt="Alt text"></p><blockquote><p>但是js异步有一个机制，就是遇到宏任务，先执行宏任务，将宏任务放入eventqueue，然后在执行微任务，将微任务放入eventqueue最骚的是，这两个queue不是一个queue。当你往外拿的时候先从微任务里拿这个回掉函数，然后再从宏任务的queue上拿宏任务的回掉函数。<img src="/2018/07/16/世界杯决赛日/20180411202638415.png" alt="Alt text"></p></blockquote><p>菠萝说的<br>宏任务一般有：script，setTimeout，setInterval。</p><p>微任务：Promise，process.nextTick。</p><h3 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h3><p>记录类型A 表明主机记录指向唯一的IP<br>记录类型CNAME 一个域名指向另一个域名<br><img src="/2018/07/16/世界杯决赛日/./微信截图_20180715103201.png" alt="Alt text"><br>买了一个新的域名尝试了将其指向原有的博客域名，一顿操作终于好了<br>缓存真是个奇怪的东西，明明就是ping一样的地址，上一刻和下一刻效果不一样</p><h3 id="添加虚拟主机的常用命令"><a href="#添加虚拟主机的常用命令" class="headerlink" title="添加虚拟主机的常用命令"></a>添加虚拟主机的常用命令</h3><p>lnmp vhost add<br>lnmp vhost list<br>cd /home wwwroot/<br>lnmp list<br>cd 进去 找到index.html，vim模式编辑</p><h3 id="express"><a href="#express" class="headerlink" title="express"></a>express</h3><blockquote><p>Post请求体</p><ul><li>常用媒体类型是application/x-www-form-urlencoded</li><li>如果需要上传文件 multipart/form-data</li><li>如果是AJAX请求 application/json</li></ul></blockquote><h3 id="codewar"><a href="#codewar" class="headerlink" title="codewar"></a>codewar</h3><blockquote><p>今天做的这道题让我回忆，以及get到了一些或旧或新的方法，这些方法都是挺有用的<br>filter()把传入的函数依次作用于每个元素，然后根据返回值是true还是false决定保留还是丢弃该元素。<br>例如，在一个Array中，删掉偶数，只保留奇数，可以这么写：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1, 2, 4, 5, 6, 9, 10, 15];</span><br><span class="line">2 var r = arr.filter(function (x) &#123;</span><br><span class="line">3     return x % 2 !== 0;</span><br><span class="line">4 &#125;);</span><br><span class="line">5 r; // [1, 5, 9, 15]</span><br></pre></td></tr></table></figure></p></blockquote><blockquote><p>分割字符串的方法<br>split（“”） 注意参数的分隔符 </p></blockquote><p>回顾了一下js数组遍历的几种方法<br>1、 普通for循环,最简单的一种，也是使用频率最高的一种，瀚程如是说，的确是最熟悉性能也是挺高</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for(j = 0; j &lt; arr.length; j++) &#123;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure><p>2、 </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr.forEach(function(e)&#123;  </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>3、</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Array.prototype.forEach.call(arr,function(el)&#123;    </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>4、</p><pre><code>for(i in或者of  arr){}</code></pre><p>5、 map遍历</p><pre><code>arr.map(funtion(n){})</code></pre><h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>了解了负载均衡这个概念</p><h2 id="最后附上一道题，有关异步的"><a href="#最后附上一道题，有关异步的" class="headerlink" title="最后附上一道题，有关异步的"></a>最后附上一道题，有关异步的</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(function()&#123;</span><br><span class="line">    console.log(&apos;1&apos;)</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">new Promise(function(resolve)&#123;</span><br><span class="line">    console.log(&apos;2&apos;);</span><br><span class="line">&#125;).then(function()&#123;</span><br><span class="line">    console.log(&apos;3&apos;)</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">console.log(&apos;4&apos;);</span><br></pre></td></tr></table></figure><blockquote><p>这段代码的运行顺序 2，4，3，1<br>原因就是 然后回到开头的代码。因为settimeout是宏任务，虽然先执行的他，但是他被放到了宏任务的eventqueue里面，然后代码继续往下检查看有没有微任务，检测到Promise的then函数把他放入了微任务序列。等到主线进程的所有代码执行结束后。先从微任务queue里拿回掉函数，然后微任务queue空了后再从宏任务的queue拿函数。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Everything runs in parallel except your code!&lt;/p&gt;
+&lt;h3 id=&quot;事件循环（以及异步，回调）&quot;&gt;&lt;a href=&quot;#事件循环（以及异步，回调）&quot; class=&quot;headerlink&quot; title=&quot;事件循环（以及异步，回调）
+      
+    
+    </summary>
+    
+    
+      <category term="js" scheme="http://yoursite.com/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
     <title>有关http协议</title>
     <link href="http://yoursite.com/2018/07/14/%E6%9C%89%E5%85%B3http%E5%8D%8F%E8%AE%AE/"/>
     <id>http://yoursite.com/2018/07/14/有关http协议/</id>
     <published>2018-07-14T15:08:28.000Z</published>
-    <updated>2018-07-15T09:13:05.400Z</updated>
+    <updated>2018-07-15T17:45:04.765Z</updated>
     
     <content type="html"><![CDATA[<h3 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h3><p>第一次握手：建立连接时，客户端发送SYN(同步序列编号)包（syn=j）到服务器<br>第二次握手：服务器收到SYN包，必须确认客户的SYN（ack=j+1），同时自己也发送一个SYN包（syn=k）<br>第三次握手：客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1），此包发送完毕，客户端和服务器进入ESTABLISHED（TCP连接成功）状态，完成三次握手<br>完成三次握手，客户端与服务器开始传送数据</p><h3 id="CORS跨域"><a href="#CORS跨域" class="headerlink" title="CORS跨域"></a>CORS跨域</h3><p>在头里面写<br><code>&#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;</code><br><code>&#39;Access-Control-Allow-Headers&#39;: &#39;预请求头的名字&#39;</code><br><code>&#39;Access-Control-Allow-Methods&#39;: &#39;POST,PUT,DELETE&#39;</code><br><code>&#39;Access-Control-Allow-Max-age&#39;: &#39;1000（允许跨域的处理的最大期限，在这个时间内再次发起请求不需要验证了，单位是秒）&#39;</code> </p><h3 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h3><p>要使用缓存的写法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">response.writeHead(stastus,&#123;</span><br><span class="line">&apos;Cache-Control&apos;: &apos;max-age=2 s-maxage= 20private&apos;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p><ol><li>expires 指定一个绝对的过期时间，但是如果客户端和服务端时间不同步会导致问题，而且很容易忘记自己配置的过期时间具体是多少</li><li>max-age 浏览器缓存 指定的是从文档被访问后的存活时间，这个时间是相对的</li><li>s-maxage 代理缓存</li><li>存在max-age的时候会覆盖expires,在代理过程中存在s-maxage的时候会覆盖max-age</li><li>加private表明只允许浏览器用缓存，代理服务器不能用;加no-store表明 都不允许使用缓存<br><img src="/2018/07/14/有关http协议/cache.png" alt=""></li></ol><h3 id="CSP限制"><a href="#CSP限制" class="headerlink" title="CSP限制"></a>CSP限制</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&apos;Content-Security-Policy&apos;: &apos;default-src http: https:&apos; </span><br><span class="line">**限制跳转的域名</span><br><span class="line"></span><br><span class="line">&apos;Content-Security-Policy&apos;: &apos;default-src \&apos;self\&apos; </span><br><span class="line">**限制跳转的只能是内部链接</span><br><span class="line"></span><br><span class="line">&apos;Content-Security-Policy&apos;: &apos;script-src \&apos;self\&apos; ; form-action \&apos;self\&apos; </span><br><span class="line">**限制js的跳转和表单的提交</span><br><span class="line"></span><br><span class="line">&apos;Content-Security-Policy-Only-Report&apos;:&apos;report-uri /repot&apos;</span><br><span class="line">只做report的请求，即使资源被限制了不想加载，也会执行代码但浏览器仍然会拦截它，并做一个report</span><br></pre></td></tr></table></figure><h3 id="https"><a href="#https" class="headerlink" title="https"></a>https</h3><p>特点也是优势：信道复用、分帧传输</p>]]></content>
     
@@ -55,9 +79,9 @@
     </summary>
     
     
-      <category term="git" scheme="http://yoursite.com/tags/git/"/>
-    
       <category term="html" scheme="http://yoursite.com/tags/html/"/>
+    
+      <category term="git" scheme="http://yoursite.com/tags/git/"/>
     
   </entry>
   
@@ -99,11 +123,11 @@
     </summary>
     
     
+      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+    
       <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
     
       <category term="express" scheme="http://yoursite.com/tags/express/"/>
-    
-      <category term="git" scheme="http://yoursite.com/tags/git/"/>
     
       <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
     

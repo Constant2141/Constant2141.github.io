@@ -55,9 +55,9 @@
     </summary>
     
     
-      <category term="git" scheme="http://yoursite.com/tags/git/"/>
-    
       <category term="html" scheme="http://yoursite.com/tags/html/"/>
+    
+      <category term="git" scheme="http://yoursite.com/tags/git/"/>
     
   </entry>
   
@@ -99,11 +99,11 @@
     </summary>
     
     
+      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+    
       <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
     
       <category term="express" scheme="http://yoursite.com/tags/express/"/>
-    
-      <category term="git" scheme="http://yoursite.com/tags/git/"/>
     
       <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
     

@@ -166,6 +166,83 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-后台进化史之第四天" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/16/后台进化史之第四天/">后台进化史之第四天</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/16/后台进化史之第四天/" class="archive-article-date">
+  	<time datetime="2018-07-16T14:25:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="express"><a href="#express" class="headerlink" title="express"></a>express</h2><h4 id="了解了使用express框架如何处理表单请求"><a href="#了解了使用express框架如何处理表单请求" class="headerlink" title="了解了使用express框架如何处理表单请求"></a><font color="cray">了解了使用express框架如何处理表单请求</font></h4><h5 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h5><p>当表单被提交（通过浏览器或AJAX）时，必须被编码。如果没有明确地指定编码，则默认为application/x-wwwform-urlencoded。<br>如果需要上传文件，使用multipart/form-data编码类型（并不被建议使用）。</p>
+<h5 id="处理表单的不同方式"><a href="#处理表单的不同方式" class="headerlink" title="处理表单的不同方式"></a>处理表单的不同方式</h5><p>如果method=”POST”m展示表单和处理表单可以用同一个路由，因为展示只需要get请求，而处理一般是post请求，使用同一个路由是可以区分的，这一点我当初在做考核的时候倒是没有考虑到。</p>
+<h5 id="处理完后如何响应"><a href="#处理完后如何响应" class="headerlink" title="处理完后如何响应"></a>处理完后如何响应</h5><p>1、 直接响应html，就是直接扔一个html<br>2、 303重定向 { 重定向到某一个特殊的界面，跳转成功应该去哪里，404定制界面等}</p>
+<h5 id="表单域的获取"><a href="#表单域的获取" class="headerlink" title="表单域的获取"></a>表单域的获取</h5><p>1、对于GET请求 域放在req,query<br>2、对于POST请求，域放在req.body中，需要引入一个body-parser 很常用的</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">express</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/16/后台进化史之第四天/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-世界杯决赛日" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -189,14 +266,15 @@
         <p>Everything runs in parallel except your code!</p>
 <h3 id="事件循环（以及异步，回调）"><a href="#事件循环（以及异步，回调）" class="headerlink" title="事件循环（以及异步，回调）"></a>事件循环（以及异步，回调）</h3><p>js 事件轮询机制</p>
 <blockquote>
-</blockquote>
 <p>在js中同步和异步的任务会分别进入不同的执行场所，同步任务进入主线程异步的进入Event Table并注册函数。当指定的事情完成时，Event Table会将这个函数移入Event Queue。主线程内的任务执行完毕为空，会去Event Queue读取对应的函数，进入主线程执行。上述过程会不断重复，也就是常说的Event Loop(事件循环)。<br><img src="/2018/07/16/世界杯决赛日/2018041120124254.png" alt="Alt text"></p>
+</blockquote>
 <blockquote>
 <p>但是js异步有一个机制，就是遇到宏任务，先执行宏任务，将宏任务放入eventqueue，然后在执行微任务，将微任务放入eventqueue最骚的是，这两个queue不是一个queue。当你往外拿的时候先从微任务里拿这个回掉函数，然后再从宏任务的queue上拿宏任务的回掉函数。<img src="/2018/07/16/世界杯决赛日/20180411202638415.png" alt="Alt text"></p>
 </blockquote>
 <p>菠萝说的<br>宏任务一般有：script，setTimeout，setInterval。</p>
 <p>微任务：Promise，process.nextTick。</p>
-<h3 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h3><p>记录类型A 表明主机记录指向唯一的IP<br>记录类型CNAME 一个域名指向另一个域名<br><img src="/2018/07/16/世界杯决赛日/./微信截图_20180715103201.png" alt="Alt text"><br>买了一个新的域名尝试了将其指向原有的博客域名，一顿操作终于好了<br>缓存真是个奇怪的东西，明明就是ping一样的地址，上一刻和下一刻效果不一样</p>
+<h3 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h3><p>记录类型A 表明主机记录指向唯一的IP<br>记录类型CNAME 一个域名指向另一个域名</p>
+<p>买了一个新的域名尝试了将其指向原有的博客域名，一顿操作终于好了<br>缓存真是个奇怪的东西，明明就是ping一样的地址，上一刻和下一刻效果不一样</p>
 <h3 id="添加虚拟主机的常用命令"><a href="#添加虚拟主机的常用命令" class="headerlink" title="添加虚拟主机的常用命令"></a>添加虚拟主机的常用命令</h3><p>lnmp vhost add<br>lnmp vhost list<br>cd /home wwwroot/<br>lnmp list<br>cd 进去 找到index.html，vim模式编辑</p>
 <h3 id="express"><a href="#express" class="headerlink" title="express"></a>express</h3><blockquote>
 <p>Post请求体</p>
@@ -563,15 +641,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">express</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">express</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -717,6 +795,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">express</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">html</a>
               </li>
              
@@ -725,19 +807,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">express</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
             
             <div class="clearfix"></div>

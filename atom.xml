@@ -127,9 +127,9 @@
     
       <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
     
-      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
-    
       <category term="express" scheme="http://yoursite.com/tags/express/"/>
+    
+      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
     
   </entry>
   

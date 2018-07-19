@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-07-18T17:32:53.529Z</updated>
+  <updated>2018-07-19T16:13:08.142Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>后台进化史之第七天</title>
+    <link href="http://yoursite.com/2018/07/19/%E5%90%8E%E5%8F%B0%E8%BF%9B%E5%8C%96%E5%8F%B2%E4%B9%8B%E7%AC%AC%E4%B8%83%E5%A4%A9/"/>
+    <id>http://yoursite.com/2018/07/19/后台进化史之第七天/</id>
+    <published>2018-07-19T15:53:19.000Z</published>
+    <updated>2018-07-19T16:13:08.142Z</updated>
+    
+    <content type="html"><![CDATA[<p>##网络层相关<br>网关实质上是一个网络通向其他网络的IP地址<br>主机处在不同的网络里。而要实现这两个网络之间的通信，则必须通过网关。如果网络A中的主机发现数据包的目的主机不在本地网络中，就把数据包转发给它自己的网关，再由网关转发给网络B的网关，网络B的网关再转发给网络B的某个主机（如附图所示）。网络A向网络B转发数据包的过程</p><p>##继续学习CSS<br>看了瀚程给大爷的新时代修BUG</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;##网络层相关&lt;br&gt;网关实质上是一个网络通向其他网络的IP地址&lt;br&gt;主机处在不同的网络里。而要实现这两个网络之间的通信，则必须通过网关。如果网络A中的主机发现数据包的目的主机不在本地网络中，就把数据包转发给它自己的网关，再由网关转发给网络B的网关，网络B的网关再转发给网
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>后台进化史之第六天</title>

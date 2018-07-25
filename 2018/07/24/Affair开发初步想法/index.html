@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Affair开发初步想法 | 星辰在上</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="####有关如何判断登录状态的简单想法一个鉴定函数判断是不是原来的用户（密码错误，全错等）写一个islogined函数 用来判断是否登录状态，调用到authenticate，因为参数取的是req.cookie.如果cookie过时了就空，以此返回不同的值 ####get到的新知识app.use(‘/‘, users); 这样子写是将users下所有中间件启动  app.get(env) === d">
+  <meta name="description" content="有关如何判断登录状态的简单想法一个鉴定函数判断是不是原来的用户（密码错误，全错等）写一个islogined函数 用来判断是否登录状态，调用到authenticate，因为参数取的是req.cookie.如果cookie过时了就空，以此返回不同的值 get到的新知识app.use(‘/‘, users); 这样子写是将users下所有中间件启动  app.get(env) === developme">
 <meta name="keywords" content="Affair">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Affair开发初步想法">
 <meta property="og:url" content="http://yoursite.com/2018/07/24/Affair开发初步想法/index.html">
 <meta property="og:site_name" content="星辰在上">
-<meta property="og:description" content="####有关如何判断登录状态的简单想法一个鉴定函数判断是不是原来的用户（密码错误，全错等）写一个islogined函数 用来判断是否登录状态，调用到authenticate，因为参数取的是req.cookie.如果cookie过时了就空，以此返回不同的值 ####get到的新知识app.use(‘/‘, users); 这样子写是将users下所有中间件启动  app.get(env) === d">
+<meta property="og:description" content="有关如何判断登录状态的简单想法一个鉴定函数判断是不是原来的用户（密码错误，全错等）写一个islogined函数 用来判断是否登录状态，调用到authenticate，因为参数取的是req.cookie.如果cookie过时了就空，以此返回不同的值 get到的新知识app.use(‘/‘, users); 这样子写是将users下所有中间件启动  app.get(env) === developme">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-24T16:08:28.486Z">
+<meta property="og:updated_time" content="2018-07-24T16:44:56.415Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Affair开发初步想法">
-<meta name="twitter:description" content="####有关如何判断登录状态的简单想法一个鉴定函数判断是不是原来的用户（密码错误，全错等）写一个islogined函数 用来判断是否登录状态，调用到authenticate，因为参数取的是req.cookie.如果cookie过时了就空，以此返回不同的值 ####get到的新知识app.use(‘/‘, users); 这样子写是将users下所有中间件启动  app.get(env) === d">
+<meta name="twitter:description" content="有关如何判断登录状态的简单想法一个鉴定函数判断是不是原来的用户（密码错误，全错等）写一个islogined函数 用来判断是否登录状态，调用到authenticate，因为参数取的是req.cookie.如果cookie过时了就空，以此返回不同的值 get到的新知识app.use(‘/‘, users); 这样子写是将users下所有中间件启动  app.get(env) === developme">
   
     <link rel="alternative" href="/atom.xml" title="星辰在上" type="application/atom+xml">
   
@@ -186,13 +186,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>####有关如何判断登录状态的简单想法<br>一个鉴定函数判断是不是原来的用户（密码错误，全错等）<br>写一个islogined函数 用来判断是否登录状态，调用到authenticate，因为参数取的是req.cookie.如果cookie过时了就空，以此返回不同的值</p>
-<p>####get到的新知识<br>app.use(‘/‘, users); 这样子写是将users下所有中间件启动</p>
+        <h4 id="有关如何判断登录状态的简单想法"><a href="#有关如何判断登录状态的简单想法" class="headerlink" title="有关如何判断登录状态的简单想法"></a>有关如何判断登录状态的简单想法</h4><p>一个鉴定函数判断是不是原来的用户（密码错误，全错等）<br>写一个islogined函数 用来判断是否登录状态，调用到authenticate，因为参数取的是req.cookie.如果cookie过时了就空，以此返回不同的值</p>
+<h4 id="get到的新知识"><a href="#get到的新知识" class="headerlink" title="get到的新知识"></a>get到的新知识</h4><p>app.use(‘/‘, users); 这样子写是将users下所有中间件启动</p>
 <blockquote>
 <p>app.get(env) === development 与 process.env.NODE_ENV === ‘development’ 的区别<br>app.get(env)获取的是env的值；<br>process.env.NODE_ENV获取的是 env上面NODE_ENV的值；<br>这两行代码在express中都有出现，意思；<br>还有就是 我们平时写代码一般都是 本地用开发版本；线上用生产版本<br>本地开发版本默认 app.get(env) = development；<br>线上生产版本的环境设置的就是app.get(env) = production;</p>
 </blockquote>
-<p>####crypto最简单的用法<br>导入后， var hash=crypto.createHash(‘md5’)调用加密算法，常用md5<br>hash.update(userName+pwd)<br>return hash.digest(‘hex’)十六进制</p>
-<p>###正文：构想（跟咕咕咕的交流过程中随笔）(外人看不懂滴)<br>稍微理一下思路<br>post(,fun{<br>reddot fn<br>})</p>
+<h4 id="crypto最简单的用法"><a href="#crypto最简单的用法" class="headerlink" title="crypto最简单的用法"></a>crypto最简单的用法</h4><p>导入后， var hash=crypto.createHash(‘md5’)调用加密算法，常用md5<br>hash.update(userName+pwd)<br>return hash.digest(‘hex’)十六进制</p>
+<h3 id="正文：构想（跟咕咕咕的交流过程中随笔）-外人看不懂滴"><a href="#正文：构想（跟咕咕咕的交流过程中随笔）-外人看不懂滴" class="headerlink" title="正文：构想（跟咕咕咕的交流过程中随笔）(外人看不懂滴)"></a>正文：构想（跟咕咕咕的交流过程中随笔）(外人看不懂滴)</h3><p>稍微理一下思路<br>post(,fun{<br>reddot fn<br>})</p>
 <p>reddot fn{<br>}</p>
 <hr>
 <p>评论{<br>}</p>
@@ -442,6 +442,10 @@ $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Affair</a>
               </li>
              
@@ -450,15 +454,15 @@ $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">html</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -470,11 +474,7 @@ $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">html</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
             
             <div class="clearfix"></div>

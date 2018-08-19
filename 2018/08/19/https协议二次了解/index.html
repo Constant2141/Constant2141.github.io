@@ -66,12 +66,10 @@
 
 
 
-  <meta name="keywords" content="Affair," />
+  <meta name="keywords" content="https," />
 
 
 
-
-  
 
 
   <link rel="alternate" href="/atom.xml" title="星辰在上" type="application/atom+xml" />
@@ -81,18 +79,21 @@
 
 
 
-<meta name="description" content="有关如何判断登录状态的简单想法一个鉴定函数判断是不是原来的用户（密码错误，全错等）写一个islogined函数 用来判断是否登录状态，调用到authenticate，因为参数取的是req.cookie.如果cookie过时了就空，以此返回不同的值 get到的新知识app.use(‘/‘, users); 这样子写是将users下所有中间件启动  app.get(env) === developme">
-<meta name="keywords" content="Affair">
+<meta name="description" content="7月14日的时候学习到了http的一些事项，三次握手，跨域，缓存,csp等等，以及https相比http的一些优势，在这里再次深入了解一下https">
+<meta name="keywords" content="https">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Affair开发初步想法">
-<meta property="og:url" content="http://yoursite.com/2018/07/24/Affair开发初步想法/index.html">
+<meta property="og:title" content="https协议二次了解">
+<meta property="og:url" content="http://yoursite.com/2018/08/19/https协议二次了解/index.html">
 <meta property="og:site_name" content="星辰在上">
-<meta property="og:description" content="有关如何判断登录状态的简单想法一个鉴定函数判断是不是原来的用户（密码错误，全错等）写一个islogined函数 用来判断是否登录状态，调用到authenticate，因为参数取的是req.cookie.如果cookie过时了就空，以此返回不同的值 get到的新知识app.use(‘/‘, users); 这样子写是将users下所有中间件启动  app.get(env) === developme">
+<meta property="og:description" content="7月14日的时候学习到了http的一些事项，三次握手，跨域，缓存,csp等等，以及https相比http的一些优势，在这里再次深入了解一下https">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-24T16:44:56.415Z">
+<meta property="og:image" content="http://yoursite.com/2018/08/19/https协议二次了解/1-150H120343I41.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/08/19/https协议二次了解/2012071410212142.gif">
+<meta property="og:updated_time" content="2018-08-19T10:27:12.769Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Affair开发初步想法">
-<meta name="twitter:description" content="有关如何判断登录状态的简单想法一个鉴定函数判断是不是原来的用户（密码错误，全错等）写一个islogined函数 用来判断是否登录状态，调用到authenticate，因为参数取的是req.cookie.如果cookie过时了就空，以此返回不同的值 get到的新知识app.use(‘/‘, users); 这样子写是将users下所有中间件启动  app.get(env) === developme">
+<meta name="twitter:title" content="https协议二次了解">
+<meta name="twitter:description" content="7月14日的时候学习到了http的一些事项，三次握手，跨域，缓存,csp等等，以及https相比http的一些优势，在这里再次深入了解一下https">
+<meta name="twitter:image" content="http://yoursite.com/2018/08/19/https协议二次了解/1-150H120343I41.jpg">
 
 
 
@@ -122,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/24/Affair开发初步想法/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/19/https协议二次了解/"/>
 
 
 
 
 
-  <title>Affair开发初步想法 | 星辰在上</title>
+  <title>https协议二次了解 | 星辰在上</title>
   
 
 
@@ -256,7 +257,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/24/Affair开发初步想法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/19/https协议二次了解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="郑庆义">
@@ -273,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Affair开发初步想法</h1>
+          <h1 class="post-title" itemprop="name headline">https协议二次了解</h1>
         
 
         <div class="post-meta">
@@ -285,8 +286,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-24T23:41:03+08:00">
-                2018-07-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-19T17:49:15+08:00">
+                2018-08-19
               </time>
             
 
@@ -303,7 +304,7 @@
 
           
           
-             <span id="/2018/07/24/Affair开发初步想法/" class="leancloud_visitors" data-flag-title="Affair开发初步想法">
+             <span id="/2018/08/19/https协议二次了解/" class="leancloud_visitors" data-flag-title="https协议二次了解">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -337,22 +338,58 @@
       
 
       
-        <h4 id="有关如何判断登录状态的简单想法"><a href="#有关如何判断登录状态的简单想法" class="headerlink" title="有关如何判断登录状态的简单想法"></a>有关如何判断登录状态的简单想法</h4><p>一个鉴定函数判断是不是原来的用户（密码错误，全错等）<br>写一个islogined函数 用来判断是否登录状态，调用到authenticate，因为参数取的是req.cookie.如果cookie过时了就空，以此返回不同的值</p>
-<h4 id="get到的新知识"><a href="#get到的新知识" class="headerlink" title="get到的新知识"></a>get到的新知识</h4><p>app.use(‘/‘, users); 这样子写是将users下所有中间件启动</p>
-<blockquote>
-<p>app.get(env) === development 与 process.env.NODE_ENV === ‘development’ 的区别<br>app.get(env)获取的是env的值；<br>process.env.NODE_ENV获取的是 env上面NODE_ENV的值；<br>这两行代码在express中都有出现，意思；<br>还有就是 我们平时写代码一般都是 本地用开发版本；线上用生产版本<br>本地开发版本默认 app.get(env) = development；<br>线上生产版本的环境设置的就是app.get(env) = production;</p>
+        <p>7月14日的时候学习到了http的一些事项，三次握手，跨域，缓存,csp等等，以及https相比http的一些优势，在这里再次深入了解一下https<br><a id="more"></a></p>
+<h3 id="HTTPS的基本概念"><a href="#HTTPS的基本概念" class="headerlink" title="HTTPS的基本概念"></a>HTTPS的基本概念</h3><blockquote>
+<p>HTTPS是以安全为目标的HTTP通道，简单讲是HTTP的安全版，即HTTP下加入SSL层，HTTPS的安全基础是SSL，因此加密的详细内容就需要SSL。</p>
 </blockquote>
-<h4 id="crypto最简单的用法"><a href="#crypto最简单的用法" class="headerlink" title="crypto最简单的用法"></a>crypto最简单的用法</h4><p>导入后， var hash=crypto.createHash(‘md5’)调用加密算法，常用md5<br>hash.update(userName+pwd)<br>return hash.digest(‘hex’)十六进制</p>
-<h3 id="正文：构想（跟咕咕咕的交流过程中随笔）-外人看不懂滴"><a href="#正文：构想（跟咕咕咕的交流过程中随笔）-外人看不懂滴" class="headerlink" title="正文：构想（跟咕咕咕的交流过程中随笔）(外人看不懂滴)"></a>正文：构想（跟咕咕咕的交流过程中随笔）(外人看不懂滴)</h3><p>稍微理一下思路<br>post(,fun{<br>reddot fn<br>})</p>
-<p>reddot fn{<br>}</p>
-<hr>
-<p>评论{<br>}</p>
-<hr>
-<p>user schema{<br>头像:<br>ID:<br>}</p>
-<p>event schema{<br>发布id::<br>涉及id：[ ]<br>标题：<br>状态：[1 2 3]<br>}</p>
-<p>comment {<br>id:<br>content:<br>date{ var time=new Date( )<br> time.toString}<br>}</p>
-<hr>
-<p>创建小组的功能，设计说不需要做了，倒是省了很多事，不过我想真的做出来后，之后的之后也许会继续完善<br>最大的难题是如何做到微信授权登录，获取微信用户的信息。尝试了putty配置，ngrok生成外网域名然后内网映射过去，查了资料，如何内网映射外网，内网穿透，最后发现貌似不需要内网穿透？？！！接下来先把能做的逻辑写出来，以及等一波菠萝的教学有关于微信授权的技能</p>
+<blockquote>
+<p>大特点也是优势有：数据加密、信道复用、分帧传输</p>
+</blockquote>
+<blockquote>
+<p>HTTP协议传输的数据都是未加密的，也就是明文的，因此使用HTTP协议传输隐私信息非常不安全，为了保证这些隐私数据能加密传输，于是网景公司设计了SSL（Secure Sockets Layer）协议用于对HTTP协议传输的数据进行加密，从而就诞生了HTTPS。简单来说，HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，要比http协议安全。</p>
+</blockquote>
+<h3 id="HTTPS和HTTP的区别"><a href="#HTTPS和HTTP的区别" class="headerlink" title="HTTPS和HTTP的区别"></a>HTTPS和HTTP的区别</h3><blockquote>
+<p>1、https协议需要到ca申请证书，一般免费证书较少，因而需要一定费用。<br>2、http是超文本传输协议，信息是明文传输，https则是具有安全性的ssl加密传输协议。<br>3、http和https使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。<br>4、http的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，比http协议安全。</p>
+</blockquote>
+<h3 id="HTTPS工作原理"><a href="#HTTPS工作原理" class="headerlink" title="HTTPS工作原理"></a>HTTPS工作原理</h3><blockquote>
+<p>客户端在使用HTTPS方式与Web服务器通信时有以下几个步骤，如图所示。<br><img src="/2018/08/19/https协议二次了解/1-150H120343I41.jpg" alt=""></p>
+</blockquote>
+<blockquote>
+<p>（1）客户使用https的URL访问Web服务器，要求与Web服务器建立SSL连接。</p>
+</blockquote>
+<blockquote>
+<p>（2）Web服务器收到客户端请求后，会将网站的证书信息（证书中包含公钥）传送一份给客户端。</p>
+</blockquote>
+<blockquote>
+<p>（3）客户端的浏览器与Web服务器开始协商SSL连接的安全等级，也就是信息加密的等级。</p>
+</blockquote>
+<blockquote>
+<p>（4）客户端的浏览器根据双方同意的安全等级，建立会话密钥，然后利用网站的公钥将会话密钥加密，并传送给网站。</p>
+</blockquote>
+<blockquote>
+<p>（5）Web服务器利用自己的私钥解密出会话密钥。</p>
+</blockquote>
+<blockquote>
+<p>（6）Web服务器利用会话密钥加密与客户端之间的通信。<br><img src="/2018/08/19/https协议二次了解/2012071410212142.gif" alt=""></p>
+</blockquote>
+<h3 id="HTTPS缺点"><a href="#HTTPS缺点" class="headerlink" title="HTTPS缺点"></a>HTTPS缺点</h3><blockquote>
+<p>虽然说HTTPS有很大的优势，但其相对来说，还是存在不足之处的：</p>
+</blockquote>
+<blockquote>
+<p>（1）HTTPS协议握手阶段比较费时，会使页面的加载时间延长近50%；   </p>
+</blockquote>
+<blockquote>
+<p>（2）HTTPS连接缓存不如HTTP高效，会增加数据开销和功耗，甚至已有的安全措施也会因此而受到影响；</p>
+</blockquote>
+<blockquote>
+<p>（3）SSL证书需要钱，功能越强大的证书费用越高，个人网站、小网站没有必要一般不会用。</p>
+</blockquote>
+<blockquote>
+<p>（4）SSL证书通常需要绑定IP，不能在同一IP上绑定多个域名，IPv4资源不可能支撑这个消耗。</p>
+</blockquote>
+<blockquote>
+<p>（5）HTTPS协议的加密范围也比较有限，在黑客攻击、拒绝服务攻击、服务器劫持等方面几乎起不到什么作用。最关键的，SSL证书的信用链体系并不安全，特别是在某些国家可以控制CA根证书的情况下，中间人攻击一样可行。</p>
+</blockquote>
 
       
     </div>
@@ -370,7 +407,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Affair/" rel="tag"><i class="fa fa-tag"></i> Affair</a>
+            <a href="/tags/https/" rel="tag"><i class="fa fa-tag"></i> https</a>
           
         </div>
       
@@ -383,8 +420,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/23/后台进化正史之第一天/" rel="next" title="后台进化正史之第一天">
-                <i class="fa fa-chevron-left"></i> 后台进化正史之第一天
+              <a href="/2018/07/24/Affair开发初步想法/" rel="next" title="Affair开发初步想法">
+                <i class="fa fa-chevron-left"></i> Affair开发初步想法
               </a>
             
           </div>
@@ -392,10 +429,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/19/https协议二次了解/" rel="prev" title="https协议二次了解">
-                https协议二次了解 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -529,7 +562,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#有关如何判断登录状态的简单想法"><span class="nav-number">1.</span> <span class="nav-text">有关如何判断登录状态的简单想法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#get到的新知识"><span class="nav-number">2.</span> <span class="nav-text">get到的新知识</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#crypto最简单的用法"><span class="nav-number">3.</span> <span class="nav-text">crypto最简单的用法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正文：构想（跟咕咕咕的交流过程中随笔）-外人看不懂滴"><span class="nav-number"></span> <span class="nav-text">正文：构想（跟咕咕咕的交流过程中随笔）(外人看不懂滴)</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTPS的基本概念"><span class="nav-number">1.</span> <span class="nav-text">HTTPS的基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTPS和HTTP的区别"><span class="nav-number">2.</span> <span class="nav-text">HTTPS和HTTP的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTPS工作原理"><span class="nav-number">3.</span> <span class="nav-text">HTTPS工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTPS缺点"><span class="nav-number">4.</span> <span class="nav-text">HTTPS缺点</span></a></li></ol></div>
             
 
           </div>

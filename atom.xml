@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-08-19T10:27:12.769Z</updated>
+  <updated>2018-08-19T19:17:06.963Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>迟到的暑期培训总结</title>
+    <link href="http://yoursite.com/2018/08/20/%E6%9A%91%E6%9C%9F%E6%80%BB%E7%BB%93%E6%8A%A5%E5%91%8A/"/>
+    <id>http://yoursite.com/2018/08/20/暑期总结报告/</id>
+    <published>2018-08-19T17:56:56.000Z</published>
+    <updated>2018-08-19T19:17:06.963Z</updated>
+    
+    <content type="html"><![CDATA[<p>迟来的培训总结<br><a id="more"></a></p><h3 id="日常"><a href="#日常" class="headerlink" title="日常"></a>日常</h3><ul><li><p>开张的前几天，做牛做马当木工，总算是把原本空荡荡的房间变得有模有样了</p></li><li><p>之后的前半段时间真的是被奥克斯的hot wind 逼疯了，在空调师傅的师傅拯救下终于感受到了什么是凉爽，虽然空调修好后一堆人感冒生病(AUX:这锅我背了)</p></li><li><p>期间大爷和holy经常拍大家伙的黑照，然后P表情包，中午大致三足鼎立 开黑打王者，肝痒痒鼠，睡觉；晚上吃完饭后也是王者，吃鸡，阴阳师，元气，看番看剧</p></li><li><p>经历了两碗的生日party，那晚的场面一度混乱，一切都是从大爷反手往我脸上一糊开始~~~</p></li><li><p>培训时间进入尾期的时候，，看了几天的电影(无间道：这锅我背了)，不得不说无间道真的好看，还有傻嗨三宝看沙海，附上宝图一张</p></li></ul><p><img src="/2018/08/20/暑期总结报告/1234.png" width="256" height="256"></p><h3 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h3><p>还是学会了挺多东西，虽然也有很多东西还没学<br>进行一波非常简洁的概括，可能会漏掉一些(详情请见之前的博文)</p><ul><li>知道git的多人合作流程</li><li>有了自己的云服务器</li><li>http和https的瓜葛</li><li>深入了解事件循环机制</li><li>js基础知识譬如继承、作用域、上下文</li><li>express的各种操作</li><li>HTML和CSS基础的学了，可以做出像新世界这种简单的界面了</li><li>做项目的时候经历了各种逻辑风暴和BUG袭击</li><li>Affair项目后台方面剩下一个消息界面的逻辑实在是搞不清，绕来绕去都是不妥的，其他的接口已经写好并测试完毕(有一些我是觉得逻辑上还能更清晰的，但是现在没有技术)，然而对接并没有完成</li></ul><p>放假在家也是会继续学习的，学习使我快乐</p><h3 id="从化之旅"><a href="#从化之旅" class="headerlink" title="从化之旅"></a>从化之旅</h3><p>开门见山：这次从化别墅温泉之旅真的是非常非常嗨森✧<em>｡٩(ˊᗜˋ</em>)و✧*｡</p><ul><li>在华润万家大扫购并达成了1436会师，之后一起滴滴前往别墅</li><li>初入别墅，四层(还是五层？)的设计，温泉，烧烤摊，电影房，桌游房，麻将房，唱K区应有尽有</li><li>当天下午大一的唱K(前半场是浩立和大爷的主场，后半场是屹彬的主场)，大二的做饭，此处表扬居家好男人林荣耀，不仅代码敲得溜、天天跑业务、还能烧得一手好菜，可谓是出得厅堂入得厨房，品尝到了传说中的海底捞版本面筋塞蛋</li><li>吃完饭轮到大一的负责准备晚上烧烤用的食材，大二的去休息唱K啦(小恬恬唱的贼好听)<br>晚上，国家一级烧烤运动员jio大爷和周老板的烧烤摊开张，其他人则是在旁边打UNO嗷嗷待哺</li><li>人生第一次泡温泉，这个水温有毒，经久不衰盖如此乎，经过温泉水洗礼整个人都要升天了</li><li>半夜因为看不了电影，就一堆人挤在2张床上听所谓的恐怖故事，然而并没有发觉哪里恐怖，催眠了一个菠萝就有的。</li><li>之后除了麻将组决战到天光其他人差不多都是4点多回各自的房间训教了</li><li>第二天早上收拾东西走人，吃了一顿丰盛的早午餐就搭车翻来了</li></ul><font size="5" color="#D9D9F3" face="Georgia"><br>前进吧<br>无需鲜衣怒马<br>不用壮志豪言<br><br></font>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;迟来的培训总结&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="杂谈" scheme="http://yoursite.com/tags/%E6%9D%82%E8%B0%88/"/>
+    
+  </entry>
   
   <entry>
     <title>https协议二次了解</title>
@@ -104,23 +124,25 @@
   </entry>
   
   <entry>
-    <title>后台进化史之第七天</title>
+    <title>后台进化史之第七天(今天照样莫得起名)</title>
     <link href="http://yoursite.com/2018/07/19/%E5%90%8E%E5%8F%B0%E8%BF%9B%E5%8C%96%E5%8F%B2%E4%B9%8B%E7%AC%AC%E4%B8%83%E5%A4%A9/"/>
     <id>http://yoursite.com/2018/07/19/后台进化史之第七天/</id>
     <published>2018-07-19T15:53:19.000Z</published>
-    <updated>2018-07-19T16:13:08.142Z</updated>
+    <updated>2018-08-19T18:29:54.641Z</updated>
     
-    <content type="html"><![CDATA[<p>##网络层相关<br>网关实质上是一个网络通向其他网络的IP地址<br>主机处在不同的网络里。而要实现这两个网络之间的通信，则必须通过网关。如果网络A中的主机发现数据包的目的主机不在本地网络中，就把数据包转发给它自己的网关，再由网关转发给网络B的网关，网络B的网关再转发给网络B的某个主机（如附图所示）。网络A向网络B转发数据包的过程</p><p>##继续学习CSS<br>看了瀚程给大爷的新时代修BUG</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="网络层相关"><a href="#网络层相关" class="headerlink" title="网络层相关"></a>网络层相关</h2><p>网关实质上是一个网络通向其他网络的IP地址<br>主机处在不同的网络里。而要实现这两个网络之间的通信，则必须通过网关。如果网络A中的主机发现数据包的目的主机不在本地网络中，就把数据包转发给它自己的网关，再由网关转发给网络B的网关，网络B的网关再转发给网络B的某个主机（如附图所示）。网络A向网络B转发数据包的过程</p><h2 id="继续学习CSS"><a href="#继续学习CSS" class="headerlink" title="继续学习CSS"></a>继续学习CSS</h2><p>看了瀚程给大爷的新时代修BUG获益匪浅</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;##网络层相关&lt;br&gt;网关实质上是一个网络通向其他网络的IP地址&lt;br&gt;主机处在不同的网络里。而要实现这两个网络之间的通信，则必须通过网关。如果网络A中的主机发现数据包的目的主机不在本地网络中，就把数据包转发给它自己的网关，再由网关转发给网络B的网关，网络B的网关再转发给网
+        &lt;h2 id=&quot;网络层相关&quot;&gt;&lt;a href=&quot;#网络层相关&quot; class=&quot;headerlink&quot; title=&quot;网络层相关&quot;&gt;&lt;/a&gt;网络层相关&lt;/h2&gt;&lt;p&gt;网关实质上是一个网络通向其他网络的IP地址&lt;br&gt;主机处在不同的网络里。而要实现这两个网络之间的通信，则必须通过网关
       
     
     </summary>
     
+    
+      <category term="杂谈" scheme="http://yoursite.com/tags/%E6%9D%82%E8%B0%88/"/>
     
   </entry>
   

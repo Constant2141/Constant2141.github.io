@@ -71,8 +71,6 @@
 
 
 
-  
-
 
   <link rel="alternate" href="/atom.xml" title="星辰在上" type="application/atom+xml" />
 
@@ -89,7 +87,7 @@
 <meta property="og:site_name" content="星辰在上">
 <meta property="og:description" content="有关如何判断登录状态的简单想法一个鉴定函数判断是不是原来的用户（密码错误，全错等）写一个islogined函数 用来判断是否登录状态，调用到authenticate，因为参数取的是req.cookie.如果cookie过时了就空，以此返回不同的值 get到的新知识app.use(‘/‘, users); 这样子写是将users下所有中间件启动  app.get(env) === developme">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-24T16:44:56.415Z">
+<meta property="og:updated_time" content="2018-08-19T17:46:28.940Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Affair开发初步想法">
 <meta name="twitter:description" content="有关如何判断登录状态的简单想法一个鉴定函数判断是不是原来的用户（密码错误，全错等）写一个islogined函数 用来判断是否登录状态，调用到authenticate，因为参数取的是req.cookie.如果cookie过时了就空，以此返回不同的值 get到的新知识app.use(‘/‘, users); 这样子写是将users下所有中间件启动  app.get(env) === developme">
@@ -342,15 +340,8 @@
 <blockquote>
 <p>app.get(env) === development 与 process.env.NODE_ENV === ‘development’ 的区别<br>app.get(env)获取的是env的值；<br>process.env.NODE_ENV获取的是 env上面NODE_ENV的值；<br>这两行代码在express中都有出现，意思；<br>还有就是 我们平时写代码一般都是 本地用开发版本；线上用生产版本<br>本地开发版本默认 app.get(env) = development；<br>线上生产版本的环境设置的就是app.get(env) = production;</p>
 </blockquote>
-<h4 id="crypto最简单的用法"><a href="#crypto最简单的用法" class="headerlink" title="crypto最简单的用法"></a>crypto最简单的用法</h4><p>导入后， var hash=crypto.createHash(‘md5’)调用加密算法，常用md5<br>hash.update(userName+pwd)<br>return hash.digest(‘hex’)十六进制</p>
-<h3 id="正文：构想（跟咕咕咕的交流过程中随笔）-外人看不懂滴"><a href="#正文：构想（跟咕咕咕的交流过程中随笔）-外人看不懂滴" class="headerlink" title="正文：构想（跟咕咕咕的交流过程中随笔）(外人看不懂滴)"></a>正文：构想（跟咕咕咕的交流过程中随笔）(外人看不懂滴)</h3><p>稍微理一下思路<br>post(,fun{<br>reddot fn<br>})</p>
-<p>reddot fn{<br>}</p>
-<hr>
-<p>评论{<br>}</p>
-<hr>
-<p>user schema{<br>头像:<br>ID:<br>}</p>
-<p>event schema{<br>发布id::<br>涉及id：[ ]<br>标题：<br>状态：[1 2 3]<br>}</p>
-<p>comment {<br>id:<br>content:<br>date{ var time=new Date( )<br> time.toString}<br>}</p>
+<h4 id="crypto最简单的用法"><a href="#crypto最简单的用法" class="headerlink" title="crypto最简单的用法"></a>crypto最简单的用法</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">'crypto'</span>)</span><br><span class="line"><span class="keyword">var</span> hash=crypto.createHash(<span class="string">'md5'</span>)调用加密算法，常用md5</span><br><span class="line">hash.update(userName+pwd)</span><br><span class="line"><span class="keyword">return</span> hash.digest(<span class="string">'hex'</span>)十六进制</span><br></pre></td></tr></table></figure>
+<h3 id="正文：构想（跟咕咕咕的交流过程中随笔）-旁人看不懂滴"><a href="#正文：构想（跟咕咕咕的交流过程中随笔）-旁人看不懂滴" class="headerlink" title="正文：构想（跟咕咕咕的交流过程中随笔）(旁人看不懂滴)"></a>正文：构想（跟咕咕咕的交流过程中随笔）(旁人看不懂滴)</h3><p>稍微理一下思路<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">post(,fun&#123;</span><br><span class="line">reddot fn</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">reddot fn&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">------------------</span><br><span class="line">评论&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-----------------</span><br><span class="line">user schema&#123;</span><br><span class="line">头像:</span><br><span class="line">ID:</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">event schema&#123;</span><br><span class="line">发布id::</span><br><span class="line">涉及id：[ ]</span><br><span class="line">标题：</span><br><span class="line">状态：[<span class="number">1</span> <span class="number">2</span> <span class="number">3</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">comment &#123;</span><br><span class="line">id:</span><br><span class="line">content:</span><br><span class="line">date&#123; <span class="keyword">var</span> time=<span class="keyword">new</span> <span class="built_in">Date</span>( )</span><br><span class="line"> time.toString&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <hr>
 <p>创建小组的功能，设计说不需要做了，倒是省了很多事，不过我想真的做出来后，之后的之后也许会继续完善<br>最大的难题是如何做到微信授权登录，获取微信用户的信息。尝试了putty配置，ngrok生成外网域名然后内网映射过去，查了资料，如何内网映射外网，内网穿透，最后发现貌似不需要内网穿透？？！！接下来先把能做的逻辑写出来，以及等一波菠萝的教学有关于微信授权的技能</p>
 
@@ -383,8 +374,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/23/后台进化正史之第一天/" rel="next" title="后台进化正史之第一天">
-                <i class="fa fa-chevron-left"></i> 后台进化正史之第一天
+              <a href="/2018/07/23/练手项目开始/" rel="next" title="练手项目开始">
+                <i class="fa fa-chevron-left"></i> 练手项目开始
               </a>
             
           </div>
@@ -529,7 +520,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#有关如何判断登录状态的简单想法"><span class="nav-number">1.</span> <span class="nav-text">有关如何判断登录状态的简单想法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#get到的新知识"><span class="nav-number">2.</span> <span class="nav-text">get到的新知识</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#crypto最简单的用法"><span class="nav-number">3.</span> <span class="nav-text">crypto最简单的用法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正文：构想（跟咕咕咕的交流过程中随笔）-外人看不懂滴"><span class="nav-number"></span> <span class="nav-text">正文：构想（跟咕咕咕的交流过程中随笔）(外人看不懂滴)</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#有关如何判断登录状态的简单想法"><span class="nav-number">1.</span> <span class="nav-text">有关如何判断登录状态的简单想法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#get到的新知识"><span class="nav-number">2.</span> <span class="nav-text">get到的新知识</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#crypto最简单的用法"><span class="nav-number">3.</span> <span class="nav-text">crypto最简单的用法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正文：构想（跟咕咕咕的交流过程中随笔）-旁人看不懂滴"><span class="nav-number"></span> <span class="nav-text">正文：构想（跟咕咕咕的交流过程中随笔）(旁人看不懂滴)</span></a></div>
             
 
           </div>

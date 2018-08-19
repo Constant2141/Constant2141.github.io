@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/07/16/事件循环机制和几种数组方法/2018041120124254.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/16/事件循环机制和几种数组方法/20180411202638415.png">
-<meta property="og:updated_time" content="2018-08-19T17:04:31.350Z">
+<meta property="og:updated_time" content="2018-08-19T17:07:36.067Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="事件循环机制和几种数组方法">
 <meta name="twitter:description" content="Everything runs in parallel except your code!    事件循环（以及异步，回调）js 事件轮询机制  在js中同步和异步的任务会分别进入不同的执行场所，同步任务进入主线程异步的进入Event Table并注册函数。当指定的事情完成时，Event Table会将这个函数移入Event Queue。主线程内的任务执行完毕为空，会去Event Queue读取对">
@@ -351,17 +351,6 @@
 </blockquote>
 <p>菠萝说的<br>宏任务一般有：script，setTimeout，setInterval。</p>
 <p>微任务：Promise，process.nextTick。</p>
-<h3 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h3><p>记录类型A 表明主机记录指向唯一的IP<br>记录类型CNAME 一个域名指向另一个域名</p>
-<p>买了一个新的域名尝试了将其指向原有的博客域名，一顿操作终于好了<br>缓存真是个奇怪的东西，明明就是ping一样的地址，上一刻和下一刻效果不一样</p>
-<h3 id="添加虚拟主机的常用命令"><a href="#添加虚拟主机的常用命令" class="headerlink" title="添加虚拟主机的常用命令"></a>添加虚拟主机的常用命令</h3><p>lnmp vhost add<br>lnmp vhost list<br>cd /home wwwroot/<br>lnmp list<br>cd 进去 找到index.html，vim模式编辑</p>
-<h3 id="express"><a href="#express" class="headerlink" title="express"></a>express</h3><blockquote>
-<p>Post请求体</p>
-<ul>
-<li>常用媒体类型是application/x-www-form-urlencoded</li>
-<li>如果需要上传文件 multipart/form-data</li>
-<li>如果是AJAX请求 application/json</li>
-</ul>
-</blockquote>
 <h3 id="数组操作几种方法-codewar"><a href="#数组操作几种方法-codewar" class="headerlink" title="数组操作几种方法(codewar)"></a>数组操作几种方法(codewar)</h3><blockquote>
 <p>今天做的这道题让我回忆，以及get到了一些或旧或新的方法，这些方法都是挺有用的</p>
 </blockquote>
@@ -386,8 +375,18 @@
 </code></pre><p>5、 map遍历</p>
 <pre><code>arr.map(funtion(n){
 })
-</code></pre><h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>了解了负载均衡这个概念</p>
-<h2 id="最后附上一道题，有关异步的"><a href="#最后附上一道题，有关异步的" class="headerlink" title="最后附上一道题，有关异步的"></a>最后附上一道题，有关异步的</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		    <span class="built_in">console</span>.log(<span class="string">'1'</span>)</span><br><span class="line">		&#125;);</span><br><span class="line"> </span><br><span class="line">		<span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>)</span>&#123;</span><br><span class="line">		    <span class="built_in">console</span>.log(<span class="string">'2'</span>);</span><br><span class="line">		&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		    <span class="built_in">console</span>.log(<span class="string">'3'</span>)</span><br><span class="line">		&#125;);</span><br><span class="line"> </span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'4'</span>);</span><br></pre></td></tr></table></figure>
+</code></pre><h3 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h3><p>记录类型A 表明主机记录指向唯一的IP<br>记录类型CNAME 一个域名指向另一个域名</p>
+<p>买了一个新的域名尝试了将其指向原有的博客域名，一顿操作终于好了<br>缓存真是个奇怪的东西，明明就是ping一样的地址，上一刻和下一刻效果不一样</p>
+<h3 id="添加虚拟主机的常用命令"><a href="#添加虚拟主机的常用命令" class="headerlink" title="添加虚拟主机的常用命令"></a>添加虚拟主机的常用命令</h3><p>lnmp vhost add<br>lnmp vhost list<br>cd /home wwwroot/<br>lnmp list<br>cd 进去 找到index.html，vim模式编辑</p>
+<h3 id="express"><a href="#express" class="headerlink" title="express"></a>express</h3><blockquote>
+<p>Post请求体</p>
+<ul>
+<li>常用媒体类型是application/x-www-form-urlencoded</li>
+<li>如果需要上传文件 multipart/form-data</li>
+<li>如果是AJAX请求 application/json</li>
+</ul>
+</blockquote>
+<h2 id="最后附上一道题，有关异步的"><a href="#最后附上一道题，有关异步的" class="headerlink" title="最后附上一道题，有关异步的"></a>最后附上一道题，有关异步的</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		    <span class="built_in">console</span>.log(<span class="string">'1'</span>)</span><br><span class="line">		&#125;);</span><br><span class="line"> </span><br><span class="line">		<span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>)</span>&#123;</span><br><span class="line">		    <span class="built_in">console</span>.log(<span class="string">'2'</span>);</span><br><span class="line">		&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		    <span class="built_in">console</span>.log(<span class="string">'3'</span>)</span><br><span class="line">		&#125;);</span><br><span class="line"> </span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'4'</span>);</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>这段代码的运行顺序 2，4，3，1<br>原因就是 然后回到开头的代码。因为settimeout是宏任务，虽然先执行的他，但是他被放到了宏任务的eventqueue里面，然后代码继续往下检查看有没有微任务，检测到Promise的then函数把他放入了微任务序列。等到主线进程的所有代码执行结束后。先从微任务queue里拿回掉函数，然后微任务queue空了后再从宏任务的queue拿函数。</p>
 </blockquote>
@@ -431,8 +430,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/16/后台进化史之第四天/" rel="prev" title="后台进化史之第四天">
-                后台进化史之第四天 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/16/express处理表单浅理解/" rel="prev" title="express处理表单浅理解">
+                express处理表单浅理解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -567,7 +566,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件循环（以及异步，回调）"><span class="nav-number">1.</span> <span class="nav-text">事件循环（以及异步，回调）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS解析"><span class="nav-number">2.</span> <span class="nav-text">DNS解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加虚拟主机的常用命令"><span class="nav-number">3.</span> <span class="nav-text">添加虚拟主机的常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#express"><span class="nav-number">4.</span> <span class="nav-text">express</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组操作几种方法-codewar"><span class="nav-number">5.</span> <span class="nav-text">数组操作几种方法(codewar)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#filter-过滤"><span class="nav-number">5.1.</span> <span class="nav-text">filter()过滤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#split-分隔"><span class="nav-number">5.2.</span> <span class="nav-text">split()分隔</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#几种遍历方法"><span class="nav-number">5.3.</span> <span class="nav-text">几种遍历方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number"></span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后附上一道题，有关异步的"><span class="nav-number"></span> <span class="nav-text">最后附上一道题，有关异步的</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件循环（以及异步，回调）"><span class="nav-number">1.</span> <span class="nav-text">事件循环（以及异步，回调）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组操作几种方法-codewar"><span class="nav-number">2.</span> <span class="nav-text">数组操作几种方法(codewar)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#filter-过滤"><span class="nav-number">2.1.</span> <span class="nav-text">filter()过滤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#split-分隔"><span class="nav-number">2.2.</span> <span class="nav-text">split()分隔</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#几种遍历方法"><span class="nav-number">2.3.</span> <span class="nav-text">几种遍历方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS解析"><span class="nav-number">3.</span> <span class="nav-text">DNS解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加虚拟主机的常用命令"><span class="nav-number">4.</span> <span class="nav-text">添加虚拟主机的常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#express"><span class="nav-number">5.</span> <span class="nav-text">express</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后附上一道题，有关异步的"><span class="nav-number"></span> <span class="nav-text">最后附上一道题，有关异步的</span></a></div>
             
 
           </div>

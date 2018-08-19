@@ -481,15 +481,8 @@
 <blockquote>
 <p>app.get(env) === development 与 process.env.NODE_ENV === ‘development’ 的区别<br>app.get(env)获取的是env的值；<br>process.env.NODE_ENV获取的是 env上面NODE_ENV的值；<br>这两行代码在express中都有出现，意思；<br>还有就是 我们平时写代码一般都是 本地用开发版本；线上用生产版本<br>本地开发版本默认 app.get(env) = development；<br>线上生产版本的环境设置的就是app.get(env) = production;</p>
 </blockquote>
-<h4 id="crypto最简单的用法"><a href="#crypto最简单的用法" class="headerlink" title="crypto最简单的用法"></a>crypto最简单的用法</h4><p>导入后， var hash=crypto.createHash(‘md5’)调用加密算法，常用md5<br>hash.update(userName+pwd)<br>return hash.digest(‘hex’)十六进制</p>
-<h3 id="正文：构想（跟咕咕咕的交流过程中随笔）-外人看不懂滴"><a href="#正文：构想（跟咕咕咕的交流过程中随笔）-外人看不懂滴" class="headerlink" title="正文：构想（跟咕咕咕的交流过程中随笔）(外人看不懂滴)"></a>正文：构想（跟咕咕咕的交流过程中随笔）(外人看不懂滴)</h3><p>稍微理一下思路<br>post(,fun{<br>reddot fn<br>})</p>
-<p>reddot fn{<br>}</p>
-<hr>
-<p>评论{<br>}</p>
-<hr>
-<p>user schema{<br>头像:<br>ID:<br>}</p>
-<p>event schema{<br>发布id::<br>涉及id：[ ]<br>标题：<br>状态：[1 2 3]<br>}</p>
-<p>comment {<br>id:<br>content:<br>date{ var time=new Date( )<br> time.toString}<br>}</p>
+<h4 id="crypto最简单的用法"><a href="#crypto最简单的用法" class="headerlink" title="crypto最简单的用法"></a>crypto最简单的用法</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">'crypto'</span>)</span><br><span class="line"><span class="keyword">var</span> hash=crypto.createHash(<span class="string">'md5'</span>)调用加密算法，常用md5</span><br><span class="line">hash.update(userName+pwd)</span><br><span class="line"><span class="keyword">return</span> hash.digest(<span class="string">'hex'</span>)十六进制</span><br></pre></td></tr></table></figure>
+<h3 id="正文：构想（跟咕咕咕的交流过程中随笔）-旁人看不懂滴"><a href="#正文：构想（跟咕咕咕的交流过程中随笔）-旁人看不懂滴" class="headerlink" title="正文：构想（跟咕咕咕的交流过程中随笔）(旁人看不懂滴)"></a>正文：构想（跟咕咕咕的交流过程中随笔）(旁人看不懂滴)</h3><p>稍微理一下思路<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">post(,fun&#123;</span><br><span class="line">reddot fn</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">reddot fn&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">------------------</span><br><span class="line">评论&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-----------------</span><br><span class="line">user schema&#123;</span><br><span class="line">头像:</span><br><span class="line">ID:</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">event schema&#123;</span><br><span class="line">发布id::</span><br><span class="line">涉及id：[ ]</span><br><span class="line">标题：</span><br><span class="line">状态：[<span class="number">1</span> <span class="number">2</span> <span class="number">3</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">comment &#123;</span><br><span class="line">id:</span><br><span class="line">content:</span><br><span class="line">date&#123; <span class="keyword">var</span> time=<span class="keyword">new</span> <span class="built_in">Date</span>( )</span><br><span class="line"> time.toString&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <hr>
 <p>创建小组的功能，设计说不需要做了，倒是省了很多事，不过我想真的做出来后，之后的之后也许会继续完善<br>最大的难题是如何做到微信授权登录，获取微信用户的信息。尝试了putty配置，ngrok生成外网域名然后内网映射过去，查了资料，如何内网映射外网，内网穿透，最后发现貌似不需要内网穿透？？！！接下来先把能做的逻辑写出来，以及等一波菠萝的教学有关于微信授权的技能</p>
 
@@ -540,7 +533,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/23/后台进化正史之第一天/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/23/练手项目开始/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="郑庆义">
@@ -559,7 +552,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/23/后台进化正史之第一天/" itemprop="url">后台进化正史之第一天</a></h1>
+                <a class="post-title-link" href="/2018/07/23/练手项目开始/" itemprop="url">练手项目开始</a></h1>
         
 
         <div class="post-meta">
@@ -589,7 +582,7 @@
 
           
           
-             <span id="/2018/07/23/后台进化正史之第一天/" class="leancloud_visitors" data-flag-title="后台进化正史之第一天">
+             <span id="/2018/07/23/练手项目开始/" class="leancloud_visitors" data-flag-title="练手项目开始">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -625,15 +618,22 @@
       
         
           
-            <h3 id="前端方面"><a href="#前端方面" class="headerlink" title="前端方面"></a>前端方面</h3><p>今天从中午开始就一直在做一个页面，因为是第一次做网页(除教程外的第一个)，遇到了很多很多的问题，我想做熟练了写起代码来应该就会得心应手很多吧。</p>
+            <h3 id="前端方面get到的小知识"><a href="#前端方面get到的小知识" class="headerlink" title="前端方面get到的小知识"></a>前端方面get到的小知识</h3><p>今天从中午开始就一直在做一个页面，因为是第一次做网页(除教程外的第一个)，遇到了很多很多的问题，我想做熟练了写起代码来应该就会得心应手很多吧。</p>
 <p>get到一些很基础的 写页面的时候用到的技巧（至少目前我是这样被教育的）</p>
-<p>*{<br>    margin: 0;<br>    padding: 0;<br>}</p>
-<p>背景用background-size: cover;</p>
-<p>用display: inline-block;是对需要同行排列的div操作，一般还要设置margin:0px和width：占比%；对父级div设置font-size：0px;</p>
-<p>记得还有relative相对布局，老是不想用它<br>float浮动 尽量不要乱用，惨痛</p>
-<p>新学到的 cursor: pointer;<br> overflow: hidden;</p>
-<p> 这个页面肯定是还没有做完啦，第一次尝试做一个页面做怎么可能半天就搞定</p>
-<h3 id="后台方面"><a href="#后台方面" class="headerlink" title="后台方面"></a>后台方面</h3><p>  今天设计正式提出了接下来的Affair项目功能需求，涉及的东西挺多<br>  接下来要做的东西中“较为可行”的 如何授权微信登录 实现点赞 评论（后面两个还行，第一个看下教学吧） 发布任务<br>  最难搞的还是那些逻辑，听得懂但是要写出代码来，毕竟是以前没有做过的things，真实情况也的确是难度很大，开发不完应该是板上钉钉，但是也会拼尽全力去实现的！！！</p>
+<ol>
+<li><p>*{<br> margin: 0;<br> padding: 0;<br>}</p>
+</li>
+<li><p>背景填充用background-size: cover;</p>
+</li>
+<li><p>想要实现同行排列几个块的时候<br>对父级div设置font-size:0px<br>对小块div用display: inline-block<br>一般还对小块div设置margin:0px和width:占比%；</p>
+</li>
+<li><p>float浮动和clear 尽量不要乱用，惨痛</p>
+</li>
+<li><p>新学到的  cursor: pointer;鼠标指针样式</p>
+<p>新世界页面肯定是还没有做完啦</p>
+</li>
+</ol>
+<h3 id="后台方面"><a href="#后台方面" class="headerlink" title="后台方面"></a>后台方面</h3><p>  今天设计正式提出了接下来的Affair项目功能需求，涉及的东西挺多<br>  接下来要做的东西中“较为可行”的 如何授权微信登录 实现点赞 评论（后面两个还行，第一个看下教学吧） 发布任务<br>  最难搞的还是那些逻辑，毕竟是以前没有做过的things，真实情况也的确是难度很大，开发不完应该是板上钉钉，但是也会拼尽全力去实现的！！！</p>
 
           
         
@@ -769,7 +769,7 @@
           
             <h3 id="flex由来"><a href="#flex由来" class="headerlink" title="flex由来"></a>flex由来</h3><p>布局的传统解决方案，基于盒状模型，依赖 display 属性 + position属性 + float属性。它对于那些特殊布局非常不方便，比如，垂直居中就不容易实现。W3C 提出了一种新的方案—-Flex 布局（弹性布局），可以简便、完整、响应式地实现各种页面布</p>
 <h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><p>任何一个容器都可以指定为 Flex 布局。   display: flex;<br>行内元素也可以使用 Flex 布局。         display: inline-flex;<br>设为 Flex 布局以后，子元素的float、clear和vertical-align属性将失效</p>
-<h3 id="六大属性"><a href="#六大属性" class="headerlink" title="六大属性"></a>六大属性</h3><p>####flex-direction(决定主轴的方向)<br>row（默认值）：主轴为水平方向，起点在左端。<br>row-reverse：<br>column：<br>column-reverse:</p>
+<h3 id="六大属性"><a href="#六大属性" class="headerlink" title="六大属性"></a>六大属性</h3><h4 id="flex-direction-决定主轴的方向"><a href="#flex-direction-决定主轴的方向" class="headerlink" title="flex-direction(决定主轴的方向)"></a>flex-direction(决定主轴的方向)</h4><p>row（默认值）：主轴为水平方向，起点在左端。<br>row-reverse：<br>column：<br>column-reverse:</p>
 <h4 id="flex-wrap"><a href="#flex-wrap" class="headerlink" title="flex-wrap"></a>flex-wrap</h4><blockquote>
 <p>默认情况下，项目都排在一条线（又称”轴线”）上。flex-wrap属性定义，如果一条轴线排不下，如何换行。</p>
 </blockquote>
@@ -985,7 +985,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/18/后台进化史之第六天/" itemprop="url">后台进化史之第六天</a></h1>
+                <a class="post-title-link" href="/2018/07/18/后台进化史之第六天/" itemprop="url">在蒲公英的第六天(今天莫得起名)</a></h1>
         
 
         <div class="post-meta">
@@ -1015,7 +1015,7 @@
 
           
           
-             <span id="/2018/07/18/后台进化史之第六天/" class="leancloud_visitors" data-flag-title="后台进化史之第六天">
+             <span id="/2018/07/18/后台进化史之第六天/" class="leancloud_visitors" data-flag-title="在蒲公英的第六天(今天莫得起名)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1051,11 +1051,18 @@
       
         
           
-            <h2 id="express"><a href="#express" class="headerlink" title="express"></a>express</h2><p>express xx生成一个express文件，进入bin，npm start 等同于node ./bin/www 运行node服务</p>
-<p>package.json下列出的模块表明是运行所需要的，npm install 会自行安装。便于客户端执行服务。</p>
-<p>jade模板引擎，在express开发中有粗略看过，当初还没学前端htmlcss基本懵逼，现在看好多了。模板引擎是用来简化html代码的，晚点再看看。</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">router.post(<span class="string">'*'</span>,<span class="function"><span class="keyword">function</span><span class="params">(req,res,next)</span></span>&#123;</span><br><span class="line">   xxxxxx;</span><br><span class="line">   <span class="built_in">next</span>()；</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+            <h2 id="express"><a href="#express" class="headerlink" title="express"></a>express</h2><ul>
+<li><p>express xx生成一个express文件，进入bin，npm start 等同于node ./bin/www 运行node服务</p>
+</li>
+<li><p>package.json下列出的模块表明是运行所需要的，npm install 会自行安装。便于客户端执行服务。</p>
+</li>
+<li><p>jade模板引擎，在express开发中有粗略看过，当初还没学前端htmlcss基本懵逼，现在看好多了。模板引擎是用来简化html代码的，准备晚点再看看。</p>
+</li>
+<li><p>路由通配符</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">router.post(<span class="string">'*'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">   xxxxxx;</span><br><span class="line">   next()；</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>路径如果设定是*，表明所有的请求都要经过这个路由，再执行next方法，比如用来检测用户在一个页面停留的时间是否过长，从而判断登录状态。</p>
+</li>
+</ul>
 <h2 id="继续学css"><a href="#继续学css" class="headerlink" title="继续学css"></a>继续学css</h2>
           
         
@@ -1104,7 +1111,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/17/后台进化史之第五天/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/17/继承、执行上下文、this/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="郑庆义">
@@ -1123,7 +1130,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/17/后台进化史之第五天/" itemprop="url">后台进化史之第五天</a></h1>
+                <a class="post-title-link" href="/2018/07/17/继承、执行上下文、this/" itemprop="url">继承、执行上下文、this浅理解</a></h1>
         
 
         <div class="post-meta">
@@ -1153,7 +1160,7 @@
 
           
           
-             <span id="/2018/07/17/后台进化史之第五天/" class="leancloud_visitors" data-flag-title="后台进化史之第五天">
+             <span id="/2018/07/17/继承、执行上下文、this/" class="leancloud_visitors" data-flag-title="继承、执行上下文、this浅理解">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1189,7 +1196,7 @@
       
         
           
-            <h2 id="js"><a href="#js" class="headerlink" title="js"></a>js</h2><p>早上瀚程扔了一个王福朋的博客，里面讲了很多有关Js cSS的东西，这个人真牛逼。早上讲了原型链，this，执行上下文等，结合王福朋的博客看了一点。</p>
+            <p>早上瀚程扔了一个王福朋的博客，里面讲了很多有关JS CSS的东西。早上听讲了原型链，this，执行上下文等，回头也结合王福朋的博客看了一点。</p>
 <ul>
 <li>对象都是通过函数来创建的，但是函数又是一种对象（万物皆对象）</li>
 <li>每一个函数都有一个prototype属性，这个属性的值是一个对象（属性集合），默认的只有一个构造器函数constructor，指向函数本身。</li>
@@ -1205,8 +1212,10 @@
 </li>
 </ul>
 <h3 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h3><p>通俗说法在执行代码之前，把将要用到的所有的变量都事先拿出来，有的直接赋值了，有的先用undefined占个空。</p>
-<h3 id="this的取值"><a href="#this的取值" class="headerlink" title="this的取值"></a>this的取值</h3><p><em><font color="green">在函数中this到底取何值，是在函数真正被调用执行的时候确定的，函数定义的时候确定不了</font></em><br>分为四种情况，震惊，这么详细<br>1、 构造函数中this指向new出来的对象<br>2、 函数作为对象的一个属性，并且被调用,this指向这个对象，如果作为属性但是不被调用，还是指向window<br>3、 函数用call或者apply调用，this的值取传入的参数（对象）的值<br>4、 全局下this指向window，普通函数调用的时候也是指向window</p>
-<h2 id="html与css"><a href="#html与css" class="headerlink" title="html与css"></a>html与css</h2><p>今天大部分时间还是在学html与css，昨天学的是node的express框架。<br>常用的html元素，一些css样式写法，大家都懂的没什么好说</p>
+<h3 id="this的取值"><a href="#this的取值" class="headerlink" title="this的取值"></a>this的取值</h3><p><em><font color="green">在函数中this到底取何值，是在函数真正被调用执行的时候确定的，函数定义的时候确定不了</font></em><br>分为四种情况，震惊，这么详细</p>
+<blockquote>
+<p>1、 构造函数中this指向new出来的对象<br>2、 函数作为对象的一个属性，并且被调用,this指向这个对象，如果作为属性但是不被调用，还是指向window<br>3、 函数用call或者apply调用，this的值取传入的参数（对象）的值<br>4、 全局下this指向window，普通函数调用的时候也是指向window</p>
+</blockquote>
 
           
         
@@ -1255,7 +1264,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/16/后台进化史之第四天/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/16/express处理表单浅理解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="郑庆义">
@@ -1274,7 +1283,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/16/后台进化史之第四天/" itemprop="url">后台进化史之第四天</a></h1>
+                <a class="post-title-link" href="/2018/07/16/express处理表单浅理解/" itemprop="url">express处理表单浅理解</a></h1>
         
 
         <div class="post-meta">
@@ -1304,7 +1313,7 @@
 
           
           
-             <span id="/2018/07/16/后台进化史之第四天/" class="leancloud_visitors" data-flag-title="后台进化史之第四天">
+             <span id="/2018/07/16/express处理表单浅理解/" class="leancloud_visitors" data-flag-title="express处理表单浅理解">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1340,10 +1349,11 @@
       
         
           
-            <h2 id="express"><a href="#express" class="headerlink" title="express"></a>express</h2><h4 id="了解了使用express框架如何处理表单请求"><a href="#了解了使用express框架如何处理表单请求" class="headerlink" title="了解了使用express框架如何处理表单请求"></a><font color="cray">了解了使用express框架如何处理表单请求</font></h4><h5 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h5><p>当表单被提交（通过浏览器或AJAX）时，必须被编码。如果没有明确地指定编码，则默认为application/x-wwwform-urlencoded。<br>如果需要上传文件，使用multipart/form-data编码类型（并不被建议使用）。</p>
-<h5 id="处理表单的不同方式"><a href="#处理表单的不同方式" class="headerlink" title="处理表单的不同方式"></a>处理表单的不同方式</h5><p>如果method=”POST”m展示表单和处理表单可以用同一个路由，因为展示只需要get请求，而处理一般是post请求，使用同一个路由是可以区分的，这一点我当初在做考核的时候倒是没有考虑到。</p>
-<h5 id="处理完后如何响应"><a href="#处理完后如何响应" class="headerlink" title="处理完后如何响应"></a>处理完后如何响应</h5><p>1、 直接响应html，就是直接扔一个html<br>2、 303重定向 { 重定向到某一个特殊的界面，跳转成功应该去哪里，404定制界面等}</p>
-<h5 id="表单域的获取"><a href="#表单域的获取" class="headerlink" title="表单域的获取"></a>表单域的获取</h5><p>1、对于GET请求 域放在req,query<br>2、对于POST请求，域放在req.body中，需要引入一个body-parser 很常用的</p>
+            <p><font face="Georgia" size="4" color="cray">了解了使用express框架如何处理表单请求</font></p>
+<h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><p>当表单被提交（通过浏览器或AJAX）时，必须被编码。如果没有明确地指定编码，则默认为application/x-wwwform-urlencoded。<br>如果需要上传文件，使用multipart/form-data编码类型（并不被建议使用）。</p>
+<h3 id="处理表单的不同方式"><a href="#处理表单的不同方式" class="headerlink" title="处理表单的不同方式"></a>处理表单的不同方式</h3><p>如果method=”POST”m展示表单和处理表单可以用同一个路由，因为展示只需要get请求，而处理一般是post请求，使用同一个路由是可以区分的，这一点我当初在做考核的时候倒是没有考虑到。</p>
+<h3 id="处理完后如何响应"><a href="#处理完后如何响应" class="headerlink" title="处理完后如何响应"></a>处理完后如何响应</h3><p>1、 直接响应html，就是直接扔一个html<br>2、 303重定向 { 重定向到某一个特殊的界面，跳转成功应该去哪里，404定制界面等}</p>
+<h3 id="表单域的获取"><a href="#表单域的获取" class="headerlink" title="表单域的获取"></a>表单域的获取</h3><p>1、对于GET请求 域放在req,query<br>2、对于POST请求，域放在req.body中，需要引入一个body-parser 很常用的</p>
 
           
         
@@ -1490,17 +1500,6 @@
 </blockquote>
 <p>菠萝说的<br>宏任务一般有：script，setTimeout，setInterval。</p>
 <p>微任务：Promise，process.nextTick。</p>
-<h3 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h3><p>记录类型A 表明主机记录指向唯一的IP<br>记录类型CNAME 一个域名指向另一个域名</p>
-<p>买了一个新的域名尝试了将其指向原有的博客域名，一顿操作终于好了<br>缓存真是个奇怪的东西，明明就是ping一样的地址，上一刻和下一刻效果不一样</p>
-<h3 id="添加虚拟主机的常用命令"><a href="#添加虚拟主机的常用命令" class="headerlink" title="添加虚拟主机的常用命令"></a>添加虚拟主机的常用命令</h3><p>lnmp vhost add<br>lnmp vhost list<br>cd /home wwwroot/<br>lnmp list<br>cd 进去 找到index.html，vim模式编辑</p>
-<h3 id="express"><a href="#express" class="headerlink" title="express"></a>express</h3><blockquote>
-<p>Post请求体</p>
-<ul>
-<li>常用媒体类型是application/x-www-form-urlencoded</li>
-<li>如果需要上传文件 multipart/form-data</li>
-<li>如果是AJAX请求 application/json</li>
-</ul>
-</blockquote>
 <h3 id="数组操作几种方法-codewar"><a href="#数组操作几种方法-codewar" class="headerlink" title="数组操作几种方法(codewar)"></a>数组操作几种方法(codewar)</h3><blockquote>
 <p>今天做的这道题让我回忆，以及get到了一些或旧或新的方法，这些方法都是挺有用的</p>
 </blockquote>
@@ -1525,8 +1524,18 @@
 </code></pre><p>5、 map遍历</p>
 <pre><code>arr.map(funtion(n){
 })
-</code></pre><h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>了解了负载均衡这个概念</p>
-<h2 id="最后附上一道题，有关异步的"><a href="#最后附上一道题，有关异步的" class="headerlink" title="最后附上一道题，有关异步的"></a>最后附上一道题，有关异步的</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		    <span class="built_in">console</span>.log(<span class="string">'1'</span>)</span><br><span class="line">		&#125;);</span><br><span class="line"> </span><br><span class="line">		<span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>)</span>&#123;</span><br><span class="line">		    <span class="built_in">console</span>.log(<span class="string">'2'</span>);</span><br><span class="line">		&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		    <span class="built_in">console</span>.log(<span class="string">'3'</span>)</span><br><span class="line">		&#125;);</span><br><span class="line"> </span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'4'</span>);</span><br></pre></td></tr></table></figure>
+</code></pre><h3 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h3><p>记录类型A 表明主机记录指向唯一的IP<br>记录类型CNAME 一个域名指向另一个域名</p>
+<p>买了一个新的域名尝试了将其指向原有的博客域名，一顿操作终于好了<br>缓存真是个奇怪的东西，明明就是ping一样的地址，上一刻和下一刻效果不一样</p>
+<h3 id="添加虚拟主机的常用命令"><a href="#添加虚拟主机的常用命令" class="headerlink" title="添加虚拟主机的常用命令"></a>添加虚拟主机的常用命令</h3><p>lnmp vhost add<br>lnmp vhost list<br>cd /home wwwroot/<br>lnmp list<br>cd 进去 找到index.html，vim模式编辑</p>
+<h3 id="express"><a href="#express" class="headerlink" title="express"></a>express</h3><blockquote>
+<p>Post请求体</p>
+<ul>
+<li>常用媒体类型是application/x-www-form-urlencoded</li>
+<li>如果需要上传文件 multipart/form-data</li>
+<li>如果是AJAX请求 application/json</li>
+</ul>
+</blockquote>
+<h2 id="最后附上一道题，有关异步的"><a href="#最后附上一道题，有关异步的" class="headerlink" title="最后附上一道题，有关异步的"></a>最后附上一道题，有关异步的</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		    <span class="built_in">console</span>.log(<span class="string">'1'</span>)</span><br><span class="line">		&#125;);</span><br><span class="line"> </span><br><span class="line">		<span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>)</span>&#123;</span><br><span class="line">		    <span class="built_in">console</span>.log(<span class="string">'2'</span>);</span><br><span class="line">		&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		    <span class="built_in">console</span>.log(<span class="string">'3'</span>)</span><br><span class="line">		&#125;);</span><br><span class="line"> </span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'4'</span>);</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>这段代码的运行顺序 2，4，3，1<br>原因就是 然后回到开头的代码。因为settimeout是宏任务，虽然先执行的他，但是他被放到了宏任务的eventqueue里面，然后代码继续往下检查看有没有微任务，检测到Promise的then函数把他放入了微任务序列。等到主线进程的所有代码执行结束后。先从微任务queue里拿回掉函数，然后微任务queue空了后再从宏任务的queue拿函数。</p>
 </blockquote>

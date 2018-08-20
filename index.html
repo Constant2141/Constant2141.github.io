@@ -337,7 +337,7 @@
 
       
         
-          <p>迟来的培训总结<br></p>
+          <p>早就应该写的了，拖着拖着就到现在了<br></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/08/20/暑期总结报告/#more" rel="contents">
@@ -613,18 +613,14 @@
 
       
         
-          
-            <h4 id="有关如何判断登录状态的简单想法"><a href="#有关如何判断登录状态的简单想法" class="headerlink" title="有关如何判断登录状态的简单想法"></a>有关如何判断登录状态的简单想法</h4><p>一个鉴定函数判断是不是原来的用户（密码错误，全错等）<br>写一个islogined函数 用来判断是否登录状态，调用到authenticate，因为参数取的是req.cookie.如果cookie过时了就空，以此返回不同的值</p>
-<h4 id="get到的新知识"><a href="#get到的新知识" class="headerlink" title="get到的新知识"></a>get到的新知识</h4><p>app.use(‘/‘, users); 这样子写是将users下所有中间件启动</p>
-<blockquote>
-<p>app.get(env) === development 与 process.env.NODE_ENV === ‘development’ 的区别<br>app.get(env)获取的是env的值；<br>process.env.NODE_ENV获取的是 env上面NODE_ENV的值；<br>这两行代码在express中都有出现，意思；<br>还有就是 我们平时写代码一般都是 本地用开发版本；线上用生产版本<br>本地开发版本默认 app.get(env) = development；<br>线上生产版本的环境设置的就是app.get(env) = production;</p>
-</blockquote>
-<h4 id="crypto最简单的用法"><a href="#crypto最简单的用法" class="headerlink" title="crypto最简单的用法"></a>crypto最简单的用法</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">'crypto'</span>)</span><br><span class="line"><span class="keyword">var</span> hash=crypto.createHash(<span class="string">'md5'</span>)调用加密算法，常用md5</span><br><span class="line">hash.update(userName+pwd)</span><br><span class="line"><span class="keyword">return</span> hash.digest(<span class="string">'hex'</span>)十六进制</span><br></pre></td></tr></table></figure>
-<h3 id="正文：构想（跟咕咕咕的交流过程中随笔）-旁人看不懂滴"><a href="#正文：构想（跟咕咕咕的交流过程中随笔）-旁人看不懂滴" class="headerlink" title="正文：构想（跟咕咕咕的交流过程中随笔）(旁人看不懂滴)"></a>正文：构想（跟咕咕咕的交流过程中随笔）(旁人看不懂滴)</h3><p>稍微理一下思路<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">post(,fun&#123;</span><br><span class="line">reddot fn</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">reddot fn&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">------------------</span><br><span class="line">评论&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-----------------</span><br><span class="line">user schema&#123;</span><br><span class="line">头像:</span><br><span class="line">ID:</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">event schema&#123;</span><br><span class="line">发布id::</span><br><span class="line">涉及id：[ ]</span><br><span class="line">标题：</span><br><span class="line">状态：[<span class="number">1</span> <span class="number">2</span> <span class="number">3</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">comment &#123;</span><br><span class="line">id:</span><br><span class="line">content:</span><br><span class="line">date&#123; <span class="keyword">var</span> time=<span class="keyword">new</span> <span class="built_in">Date</span>( )</span><br><span class="line"> time.toString&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p>创建小组的功能，设计说不需要做了，倒是省了很多事，不过我想真的做出来后，之后的之后也许会继续完善<br>最大的难题是如何做到微信授权登录，获取微信用户的信息。尝试了putty配置，ngrok生成外网域名然后内网映射过去，查了资料，如何内网映射外网，内网穿透，最后发现貌似不需要内网穿透？？！！接下来先把能做的逻辑写出来，以及等一波菠萝的教学有关于微信授权的技能</p>
-
-          
+          <p>今天学到的和初步想法<br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/24/Affair开发初步想法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -755,25 +751,14 @@
 
       
         
-          
-            <h3 id="前端方面get到的小知识"><a href="#前端方面get到的小知识" class="headerlink" title="前端方面get到的小知识"></a>前端方面get到的小知识</h3><p>今天从中午开始就一直在做一个页面，因为是第一次做网页(除教程外的第一个)，遇到了很多很多的问题，我想做熟练了写起代码来应该就会得心应手很多吧。</p>
-<p>get到一些很基础的 写页面的时候用到的技巧（至少目前我是这样被教育的）</p>
-<ol>
-<li><p>*{<br> margin: 0;<br> padding: 0;<br>}</p>
-</li>
-<li><p>背景填充用background-size: cover;</p>
-</li>
-<li><p>想要实现同行排列几个块的时候<br>对父级div设置font-size:0px<br>对小块div用display: inline-block<br>一般还对小块div设置margin:0px和width:占比%；</p>
-</li>
-<li><p>float浮动和clear 尽量不要乱用，惨痛</p>
-</li>
-<li><p>新学到的  cursor: pointer;鼠标指针样式</p>
-<p>新世界页面肯定是还没有做完啦</p>
-</li>
-</ol>
-<h3 id="后台方面"><a href="#后台方面" class="headerlink" title="后台方面"></a>后台方面</h3><p>  今天设计正式提出了接下来的Affair项目功能需求，涉及的东西挺多<br>  接下来要做的东西中“较为可行”的 如何授权微信登录 实现点赞 评论（后面两个还行，第一个看下教学吧） 发布任务<br>  最难搞的还是那些逻辑，毕竟是以前没有做过的things，真实情况也的确是难度很大，开发不完应该是板上钉钉，但是也会拼尽全力去实现的！！！</p>
-
-          
+          <p>设计稿交给我们了，前半天让张阳宁给我指导下做页面的事项，后半天想一下affair<br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/23/练手项目开始/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -904,25 +889,14 @@
 
       
         
-          
-            <h3 id="flex由来"><a href="#flex由来" class="headerlink" title="flex由来"></a>flex由来</h3><p>布局的传统解决方案，基于盒状模型，依赖 display 属性 + position属性 + float属性。它对于那些特殊布局非常不方便，比如，垂直居中就不容易实现。W3C 提出了一种新的方案—-Flex 布局（弹性布局），可以简便、完整、响应式地实现各种页面布</p>
-<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><p>任何一个容器都可以指定为 Flex 布局。   display: flex;<br>行内元素也可以使用 Flex 布局。         display: inline-flex;<br>设为 Flex 布局以后，子元素的float、clear和vertical-align属性将失效</p>
-<h3 id="六大属性"><a href="#六大属性" class="headerlink" title="六大属性"></a>六大属性</h3><h4 id="flex-direction-决定主轴的方向"><a href="#flex-direction-决定主轴的方向" class="headerlink" title="flex-direction(决定主轴的方向)"></a>flex-direction(决定主轴的方向)</h4><p>row（默认值）：主轴为水平方向，起点在左端。<br>row-reverse：<br>column：<br>column-reverse:</p>
-<h4 id="flex-wrap"><a href="#flex-wrap" class="headerlink" title="flex-wrap"></a>flex-wrap</h4><blockquote>
-<p>默认情况下，项目都排在一条线（又称”轴线”）上。flex-wrap属性定义，如果一条轴线排不下，如何换行。</p>
-</blockquote>
-<h4 id="flex-flow"><a href="#flex-flow" class="headerlink" title="flex-flow"></a>flex-flow</h4><p>nowrap（默认）：不换行。<br>wrap：换行，第一行在上<br>wrap-reverse：换行，第一行在下方。</p>
-<h4 id="justify-content"><a href="#justify-content" class="headerlink" title="justify-content"></a>justify-content</h4><p>属性定义了项目在主轴上的对齐方式。<br>flex-start（默认值）：左对齐<br>flex-end：右对齐<br>center： 居中<br>space-between：两端对齐，项目<em>之间</em>的间隔都相等。<br>space-around：每个项目<em>两侧</em>的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。</p>
-<h4 id="align-items"><a href="#align-items" class="headerlink" title="align-items"></a>align-items</h4><p>属性定义项目在交叉轴上如何对齐。<br>stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度<br>flex-start：交叉轴的起点对齐。<br>flex-end：交叉轴的终点对齐。<br>center：交叉轴的中点对齐。<br>baseline: 项目的第一行文字的基线对齐。</p>
-<h4 id="align-content"><a href="#align-content" class="headerlink" title="align-content"></a>align-content</h4><p>定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。<br>stretch（默认值）：轴线占满整个交叉轴。<br>flex-start：与交叉轴的起点对齐。<br>flex-end：与交叉轴的终点对齐。<br>center：与交叉轴的中点对齐。<br>space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。<br>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</p>
-<h3 id="对于项目item使用的属性"><a href="#对于项目item使用的属性" class="headerlink" title="对于项目item使用的属性"></a>对于项目item使用的属性</h3><h4 id="order"><a href="#order" class="headerlink" title="order"></a>order</h4><p>定义项目的排列顺序。数值越小，排列越靠前，默认为0。</p>
-<h4 id="flex-grow"><a href="#flex-grow" class="headerlink" title="flex-grow"></a>flex-grow</h4><p>属性定义项目的放大比例，默认为0，意思是如果存在剩余空间，也不放大。如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。</p>
-<h4 id="flex-shrink"><a href="#flex-shrink" class="headerlink" title="flex-shrink"></a>flex-shrink</h4><p>属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。</p>
-<h4 id="flex-basis"><a href="#flex-basis" class="headerlink" title="flex-basis"></a>flex-basis</h4><p>在分配多余空间之前项目占据的主轴空多大。以如果设为跟width或height属性一样的值（比如350px），则项目将占据固定空间。</p>
-<h4 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h4><p>属性是前面三个的简写，默认0 1 auto<br>两个快捷方式 auto（1 1 auto）<br>                       none （0 0 auto）</p>
-<h4 id="align-self"><a href="#align-self" class="headerlink" title="align-self"></a>align-self</h4><p>属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto</p>
-
-          
+          <p>今天学习了flex布局，这个布局还是挺方便的，不然老是float太多问题了<br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/21/flex布局/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -988,7 +962,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/19/后台进化史之第七天/" itemprop="url">后台进化史之第七天(今天照样莫得起名)</a></h1>
+                <a class="post-title-link" href="/2018/07/19/后台进化史之第七天/" itemprop="url">2018/07/19</a></h1>
         
 
         <div class="post-meta">
@@ -1018,7 +992,7 @@
 
           
           
-             <span id="/2018/07/19/后台进化史之第七天/" class="leancloud_visitors" data-flag-title="后台进化史之第七天(今天照样莫得起名)">
+             <span id="/2018/07/19/后台进化史之第七天/" class="leancloud_visitors" data-flag-title="2018/07/19">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1123,7 +1097,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/18/后台进化史之第六天/" itemprop="url">在蒲公英的第六天(今天莫得起名)</a></h1>
+                <a class="post-title-link" href="/2018/07/18/后台进化史之第六天/" itemprop="url">2018/07/18</a></h1>
         
 
         <div class="post-meta">
@@ -1153,7 +1127,7 @@
 
           
           
-             <span id="/2018/07/18/后台进化史之第六天/" class="leancloud_visitors" data-flag-title="在蒲公英的第六天(今天莫得起名)">
+             <span id="/2018/07/18/后台进化史之第六天/" class="leancloud_visitors" data-flag-title="2018/07/18">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>

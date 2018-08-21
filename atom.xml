@@ -368,9 +368,9 @@
     
       <category term="express" scheme="http://yoursite.com/tags/express/"/>
     
-      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
-    
       <category term="git" scheme="http://yoursite.com/tags/git/"/>
+    
+      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
     
       <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
     

@@ -253,6 +253,192 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/17/linux的vim命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/17/linux的vim命令/" itemprop="url">linux的vim命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-17T15:04:49+08:00">
+                2018-09-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/09/17/linux的vim命令/" class="leancloud_visitors" data-flag-title="linux的vim命令">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="进入vi的命令"><a href="#进入vi的命令" class="headerlink" title="进入vi的命令"></a>进入vi的命令</h3><pre><code>vi filename :打开或新建文件,并将光标置于第一行首
+vi n filename ：打开文件,并将光标置于第n行首
+vi filename ：打开文件,并将光标置于一行首
+vi /pattern filename：打开文件,并将光标置于第一个与pattern匹配的串处
+vi -r filename ：在上次正用vi编辑时发生系统崩溃,恢复filename
+vi filename....filename ：打开多个文件,依次进行编辑
+</code></pre><h3 id="移动光标类命令"><a href="#移动光标类命令" class="headerlink" title="移动光标类命令"></a>移动光标类命令</h3><pre><code>h ：光标左移一个字符
+l ：光标右移一个字符
+space：光标右移一个字符
+Backspace：光标左移一个字符
+k或Ctrl p：光标上移一行
+j或Ctrl n ：光标下移一行
+Enter ：光标下移一行
+w或W ：光标右移一个字至字首
+b或B ：光标左移一个字至字首
+e或E ：光标右移一个字至字尾
+) ：光标移至句尾
+( ：光标移至句首
+}：光标移至段落开头
+{：光标移至段落结尾
+nG：光标移至第n行首
+n ：光标下移n行
+n-：光标上移n行
+n$：光标移至第n行尾
+H ：光标移至屏幕顶行
+M ：光标移至屏幕中间行
+L ：光标移至屏幕行
+0：（注意是数字零）光标移至当前行首
+$：光标移至当前行尾
+</code></pre><h3 id="屏幕翻滚类命令"><a href="#屏幕翻滚类命令" class="headerlink" title="屏幕翻滚类命令"></a>屏幕翻滚类命令</h3><pre><code>Ctrl u：向文件首翻半屏
+Ctrl d：向文件尾翻半屏
+Ctrl f：向文件尾翻一屏
+Ctrl＋b；向文件首翻一屏
+nz：将第n行滚至屏幕顶部,不指定n时将当前行滚至屏幕顶部.
+</code></pre><h3 id="插入文本类命令"><a href="#插入文本类命令" class="headerlink" title="插入文本类命令"></a>插入文本类命令</h3><pre><code>i ：在光标前
+I ：在当前行首
+a：光标后
+A：在当前行尾
+o：在当前行之下新开一行
+O：在当前行之上新开一行
+r：替换当前字符
+R：替换当前字符及其后的字符,直至按ESC键
+s：从当前光标位置处开始,以输入的文本替代指定数目的字符
+</code></pre><h3 id="保存命令"><a href="#保存命令" class="headerlink" title="保存命令"></a>保存命令</h3><pre><code>按ESC键 跳到命令模式，然后：
+
+:w   保存文件但不退出vi
+:w file 将修改另外保存到file中，不退出vi
+:w!   强制保存，不推出vi
+:wq  保存文件并退出vi
+:wq! 强制保存文件，并退出vi
+q:  不保存文件，退出vi
+:q! 不保存文件，强制退出vi
+:e! 放弃所有修改，从上次保存文件开始再编辑
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/20/git的撤销操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1503,159 +1689,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/17/继承、执行上下文、this/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/17/继承、执行上下文、this/" itemprop="url">继承、执行上下文、this浅理解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-17T22:16:23+08:00">
-                2018-07-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/07/17/继承、执行上下文、this/" class="leancloud_visitors" data-flag-title="继承、执行上下文、this浅理解">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>早上瀚程扔了一个王福朋的博客，里面讲了很多有关JS CSS的东西。早上听讲了原型链，this，执行上下文等，回头也结合王福朋的博客看了一点。</p>
-<ul>
-<li>对象都是通过函数来创建的，但是函数又是一种对象（万物皆对象）</li>
-<li>每一个函数都有一个prototype属性，这个属性的值是一个对象（属性集合），默认的只有一个构造器函数constructor，指向函数本身。</li>
-<li>每个对象都有一个隐藏的属性——“<strong>proto</strong>”，这个属性引用了创建这个对象的函数的prototype。即：fn.<strong>proto</strong> === Fn.prototype</li>
-</ul>
-<blockquote>
-<p>下面是一个经典的例子<br><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function <span class="function"><span class="keyword">Fn</span><span class="params">()</span> &#123; &#125;</span></span><br><span class="line"><span class="function">        <span class="keyword">Fn</span>.prototype.<span class="title">name</span> = '王福朋'</span>;</span><br><span class="line">        <span class="function"><span class="keyword">Fn</span>.prototype.<span class="title">getYear</span> = function <span class="params">()</span> &#123;</span></span><br><span class="line"><span class="function">            <span class="keyword">return</span> <span class="number">1988</span></span>;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        var <span class="function"><span class="keyword">fn</span> = <span class="keyword">new</span> <span class="keyword">Fn</span><span class="params">()</span></span>;</span><br><span class="line">        console.<span class="built_in">log</span>(<span class="function"><span class="keyword">fn</span>.name)</span>;</span><br><span class="line">        console.<span class="built_in">log</span>(<span class="function"><span class="keyword">fn</span>.getYear<span class="params">()</span>)</span>;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><ul>
-<li><p>访问一个对象的属性时，先在基本属性中查找，如果没有，再沿着<strong>proto</strong>这条链向上找，这就是原型链。</p>
-</li>
-<li><p>由于所有的对象的原型链都会找到Object.prototype，因此所有的对象都会有Object.prototype的方法。这就是所谓的“继承”。</p>
-</li>
-</ul>
-<h3 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h3><p>通俗说法在执行代码之前，把将要用到的所有的变量都事先拿出来，有的直接赋值了，有的先用undefined占个空。</p>
-<h3 id="this的取值"><a href="#this的取值" class="headerlink" title="this的取值"></a>this的取值</h3><p><em><font color="green">在函数中this到底取何值，是在函数真正被调用执行的时候确定的，函数定义的时候确定不了</font></em><br>分为四种情况，震惊，这么详细</p>
-<blockquote>
-<p>1、 构造函数中this指向new出来的对象<br>2、 函数作为对象的一个属性，并且被调用,this指向这个对象，如果作为属性但是不被调用，还是指向window<br>3、 函数用call或者apply调用，this的值取传入的参数（对象）的值<br>4、 全局下this指向window，普通函数调用的时候也是指向window</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1710,7 +1743,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1723,7 +1756,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

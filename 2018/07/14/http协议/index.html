@@ -345,7 +345,7 @@
 <li>max-age 浏览器缓存 指定的是从文档被访问后的存活时间，这个时间是相对的</li>
 <li>s-maxage 代理缓存</li>
 <li>存在max-age的时候会覆盖expires,在代理过程中存在s-maxage的时候会覆盖max-age</li>
-<li>加private表明只允许浏览器用缓存，代理服务器不能用;加no-store表明 都不允许使用缓存<br><img src="/2018/07/14/http协议/cache.png" alt=""></li>
+<li>加private表明只允许浏览器用缓存，代理服务器不能用;加no-store表明 都不允许使用缓存<br><img src="cache.png" alt=""></li>
 </ol>
 <h3 id="CSP限制"><a href="#CSP限制" class="headerlink" title="CSP限制"></a>CSP限制</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'Content-Security-Policy'</span>: <span class="string">'default-src http: https:'</span> </span><br><span class="line">**限制跳转的域名</span><br><span class="line"></span><br><span class="line"><span class="string">'Content-Security-Policy'</span>: <span class="string">'default-src \'self\' </span></span><br><span class="line"><span class="string">**限制跳转的只能是内部链接</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'</span>Content-Security-Policy<span class="string">': '</span>script-src \<span class="string">'self\' ; form-action \'self\' </span></span><br><span class="line"><span class="string">**限制js的跳转和表单的提交</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'</span>Content-Security-Policy-Only-Report<span class="string">':'</span>report-uri /repot<span class="string">'</span></span><br><span class="line"><span class="string">只做report的请求，即使资源被限制了不想加载，也会执行代码但浏览器仍然会拦截它，并做一个report</span></span><br></pre></td></tr></table></figure>
 
@@ -471,7 +471,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

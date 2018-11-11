@@ -253,6 +253,329 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/16/express处理表单浅理解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/16/express处理表单浅理解/" itemprop="url">express处理表单浅理解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-16T22:25:56+08:00">
+                2018-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/07/16/express处理表单浅理解/" class="leancloud_visitors" data-flag-title="express处理表单浅理解">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><font face="Georgia" size="4" color="cray">了解了使用express框架如何处理表单请求</font></p>
+<h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><p>当表单被提交（通过浏览器或AJAX）时，必须被编码。如果没有明确地指定编码，则默认为application/x-wwwform-urlencoded。<br>如果需要上传文件，使用multipart/form-data编码类型（并不被建议使用）。</p>
+<h3 id="处理表单的不同方式"><a href="#处理表单的不同方式" class="headerlink" title="处理表单的不同方式"></a>处理表单的不同方式</h3><p>如果method=”POST”m展示表单和处理表单可以用同一个路由，因为展示只需要get请求，而处理一般是post请求，使用同一个路由是可以区分的，这一点我当初在做考核的时候倒是没有考虑到。</p>
+<h3 id="处理完后如何响应"><a href="#处理完后如何响应" class="headerlink" title="处理完后如何响应"></a>处理完后如何响应</h3><p>1、 直接响应html，就是直接扔一个html<br>2、 303重定向 { 重定向到某一个特殊的界面，跳转成功应该去哪里，404定制界面等}</p>
+<h3 id="表单域的获取"><a href="#表单域的获取" class="headerlink" title="表单域的获取"></a>表单域的获取</h3><p>1、对于GET请求 域放在req,query<br>2、对于POST请求，域放在req.body中，需要引入一个body-parser 很常用的</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/16/事件循环机制和几种数组方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/16/事件循环机制和几种数组方法/" itemprop="url">事件循环机制和几种数组方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-16T00:00:00+08:00">
+                2018-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/07/16/事件循环机制和几种数组方法/" class="leancloud_visitors" data-flag-title="事件循环机制和几种数组方法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <font face="STCAIYUN" color="gray" size="6">Everything runs in parallel except your code!</font>
+
+
+
+<h3 id="事件循环（以及异步，回调）"><a href="#事件循环（以及异步，回调）" class="headerlink" title="事件循环（以及异步，回调）"></a>事件循环（以及异步，回调）</h3><p>js 事件轮询机制</p>
+<blockquote>
+<p>在js中同步和异步的任务会分别进入不同的执行场所，同步任务进入主线程异步的进入Event Table并注册函数。当指定的事情完成时，Event Table会将这个函数移入Event Queue。主线程内的任务执行完毕为空，会去Event Queue读取对应的函数，进入主线程执行。上述过程会不断重复，也就是常说的Event Loop(事件循环)。<br><img src="2018041120124254.png" alt="Alt text"></p>
+</blockquote>
+<blockquote>
+<p>但是js异步有一个机制，就是遇到宏任务，先执行宏任务，将宏任务放入eventqueue，然后在执行微任务，将微任务放入eventqueue最骚的是，这两个queue不是一个queue。当你往外拿的时候先从微任务里拿这个回掉函数，然后再从宏任务的queue上拿宏任务的回掉函数。<img src="20180411202638415.png" alt="Alt text"></p>
+</blockquote>
+<p>菠萝说的<br>宏任务一般有：script，setTimeout，setInterval。</p>
+<p>微任务：Promise，process.nextTick。</p>
+<h3 id="数组操作几种方法-codewar"><a href="#数组操作几种方法-codewar" class="headerlink" title="数组操作几种方法(codewar)"></a>数组操作几种方法(codewar)</h3><blockquote>
+<p>今天做的这道题让我回忆，以及get到了一些或旧或新的方法，这些方法都是挺有用的</p>
+</blockquote>
+<h4 id="filter-过滤"><a href="#filter-过滤" class="headerlink" title="filter()过滤"></a>filter()过滤</h4><p>filter()把传入的函数依次作用于每个元素，然后根据返回值是true还是false决定保留还是丢弃该元素。</p>
+<blockquote>
+<p>例如，在一个Array中，删掉偶数，只保留奇数，可以这么写：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">15</span>];</span><br><span class="line"><span class="number">2</span> <span class="keyword">var</span> r = arr.filter(<span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123;</span><br><span class="line"><span class="number">3</span>     <span class="keyword">return</span> x % <span class="number">2</span> !== <span class="number">0</span>;</span><br><span class="line"><span class="number">4</span> &#125;);</span><br><span class="line"><span class="number">5</span> r; <span class="comment">// [1, 5, 9, 15]</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="split-分隔"><a href="#split-分隔" class="headerlink" title="split()分隔"></a>split()分隔</h4><blockquote>
+<p>分割字符串的方法<br>注意这两个<br>split(“”) 每个元素分隔<br>split(“ “)以空格为分隔符分隔</p>
+</blockquote>
+<h4 id="几种遍历方法"><a href="#几种遍历方法" class="headerlink" title="几种遍历方法"></a>几种遍历方法</h4><blockquote>
+<p>回顾了一下js数组遍历的几种方法<br>1、 普通for循环,最简单的一种，也是使用频率最高的一种，瀚程如是说，的确是最熟悉性能也是挺高</p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">j</span> = <span class="number">0</span>; <span class="built_in">j</span> &lt; arr.<span class="built_in">length</span>; <span class="built_in">j</span>++) &#123;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>2、 </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr.<span class="keyword">forEach</span>(<span class="function"><span class="keyword">function</span><span class="params">(e)</span></span>&#123;  </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>3、</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Array</span>.prototype.<span class="keyword">forEach</span>.call(arr,<span class="function"><span class="keyword">function</span><span class="params">(el)</span></span>&#123;    </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>4、</p>
+<pre><code>for(i in或者of  arr){
+}
+</code></pre><p>5、 map遍历</p>
+<pre><code>arr.map(funtion(n){
+})
+</code></pre><h3 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h3><p>记录类型A 表明主机记录指向唯一的IP<br>记录类型CNAME 一个域名指向另一个域名</p>
+<p>买了一个新的域名尝试了将其指向原有的博客域名，一顿操作终于好了<br>缓存真是个奇怪的东西，明明就是ping一样的地址，上一刻和下一刻效果不一样</p>
+<h3 id="添加虚拟主机的常用命令"><a href="#添加虚拟主机的常用命令" class="headerlink" title="添加虚拟主机的常用命令"></a>添加虚拟主机的常用命令</h3><p>lnmp vhost add<br>lnmp vhost list<br>cd /home wwwroot/<br>lnmp list<br>cd 进去 找到index.html，vim模式编辑</p>
+<h3 id="express"><a href="#express" class="headerlink" title="express"></a>express</h3><blockquote>
+<p>Post请求体</p>
+<ul>
+<li>常用媒体类型是application/x-www-form-urlencoded</li>
+<li>如果需要上传文件 multipart/form-data</li>
+<li>如果是AJAX请求 application/json</li>
+</ul>
+</blockquote>
+<h2 id="最后附上一道题，有关异步的"><a href="#最后附上一道题，有关异步的" class="headerlink" title="最后附上一道题，有关异步的"></a>最后附上一道题，有关异步的</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		    <span class="built_in">console</span>.log(<span class="string">'1'</span>)</span><br><span class="line">		&#125;);</span><br><span class="line"> </span><br><span class="line">		<span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>)</span>&#123;</span><br><span class="line">		    <span class="built_in">console</span>.log(<span class="string">'2'</span>);</span><br><span class="line">		&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		    <span class="built_in">console</span>.log(<span class="string">'3'</span>)</span><br><span class="line">		&#125;);</span><br><span class="line"> </span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'4'</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这段代码的运行顺序 2，4，3，1<br>原因就是 然后回到开头的代码。因为settimeout是宏任务，虽然先执行的他，但是他被放到了宏任务的eventqueue里面，然后代码继续往下检查看有没有微任务，检测到Promise的then函数把他放入了微任务序列。等到主线进程的所有代码执行结束后。先从微任务queue里拿回掉函数，然后微任务queue空了后再从宏任务的queue拿函数。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/14/http协议/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -852,7 +1175,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -253,6 +253,835 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/ES6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/29/ES6/" itemprop="url">ES6</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-29T15:33:56+08:00">
+                2019-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/03/29/ES6/" class="leancloud_visitors" data-flag-title="ES6">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> a,b,rest;</span><br><span class="line">  [a,b,...rest]=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>];</span><br><span class="line">  <span class="built_in">console</span>.log(a,b,rest);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123;<span class="comment">//交换</span></span><br><span class="line">  <span class="keyword">let</span> a=<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">let</span> b=<span class="number">2</span>;</span><br><span class="line">  [a,b]=[b,a];</span><br><span class="line">  <span class="built_in">console</span>.log(a,b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;<span class="comment">//接受函数返回值</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> a,b;</span><br><span class="line">  [a,b]=f();</span><br><span class="line">  <span class="built_in">console</span>.log(a,b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;<span class="comment">//选择性接受</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> a,b,c;</span><br><span class="line">  [a,,,b]=f();</span><br><span class="line">  <span class="built_in">console</span>.log(a,b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;<span class="comment">//只取第一个元素，剩下的存进数组</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> a,b,c;</span><br><span class="line">  [a,,...b]=f();</span><br><span class="line">  <span class="built_in">console</span>.log(a,b); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**对象解构*/</span></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">&#123;<span class="comment">//前后端交互时</span></span><br><span class="line">  <span class="keyword">let</span> metaData=&#123;</span><br><span class="line">    title:<span class="string">'abc'</span>,</span><br><span class="line">    test:[&#123;</span><br><span class="line">      title:<span class="string">'test'</span>,</span><br><span class="line">      desc:<span class="string">'description'</span></span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> &#123;<span class="attr">title</span>:esTitle,<span class="attr">test</span>:[&#123;<span class="attr">title</span>:cnTitle&#125;]&#125;=metaData;</span><br><span class="line">  <span class="built_in">console</span>.log(esTitle,cnTitle);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/正则表达-后续再补充/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/29/正则表达-后续再补充/" itemprop="url">正则表达(后续再补充)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-29T15:31:38+08:00">
+                2019-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/03/29/正则表达-后续再补充/" class="leancloud_visitors" data-flag-title="正则表达(后续再补充)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>写法两种<br>js 风格的是</p>
+<p>let reg = new RegExp(‘\d+’,’g’)</p>
+<p>perl 风格的是<br>let reg = /\d+/g;</p>
+<p>/正则表达式主体/修饰符(可选)</p>
+<p>在 JavaScript 中，正则表达式通常用于两个字符串方法 : search() 和 replace()。<br>其他方法test()返回boolean</p>
+<ul>
+<li><p>search() 方法 用于检索字符串中指定的子字符串，或检索与正则表达式相匹配的子字符串，并返回子串的起始位置。</p>
+</li>
+<li><p>replace() 方法 用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>i</td>
+<td>大小写不敏感</td>
+</tr>
+<tr>
+<td>g</td>
+<td>全局匹配</td>
+</tr>
+<tr>
+<td>m</td>
+<td>多行匹配</td>
+</tr>
+<tr>
+<td>y</td>
+<td>全局匹配，但是在上一次匹配后紧跟着的下一个开始</td>
+</tr>
+<tr>
+<td>u</td>
+<td>正则表达式中有大于两个字节的情况加</td>
+</tr>
+</tbody>
+</table>
+<p>最常用i,g</p>
+<blockquote>
+<p>es6中<br>flags属性可以获得修饰符<br>sticky属性可以判断是否使用y修饰，返回boolean</p>
+</blockquote>
+<p>处理的正则表达式中有大于两个字节的，要加修饰符u<br>es5中的 /^.$/ 可匹配任意字符，在es6中要加u才能识别超过两个字节的，但是换行回车行分隔段分隔这四个点(.)也不能匹配</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/小程序初体验/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/29/小程序初体验/" itemprop="url">小程序初体验</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-29T15:30:35+08:00">
+                2019-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/03/29/小程序初体验/" class="leancloud_visitors" data-flag-title="小程序初体验">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="小程序版本分为"><a href="#小程序版本分为" class="headerlink" title="小程序版本分为"></a>小程序版本分为</h4><p>预览版本 开发版本 体验版本 审核版本 线上版本</p>
+<h4 id="js在不同地方的构成"><a href="#js在不同地方的构成" class="headerlink" title="js在不同地方的构成"></a>js在不同地方的构成</h4><p>浏览器是 ECMAScript NPM DOM BOM<br>NodeJS中 ECMAScript NPM Native<br>小程序中 ECMAScript 小程序框架 小程序API</p>
+<h4 id="App构造器的参数"><a href="#App构造器的参数" class="headerlink" title="App构造器的参数"></a>App构造器的参数</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">App(&#123;</span><br><span class="line">  onLaunch: <span class="function"><span class="keyword">function</span>(<span class="params">options</span>) </span>&#123;&#125;,</span><br><span class="line">  onShow: <span class="function"><span class="keyword">function</span>(<span class="params">options</span>) </span>&#123;&#125;,</span><br><span class="line">  onHide: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">  onError: <span class="function"><span class="keyword">function</span>(<span class="params">msg</span>) </span>&#123;&#125;,</span><br><span class="line">  globalData: <span class="string">'I am global data'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="C3E1CAB28658419DB22CBB686B380E11" alt="image"></p>
+<table>
+<thead>
+<tr>
+<th>场景值</th>
+<th>场景</th>
+<th>appId信息含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1020</td>
+<td>profile</td>
+<td>页相关小程序列表 返回来源公众号 appId</td>
+</tr>
+<tr>
+<td>1035</td>
+<td>公众号自定义菜单</td>
+<td>返回来源公众号appId</td>
+</tr>
+<tr>
+<td>1036</td>
+<td>App 分享消息卡片</td>
+<td>返回来源应用appId</td>
+</tr>
+<tr>
+<td>1037</td>
+<td>小程序打开小程序</td>
+<td>返回来源小程序 appId</td>
+</tr>
+<tr>
+<td>1038</td>
+<td>从另一个小程序返回</td>
+<td>返回来源小程序 appId</td>
+</tr>
+<tr>
+<td>1043</td>
+<td>公众号模板消息</td>
+<td>返回来源公众号 appId</td>
+</tr>
+</tbody>
+</table>
+<h4 id="全局数据"><a href="#全局数据" class="headerlink" title="全局数据"></a>全局数据</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line">App(&#123;</span><br><span class="line">  globalData: <span class="string">'I am global data'</span> <span class="comment">// 全局共享数据</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 其他页面脚本other.js</span></span><br><span class="line"><span class="keyword">var</span> appInstance = getApp()</span><br><span class="line"><span class="built_in">console</span>.log(appInstance.globalData) <span class="comment">// 输出: I am global data</span></span><br></pre></td></tr></table></figure>
+<p>所有页面的脚本逻辑都跑在同一个JsCore线程，页面使用setTimeout或者setInterval的定时器，然后跳转到其他页面时，这些定时器并没有被清除，需要开发者自己在页面离开的时候进行清理。</p>
+<h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><blockquote>
+<p>页面初次加载的时候，微信客户端就会给Page实例派发onLoad事件，Page构造器参数所定义的onLoad方法会被调用，onLoad在页面没被销毁之前只会触发1次，在onLoad的回调中，可以获取当前页面所调用的打开参数option，关于打开参数我们放在这一节的最后再展开阐述。<br>页面显示之后，Page构造器参数所定义的onShow方法会被调用，一般从别的页面返回到当前页面时，当前页的onShow方法都会被调用。<br>在页面初次渲染完成时，Page构造器参数所定义的onReady方法会被调用，onReady在页面没被销毁前只会触发1次，onReady触发时，表示页面已经准备妥当，在逻辑层就可以和视图层进行交互了。<br>以上三个事件触发的时机是onLoad早于 onShow，onShow早于onReady<br>页面不可见时，Page构造器参数所定义的onHide方法会被调用，这种情况会在使用wx.navigateTo切换到其他页面、底部tab切换时触发。<br>当前页面使用wx.redirectTo或wx.navigateBack返回到其他页时，当前页面会被微信客户端销毁回收，此时Page构造器参数所定义的onUnload方法会被调用。</p>
+</blockquote>
+<h4 id="打开参数"><a href="#打开参数" class="headerlink" title="打开参数"></a>打开参数</h4><p>页面Page构造器里onLoad的option可以拿到当前页面的打开参数，其类型是一个Object，其键值对与页面URL上query键值对一一对应</p>
+<h4 id="常见的事件类型"><a href="#常见的事件类型" class="headerlink" title="常见的事件类型"></a>常见的事件类型</h4><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>触发条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>touchstart</td>
+<td>手指触摸动作开始</td>
+</tr>
+<tr>
+<td>touchmove</td>
+<td>手指触摸后移动</td>
+</tr>
+<tr>
+<td>touchcancel</td>
+<td>手指触摸动作被打断，如来电提醒，弹窗</td>
+</tr>
+<tr>
+<td>touchend</td>
+<td>手指触摸动作结束</td>
+</tr>
+<tr>
+<td>tap</td>
+<td>手指触摸后马上离开</td>
+</tr>
+<tr>
+<td>longpress</td>
+<td>手指触摸后，超过350ms再离开，如果指定了事件回调函数并触发了这个事件，tap事件将不被触发</td>
+</tr>
+<tr>
+<td>longtap</td>
+<td>手指触摸后，超过350ms再离开（推荐使用longpress事件代替）</td>
+</tr>
+<tr>
+<td>transitionend</td>
+<td>会在 WXSS transition 或 wx.createAnimation 动画结束后触发</td>
+</tr>
+<tr>
+<td>animationstart</td>
+<td>会在一个 WXSS animation 动画开始时触发</td>
+</tr>
+<tr>
+<td>animationiteration</td>
+<td>会在一个 WXSS animation 一次迭代结束时触发</td>
+</tr>
+<tr>
+<td>animationend</td>
+<td>会在一个 WXSS animation 动画完成时触发</td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/26/关于$emit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/26/关于$emit/" itemprop="url">关于$emit</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-26T19:46:08+08:00">
+                2018-11-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/11/26/关于$emit/" class="leancloud_visitors" data-flag-title="关于$emit">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="emit"><a href="#emit" class="headerlink" title="$emit"></a>$emit</h2><p>1、父组件可以使用 props 把数据传给子组件。<br>2、子组件可以使用 $emit 触发父组件的自定义事件。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//父组件</span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ratingselect</span> @<span class="attr">select-type</span>=<span class="string">"onSelectType"</span>&gt;</span><span class="tag">&lt;/<span class="name">ratingselect</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    data () &#123;</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="undefined">        selectType: 0,</span></span><br><span class="line"><span class="undefined">    &#125;,</span></span><br><span class="line"><span class="undefined">    methods: &#123;</span></span><br><span class="line"><span class="undefined">      onSelectType (type) &#123;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.selectType = type</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>父组件使用@select-type=”onSelectType”监听由子组件vm.$emit触发的事件，通过onSelectType()接受从子组件传递过来的数据，通知父组件数据改变了。</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//子组件</span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> @<span class="attr">click</span>=<span class="string">"select(0, $event)"</span>  <span class="attr">:class</span>=<span class="string">"&#123;'active': selectType===0&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> @<span class="attr">click</span>=<span class="string">"select(1, $event)"</span>  <span class="attr">:class</span>=<span class="string">"&#123;'active': selectType===1&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> @<span class="attr">click</span>=<span class="string">"select(2, $event)"</span>  <span class="attr">:class</span>=<span class="string">"&#123;'active': selectType===2&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    data () &#123;</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="undefined">        selectType: 0,</span></span><br><span class="line"><span class="undefined">    &#125;,</span></span><br><span class="line"><span class="undefined">    methods: &#123;</span></span><br><span class="line"><span class="undefined">        select (type, event) &#123;</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">this</span>.selectType = type</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">this</span>.$emit(<span class="string">'select-type'</span>, type)</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>子组件通过$emit来触发事件，将参数传递出去。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/21/关于vue里面scoped/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/21/关于vue里面scoped/" itemprop="url">关于vue里面scoped</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-21T11:11:38+08:00">
+                2018-11-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/11/21/关于vue里面scoped/" class="leancloud_visitors" data-flag-title="关于vue里面scoped">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>前期概要：在开发这个B2B的时候，在引用其中一位开发者写的组件时，出现了样式上的崩坏，结合之前翻阅文档得出是scoped的问题<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/21/关于vue里面scoped/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/12/11-5-11-11学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -338,7 +1167,8 @@
       
         
           
-            <p>稍等</p>
+            <p><del>稍等</del></p>
+<p>你们等不到了</p>
 
           
         
@@ -949,753 +1779,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/12/10-12笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/12/10-12笔记/" itemprop="url">10_12笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-12T11:27:35+08:00">
-                2018-10-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/10/12/10-12笔记/" class="leancloud_visitors" data-flag-title="10_12笔记">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>text-indent : 2em;  首行缩进</p>
-<p>1em=1*font-size </p>
-<p>块级元素独占一行 可以用css改变宽高 而行级元素不能，img是行级块元素 </p>
-<p>初始化ul标签  list-style: none  margin:0  padding:0</p>
-<p>body 天生默认 margin:8px </p>
-<p>定位复习<br>display:absolute  脱离原来位置进行定位，找最近的有定位的父级，没有则相对文档<br>display:relative  保留原来位置进行定位，相对于自己原来的位置定位<br>一般用relative作参照物 用absolute定位</p>
-<p>垂直方向的margin父子嵌套（兄弟结构也会） 取最大的值 这个bug叫做margin塌陷<br>解决方法两个<br>1暴力解法 在父级加一个 border-top:1px solid<br>2使用bfc  但是只是弥补 目前没有一个完美解决的方法</p>
-<p>那么如何触发一个盒子的bfc (block format Context),四种方法<br>position:absolute<br>display:inline-block<br>float:left||right<br>overflow: hidden</p>
-<p>浮动元素产生浮动流，块级元素看不到浮动元素，只有产生了bfc的元素或文本可以看到<br>要取消浮动可以用 伪元素(伪元素天生是行级元素)或bfc</p>
-<p>1可以用伪元素清楚浮动 xx::after{<br>    content:””;<br>    display:block;<br>    clear:both;<br>}<br>2触发bfc<br>原理就是 设了absolute和float后 内部元素会变成inline-block</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/23/近期一句话总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/23/近期一句话总结/" itemprop="url">近期一句话总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-23T10:45:50+08:00">
-                2018-09-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/09/23/近期一句话总结/" class="leancloud_visitors" data-flag-title="近期一句话总结">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>·git checkout practice：新世界是暑期前做的，开学后又进行了细节的修改，因为是第一次做页面，学到的东西还是非常多。之后做了一个打字机小游戏和一个简单的主要利用定时器和工厂实现的动画。<br>·git checkout DOM:日常被各种事情卡住，只有在文学课上才是最专心的。</p>
-<p>·git checkout other：其他一些东西，如每天的网课和英语课。</p>
-<p>·git checkout node：node还是继续之前那些视频资源，群里偶尔也有新暂时没有精力</p>
-<p>·git checkout affair：弄来了两个“优秀的”源码来学习，看看能不能学到啥把阿肥魔改，真的是一堆不成熟的想法+不成熟的技法导致很多问题，9月22日前端们终于突然想起要继续对接了，所以中秋假期又双叒叕还是自己忙前忙后。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/17/nodemailer使用回顾/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/17/nodemailer使用回顾/" itemprop="url">nodemailer使用回顾</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-17T22:28:58+08:00">
-                2018-09-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/09/17/nodemailer使用回顾/" class="leancloud_visitors" data-flag-title="nodemailer使用回顾">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> transporter=nodemailer.createTransport(&#123;<span class="comment">//设置邮件传输</span></span><br><span class="line">   <span class="comment">// service: 'qq', service和host二选一，写法不同</span></span><br><span class="line">    host:<span class="string">"smtp.qq.com"</span>, <span class="comment">//设置服务，可以换成smtp.163.com</span></span><br><span class="line">    secureConnection:<span class="literal">true</span>, <span class="comment">//是否使用TLS，如果是true端口为465，否则为其他端口或者568</span></span><br><span class="line">    port:<span class="number">465</span>,          <span class="comment">//SMTP端口</span></span><br><span class="line">    auth:&#123; </span><br><span class="line">        user:<span class="string">"706608189@qq.com"</span>, <span class="comment">//发送人邮箱 </span></span><br><span class="line">        pass:<span class="string">"czvbqzqdnbywbfdd"</span><span class="comment">//我的授权码</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sendEmail = <span class="function"><span class="keyword">function</span>(<span class="params">mail,msg,cb</span>)</span>&#123;</span><br><span class="line"> <span class="keyword">var</span> mailOption=&#123;</span><br><span class="line">        <span class="keyword">from</span>:<span class="string">"xxxxxx@qq.com"</span>,<span class="comment">//发件人邮箱</span></span><br><span class="line">        to:mail<span class="comment">//收件人邮箱，例如req.body.email,</span></span><br><span class="line">        subject:<span class="string">"注册校验码"</span><span class="comment">//邮件标题</span></span><br><span class="line">        html: <span class="string">'msg'</span><span class="comment">//邮件内容</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">  transporter.sendMail(mailOption,<span class="function"><span class="keyword">function</span>(<span class="params">error,info</span>)</span>&#123;</span><br><span class="line">        cb(error,info); </span><br><span class="line">        <span class="comment">// if(error)&#123;</span></span><br><span class="line">        <span class="comment">//     res.json(&#123;code:400&#125;) ;//发送未成功</span></span><br><span class="line">        <span class="comment">//     return console.info(error);</span></span><br><span class="line">        <span class="comment">// &#125;else&#123;</span></span><br><span class="line">        <span class="comment">//     res.json(&#123;code:200&#125;) ;//发送成功</span></span><br><span class="line">        <span class="comment">//     console.info("Message send");</span></span><br><span class="line">        <span class="comment">// &#125;</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports=&#123;</span><br><span class="line">    sendEmail:sendEmail</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/17/pscp操作方法概括/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/17/pscp操作方法概括/" itemprop="url">pscp操作方法概括</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-17T15:24:10+08:00">
-                2018-09-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/09/17/pscp操作方法概括/" class="leancloud_visitors" data-flag-title="pscp操作方法概括">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>虽然是很早以前就掌握的东西了，但是一直懒得整理<br>————————————————————————————</p>
-<h3 id="linux-删除命令"><a href="#linux-删除命令" class="headerlink" title="linux 删除命令"></a>linux 删除命令</h3><p>删除常用操作 rm -rf 目录名字<br>   -r 向下递归，不管有多少级目录，一并删除<br>    -f 直接强行删除，没有任何提示</p>
-<p>注意：使用 rm -rf 的时候一定要小心，Linux没有回收站。</p>
-<h3 id="Linux创建命令"><a href="#Linux创建命令" class="headerlink" title="Linux创建命令"></a>Linux创建命令</h3><p>touch Xxx 创建文件<br>mkdir xxx创建文件夹目录</p>
-<h3 id="ECS"><a href="#ECS" class="headerlink" title="ECS"></a>ECS</h3><p>经过试验<br>如果是删除一个文件 重新上传文件夹后 ECS端的文件还在<br>如果是修改一个文件 重新上传文件夹后 ECS端的文件也会跟着修改 主要是看文件和文件夹的名字</p>
-<p>我自己的ECS的MongoDB 所在地 /usr/local/mongodb/bin</p>
-<h3 id="PSCP"><a href="#PSCP" class="headerlink" title="PSCP"></a>PSCP</h3><p>我自己的例子<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pscp <span class="symbol">D:</span>gitbook root<span class="variable">@47</span>.<span class="number">106.21</span>.<span class="number">195</span><span class="symbol">:/home/wwwroot/default/gitbook</span></span><br><span class="line"></span><br><span class="line">pscp -r <span class="symbol">d:</span>aaa root<span class="variable">@47</span>.<span class="number">106.21</span>.<span class="number">195</span><span class="symbol">:/home</span></span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>　-p 拷贝文件的时候保留源文件建立的时间。<br>　　-q 执行文件拷贝时，不显示任何提示消息。<br>　　-r 拷贝整个目录<br>　　-v 拷贝文件时，显示提示信息。 </p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/17/linux的vim命令/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/17/linux的vim命令/" itemprop="url">linux的vim命令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-17T15:04:49+08:00">
-                2018-09-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/09/17/linux的vim命令/" class="leancloud_visitors" data-flag-title="linux的vim命令">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="进入vi的命令"><a href="#进入vi的命令" class="headerlink" title="进入vi的命令"></a>进入vi的命令</h3><pre><code>vi filename :打开或新建文件,并将光标置于第一行首
-vi n filename ：打开文件,并将光标置于第n行首
-vi filename ：打开文件,并将光标置于一行首
-vi /pattern filename：打开文件,并将光标置于第一个与pattern匹配的串处
-vi -r filename ：在上次正用vi编辑时发生系统崩溃,恢复filename
-vi filename....filename ：打开多个文件,依次进行编辑
-</code></pre><h3 id="移动光标类命令"><a href="#移动光标类命令" class="headerlink" title="移动光标类命令"></a>移动光标类命令</h3><pre><code>h ：光标左移一个字符
-l ：光标右移一个字符
-space：光标右移一个字符
-Backspace：光标左移一个字符
-k或Ctrl p：光标上移一行
-j或Ctrl n ：光标下移一行
-Enter ：光标下移一行
-w或W ：光标右移一个字至字首
-b或B ：光标左移一个字至字首
-e或E ：光标右移一个字至字尾
-) ：光标移至句尾
-( ：光标移至句首
-}：光标移至段落开头
-{：光标移至段落结尾
-nG：光标移至第n行首
-n ：光标下移n行
-n-：光标上移n行
-n$：光标移至第n行尾
-H ：光标移至屏幕顶行
-M ：光标移至屏幕中间行
-L ：光标移至屏幕行
-0：（注意是数字零）光标移至当前行首
-$：光标移至当前行尾
-</code></pre><h3 id="屏幕翻滚类命令"><a href="#屏幕翻滚类命令" class="headerlink" title="屏幕翻滚类命令"></a>屏幕翻滚类命令</h3><pre><code>Ctrl u：向文件首翻半屏
-Ctrl d：向文件尾翻半屏
-Ctrl f：向文件尾翻一屏
-Ctrl＋b；向文件首翻一屏
-nz：将第n行滚至屏幕顶部,不指定n时将当前行滚至屏幕顶部.
-</code></pre><h3 id="插入文本类命令"><a href="#插入文本类命令" class="headerlink" title="插入文本类命令"></a>插入文本类命令</h3><pre><code>i ：在光标前
-I ：在当前行首
-a：光标后
-A：在当前行尾
-o：在当前行之下新开一行
-O：在当前行之上新开一行
-r：替换当前字符
-R：替换当前字符及其后的字符,直至按ESC键
-s：从当前光标位置处开始,以输入的文本替代指定数目的字符
-</code></pre><h3 id="保存命令"><a href="#保存命令" class="headerlink" title="保存命令"></a>保存命令</h3><pre><code>按ESC键 跳到命令模式，然后：
-
-:w   保存文件但不退出vi
-:w file 将修改另外保存到file中，不退出vi
-:w!   强制保存，不推出vi
-:wq  保存文件并退出vi
-:wq! 强制保存文件，并退出vi
-q:  不保存文件，退出vi
-:q! 不保存文件，强制退出vi
-:e! 放弃所有修改，从上次保存文件开始再编辑
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1745,7 +1833,7 @@ q:  不保存文件，退出vi
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1758,7 +1846,7 @@ q:  不保存文件，退出vi
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1810,7 +1898,7 @@ q:  不保存文件，退出vi
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

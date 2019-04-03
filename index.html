@@ -253,6 +253,171 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/03/ajax-fetch-websocket/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/03/ajax-fetch-websocket/" itemprop="url">ajax,fetch,websocket</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-03T14:17:20+08:00">
+                2019-04-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/04/03/ajax-fetch-websocket/" class="leancloud_visitors" data-flag-title="ajax,fetch,websocket">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h3><h4 id="AJAX状态值与状态码区别"><a href="#AJAX状态值与状态码区别" class="headerlink" title="AJAX状态值与状态码区别"></a>AJAX状态值与状态码区别</h4><blockquote>
+<p>AJAX状态值是指，运行AJAX所经历过的几种状态，无论访问是否成功都将响应的步骤，可以理解成为AJAX运行步骤。如：正在发送，正在响应等，由AJAX对象与服务器交互时所得；使用“ajax.readyState”获得。（由数字1~4单位数字组成）</p>
+</blockquote>
+<blockquote>
+<p>AJAX状态码是指，无论AJAX访问是否成功，由HTTP协议根据所提交的信息，服务器所返回的HTTP头信息代码，该信息使用“ajax.status”所获得；（由数字1XX,2XX三位数字组成，详细查看RFC）<br>这就是我们在使用AJAX时为什么采用下面的方式判断所获得的信息是否正确的原因。</p>
+</blockquote>
+<h4 id="Ajax写法"><a href="#Ajax写法" class="headerlink" title="Ajax写法"></a>Ajax写法</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//举个例子,原生写法</span></span><br><span class="line"><span class="comment">//如果是post请求，json数据写在send()</span></span><br><span class="line"> <span class="keyword">let</span> ajax=<span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">        ajax.open(<span class="string">'GET'</span>, <span class="string">'http://localhost:8080/a'</span>, <span class="literal">true</span>);</span><br><span class="line">        ajax.send();</span><br><span class="line">        ajax.onreadystatechange=<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">          <span class="keyword">if</span>(ajax.readyState==<span class="number">4</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(ajax.status&gt;=<span class="number">200</span> &amp;&amp; ajax.status&lt;<span class="number">300</span> || ajax.status==<span class="number">304</span>)&#123;</span><br><span class="line">              alert(<span class="string">'成功'</span>);</span><br><span class="line">              <span class="keyword">let</span> json=<span class="built_in">JSON</span>.parse(ajax.responseText);</span><br><span class="line">              <span class="built_in">console</span>.log(json);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">              alert(<span class="string">'失败'</span>);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//JQ的写法</span></span><br><span class="line"><span class="comment">//url,type,data必备，dataType默认是json，</span></span><br><span class="line"><span class="comment">//如果是发送jsonp数据，额外加一个jsonp:"cb"，值是回调函数的名字</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line">	$.ajax(&#123;</span><br><span class="line">			url:<span class="string">"http://xxxx"</span>,</span><br><span class="line">			type:<span class="string">'post'</span></span><br><span class="line">			data:&#123;<span class="attr">wd</span>:<span class="string">'xxx'</span>&#125;,</span><br><span class="line">			dataType:<span class="string">'text/json/jsonp'</span>,</span><br><span class="line">			jsonp:<span class="string">'cb'</span></span><br><span class="line">		&#125;).then(<span class="function">(<span class="params">&#123;s&#125;</span>) =&gt;</span> &#123;</span><br><span class="line">				<span class="comment">//成功执行函数</span></span><br><span class="line">		&#125; , res =&gt;&#123;</span><br><span class="line">		    <span class="comment">//失败执行函数</span></span><br><span class="line">		&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="AJAX运行步骤与状态值说明"><a href="#AJAX运行步骤与状态值说明" class="headerlink" title="AJAX运行步骤与状态值说明"></a>AJAX运行步骤与状态值说明</h4><blockquote>
+<p>在AJAX实际运行当中，对于访问XMLHttpRequest（XHR）时并不是一次完成的，而是分别经历了多种状态后取得的结果，对于这种状态在AJAX中共有5种，分别是。</p>
+<ul>
+<li>0 - (未初始化)还没有调用send()方法</li>
+<li>1 - (载入)已调用send()方法，正在发送请求</li>
+<li>2 - (载入完成)send()方法执行完成，</li>
+<li>3 - (交互)正在解析响应内容</li>
+<li>4 - (完成)响应内容解析完成，可以在客户端调用了<br>对于上面的状态，其中“0”状态是在定义后自动具有的状态值，而对于成功访问的状态（得到信息）我们大多数采用“4”进行判断。</li>
+</ul>
+</blockquote>
+<h4 id="AJAX状态码-经常说的服务器status-说明"><a href="#AJAX状态码-经常说的服务器status-说明" class="headerlink" title="AJAX状态码(经常说的服务器status)说明"></a>AJAX状态码(经常说的服务器status)说明</h4><ul>
+<li>1**：请求收到，继续处理</li>
+<li>2**：操作成功收到，分析、接受</li>
+<li>3**：完成此请求必须进一步处理</li>
+<li>4**：请求包含一个错误语法或不能完成</li>
+</ul>
+<ul>
+<li>5**：服务器执行一个完全有效请求失败</li>
+<li>100——客户必须继续发出请求</li>
+</ul>
+<h3 id="fetch使用"><a href="#fetch使用" class="headerlink" title="fetch使用"></a>fetch使用</h3><p>1、 先获取 let res = await fetch(‘xxxx.jpg’)<br><br>2、 再解析 await res.text()/json()/blob()<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一个栗子</span></span><br><span class="line"><span class="comment">//如果是fetch一个二进制文件，res.blob()之后要用 URL.createObjectURL生成一个url才能用</span></span><br><span class="line"><span class="built_in">window</span>.onload= <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">let</span> oBtn = <span class="built_in">document</span>.getElementById(<span class="string">'btn1'</span>);</span><br><span class="line">			<span class="keyword">let</span> img1 = <span class="built_in">document</span>.getElementById(<span class="string">'img1'</span>)</span><br><span class="line">            oBtn.onclick = <span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">let</span> res = <span class="keyword">await</span> fetch(<span class="string">'./1.jpg'</span>)</span><br><span class="line">                <span class="keyword">let</span> data = <span class="keyword">await</span> res.blob(res)</span><br><span class="line">                <span class="keyword">let</span> url = URL.createObjectURL(data)</span><br><span class="line">                img1.src = url;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Ajax2-0"><a href="#Ajax2-0" class="headerlink" title="Ajax2.0"></a>Ajax2.0</h3><p><i>主要是formdata的使用</i><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、<span class="comment">//原生js获取表单元素传入 </span></span><br><span class="line"><span class="keyword">let</span> oForm=<span class="built_in">document</span>.querySelector(<span class="string">'#form1'</span>);</span><br><span class="line"><span class="keyword">let</span> formdata=<span class="keyword">new</span> FormData(oForm);</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、 <span class="comment">//jq获取表单元素传入</span></span><br><span class="line"> $(<span class="string">'#form1'</span>).on(<span class="string">'submit'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> formdata=<span class="keyword">new</span> FormData(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">      url: <span class="keyword">this</span>.action,</span><br><span class="line">      type: <span class="keyword">this</span>.method,</span><br><span class="line">      data: formdata,</span><br><span class="line">      processData: <span class="literal">false</span>,<span class="comment">//取消jq默认的数据格式转换</span></span><br><span class="line">      contentType: <span class="literal">false</span></span><br><span class="line">    &#125;).then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">      alert(<span class="string">'成功'</span>);</span><br><span class="line">    &#125;, res=&gt;&#123;</span><br><span class="line">      alert(<span class="string">'失败'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>、<span class="comment">//生成一个空的FormData对象,用append('key','value')</span></span><br><span class="line"><span class="keyword">let</span> formdata = <span class="keyword">new</span> FormData();</span><br><span class="line">formdata.append(<span class="string">'xxx'</span>,xxxx)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Websocket"><a href="#Websocket" class="headerlink" title="Websocket"></a>Websocket</h3><h2 id="使用socket-io库实现简单的连接"><a href="#使用socket-io库实现简单的连接" class="headerlink" title="使用socket.io库实现简单的连接"></a>使用socket.io库实现简单的连接</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//服务端</span></span><br><span class="line"><span class="keyword">const</span> http=<span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> io=<span class="built_in">require</span>(<span class="string">'socket.io'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//1.建立普通http</span></span><br><span class="line"><span class="keyword">let</span> server=http.createServer(<span class="function">(<span class="params">req, res</span>)=&gt;</span>&#123;&#125;);</span><br><span class="line">server.listen(<span class="number">8080</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.建立ws</span></span><br><span class="line"><span class="keyword">let</span> wsServer=io.listen(server);</span><br><span class="line">wsServer.on(<span class="string">'connection'</span>, sock=&gt;&#123;</span><br><span class="line">  <span class="comment">//sock.emit('name', 数据)</span></span><br><span class="line">  <span class="comment">//sock.on('name', function (数据)&#123;&#125;);</span></span><br><span class="line"></span><br><span class="line">  setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    sock.emit(<span class="string">'timer'</span>, <span class="keyword">new</span> <span class="built_in">Date</span>().getTime());</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//客户端</span></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span> dir=<span class="string">"ltr"</span>&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"utf-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;&lt;/title&gt;</span><br><span class="line">    &lt;script src=<span class="string">"http://localhost:8080/socket.io/socket.io.js"</span> charset=<span class="string">"utf-8"</span>&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">    <span class="keyword">let</span> sock=io.connect(<span class="string">'ws://localhost:8080/'</span>);</span><br><span class="line">    sock.on(<span class="string">'timer'</span>, time=&gt;&#123;</span><br><span class="line">      <span class="built_in">console</span>.slog(time);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line"></span><br><span class="line">  &lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/ES6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -338,7 +503,9 @@
       
         
           
-            <h4 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> a,b,rest;</span><br><span class="line">  [a,b,...rest]=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>];</span><br><span class="line">  <span class="built_in">console</span>.log(a,b,rest);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123;<span class="comment">//交换</span></span><br><span class="line">  <span class="keyword">let</span> a=<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">let</span> b=<span class="number">2</span>;</span><br><span class="line">  [a,b]=[b,a];</span><br><span class="line">  <span class="built_in">console</span>.log(a,b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;<span class="comment">//接受函数返回值</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> a,b;</span><br><span class="line">  [a,b]=f();</span><br><span class="line">  <span class="built_in">console</span>.log(a,b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;<span class="comment">//选择性接受</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> a,b,c;</span><br><span class="line">  [a,,,b]=f();</span><br><span class="line">  <span class="built_in">console</span>.log(a,b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;<span class="comment">//只取第一个元素，剩下的存进数组</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> a,b,c;</span><br><span class="line">  [a,,...b]=f();</span><br><span class="line">  <span class="built_in">console</span>.log(a,b); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**对象解构*/</span></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">&#123;<span class="comment">//前后端交互时</span></span><br><span class="line">  <span class="keyword">let</span> metaData=&#123;</span><br><span class="line">    title:<span class="string">'abc'</span>,</span><br><span class="line">    test:[&#123;</span><br><span class="line">      title:<span class="string">'test'</span>,</span><br><span class="line">      desc:<span class="string">'description'</span></span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> &#123;<span class="attr">title</span>:esTitle,<span class="attr">test</span>:[&#123;<span class="attr">title</span>:cnTitle&#125;]&#125;=metaData;</span><br><span class="line">  <span class="built_in">console</span>.log(esTitle,cnTitle);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <h4 id="模块化引入"><a href="#模块化引入" class="headerlink" title="模块化引入"></a>模块化引入</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> name <span class="keyword">from</span> <span class="string">"xxx"</span>  <span class="comment">//通配符引入所有export的变量， as作用是重命名</span></span><br><span class="line"><span class="keyword">import</span> &#123;a,b,c&#125; <span class="keyword">from</span> <span class="string">"xxx"</span> <span class="comment">//引入指定的变量</span></span><br><span class="line"><span class="keyword">import</span> x <span class="keyword">from</span> <span class="string">""</span><span class="comment">//没有用*或者&#123;&#125;的，这样写会引入默认export default</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"./1.jpg"</span><span class="comment">//模块也可以是图片，js文件，这样直接引入模块的代码，不引入内部成员</span></span><br><span class="line"><span class="keyword">let</span> promise = <span class="keyword">import</span>(<span class="string">"xxx"</span>) <span class="comment">//也支持异步引入，一定要绝对路径，在编译的时候会生成异步的模块，前面带有数字那些文件</span></span><br></pre></td></tr></table></figure>
+<h4 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//...展开运算符，把剩余的变量放在一个数组里，只能用于剩下的部分，一直到最后，不可放在中间</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> a,b,rest;</span><br><span class="line">  [a,b,...rest]=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>];</span><br><span class="line">  <span class="built_in">console</span>.log(a,b,rest);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//运用解构赋值，快速交换两个数</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> a=<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">let</span> b=<span class="number">2</span>;</span><br><span class="line">  [a,b]=[b,a];</span><br><span class="line">  <span class="built_in">console</span>.log(a,b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;<span class="comment">//接受函数返回值</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> a,b;</span><br><span class="line">  [a,b]=f();</span><br><span class="line">  <span class="built_in">console</span>.log(a,b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;<span class="comment">//选择性接受,用逗号跳过</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> a,b,c;</span><br><span class="line">  [a,,,b]=f();</span><br><span class="line">  <span class="built_in">console</span>.log(a,b);<span class="comment">//打印出来是 1,4</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;<span class="comment">//只取第一个元素，剩下的存进数组</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> a,b,c;</span><br><span class="line">  [a,,...b]=f();</span><br><span class="line">  <span class="built_in">console</span>.log(a,b); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**对象解构*/</span></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">&#123;<span class="comment">//前后端交互时，key值一样可以解构出value值</span></span><br><span class="line">  <span class="keyword">let</span> metaData=&#123;</span><br><span class="line">    title:<span class="string">'abc'</span>,</span><br><span class="line">    test:[&#123;</span><br><span class="line">      title:<span class="string">'test'</span>,</span><br><span class="line">      desc:<span class="string">'description'</span></span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> &#123;<span class="attr">title</span>:esTitle,<span class="attr">test</span>:[&#123;<span class="attr">title</span>:cnTitle&#125;]&#125;=metaData;</span><br><span class="line">  <span class="built_in">console</span>.log(esTitle,cnTitle);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
           
         
       
@@ -1641,144 +1808,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/13/10-13笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/13/10-13笔记/" itemprop="url">10_13笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-13T11:27:20+08:00">
-                2018-10-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/10/13/10-13笔记/" class="leancloud_visitors" data-flag-title="10_13笔记">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>单行文本 height和line-height设为一个值实现单行文本居中</p>
-<p>文本溢出处理三件套<br>white-space:nowrap;文本溢出不换行<br>overflow:hidden;<br>text-overflow:ellipsis;//省略号</p>
-<p>多行文本溢出处理，PC端没有很好的解决方法，手动打点，截断overflow：hidden</p>
-<p>使用css添加图片时，如果网络不佳，为了应对浏览器默认加载策略(在网速不好的时候会不加载CSS JS)，这个时候采取两种方法</p>
-<p>1、text-indent一定距离让文字跟在图片后，white-space:nowrap,overflow:hidden<br>2、取消图片的height 用padding-top代替 用padding撑开div，再设overflow:hidden</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1833,7 +1862,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -344,10 +344,10 @@
 
 <h3 id="事件循环（以及异步，回调）"><a href="#事件循环（以及异步，回调）" class="headerlink" title="事件循环（以及异步，回调）"></a>事件循环（以及异步，回调）</h3><p>js 事件轮询机制</p>
 <blockquote>
-<p>在js中同步和异步的任务会分别进入不同的执行场所，同步任务进入主线程异步的进入Event Table并注册函数。当指定的事情完成时，Event Table会将这个函数移入Event Queue。主线程内的任务执行完毕为空，会去Event Queue读取对应的函数，进入主线程执行。上述过程会不断重复，也就是常说的Event Loop(事件循环)。<br><img src="2018041120124254.png" alt="Alt text"></p>
+<p>在js中同步和异步的任务会分别进入不同的执行场所，同步任务进入主线程异步的进入Event Table并注册函数。当指定的事情完成时，Event Table会将这个函数移入Event Queue。主线程内的任务执行完毕为空，会去Event Queue读取对应的函数，进入主线程执行。上述过程会不断重复，也就是常说的Event Loop(事件循环)。<br><img src="/2018/07/16/事件循环机制和几种数组方法/2018041120124254.png" alt="Alt text"></p>
 </blockquote>
 <blockquote>
-<p>但是js异步有一个机制，就是遇到宏任务，先执行宏任务，将宏任务放入eventqueue，然后在执行微任务，将微任务放入eventqueue最骚的是，这两个queue不是一个queue。当你往外拿的时候先从微任务里拿这个回掉函数，然后再从宏任务的queue上拿宏任务的回掉函数。<img src="20180411202638415.png" alt="Alt text"></p>
+<p>但是js异步有一个机制，就是遇到宏任务，先执行宏任务，将宏任务放入eventqueue，然后在执行微任务，将微任务放入eventqueue最骚的是，这两个queue不是一个queue。当你往外拿的时候先从微任务里拿这个回掉函数，然后再从宏任务的queue上拿宏任务的回掉函数。<img src="/2018/07/16/事件循环机制和几种数组方法/20180411202638415.png" alt="Alt text"></p>
 </blockquote>
 <p>菠萝说的<br>宏任务一般有：script，setTimeout，setInterval。</p>
 <p>微任务：Promise，process.nextTick。</p>
@@ -513,7 +513,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -526,7 +526,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

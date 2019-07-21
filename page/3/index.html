@@ -253,6 +253,1037 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/17/nodemailer使用回顾/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/17/nodemailer使用回顾/" itemprop="url">nodemailer使用回顾</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-17T22:28:58+08:00">
+                2018-09-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/09/17/nodemailer使用回顾/" class="leancloud_visitors" data-flag-title="nodemailer使用回顾">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> transporter=nodemailer.createTransport(&#123;<span class="comment">//设置邮件传输</span></span><br><span class="line">   <span class="comment">// service: 'qq', service和host二选一，写法不同</span></span><br><span class="line">    host:<span class="string">"smtp.qq.com"</span>, <span class="comment">//设置服务，可以换成smtp.163.com</span></span><br><span class="line">    secureConnection:<span class="literal">true</span>, <span class="comment">//是否使用TLS，如果是true端口为465，否则为其他端口或者568</span></span><br><span class="line">    port:<span class="number">465</span>,          <span class="comment">//SMTP端口</span></span><br><span class="line">    auth:&#123; </span><br><span class="line">        user:<span class="string">"706608189@qq.com"</span>, <span class="comment">//发送人邮箱 </span></span><br><span class="line">        pass:<span class="string">"czvbqzqdnbywbfdd"</span><span class="comment">//我的授权码</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sendEmail = <span class="function"><span class="keyword">function</span>(<span class="params">mail,msg,cb</span>)</span>&#123;</span><br><span class="line"> <span class="keyword">var</span> mailOption=&#123;</span><br><span class="line">        <span class="keyword">from</span>:<span class="string">"xxxxxx@qq.com"</span>,<span class="comment">//发件人邮箱</span></span><br><span class="line">        to:mail<span class="comment">//收件人邮箱，例如req.body.email,</span></span><br><span class="line">        subject:<span class="string">"注册校验码"</span><span class="comment">//邮件标题</span></span><br><span class="line">        html: <span class="string">'msg'</span><span class="comment">//邮件内容</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">  transporter.sendMail(mailOption,<span class="function"><span class="keyword">function</span>(<span class="params">error,info</span>)</span>&#123;</span><br><span class="line">        cb(error,info); </span><br><span class="line">        <span class="comment">// if(error)&#123;</span></span><br><span class="line">        <span class="comment">//     res.json(&#123;code:400&#125;) ;//发送未成功</span></span><br><span class="line">        <span class="comment">//     return console.info(error);</span></span><br><span class="line">        <span class="comment">// &#125;else&#123;</span></span><br><span class="line">        <span class="comment">//     res.json(&#123;code:200&#125;) ;//发送成功</span></span><br><span class="line">        <span class="comment">//     console.info("Message send");</span></span><br><span class="line">        <span class="comment">// &#125;</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports=&#123;</span><br><span class="line">    sendEmail:sendEmail</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/17/pscp操作方法概括/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/17/pscp操作方法概括/" itemprop="url">pscp操作方法概括</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-17T15:24:10+08:00">
+                2018-09-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/09/17/pscp操作方法概括/" class="leancloud_visitors" data-flag-title="pscp操作方法概括">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>虽然是很早以前就掌握的东西了，但是一直懒得整理<br>————————————————————————————</p>
+<h3 id="linux-删除命令"><a href="#linux-删除命令" class="headerlink" title="linux 删除命令"></a>linux 删除命令</h3><p>删除常用操作 rm -rf 目录名字<br>   -r 向下递归，不管有多少级目录，一并删除<br>    -f 直接强行删除，没有任何提示</p>
+<p>注意：使用 rm -rf 的时候一定要小心，Linux没有回收站。</p>
+<h3 id="Linux创建命令"><a href="#Linux创建命令" class="headerlink" title="Linux创建命令"></a>Linux创建命令</h3><p>touch Xxx 创建文件<br>mkdir xxx创建文件夹目录</p>
+<h3 id="ECS"><a href="#ECS" class="headerlink" title="ECS"></a>ECS</h3><p>经过试验<br>如果是删除一个文件 重新上传文件夹后 ECS端的文件还在<br>如果是修改一个文件 重新上传文件夹后 ECS端的文件也会跟着修改 主要是看文件和文件夹的名字</p>
+<p>我自己的ECS的MongoDB 所在地 /usr/local/mongodb/bin</p>
+<h3 id="PSCP"><a href="#PSCP" class="headerlink" title="PSCP"></a>PSCP</h3><p>我自己的例子<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pscp <span class="symbol">D:</span>gitbook root<span class="variable">@47</span>.<span class="number">106.21</span>.<span class="number">195</span><span class="symbol">:/home/wwwroot/default/gitbook</span></span><br><span class="line"></span><br><span class="line">pscp -r <span class="symbol">d:</span>aaa root<span class="variable">@47</span>.<span class="number">106.21</span>.<span class="number">195</span><span class="symbol">:/home</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>　-p 拷贝文件的时候保留源文件建立的时间。<br>　　-q 执行文件拷贝时，不显示任何提示消息。<br>　　-r 拷贝整个目录<br>　　-v 拷贝文件时，显示提示信息。 </p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/17/linux的vim命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/17/linux的vim命令/" itemprop="url">linux的vim命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-17T15:04:49+08:00">
+                2018-09-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/09/17/linux的vim命令/" class="leancloud_visitors" data-flag-title="linux的vim命令">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="进入vi的命令"><a href="#进入vi的命令" class="headerlink" title="进入vi的命令"></a>进入vi的命令</h3><pre><code>vi filename :打开或新建文件,并将光标置于第一行首
+vi n filename ：打开文件,并将光标置于第n行首
+vi filename ：打开文件,并将光标置于一行首
+vi /pattern filename：打开文件,并将光标置于第一个与pattern匹配的串处
+vi -r filename ：在上次正用vi编辑时发生系统崩溃,恢复filename
+vi filename....filename ：打开多个文件,依次进行编辑
+</code></pre><h3 id="移动光标类命令"><a href="#移动光标类命令" class="headerlink" title="移动光标类命令"></a>移动光标类命令</h3><pre><code>h ：光标左移一个字符
+l ：光标右移一个字符
+space：光标右移一个字符
+Backspace：光标左移一个字符
+k或Ctrl p：光标上移一行
+j或Ctrl n ：光标下移一行
+Enter ：光标下移一行
+w或W ：光标右移一个字至字首
+b或B ：光标左移一个字至字首
+e或E ：光标右移一个字至字尾
+) ：光标移至句尾
+( ：光标移至句首
+}：光标移至段落开头
+{：光标移至段落结尾
+nG：光标移至第n行首
+n ：光标下移n行
+n-：光标上移n行
+n$：光标移至第n行尾
+H ：光标移至屏幕顶行
+M ：光标移至屏幕中间行
+L ：光标移至屏幕行
+0：（注意是数字零）光标移至当前行首
+$：光标移至当前行尾
+</code></pre><h3 id="屏幕翻滚类命令"><a href="#屏幕翻滚类命令" class="headerlink" title="屏幕翻滚类命令"></a>屏幕翻滚类命令</h3><pre><code>Ctrl u：向文件首翻半屏
+Ctrl d：向文件尾翻半屏
+Ctrl f：向文件尾翻一屏
+Ctrl＋b；向文件首翻一屏
+nz：将第n行滚至屏幕顶部,不指定n时将当前行滚至屏幕顶部.
+</code></pre><h3 id="插入文本类命令"><a href="#插入文本类命令" class="headerlink" title="插入文本类命令"></a>插入文本类命令</h3><pre><code>i ：在光标前
+I ：在当前行首
+a：光标后
+A：在当前行尾
+o：在当前行之下新开一行
+O：在当前行之上新开一行
+r：替换当前字符
+R：替换当前字符及其后的字符,直至按ESC键
+s：从当前光标位置处开始,以输入的文本替代指定数目的字符
+</code></pre><h3 id="保存命令"><a href="#保存命令" class="headerlink" title="保存命令"></a>保存命令</h3><pre><code>按ESC键 跳到命令模式，然后：
+
+:w   保存文件但不退出vi
+:w file 将修改另外保存到file中，不退出vi
+:w!   强制保存，不推出vi
+:wq  保存文件并退出vi
+:wq! 强制保存文件，并退出vi
+q:  不保存文件，退出vi
+:q! 不保存文件，强制退出vi
+:e! 放弃所有修改，从上次保存文件开始再编辑
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/20/git的撤销操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/20/git的撤销操作/" itemprop="url">git的撤销操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-20T19:55:46+08:00">
+                2018-08-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/08/20/git的撤销操作/" class="leancloud_visitors" data-flag-title="git的撤销操作">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>刚刚在使用git commit之后要push，提示报错，原因就不多说了。特意总结了一下如果要撤销add或者commit操作应该怎么做,当然在git status的时候也会自动提示可以用什么操作(5月28日也有过一次对撤销的小结，当时仅仅是撤销文件的更改)<br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/20/git的撤销操作/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/20/暑期总结报告/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/20/暑期总结报告/" itemprop="url">迟到的暑期培训总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-20T01:56:56+08:00">
+                2018-08-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/08/20/暑期总结报告/" class="leancloud_visitors" data-flag-title="迟到的暑期培训总结">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>早就应该写的了，拖着拖着就到现在了<br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/20/暑期总结报告/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/19/https协议二次了解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/19/https协议二次了解/" itemprop="url">https协议二次了解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-19T17:49:15+08:00">
+                2018-08-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/08/19/https协议二次了解/" class="leancloud_visitors" data-flag-title="https协议二次了解">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>7月14日的时候学习到了http的一些事项，三次握手，跨域，缓存,csp等等，以及https相比http的一些优势，在这里再次深入了解一下https<br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/19/https协议二次了解/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/31/token机制二次学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/31/token机制二次学习/" itemprop="url">token机制二次学习</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-31T15:59:34+08:00">
+                2018-07-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/07/31/token机制二次学习/" class="leancloud_visitors" data-flag-title="token机制二次学习">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="传统的session认证"><a href="#传统的session认证" class="headerlink" title="传统的session认证"></a>传统的session认证</h2><p>   HTTP 是一种没有状态的协议，也就是它并不知道是谁是访问应用。这里我们把用户看成是客户端，客户端使用用户名还有密码通过了身份验证，不过下回这个客户端再发送请求时候，还得再验证一下。</p>
+<p>   解决的方法就是，当用户请求登录的时候，如果没有问题，我们在服务端生成一条记录，这个记录里可以说明一下登录的用户是谁，然后把这条记录的 ID 号发送给客户端，客户端收到以后把这个 ID 号存储在 Cookie 里，下次这个用户再向服务端发送请求的时候，可以带着这个 Cookie ，这样服务端会验证一个这个 Cookie 里的信息，看看能不能在服务端这里找到对应的记录，如果可以，说明用户已经通过了身份验证，就把用户请求的数据返回给客户端。</p>
+<p>   上面说的就是 Session，我们需要在服务端存储为登录的用户生成的 Session ，这些 Session 可能会存储在内存，磁盘，或者数据库里。我们可能需要在服务端定期的去清理过期的 Session 。</p>
+<p>   但是这种基于session的认证使应用本身很难得扩展，随着不用客户端的增加，独立的服务器已无法承载更多的用户，而这个时候基于session认证应用的问题就会暴露出来</p>
+<h2 id="基于token机制的认证"><a href="#基于token机制的认证" class="headerlink" title="基于token机制的认证"></a>基于token机制的认证</h2><p>使用token机制的身份验证方法，在服务器端不需要存储用户的登录记录。大概的流程：</p>
+<ul>
+<li>客户端使用用户名和密码请求登录。</li>
+<li>服务端收到请求，验证用户名和密码。验证成功后，服务端会生成一个token，然后把这个token发送给客户端。</li>
+<li>客户端收到token后把它存储起来，可以放在cookie或者Local Storage（本地存储）里。</li>
+<li>客户端每次向服务端发送请求的时候都需要带上服务端发给的token。</li>
+<li>服务端收到请求，然后去验证客户端请求里面带着token，如果验证成功，就向客户端返回请求的数据。</li>
+</ul>
+<p>相比于传统sessionid都要存起来，token可以存到数据库中，但是有可能查询token的时间会过长导致token丢失（其实token丢失了再重新认证一个就好，但是别丢太频繁，别让用户没事儿就去认证）。</p>
+<p>为了避免查询时间过长，可以将token放到内存中。这样查询速度绝对就不是问题了，也不用太担心占据内存，占不了多少内存的。</p>
+<h2 id="JWT"><a href="#JWT" class="headerlink" title="JWT"></a>JWT</h2><p>JWT由三部分构成   头部（header）载荷（payload）签名（signature）<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">header</span><br><span class="line">&#123;</span><br><span class="line">     <span class="string">'typ'</span>:<span class="string">'JWT'</span>, <span class="comment">//类型</span></span><br><span class="line">     <span class="string">'alg'</span>:<span class="string">'HS256'</span>  <span class="comment">//加密算法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">payload</span><br><span class="line">&#123;  原有注册声明</span><br><span class="line">    iss：jwt签发者</span><br><span class="line">    sub：jwt所面向的用户</span><br><span class="line">    aud：接收jwt的一方</span><br><span class="line">    exp：jwt的过期时间，这个过期时间必须大于签发时间</span><br><span class="line">    nbf：定义在什么时间之前，该jwt都是不可用的</span><br><span class="line">    iat：jwt的签发时间</span><br><span class="line">    jti：jwt的唯一身份标识，主要用来作为一次性token，从而回避重放攻击 </span><br><span class="line"></span><br><span class="line">    公共的声明可以添加任何的信息，一般添加用户的相关信息</span><br><span class="line">    <span class="string">"name"</span> : <span class="string">"beichen"</span></span><br><span class="line">    <span class="string">"admin"</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">第三部分signature需要header+payload+secret</span><br><span class="line">secret是密钥，可以是随便打的字符串 (我记得string或者buffer类型？)</span><br><span class="line">secret是保存在服务器端的，jwt的签发也是在服务端的，secret就是用来进行jwt的签发和jwt的验证，所以它就是你服务端的私钥，在任何场景都不应该流露出去，一旦客户端得知这个secret，那就意味着客户端可以自我签发jwt了</span><br></pre></td></tr></table></figure>
+<h2 id="在node中JWT的应用"><a href="#在node中JWT的应用" class="headerlink" title="在node中JWT的应用"></a>在node中JWT的应用</h2><p>用本次项目的应用举例</p>
+<p>在这个token.js文件里，我是先封装了两个方法，一个用来生成token，一个用来解密<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> jwt = <span class="built_in">require</span>(<span class="string">'jsonwebtoken'</span>);</span><br><span class="line"><span class="keyword">const</span> secret = <span class="string">'zxc'</span> </span><br><span class="line"></span><br><span class="line">getToken = <span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> jwt.sign(data, secret, &#123;</span><br><span class="line">        expiresIn: <span class="string">"168h"</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getVerify = <span class="function">(<span class="params">token</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> jwt.verify(token,secret)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    getToken,</span><br><span class="line">    getVerify</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在其他涉及到token的地方，导入上面的js文件后就可以直接调用两个方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">登录时生成token并返回给客户端</span><br><span class="line">router.get(<span class="string">'/login'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123; </span><br><span class="line">    <span class="keyword">var</span> data = &#123;</span><br><span class="line">        username : <span class="string">'testAccount'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">var</span> token = jwt.getToken(data)</span><br><span class="line">    <span class="comment">//  var username = jwt.getVerify(token).username</span></span><br><span class="line">    res.json(&#123;</span><br><span class="line">      code:<span class="number">200</span>,</span><br><span class="line">      username:data.username,</span><br><span class="line">      userphoto:data.userphoto,</span><br><span class="line">      token</span><br><span class="line">     </span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> jwt = <span class="built_in">require</span>(<span class="string">'./token'</span>);</span><br><span class="line">router.post(<span class="string">'*'</span>, (req, res,next) =&gt; &#123;</span><br><span class="line">    <span class="keyword">var</span> token = req.body.token;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        jwt.getVerify(token);<span class="comment">//因为是写成同步操作，所以可能出现异常，要自行捕获</span></span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Token过期'</span>)</span><br><span class="line">       <span class="keyword">return</span> res.json(&#123;</span><br><span class="line">              msg: <span class="string">'Token过期'</span></span><br><span class="line">               &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Token未过期'</span>)</span><br><span class="line">    <span class="keyword">return</span> next();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/24/Affair开发初步想法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -337,7 +1368,7 @@
 
       
         
-          <p>今天学到的和初步想法<br>
+          <p>今天学到的和初步想法<br></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/07/24/Affair开发初步想法/#more" rel="contents">
@@ -475,7 +1506,7 @@
 
       
         
-          <p>设计稿交给我们了，前半天让张阳宁给我指导下做页面的事项，后半天想一下affair<br>
+          <p>设计稿交给我们了，前半天让张阳宁给我指导下做页面的事项，后半天想一下affair<br></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/07/23/练手项目开始/#more" rel="contents">
@@ -613,1048 +1644,10 @@
 
       
         
-          <p>今天学习了flex布局，这个布局还是挺方便的，不然老是float太多问题了<br>
+          <p>今天学习了flex布局，这个布局还是挺方便的，不然老是float太多问题了<br></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/07/21/flex布局/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/19/后台进化史之第七天/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/19/后台进化史之第七天/" itemprop="url">2018/07/19</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-19T23:53:19+08:00">
-                2018-07-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/07/19/后台进化史之第七天/" class="leancloud_visitors" data-flag-title="2018/07/19">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="网络层相关"><a href="#网络层相关" class="headerlink" title="网络层相关"></a>网络层相关</h2><p>网关实质上是一个网络通向其他网络的IP地址<br>主机处在不同的网络里。而要实现这两个网络之间的通信，则必须通过网关。如果网络A中的主机发现数据包的目的主机不在本地网络中，就把数据包转发给它自己的网关，再由网关转发给网络B的网关，网络B的网关再转发给网络B的某个主机（如附图所示）。网络A向网络B转发数据包的过程</p>
-<h2 id="继续学习CSS"><a href="#继续学习CSS" class="headerlink" title="继续学习CSS"></a>继续学习CSS</h2><p>看了瀚程给大爷的新时代修BUG获益匪浅</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/18/后台进化史之第六天/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/18/后台进化史之第六天/" itemprop="url">2018/07/18</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-18T23:30:53+08:00">
-                2018-07-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/07/18/后台进化史之第六天/" class="leancloud_visitors" data-flag-title="2018/07/18">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="express"><a href="#express" class="headerlink" title="express"></a>express</h2><ul>
-<li><p>express xx生成一个express文件，进入bin，npm start 等同于node ./bin/www 运行node服务</p>
-</li>
-<li><p>package.json下列出的模块表明是运行所需要的，npm install 会自行安装。便于客户端执行服务。</p>
-</li>
-<li><p>jade模板引擎，在express开发中有粗略看过，当初还没学前端htmlcss基本懵逼，现在看好多了。模板引擎是用来简化html代码的，准备晚点再看看。</p>
-</li>
-<li><p>路由通配符</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">router.post(<span class="string">'*'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">   xxxxxx;</span><br><span class="line">   next()；</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>路径如果设定是*，表明所有的请求都要经过这个路由，再执行next方法，比如用来检测用户在一个页面停留的时间是否过长，从而判断登录状态。</p>
-</li>
-</ul>
-<h2 id="继续学css"><a href="#继续学css" class="headerlink" title="继续学css"></a>继续学css</h2>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/17/继承、执行上下文、this/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/17/继承、执行上下文、this/" itemprop="url">继承、执行上下文、this浅理解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-17T22:16:23+08:00">
-                2018-07-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/07/17/继承、执行上下文、this/" class="leancloud_visitors" data-flag-title="继承、执行上下文、this浅理解">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>早上瀚程扔了一个王福朋的博客，里面讲了很多有关JS CSS的东西。早上听讲了原型链，this，执行上下文等，回头也结合王福朋的博客看了一点。</p>
-<ul>
-<li>对象都是通过函数来创建的，但是函数又是一种对象（万物皆对象）</li>
-<li>每一个函数都有一个prototype属性，这个属性的值是一个对象（属性集合），默认的只有一个构造器函数constructor，指向函数本身。</li>
-<li>每个对象都有一个隐藏的属性——“<strong>proto</strong>”，这个属性引用了创建这个对象的函数的prototype。即：fn.<strong>proto</strong> === Fn.prototype</li>
-</ul>
-<blockquote>
-<p>下面是一个经典的例子<br><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function <span class="function"><span class="keyword">Fn</span><span class="params">()</span> &#123; &#125;</span></span><br><span class="line"><span class="function">        <span class="keyword">Fn</span>.prototype.<span class="title">name</span> = '王福朋'</span>;</span><br><span class="line">        <span class="function"><span class="keyword">Fn</span>.prototype.<span class="title">getYear</span> = function <span class="params">()</span> &#123;</span></span><br><span class="line"><span class="function">            <span class="keyword">return</span> <span class="number">1988</span></span>;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        var <span class="function"><span class="keyword">fn</span> = <span class="keyword">new</span> <span class="keyword">Fn</span><span class="params">()</span></span>;</span><br><span class="line">        console.<span class="built_in">log</span>(<span class="function"><span class="keyword">fn</span>.name)</span>;</span><br><span class="line">        console.<span class="built_in">log</span>(<span class="function"><span class="keyword">fn</span>.getYear<span class="params">()</span>)</span>;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><ul>
-<li><p>访问一个对象的属性时，先在基本属性中查找，如果没有，再沿着<strong>proto</strong>这条链向上找，这就是原型链。</p>
-</li>
-<li><p>由于所有的对象的原型链都会找到Object.prototype，因此所有的对象都会有Object.prototype的方法。这就是所谓的“继承”。</p>
-</li>
-</ul>
-<h3 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h3><p>通俗说法在执行代码之前，把将要用到的所有的变量都事先拿出来，有的直接赋值了，有的先用undefined占个空。</p>
-<h3 id="this的取值"><a href="#this的取值" class="headerlink" title="this的取值"></a>this的取值</h3><p><em><font color="green">在函数中this到底取何值，是在函数真正被调用执行的时候确定的，函数定义的时候确定不了</font></em><br>分为四种情况，震惊，这么详细</p>
-<blockquote>
-<p>1、 构造函数中this指向new出来的对象<br>2、 函数作为对象的一个属性，并且被调用,this指向这个对象，如果作为属性但是不被调用，还是指向window<br>3、 函数用call或者apply调用，this的值取传入的参数（对象）的值<br>4、 全局下this指向window，普通函数调用的时候也是指向window</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/16/express处理表单浅理解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/16/express处理表单浅理解/" itemprop="url">express处理表单浅理解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-16T22:25:56+08:00">
-                2018-07-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/07/16/express处理表单浅理解/" class="leancloud_visitors" data-flag-title="express处理表单浅理解">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><font face="Georgia" size="4" color="cray">了解了使用express框架如何处理表单请求</font></p>
-<h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><p>当表单被提交（通过浏览器或AJAX）时，必须被编码。如果没有明确地指定编码，则默认为application/x-wwwform-urlencoded。<br>如果需要上传文件，使用multipart/form-data编码类型（并不被建议使用）。</p>
-<h3 id="处理表单的不同方式"><a href="#处理表单的不同方式" class="headerlink" title="处理表单的不同方式"></a>处理表单的不同方式</h3><p>如果method=”POST”m展示表单和处理表单可以用同一个路由，因为展示只需要get请求，而处理一般是post请求，使用同一个路由是可以区分的，这一点我当初在做考核的时候倒是没有考虑到。</p>
-<h3 id="处理完后如何响应"><a href="#处理完后如何响应" class="headerlink" title="处理完后如何响应"></a>处理完后如何响应</h3><p>1、 直接响应html，就是直接扔一个html<br>2、 303重定向 { 重定向到某一个特殊的界面，跳转成功应该去哪里，404定制界面等}</p>
-<h3 id="表单域的获取"><a href="#表单域的获取" class="headerlink" title="表单域的获取"></a>表单域的获取</h3><p>1、对于GET请求 域放在req,query<br>2、对于POST请求，域放在req.body中，需要引入一个body-parser 很常用的</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/16/事件循环机制和几种数组方法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/16/事件循环机制和几种数组方法/" itemprop="url">事件循环机制和几种数组方法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-16T00:00:00+08:00">
-                2018-07-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/07/16/事件循环机制和几种数组方法/" class="leancloud_visitors" data-flag-title="事件循环机制和几种数组方法">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <font face="STCAIYUN" color="gray" size="6">Everything runs in parallel except your code!</font>
-
-
-
-<h3 id="事件循环（以及异步，回调）"><a href="#事件循环（以及异步，回调）" class="headerlink" title="事件循环（以及异步，回调）"></a>事件循环（以及异步，回调）</h3><p>js 事件轮询机制</p>
-<blockquote>
-<p>在js中同步和异步的任务会分别进入不同的执行场所，同步任务进入主线程异步的进入Event Table并注册函数。当指定的事情完成时，Event Table会将这个函数移入Event Queue。主线程内的任务执行完毕为空，会去Event Queue读取对应的函数，进入主线程执行。上述过程会不断重复，也就是常说的Event Loop(事件循环)。<br><img src="2018041120124254.png" alt="Alt text"></p>
-</blockquote>
-<blockquote>
-<p>但是js异步有一个机制，就是遇到宏任务，先执行宏任务，将宏任务放入eventqueue，然后在执行微任务，将微任务放入eventqueue最骚的是，这两个queue不是一个queue。当你往外拿的时候先从微任务里拿这个回掉函数，然后再从宏任务的queue上拿宏任务的回掉函数。<img src="20180411202638415.png" alt="Alt text"></p>
-</blockquote>
-<p>菠萝说的<br>宏任务一般有：script，setTimeout，setInterval。</p>
-<p>微任务：Promise，process.nextTick。</p>
-<h3 id="数组操作几种方法-codewar"><a href="#数组操作几种方法-codewar" class="headerlink" title="数组操作几种方法(codewar)"></a>数组操作几种方法(codewar)</h3><blockquote>
-<p>今天做的这道题让我回忆，以及get到了一些或旧或新的方法，这些方法都是挺有用的</p>
-</blockquote>
-<h4 id="filter-过滤"><a href="#filter-过滤" class="headerlink" title="filter()过滤"></a>filter()过滤</h4><p>filter()把传入的函数依次作用于每个元素，然后根据返回值是true还是false决定保留还是丢弃该元素。</p>
-<blockquote>
-<p>例如，在一个Array中，删掉偶数，只保留奇数，可以这么写：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">15</span>];</span><br><span class="line"><span class="number">2</span> <span class="keyword">var</span> r = arr.filter(<span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123;</span><br><span class="line"><span class="number">3</span>     <span class="keyword">return</span> x % <span class="number">2</span> !== <span class="number">0</span>;</span><br><span class="line"><span class="number">4</span> &#125;);</span><br><span class="line"><span class="number">5</span> r; <span class="comment">// [1, 5, 9, 15]</span></span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<h4 id="split-分隔"><a href="#split-分隔" class="headerlink" title="split()分隔"></a>split()分隔</h4><blockquote>
-<p>分割字符串的方法<br>注意这两个<br>split(“”) 每个元素分隔<br>split(“ “)以空格为分隔符分隔</p>
-</blockquote>
-<h4 id="几种遍历方法"><a href="#几种遍历方法" class="headerlink" title="几种遍历方法"></a>几种遍历方法</h4><blockquote>
-<p>回顾了一下js数组遍历的几种方法<br>1、 普通for循环,最简单的一种，也是使用频率最高的一种，瀚程如是说，的确是最熟悉性能也是挺高</p>
-</blockquote>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">j</span> = <span class="number">0</span>; <span class="built_in">j</span> &lt; arr.<span class="built_in">length</span>; <span class="built_in">j</span>++) &#123;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p>2、 </p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr.<span class="keyword">forEach</span>(<span class="function"><span class="keyword">function</span><span class="params">(e)</span></span>&#123;  </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>3、</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Array</span>.prototype.<span class="keyword">forEach</span>.call(arr,<span class="function"><span class="keyword">function</span><span class="params">(el)</span></span>&#123;    </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>4、</p>
-<pre><code>for(i in或者of  arr){
-}
-</code></pre><p>5、 map遍历</p>
-<pre><code>arr.map(funtion(n){
-})
-</code></pre><h3 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h3><p>记录类型A 表明主机记录指向唯一的IP<br>记录类型CNAME 一个域名指向另一个域名</p>
-<p>买了一个新的域名尝试了将其指向原有的博客域名，一顿操作终于好了<br>缓存真是个奇怪的东西，明明就是ping一样的地址，上一刻和下一刻效果不一样</p>
-<h3 id="添加虚拟主机的常用命令"><a href="#添加虚拟主机的常用命令" class="headerlink" title="添加虚拟主机的常用命令"></a>添加虚拟主机的常用命令</h3><p>lnmp vhost add<br>lnmp vhost list<br>cd /home wwwroot/<br>lnmp list<br>cd 进去 找到index.html，vim模式编辑</p>
-<h3 id="express"><a href="#express" class="headerlink" title="express"></a>express</h3><blockquote>
-<p>Post请求体</p>
-<ul>
-<li>常用媒体类型是application/x-www-form-urlencoded</li>
-<li>如果需要上传文件 multipart/form-data</li>
-<li>如果是AJAX请求 application/json</li>
-</ul>
-</blockquote>
-<h2 id="最后附上一道题，有关异步的"><a href="#最后附上一道题，有关异步的" class="headerlink" title="最后附上一道题，有关异步的"></a>最后附上一道题，有关异步的</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		    <span class="built_in">console</span>.log(<span class="string">'1'</span>)</span><br><span class="line">		&#125;);</span><br><span class="line"> </span><br><span class="line">		<span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>)</span>&#123;</span><br><span class="line">		    <span class="built_in">console</span>.log(<span class="string">'2'</span>);</span><br><span class="line">		&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		    <span class="built_in">console</span>.log(<span class="string">'3'</span>)</span><br><span class="line">		&#125;);</span><br><span class="line"> </span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'4'</span>);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>这段代码的运行顺序 2，4，3，1<br>原因就是 然后回到开头的代码。因为settimeout是宏任务，虽然先执行的他，但是他被放到了宏任务的eventqueue里面，然后代码继续往下检查看有没有微任务，检测到Promise的then函数把他放入了微任务序列。等到主线进程的所有代码执行结束后。先从微任务queue里拿回掉函数，然后微任务queue空了后再从宏任务的queue拿函数。</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/14/http协议/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/14/http协议/" itemprop="url">http协议</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-14T23:08:28+08:00">
-                2018-07-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/07/14/http协议/" class="leancloud_visitors" data-flag-title="http协议">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h3><p>第一次握手：建立连接时，客户端发送SYN(同步序列编号)包（syn=j）到服务器<br>第二次握手：服务器收到SYN包，必须确认客户的SYN（ack=j+1），同时自己也发送一个SYN包（syn=k）<br>第三次握手：客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1），此包发送完毕，客户端和服务器进入ESTABLISHED（TCP连接成功）状态，完成三次握手<br>完成三次握手，客户端与服务器开始传送数据</p>
-<h3 id="CORS跨域"><a href="#CORS跨域" class="headerlink" title="CORS跨域"></a>CORS跨域</h3><p>在响应头里面写<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'Access-Control-Allow-Origin'</span>: <span class="string">'*'</span></span><br><span class="line"><span class="string">'Access-Control-Allow-Headers'</span>: <span class="string">'预请求头的名字'</span></span><br><span class="line"><span class="string">'Access-Control-Allow-Methods'</span>: <span class="string">'POST,PUT,DELETE'</span></span><br><span class="line"><span class="string">'Access-Control-Allow-Max-age'</span>: <span class="string">'1000（允许跨域的处理的最大期限，在这个时间内再次发起请求不需要验证了，单位是秒）'</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h3><p>要使用缓存的写法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">response.writeHead(stastus,&#123;</span><br><span class="line"><span class="string">'Cache-Control'</span>: <span class="string">'max-age=2 s-maxage= 20private'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li>expires 指定一个绝对的过期时间，但是如果客户端和服务端时间不同步会导致问题，而且很容易忘记自己配置的过期时间具体是多少</li>
-<li>max-age 浏览器缓存 指定的是从文档被访问后的存活时间，这个时间是相对的</li>
-<li>s-maxage 代理缓存</li>
-<li>存在max-age的时候会覆盖expires,在代理过程中存在s-maxage的时候会覆盖max-age</li>
-<li>加private表明只允许浏览器用缓存，代理服务器不能用;加no-store表明 都不允许使用缓存<br><img src="cache.png" alt=""></li>
-</ol>
-<h3 id="CSP限制"><a href="#CSP限制" class="headerlink" title="CSP限制"></a>CSP限制</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'Content-Security-Policy'</span>: <span class="string">'default-src http: https:'</span> </span><br><span class="line">**限制跳转的域名</span><br><span class="line"></span><br><span class="line"><span class="string">'Content-Security-Policy'</span>: <span class="string">'default-src \'self\' </span></span><br><span class="line"><span class="string">**限制跳转的只能是内部链接</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'</span>Content-Security-Policy<span class="string">': '</span>script-src \<span class="string">'self\' ; form-action \'self\' </span></span><br><span class="line"><span class="string">**限制js的跳转和表单的提交</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'</span>Content-Security-Policy-Only-Report<span class="string">':'</span>report-uri /repot<span class="string">'</span></span><br><span class="line"><span class="string">只做report的请求，即使资源被限制了不想加载，也会执行代码但浏览器仍然会拦截它，并做一个report</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/12/蒲公英俱乐部开张啦/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/12/蒲公英俱乐部开张啦/" itemprop="url">蒲公英俱乐部开张啦</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-12T21:47:41+08:00">
-                2018-07-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/07/12/蒲公英俱乐部开张啦/" class="leancloud_visitors" data-flag-title="蒲公英俱乐部开张啦">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>蒲公英俱乐部开张第一天<br>安装了putty,phpstudy<br>在阿里云够买了一个学生版服务器<br>学会了git里面多人合作常用流程<br>还有就是，这个假的奥克斯，好热~~~<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/12/蒲公英俱乐部开张啦/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1746,7 +1739,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1759,7 +1752,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -253,6 +253,1177 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/19/ts三体验——类装饰器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/19/ts三体验——类装饰器/" itemprop="url">ts三体验——装饰器和演算</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-19T10:07:26+08:00">
+                2019-07-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/07/19/ts三体验——类装饰器/" class="leancloud_visitors" data-flag-title="ts三体验——装饰器和演算">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h3><p>运行时间：在定义后直接运行<br>执行顺序：从下到上</p>
+<h4 id="类装饰器"><a href="#类装饰器" class="headerlink" title="类装饰器"></a>类装饰器</h4><p>接受一个参数<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">target:new(...args:any[]</span>) =&gt; <span class="title">object</span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">target:Function</span>)  </span>&#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>返回值类型分两种</p>
+<ul>
+<li>void：仅仅运行函数</li>
+<li>返回一个新的类：新类替换旧类。利用这个可以给新类extends旧类(target)来增强功能，但是会失去类型检查，尽量不适用</li>
+<li></li>
+</ul>
+<h4 id="属性装饰器"><a href="#属性装饰器" class="headerlink" title="属性装饰器"></a>属性装饰器</h4><p>接受两个参数<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">d</span>(<span class="params">target: any, key: string</span>) </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>如果是静态属性，表示类本身（构造函数），如果是实例属性，表示类的原型（prototype）</li>
+<li>一个string，表示属性的名字</li>
+</ol>
+<h4 id="方法装饰器"><a href="#方法装饰器" class="headerlink" title="方法装饰器"></a>方法装饰器</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">target: any, key: string, descriptor: PropertyDescriptor</span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>接受三个参数</p>
+<ol>
+<li>如果是静态属性，表示类本身（构造函数），如果是实例属性，表示类的原型（prototype）</li>
+<li>一个string，表示属性的名字</li>
+<li>描述符对象</li>
+</ol>
+<h4 id="参数装饰器"><a href="#参数装饰器" class="headerlink" title="参数装饰器"></a>参数装饰器</h4><p>接受三个参数</p>
+<ol>
+<li>如果是静态属性，表示类本身（构造函数），如果是实例属性，表示类的原型（prototype）</li>
+<li>方法名称</li>
+<li>在参数列表中的索引</li>
+</ol>
+<h4 id="自动注入元数据"><a href="#自动注入元数据" class="headerlink" title="自动注入元数据"></a>自动注入元数据</h4><p>前提条件是：安装reflect-metadata，导入该库，在某个成员添加了元数据，并启动了emitDecoratorMetadata<br>在编译结果中，约束的类型会作为元数据加入，这样类型检查有机会在与运行时进行</p>
+<h4 id="工具库"><a href="#工具库" class="headerlink" title="工具库"></a>工具库</h4><h5 id="reflect-metadata"><a href="#reflect-metadata" class="headerlink" title="reflect-metadata"></a>reflect-metadata</h5><p>作用:保存元数据<br>使用方法：安装后，import “reflect-meatdata”,就可以使用全局变量</p>
+<ul>
+<li>在需要装饰的地方用 @Reflect.metadata(Key, Value)</li>
+<li>要获取定义过的元数据，Reflect.getMetadata(Key, target,prop?)</li>
+<li>判断是否具有某个元数据Reflect.hasMetadata(Key, target, prop?);</li>
+<li>直接定义元数据Reflect.defineMetadata(Key, Value, target，prop?);<h5 id="class-validator"><a href="#class-validator" class="headerlink" title="class-validator"></a>class-validator</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"reflect-metadata"</span></span><br><span class="line"><span class="keyword">import</span>&#123; IsNotEmpty, validate, MinLength, MaxLength &#125;<span class="keyword">from</span> <span class="string">"class-validator"</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RegUser</span></span>&#123;</span><br><span class="line">    @IsNotEmpty(&#123;<span class="attr">message</span>:<span class="string">"账号不能为空"</span>&#125;)</span><br><span class="line">    @MinLength(<span class="number">5</span>,&#123;<span class="attr">message</span>:<span class="string">"至少5个字"</span>&#125;)</span><br><span class="line">    @MaxLength(<span class="number">12</span>,&#123;<span class="attr">message</span>:<span class="string">"至多12个字"</span>&#125;)</span><br><span class="line">    loginId:string</span><br><span class="line">    loginPwd:string</span><br><span class="line">    </span><br><span class="line">    age:number</span><br><span class="line">    gender:<span class="string">'male'</span>|<span class="string">'female'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> post = <span class="keyword">new</span> RegUser()</span><br><span class="line"><span class="comment">// post.loginId = "asfsd"</span></span><br><span class="line">validate(post).then(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err);</span><br><span class="line">    </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="class-transformer"><a href="#class-transformer" class="headerlink" title="class-transformer"></a>class-transformer</h5><p>作用：将平面对象转换为类<br>应用：假设一个应用场景，有一个用户数组，每个元素都是一个用户对象<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[&#123;</span><br><span class="line">  <span class="string">"id"</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="string">"firstName"</span>: <span class="string">"Johny"</span>,</span><br><span class="line">  <span class="string">"lastName"</span>: <span class="string">"Cage"</span>,</span><br><span class="line">  <span class="string">"age"</span>: <span class="number">27</span></span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"id"</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="string">"firstName"</span>: <span class="string">"Ismoil"</span>,</span><br><span class="line">  <span class="string">"lastName"</span>: <span class="string">"Somoni"</span>,</span><br><span class="line">  <span class="string">"age"</span>: <span class="number">50</span></span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"id"</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="string">"firstName"</span>: <span class="string">"Luke"</span>,</span><br><span class="line">  <span class="string">"lastName"</span>: <span class="string">"Dacascos"</span>,</span><br><span class="line">  <span class="string">"age"</span>: <span class="number">12</span></span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure></p>
+<p>现在有一个用户类<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    id: number;</span><br><span class="line">    firstName: string;</span><br><span class="line">    lastName: string;</span><br><span class="line">    age: number;</span><br><span class="line"> </span><br><span class="line">    getName() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="string">" "</span> + <span class="keyword">this</span>.lastName;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    isAdult() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.age &gt; <span class="number">36</span> &amp;&amp; <span class="keyword">this</span>.age &lt; <span class="number">60</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当拿到用户数组的时候，就算类型约束成为User类，即使我们知道这里的每个元素的的确确都是用户类，但是ts不会把对象转换为类，所以不能访问类定义的方法，依旧只能访问自身的属性。此时使用class-transformer库里面的 plainToClass()方法可以把平面对象转换为class<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">"users.json"</span>).then(<span class="function">(<span class="params">users: <span class="built_in">Object</span>[]</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> realUsers = plainToClass(User, users);</span><br><span class="line">    <span class="comment">// 现在realUsers数组里面的每个元素就都是User类了</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h4 id="类型演算"><a href="#类型演算" class="headerlink" title="类型演算"></a>类型演算</h4><p>typeof作用于类的时候，得到的是类的构造函数</p>
+<p>keyof作用于类、接口、类型别名，可以获取这些类型的所有成员名组成的联合类型<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> User&#123;</span><br><span class="line">    id:<span class="built_in">string</span></span><br><span class="line">    pwd:<span class="built_in">string</span></span><br><span class="line">    age:<span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printProp</span>(<span class="params">obj:User,prop:keyof User</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(obj[prop]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>in 通常和 keyof联用，限制索引器的取值范围，类型演算</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> User&#123;</span><br><span class="line">    id:<span class="built_in">string</span></span><br><span class="line">    pwd:<span class="built_in">string</span></span><br><span class="line">    age:<span class="built_in">number</span></span><br><span class="line">    createDate:<span class="built_in">Date</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Userstring= &#123;</span><br><span class="line"><span class="comment">//将user的成员类型都转换成string</span></span><br><span class="line">    [prop <span class="keyword">in</span> keyof User]:<span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//下面三个在lib有定义，可以直接作为泛型类型使用</span></span><br><span class="line"><span class="comment">//将user的成员都设置为可选</span></span><br><span class="line"><span class="keyword">type</span> Partial&lt;T&gt; = &#123;</span><br><span class="line">    [P <span class="keyword">in</span> keyof T]?: T[P];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//只读</span></span><br><span class="line"><span class="keyword">type</span> Readonly&lt;T&gt; = &#123;</span><br><span class="line">    readonly [P <span class="keyword">in</span> keyof T]: T[P];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//非空</span></span><br><span class="line"><span class="keyword">type</span> Required&lt;T&gt; = &#123;</span><br><span class="line">    [P <span class="keyword">in</span> keyof T]-?: T[P];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//剔除T中能赋值给U的类型</span></span><br><span class="line"><span class="keyword">type</span> Exclude&lt;T, U&gt; = T <span class="keyword">extends</span> U ? never : T;</span><br><span class="line"></span><br><span class="line"><span class="comment">//只保留T中能复制给U的类型</span></span><br><span class="line"><span class="keyword">type</span> Extract&lt;T, U&gt; = T <span class="keyword">extends</span> U ? T : never;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">NonNullable&lt;T&gt; 去掉<span class="literal">null</span>和<span class="literal">undefined</span>类型</span><br><span class="line"></span><br><span class="line">ReturnType&lt;T&gt; 得到函数返回值的类型  传入的T是函数的类型，不是函数，可以用<span class="keyword">typeof</span></span><br><span class="line"></span><br><span class="line">InstanceType&lt;T&gt;  得到构造函数的实例类型</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/19/几种模块化规范比较/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/19/几种模块化规范比较/" itemprop="url">几种模块化规范比较</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-19T10:04:48+08:00">
+                2019-07-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/07/19/几种模块化规范比较/" class="leancloud_visitors" data-flag-title="几种模块化规范比较">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="commonjs"><a href="#commonjs" class="headerlink" title="commonjs"></a>commonjs</h3><p>commonjs是node应用的模块规范，每个文件都是一个模块</p>
+<p>每个模块内部，module代表当前模块，也就是文件本身</p>
+<p>module.exports属性是对外的接口，加载一个模块其实就是加载module.exports</p>
+<p>每个模块都有一个exports变量，指向module.exports。相当于var exports = module.exports，但是要用直接用exports的话，只能在成员上添加，例如exports.add = function(){}，不能直接赋值，会切断和module.exports的连接，所以尽量不要直接用exports</p>
+<p>require加载模块，返回的是引入模块的exports对象</p>
+<h3 id="模块加载规则"><a href="#模块加载规则" class="headerlink" title="模块加载规则"></a>模块加载规则</h3><p>根据require字符串参数的不同</p>
+<ol>
+<li>/开头，绝对路径</li>
+<li>./ 相对路径</li>
+<li>一个模块的名字，加载的是核心模块，位于各级目录下的node_modules，寻找的路径是从同级目录下开始往上找</li>
+<li>如果是路径，例如<code>require(&#39;aaa/bbb/ccc&#39;)</code>先找aaa位置，再找后面的</li>
+<li>如果都没有找到，node会给文件名添加.js,.json,.node后缀，再去搜索，分别以js脚本解析，json文本解析，二进制文件解析</li>
+</ol>
+<p>第一次加载该模块，node会缓存该模块。再次加载，直接从缓存中取出该模块的module.exports属性。<br>缓存是保存在<code>require.cache</code><br>删除缓存是用<code>delete require.cache[moduleName];</code>基本不会用到这个的</p>
+<p>模块输出的变量就跟原模块没有关系了，原来的模块变化，不会影响到输出的变量</p>
+<h3 id="AMD与commonjs的区别"><a href="#AMD与commonjs的区别" class="headerlink" title="AMD与commonjs的区别"></a>AMD与commonjs的区别</h3><p>AMD规范则异步加载模块，允许指定回调函数</p>
+<p>CommonJS规范加载模块是同步的，只有加载完成，才能执行后面的操作。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//commonjs写法</span></span><br><span class="line"><span class="keyword">var</span> clock = <span class="built_in">require</span>(<span class="string">'clock'</span>);</span><br><span class="line">clock.start();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//AMD写法</span></span><br><span class="line"><span class="built_in">require</span>([<span class="string">'clock'</span>],<span class="function"><span class="keyword">function</span>(<span class="params">clock</span>)</span>&#123;</span><br><span class="line">  clock.start();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="AMD和CMD的区别"><a href="#AMD和CMD的区别" class="headerlink" title="AMD和CMD的区别"></a>AMD和CMD的区别</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//CMD的写法</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">var</span> clock = <span class="built_in">require</span>(<span class="string">'clock'</span>);</span><br><span class="line">   clock.start();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>AMD和CMD最大的区别是依赖模块的执行时机不同，而不是加载时机或者加载方式不同，其实二者皆为异步加载模块</p>
+<p>AMD依赖前置，js可以方便知道依赖模块是什么，立即加载；而CMD就近依赖，需要把模块变为字符串解析一遍才知道依赖了那些模块，但是解析模块用的时间短到可以忽略</p>
+<h3 id="ES6的模块化"><a href="#ES6的模块化" class="headerlink" title="ES6的模块化"></a>ES6的模块化</h3><p>export后面跟要暴露的对象，export default是缺省，一个模块只能有一个default<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> name <span class="keyword">from</span> <span class="string">"xxx"</span>  <span class="comment">//通配符引入所有export的变量， as作用是重命名</span></span><br><span class="line"><span class="keyword">import</span> &#123;a,b,c&#125; <span class="keyword">from</span> <span class="string">"xxx"</span> <span class="comment">//引入指定的变量</span></span><br><span class="line"><span class="keyword">import</span> x <span class="keyword">from</span> <span class="string">""</span><span class="comment">//没有使用&#123;&#125;的，这样写会引入export default</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"./1.jpg"</span><span class="comment">//模块也可以是图片，js文件，这样直接引入模块的代码，不引入内部成员</span></span><br><span class="line"><span class="keyword">let</span> promise = <span class="keyword">import</span>(<span class="string">"xxx"</span>) <span class="comment">//也支持异步引入，一定要绝对路径，在编译的时候会生成异步的模块，前面带有数字那些文件就是</span></span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/17/koa/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/17/koa/" itemprop="url">koa</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-17T16:26:54+08:00">
+                2019-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/07/17/koa/" class="leancloud_visitors" data-flag-title="koa">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="ctx里面的常见参数"><a href="#ctx里面的常见参数" class="headerlink" title="ctx里面的常见参数"></a>ctx里面的常见参数</h3><p>ctx.method/url/path/query/ip</p>
+<p>throw()<br>assert(!condition,statuscode,xxxxx)会把错误信息暴露在前端，当第一个参数的条件不满足执行后面的</p>
+<p>ctx.status 设状态码<br>ctx.redirect 重定向<br>ctx.attachment下载文件<br>ctx.state.变量名  用来设置全局变量</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ctx.status = <span class="number">301</span>||<span class="number">302</span></span><br><span class="line">ctx.redirect = <span class="string">'/xx.html'</span></span><br></pre></td></tr></table></figure>
+<h3 id="文件的坑"><a href="#文件的坑" class="headerlink" title="文件的坑"></a>文件的坑</h3><p>使用koa-body 或者koa-better-body 获取上传的文件的坑<br>新版本的koa-body通过ctx.request.files获取上传的文件 。现在用这个<br>旧版本的koa-body通过ctx.request.body.files获取上传的文件 ,史诗巨坑</p>
+<p>读文件可以用await-fa模块</p>
+<p>koa-better-body还可以用ctx.request.fields获取各种类型的请求参数<br>其中文件的写法式ctx.request.fields.file 等价于 ctx.request.files</p>
+<p>能用绝对路径的不要用相对，引入path模块，path.resolve(_dirname,’./xxx’)</p>
+<h3 id="中间件的坑"><a href="#中间件的坑" class="headerlink" title="中间件的坑"></a>中间件的坑</h3><p>使用中间件，一定要写next(),并且next()前面一定要有await()，不然会莫名其妙404</p>
+<p>要做集中处理错误信息router.all(‘*’,async(ctx,next)=&gt; {<br>    try{}catch{}<br>})</p>
+<p>使用中间件是.use   写规则是.all </p>
+<h3 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h3><p>设置cookie<br>ctx.cookies.set(name, value, [options])<br>options里面可以写maxAge</p>
+<p>获取cookie<br>ctx.cookies.get(‘name’);</p>
+<h3 id="session"><a href="#session" class="headerlink" title="session"></a>session</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">在app.js设置</span><br><span class="line">app.keys = [<span class="string">'some secret hurr'</span>];<span class="comment">//放置一堆key</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> CONFIG = &#123;</span><br><span class="line">   key: <span class="string">'koa:sess'</span>,   <span class="comment">//修改key的名字</span></span><br><span class="line">   maxAge: <span class="number">86400000</span>,  <span class="comment">// cookie的过期时间 </span></span><br><span class="line">   signed: <span class="literal">true</span>,   <span class="comment">//签名默认true</span></span><br><span class="line">   renew: <span class="literal">true</span>,  <span class="comment">//过期自动刷新</span></span><br><span class="line">&#125;;</span><br><span class="line">app.use(session(CONFIG, app)); <span class="comment">//第二个参数是app，注意</span></span><br></pre></td></tr></table></figure>
+<p>设置值 ctx.session.username = “张三”;</p>
+<p>获取值 ctx.session.username</p>
+<h3 id="允许跨域"><a href="#允许跨域" class="headerlink" title="允许跨域"></a>允许跨域</h3><p>有专门的中间件，不用写那一串了<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cors = <span class="built_in">require</span>(<span class="string">'koa2-cors'</span>);</span><br><span class="line">app.use(cors())</span><br></pre></td></tr></table></figure></p>
+<h3 id="gzip压缩页面"><a href="#gzip压缩页面" class="headerlink" title="gzip压缩页面"></a>gzip压缩页面</h3><p>加快网页的加载速度<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> compress = <span class="built_in">require</span>(<span class="string">'koa-compress'</span>);</span><br><span class="line"><span class="keyword">const</span> app = koa()；</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> options = &#123; <span class="attr">threshold</span>: <span class="number">2048</span> &#125;;</span><br><span class="line"> app.use(compress(options));</span><br></pre></td></tr></table></figure></p>
+<p>websock，reg，webpack，es6</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/11/prototype和和-proto-的区别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/11/prototype和和-proto-的区别/" itemprop="url">prototype和和_proto_的区别</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-11T16:11:49+08:00">
+                2019-07-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/07/11/prototype和和-proto-的区别/" class="leancloud_visitors" data-flag-title="prototype和和_proto_的区别">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>总结一句话:<em>proto</em>这个属性的意思是，去指向自己的父亲创造自己时用的构造方法。<br>而prototype这个属性的意思就是，我自己生孩子（创建对象）的时候用的构造方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">too</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.t = <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> t = <span class="keyword">new</span> too()</span><br><span class="line"><span class="built_in">console</span>.log(t._proto_)</span><br><span class="line"><span class="built_in">console</span>.log(too.prototype)</span><br></pre></td></tr></table></figure>
+<p>Function去创造了too这个对象，而用too的too()这个构造方法，去创建了t这个对象，所以关系是function生了too,too生了t</p>
+<p>这时用instanceof()来判断，instanceof是比较左侧的<em>proto</em>和右侧的prototype是否相同</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(t <span class="keyword">instanceof</span> too)  <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(too <span class="keyword">instanceof</span> <span class="built_in">Function</span>) <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(t <span class="keyword">instanceof</span> <span class="built_in">Function</span>) <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/10/ts再体验——class类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/10/ts再体验——class类/" itemprop="url">ts再体验——class类</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-10T10:50:11+08:00">
+                2019-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/07/10/ts再体验——class类/" class="leancloud_visitors" data-flag-title="ts再体验——class类">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="抽象成员"><a href="#抽象成员" class="headerlink" title="抽象成员"></a>抽象成员</h3><p>应用场景：父类中，知道有些成员必须要存在，但是不知道具体的值是什么，在成员前面加abstract强约束在子类中一定要实现这个成员</p>
+<p>注意事项： 必须在抽象类中，抽象成员，不管是方法还是属性，在子类中一定要继承</p>
+<h3 id="模板模式"><a href="#模板模式" class="headerlink" title="模板模式"></a>模板模式</h3><p>有些方法，所有子类实现的流程是完全一致的，只是某个步骤不一样，可以将这个方法提取到父类，在父类中完成整个流程的实现，对于实现不一致的方法，再将其做成抽象方法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Chess</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">this</span>.x = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">this</span>.y = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    move(targetX, targetY) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'相同的规则1'</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'相同的规则2'</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.rule) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Horse</span> <span class="keyword">extends</span> <span class="title">Chess</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">super</span>(...arguments);</span><br><span class="line">        <span class="keyword">this</span>.name = <span class="string">'马'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    rule() &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"马怎么走"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pao</span> <span class="keyword">extends</span> <span class="title">Chess</span> </span>&#123;</span><br><span class="line">    rule() &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"跑怎么走"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="keyword">this</span>.name = <span class="string">'炮'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Soldier</span> <span class="keyword">extends</span> <span class="title">Chess</span> </span>&#123;</span><br><span class="line">    rule() &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"兵怎么走"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    get name() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'兵'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h3><p>某些类的对象，在系统中最多只能有一个，为了避免开发者造成随意创建多个类的对象的错误，可以用单例模式强约束<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Board</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">this</span>.width = <span class="number">500</span>;</span><br><span class="line">        <span class="keyword">this</span>.height = <span class="number">700</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    init() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'初始化'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> createBoard() &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>._board) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>._board;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>._board = <span class="keyword">new</span> Board();</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._board;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> b = Board.createBoard();</span><br><span class="line"><span class="keyword">const</span> b2 = Board.createBoard();</span><br><span class="line"><span class="built_in">console</span>.log(b === b2); <span class="comment">//结果是true</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="类型保护函数"><a href="#类型保护函数" class="headerlink" title="类型保护函数"></a>类型保护函数</h3><p>通过这种函数会触发类型保护，该函数返回boolean<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="comment">//动物具有的共同属性</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> animals = [<span class="string">'dog'</span>,<span class="string">'cat'</span>,<span class="string">'lion'</span>]; <span class="comment">//一堆动物</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasFireShow</span>(<span class="params">ani</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ani.singleFire &amp;&amp; ani.doubleFire) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">animals.forEach(<span class="function"><span class="params">a</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (hasFireShow(a)) &#123;</span><br><span class="line">        a.singleFire();</span><br><span class="line">        a.doubleFire();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="索引器（成员表达式）"><a href="#索引器（成员表达式）" class="headerlink" title="索引器（成员表达式）"></a>索引器（成员表达式）</h3><p>注意：</p>
+<ol>
+<li>索引器要写在所有成员之前</li>
+<li>默认情况下，不会对索引器做严格的类型检查</li>
+<li>打开配置”noImplicitAny”:true,//开启对隐式any的类型检查，但是这不仅仅影响索引器，很多地方都会增强类型检查</li>
+</ol>
+<p>作用：</p>
+<ol>
+<li>在严格的类型检查下，可以实现给类动态地增加成员</li>
+<li>可以实现动态操作类成员</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">    [prop:string]:any</span><br><span class="line">    <span class="keyword">constructor</span>(public name :string,public age:number)&#123;&#125;</span><br><span class="line">    sayHello()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> u = <span class="keyword">new</span> User(<span class="string">'aa'</span>,<span class="number">22</span>)</span><br><span class="line">u[<span class="string">'6'</span>] = <span class="string">'sdf'</span></span><br><span class="line">u[<span class="number">5</span>] = <span class="string">'sdf'</span></span><br></pre></td></tr></table></figure>
+<p>在js中，所有的成员名本质上都是字符串，如果使用number作为成员名，会自动转换为字符串<br>在ts中，如果某个类使用了两种类型的索引器，要求两种索引器的值必须是一样<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myArray</span></span>&#123;</span><br><span class="line">    [prop:number]:string</span><br><span class="line">    [prop:string]:string</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="this指向"><a href="#this指向" class="headerlink" title="this指向"></a>this指向</h3><p>在ts中，允许在书写函数时，手动声明该函数中this的指向。将this作为函数第一个参数，该参数只用于约束this，并不是真正的参数，不会出现在编译结果中</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(public name:string , public age:number)&#123;&#125;</span><br><span class="line"></span><br><span class="line">    sayHello(<span class="keyword">this</span>:User)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>,<span class="keyword">this</span>.name,<span class="keyword">this</span>.age);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>this的指向在函数定义的时候是确定不了的，只有函数执行的时候才能确定this到底指向谁，实际上this的最终指向的是那个调用它的对象</p>
+<p>这个函数中包含多个对象，尽管这个函数是被最外层的对象所调用，this指向的也只是它上一级的对象</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/10/ts初体验——类型系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/10/ts初体验——类型系统/" itemprop="url">ts初体验——类型系统</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-10T10:48:45+08:00">
+                2019-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/07/10/ts初体验——类型系统/" class="leancloud_visitors" data-flag-title="ts初体验——类型系统">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="默认情况下，做出以下假设"><a href="#默认情况下，做出以下假设" class="headerlink" title="默认情况下，做出以下假设"></a>默认情况下，做出以下假设</h3><ol>
+<li>假设当前的执行环境是dom</li>
+<li>如果代码中没有使用模块化语句（import、export），便认为该代码是全局执行</li>
+<li>编译的目标代码是ES3</li>
+</ol>
+<p>两种方式更改以上假设</p>
+<ol>
+<li>使用tsc命令的时候，加上选项参数</li>
+<li>使用ts配置文件，更改编译选项（使用配置文件后，用tsc命令不用跟文件名<br>tsconfig的生成命令是tsc –init</li>
+</ol>
+<h3 id="用到的辅助工具包"><a href="#用到的辅助工具包" class="headerlink" title="用到的辅助工具包"></a>用到的辅助工具包</h3><ol>
+<li>@types/node 官方的类型库，补充类型定义，相同的还有@types/jquery等</li>
+<li>ts-node 编译时运行，不用生成js文件就可以运行</li>
+<li>nodemon 选项参数 -e 只对什么后缀的文件监听</li>
+</ol>
+<p>利用这些辅助工具可以在package.json中自定义命令<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">        <span class="string">"dev"</span>: <span class="string">"nodemon --watch src -e ts --exec ts-node src/index.ts"</span>,</span><br><span class="line">        <span class="string">"build"</span>: <span class="string">"rd /s /q dist &amp; tsc"</span></span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure></p>
+<h3 id="其他类型"><a href="#其他类型" class="headerlink" title="其他类型"></a>其他类型</h3><ol>
+<li>联合类型:多种类型选择一个，类型保护：对某个变量类型判断之后，在判断语句块中可以确定类型，typeof可以触发类型保护</li>
+<li>void 用于约束函数返回值，表示没有返回</li>
+<li>never 用户约束函数返回值，表示函数不能结束，一般是用于抛出异常或者无限循环</li>
+<li><p>字面量类型：限定只能赋值为什么</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">字面量应用场景举例</span><br><span class="line"><span class="keyword">let</span> gender : <span class="string">"男"</span>|<span class="string">"女"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr:[] arr变量只能赋值为空数组</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> user =&#123;</span><br><span class="line">    name:string;</span><br><span class="line">    age:number;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>元组 一个固定长度的数组，数组中每一项的类型确定(明确数组的长度和每一个元素)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> tuarr :[string , number]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>any 可以绕过类型检查，可以赋值任意类型</p>
+</li>
+</ol>
+<h3 id="函数的相关约束"><a href="#函数的相关约束" class="headerlink" title="函数的相关约束"></a>函数的相关约束</h3><p>函数重载：在函数实现之前，对函数调用的多种情况声明</p>
+<p>可选参数：可以在某些参数名后加上问号，表示该参数可以不用传递,可选参数只能在参数的末尾，可以使用多个？</p>
+<p>默认参数值：在函数形参直接赋值，如下面例子的c初始化为0<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a:number,b:number,c:number = <span class="number">0</span></span>) </span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">sum(<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line">sum(<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)</span><br></pre></td></tr></table></figure></p>
+<h3 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h3><h4 id="首先，为什么要用枚举"><a href="#首先，为什么要用枚举" class="headerlink" title="首先，为什么要用枚举"></a>首先，为什么要用枚举</h4><p>A:字面量类型可以实现一些枚举也能做到的效果，但是会出现大量的重复代码，而类型别名虽然又可以解决代码重复的问题，但是如果要修改某个值，可能会出现大量的改动,并且字面量类型不会进入编译结果，而枚举类型会进入编译结果</p>
+<p>先举个栗子吧<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//字符串枚举</span></span><br><span class="line">enum Gender&#123;</span><br><span class="line">    male:<span class="string">'男'</span>, <span class="comment">//要修改的话是修改后面的真值，使用枚举类型是使用前面的字段名</span></span><br><span class="line">    female:<span class="string">'女'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//数字枚举</span></span><br><span class="line"></span><br><span class="line">enum Permission&#123;</span><br><span class="line">    Read = <span class="number">1</span>,</span><br><span class="line">    Write =<span class="number">2</span> ,</span><br><span class="line">    Create =<span class="number">4</span> ,</span><br><span class="line">    Delete = <span class="number">8</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> gender :Gender = Gender.male</span><br></pre></td></tr></table></figure></p>
+<h4 id="枚举的一些注意事项"><a href="#枚举的一些注意事项" class="headerlink" title="枚举的一些注意事项"></a>枚举的一些注意事项</h4><ol>
+<li>枚举的值只能是字符串或者数字</li>
+<li>枚举会出现在编译结果中，表现为对象</li>
+<li>数字枚举的值会自增，如果数字枚举第一个没有赋值，那就从0开始，如果第一个赋值了，后面的就算没有赋值也会自增</li>
+<li>被数字枚举约束的变量可以直接赋值为数字，但是最好不要</li>
+<li><p>两种(数字，字符串)枚举的编译结果js差别挺大</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">enum Level &#123;</span><br><span class="line">    Level1 =<span class="number">1</span>,</span><br><span class="line">    Level2,</span><br><span class="line">    Level3</span><br><span class="line">&#125;</span><br><span class="line">这是数字枚举的编译结果，可以看出是把键值对方向又赋值了一遍</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Level;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">Level</span>) </span>&#123;</span><br><span class="line">    Level[Level[<span class="string">"Level1"</span>] = <span class="number">1</span>] = <span class="string">"Level1"</span>;</span><br><span class="line">    Level[Level[<span class="string">"Level2"</span>] = <span class="number">2</span>] = <span class="string">"Level2"</span>;</span><br><span class="line">    Level[Level[<span class="string">"Level3"</span>] = <span class="number">3</span>] = <span class="string">"Level3"</span>;</span><br><span class="line">&#125;)(Level || (Level = &#123;&#125;));</span><br><span class="line"></span><br><span class="line">因此在用<span class="built_in">Object</span>.values遍历的时候会发现有<span class="number">6</span>个结果</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一个枚举中不要同时出现既有字符串字段又有数字字段</p>
+</li>
+<li>尽量使用字段名，而不是真值</li>
+</ol>
+<h3 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h3><p>模块化标准如果设置是ES6：和正常写没有区别<br>模块化标准是commonjs，导出变成exports的属性，默认导出变成exports.default</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">对于引入fs这种模块，使用<span class="built_in">module</span>.exports导出的</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>、 <span class="keyword">import</span> * <span class="keyword">as</span> fs <span class="keyword">from</span> <span class="string">"fs"</span>;</span><br><span class="line"><span class="number">2</span>、 <span class="keyword">import</span> &#123;readFileSync&#125; <span class="keyword">from</span> <span class="string">"fs"</span>;</span><br><span class="line"><span class="number">3</span>、 <span class="string">"esModuleInterop"</span>: <span class="literal">true</span>,  <span class="comment">//启动es模块化交互非es模块导出</span></span><br></pre></td></tr></table></figure>
+<p>如果一定要用commonjs，写法则有点像是commonjs和es6的混合<br>导出 export = {xxx}<br>导入 import xxx = require(‘xxx’)</p>
+<p>有关模块解析得另开一篇章节了</p>
+<h3 id="接口interface"><a href="#接口interface" class="headerlink" title="接口interface"></a>接口interface</h3><p>可以通过接口之间的继承实现多种接口的组合</p>
+<p>使用类型别名可以实现类似的组合效果，通过&amp;，又叫交叉类型</p>
+<p>接口与类型别名异同</p>
+<ol>
+<li>子接口不能覆盖父接口的成员</li>
+<li>交叉类型会把相同成员的类型进行交叉 出现既是string又是number的类型</li>
+<li>都不出现在编译结果</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">接口约束对象，</span><br><span class="line">interface User &#123;</span><br><span class="line">    name :string</span><br><span class="line">    age:number</span><br><span class="line">    say:<span class="function"><span class="params">()</span>=&gt;</span><span class="keyword">void</span>或者是</span><br><span class="line">    say():<span class="keyword">void</span></span><br><span class="line">&#125;</span><br><span class="line">接口约束函数</span><br><span class="line">interface condition &#123;</span><br><span class="line">    (m:number):boolean</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">交叉类型实现interface C extends A,B</span><br><span class="line">type C = &#123;</span><br><span class="line">    T3:boolean</span><br><span class="line">&#125; &amp; A &amp; B</span><br></pre></td></tr></table></figure>
+<h3 id="readonly关键字"><a href="#readonly关键字" class="headerlink" title="readonly关键字"></a>readonly关键字</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> User = &#123;</span><br><span class="line">    readonly id :<span class="built_in">string</span></span><br><span class="line">    name:<span class="built_in">string</span></span><br><span class="line">    age :<span class="built_in">number</span></span><br><span class="line">    readonly arr : readonly <span class="built_in">string</span>[]</span><br><span class="line">&#125;</span><br><span class="line">前面的readonly表示数组不能被重新赋值，但是可以push等，后面的readonly是修饰类型，不可push，pop等</span><br><span class="line"><span class="keyword">const</span> arr: ReadonlyArray&lt;<span class="built_in">number</span>&gt; = [<span class="number">1</span>, <span class="number">23</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="class类"><a href="#class类" class="headerlink" title="class类"></a>class类</h3><h4 id="类型的初始化检查"><a href="#类型的初始化检查" class="headerlink" title="类型的初始化检查"></a>类型的初始化检查</h4><p>启动严格检查     <code>&quot;strictPropertyInitialization&quot;: true</code></p>
+<p>初始化可以在三个位置进行，构造函数里或者属性位置或者构造函数参数<br>属性可以设置 可选？，只读readonly<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">   readonly id:number  <span class="comment">//只读</span></span><br><span class="line">    name:string</span><br><span class="line">    age : number</span><br><span class="line">    gender: <span class="string">'man'</span>|<span class="string">'female'</span> = <span class="string">'man'</span></span><br><span class="line">    pid ?:string     <span class="comment">//可选</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(name:string,age:number)&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = <span class="built_in">Math</span>.random();</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h4><p>public\private\protect<br>当某个属性通过构造函数传参，没有经过改变就直接赋值给属性的时候，利用修饰符可以属性简写</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">    readonly id:number  </span><br><span class="line">    gender: <span class="string">'man'</span>|<span class="string">'female'</span> = <span class="string">'man'</span></span><br><span class="line">    pid ?:string     </span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(public name:string,public age:number)&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = <span class="built_in">Math</span>.random();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="访问器"><a href="#访问器" class="headerlink" title="访问器"></a>访问器</h4><p>用来控制属性的赋值和读取</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">将上面构造函数中的 public age:number 改成private _age:number</span><br><span class="line">set age(value :number)&#123;</span><br><span class="line">        <span class="keyword">if</span>(value &lt; <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">this</span>._age = <span class="number">0</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">this</span>._age = value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    get age()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.floor(<span class="keyword">this</span>._age)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><p>是指附属于函数、类、接口、类型别名之上的类型，相当于是一个类型变量，在定义时无法预先知道具体的类型，可以用泛型代替，只有调用的时候才能确定类型<br>多数情况下，可以通过类型推导根据传递的参数得出泛型的类型<br>如果无法推导，又没有写具体的泛型类型，默认为空对象</p>
+<p>泛型约束</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; log &#125; <span class="keyword">from</span> <span class="string">"util"</span>;</span><br><span class="line"></span><br><span class="line">interface hasNamePropety &#123;</span><br><span class="line">    name: string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">nameToUpper</span>&lt;<span class="title">T</span> <span class="title">extends</span> <span class="title">hasNamePropety</span>&gt;(<span class="params">obj: T</span>): <span class="title">T</span> </span>&#123;</span><br><span class="line">    obj.name = obj.name</span><br><span class="line">        .split(<span class="string">' '</span>)</span><br><span class="line">        .map(<span class="function"><span class="params">s</span> =&gt;</span> s[<span class="number">0</span>].toUpperCase() + s.substr(<span class="number">1</span>))</span><br><span class="line">        .join(<span class="string">' '</span>);</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> o = &#123;</span><br><span class="line">    name: <span class="string">'zheng qingyi'</span>,</span><br><span class="line">    age: <span class="number">18</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> newo = nameToUpper(o)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(newo);</span><br></pre></td></tr></table></figure>
+<p>多泛型使用<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function mixinArray&lt;T,K&gt;(arr1:T[],arr2:K[]) : (T|K)[] &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/10/小程序续篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/10/小程序续篇/" itemprop="url">小程序续篇</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-10T10:45:08+08:00">
+                2019-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/07/10/小程序续篇/" class="leancloud_visitors" data-flag-title="小程序续篇">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="有关样式"><a href="#有关样式" class="headerlink" title="有关样式"></a>有关样式</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">内联样式可以配合数据绑定</span><br><span class="line"></span><br><span class="line">&lt;view style=<span class="string">"width:500rpx;height:30px;background-color:&#123;&#123;colorValue&#125;&#125;;"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line">Page(&#123;</span><br><span class="line">    data:&#123;</span><br><span class="line">        colorValue:<span class="string">'red'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">静态样式写入类<span class="class"><span class="keyword">class</span>,动态样式写入<span class="title">style</span>内联样式中</span></span><br><span class="line"><span class="class">选择器权重雷同，!<span class="title">important</span>一般用在修改使用插件的样式</span></span><br></pre></td></tr></table></figure>
+<h3 id="MINA框架"><a href="#MINA框架" class="headerlink" title="MINA框架"></a>MINA框架</h3><p><img src="/2019/07/10/小程序续篇/small1.png" alt=""></p>
+<h3 id="运行机制"><a href="#运行机制" class="headerlink" title="运行机制"></a>运行机制</h3><h4 id="启动-热启动与冷启动-小程序没有重启的概念"><a href="#启动-热启动与冷启动-小程序没有重启的概念" class="headerlink" title="启动(热启动与冷启动)(小程序没有重启的概念)"></a>启动(热启动与冷启动)(小程序没有重启的概念)</h4><p>热启动：假如用户已经打开过某小程序，然后在一定时间内（五分钟）再次打开该小程序，此时无需重新启动，只需将后台态的小程序切换到前台</p>
+<p>冷启动：用户首次打开或小程序被微信主动销毁后再次打开的情况，此时小程序需要重新加载启动。<br>那么什么情况下会销毁，主要是两种情况</p>
+<ol>
+<li>小程序进入后台，客户端会维持一段时间的运行状态，超过一定时间后（目前是5分钟）会被微信主动销毁</li>
+<li>当短时间内（5s）连续收到两次以上收到系统内存告警，会进行小程序的销毁</li>
+</ol>
+<h4 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h4><p>在冷启动的时候如果发现新版本，将会异步下载新版本的代码包，并同时用客户端本地的包进行启动，即新版本的小程序需要等下一次冷启动才会应用上。 如果需要马上应用最新版本，可以使用 wx.getUpdateManager API 进行处理，这个API调用代码放在app.js的onLaunch。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取小程序更新机制兼容</span></span><br><span class="line">    <span class="keyword">if</span> (wx.canIUse(<span class="string">'getUpdateManager'</span>)) &#123;</span><br><span class="line">      <span class="keyword">const</span> updateManager = wx.getUpdateManager()</span><br><span class="line">      updateManager.onCheckForUpdate(<span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 请求完新版本信息的回调</span></span><br><span class="line">        <span class="keyword">if</span> (res.hasUpdate) &#123;</span><br><span class="line">          updateManager.onUpdateReady(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            wx.showModal(&#123;</span><br><span class="line">              title: <span class="string">'更新提示'</span>,</span><br><span class="line">              content: <span class="string">'新版本已经准备好，是否重启应用？'</span>,</span><br><span class="line">              success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (res.confirm) &#123;</span><br><span class="line">                  <span class="comment">// 新的版本已经下载好，调用 applyUpdate 应用新版本并重启</span></span><br><span class="line">                  updateManager.applyUpdate()</span><br><span class="line">                &#125;</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">          &#125;)</span><br><span class="line">          updateManager.onUpdateFailed(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 新的版本下载失败</span></span><br><span class="line">            wx.showModal(&#123;</span><br><span class="line">              title: <span class="string">'已经有新版本了哟~'</span>,</span><br><span class="line">              content: <span class="string">'新版本已经上线啦~，请您删除当前小程序，重新搜索打开哟~'</span>,</span><br><span class="line">            &#125;)</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 如果希望用户在最新版本的客户端上体验您的小程序，可以这样子提示</span></span><br><span class="line">      wx.showModal(&#123;</span><br><span class="line">        title: <span class="string">'提示'</span>,</span><br><span class="line">        content: <span class="string">'当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><h4 id="程序的生命周期"><a href="#程序的生命周期" class="headerlink" title="程序的生命周期"></a>程序的生命周期</h4><p>onLaunch onShow onHide  onError</p>
+<h4 id="页面的生命周期"><a href="#页面的生命周期" class="headerlink" title="页面的生命周期"></a>页面的生命周期</h4><ol>
+<li>onLoad 页面初次加载的时候调用，页面销毁前只调用一次 在回调中可以得到打开参数</li>
+<li>onShow  页面显示后调用 从别的页面到这也会调用</li>
+<li>onReady 初次渲染完成调用 在onShow之后调用  销毁前只有一次</li>
+<li>onHide 打开新界面的时候，当前页面调用</li>
+<li>onUnload 关闭界面的时候调用</li>
+</ol>
+<h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><table>
+<thead>
+<tr>
+<th>路由方式</th>
+<th>触发时间</th>
+<th>路由前页面调用啥</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>初始化</td>
+<td>小程序打开的第一个界面</td>
+</tr>
+<tr>
+<td>打开新界面</td>
+<td>wx.navigateTo == <navigator open-type="navigateTo"></navigator></td>
+<td>onHide</td>
+</tr>
+<tr>
+<td>重定向</td>
+<td>wx.redirectTo == <navigator open-type="redirectTo"></navigator></td>
+<td>onUnload</td>
+</tr>
+<tr>
+<td>返回</td>
+<td>wx.navigateBack == <navigator open-type="navigateBack"></navigator></td>
+<td>onUnload</td>
+</tr>
+<tr>
+<td>Tab切换</td>
+<td>wx.switchTab == <navigator open-type="switchTab"></navigator></td>
+</tr>
+<tr>
+<td>重启</td>
+<td>wx.relaunch == <navigator open-type="relaunch"></navigator></td>
+<td>onUnload</td>
+</tr>
+</tbody>
+</table>
+<h3 id="登录流程图"><a href="#登录流程图" class="headerlink" title="登录流程图"></a>登录流程图</h3><p><img src="/2019/07/10/小程序续篇/small2.png" alt=""></p>
+<p><img src="/2019/07/10/小程序续篇/small3.png" alt=""></p>
+<h3 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h3><p>在用code换取到session_key和openid时，直接data.openid是拿不到的，经过检验类型，此时返回的是json字符串，需要自行JSON.parse()</p>
+<p>wx.getUserInfo 不能用了 需要用button打开类型设定为getUserInfo才能</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/03/ajax-fetch-websocket/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -272,7 +1443,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/03/ajax-fetch-websocket/" itemprop="url">ajax,fetch,websocket</a></h1>
+                <a class="post-title-link" href="/2019/04/03/ajax-fetch-websocket/" itemprop="url">ajax,fetch,websocket(7.18日补充JSONP)</a></h1>
         
 
         <div class="post-meta">
@@ -302,7 +1473,7 @@
 
           
           
-             <span id="/2019/04/03/ajax-fetch-websocket/" class="leancloud_visitors" data-flag-title="ajax,fetch,websocket">
+             <span id="/2019/04/03/ajax-fetch-websocket/" class="leancloud_visitors" data-flag-title="ajax,fetch,websocket(7.18日补充JSONP)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -368,8 +1539,11 @@
 </ul>
 <h3 id="fetch使用"><a href="#fetch使用" class="headerlink" title="fetch使用"></a>fetch使用</h3><p>1、 先获取 let res = await fetch(‘xxxx.jpg’)<br><br>2、 再解析 await res.text()/json()/blob()<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一个栗子</span></span><br><span class="line"><span class="comment">//如果是fetch一个二进制文件，res.blob()之后要用 URL.createObjectURL生成一个url才能用</span></span><br><span class="line"><span class="built_in">window</span>.onload= <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">let</span> oBtn = <span class="built_in">document</span>.getElementById(<span class="string">'btn1'</span>);</span><br><span class="line">			<span class="keyword">let</span> img1 = <span class="built_in">document</span>.getElementById(<span class="string">'img1'</span>)</span><br><span class="line">            oBtn.onclick = <span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">let</span> res = <span class="keyword">await</span> fetch(<span class="string">'./1.jpg'</span>)</span><br><span class="line">                <span class="keyword">let</span> data = <span class="keyword">await</span> res.blob(res)</span><br><span class="line">                <span class="keyword">let</span> url = URL.createObjectURL(data)</span><br><span class="line">                img1.src = url;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="Ajax2-0"><a href="#Ajax2-0" class="headerlink" title="Ajax2.0"></a>Ajax2.0</h3><p><i>主要是formdata的使用</i><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、<span class="comment">//原生js获取表单元素传入 </span></span><br><span class="line"><span class="keyword">let</span> oForm=<span class="built_in">document</span>.querySelector(<span class="string">'#form1'</span>);</span><br><span class="line"><span class="keyword">let</span> formdata=<span class="keyword">new</span> FormData(oForm);</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、 <span class="comment">//jq获取表单元素传入</span></span><br><span class="line"> $(<span class="string">'#form1'</span>).on(<span class="string">'submit'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> formdata=<span class="keyword">new</span> FormData(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">      url: <span class="keyword">this</span>.action,</span><br><span class="line">      type: <span class="keyword">this</span>.method,</span><br><span class="line">      data: formdata,</span><br><span class="line">      processData: <span class="literal">false</span>,<span class="comment">//取消jq默认的数据格式转换</span></span><br><span class="line">      contentType: <span class="literal">false</span></span><br><span class="line">    &#125;).then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">      alert(<span class="string">'成功'</span>);</span><br><span class="line">    &#125;, res=&gt;&#123;</span><br><span class="line">      alert(<span class="string">'失败'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>、<span class="comment">//生成一个空的FormData对象,用append('key','value')</span></span><br><span class="line"><span class="keyword">let</span> formdata = <span class="keyword">new</span> FormData();</span><br><span class="line">formdata.append(<span class="string">'xxx'</span>,xxxx)</span><br></pre></td></tr></table></figure></p>
-<h3 id="Websocket"><a href="#Websocket" class="headerlink" title="Websocket"></a>Websocket</h3><h2 id="使用socket-io库实现简单的连接"><a href="#使用socket-io库实现简单的连接" class="headerlink" title="使用socket.io库实现简单的连接"></a>使用socket.io库实现简单的连接</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//服务端</span></span><br><span class="line"><span class="keyword">const</span> http=<span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> io=<span class="built_in">require</span>(<span class="string">'socket.io'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//1.建立普通http</span></span><br><span class="line"><span class="keyword">let</span> server=http.createServer(<span class="function">(<span class="params">req, res</span>)=&gt;</span>&#123;&#125;);</span><br><span class="line">server.listen(<span class="number">8080</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.建立ws</span></span><br><span class="line"><span class="keyword">let</span> wsServer=io.listen(server);</span><br><span class="line">wsServer.on(<span class="string">'connection'</span>, sock=&gt;&#123;</span><br><span class="line">  <span class="comment">//sock.emit('name', 数据)</span></span><br><span class="line">  <span class="comment">//sock.on('name', function (数据)&#123;&#125;);</span></span><br><span class="line"></span><br><span class="line">  setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    sock.emit(<span class="string">'timer'</span>, <span class="keyword">new</span> <span class="built_in">Date</span>().getTime());</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//客户端</span></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span> dir=<span class="string">"ltr"</span>&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"utf-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;&lt;/title&gt;</span><br><span class="line">    &lt;script src=<span class="string">"http://localhost:8080/socket.io/socket.io.js"</span> charset=<span class="string">"utf-8"</span>&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">    <span class="keyword">let</span> sock=io.connect(<span class="string">'ws://localhost:8080/'</span>);</span><br><span class="line">    sock.on(<span class="string">'timer'</span>, time=&gt;&#123;</span><br><span class="line">      <span class="built_in">console</span>.slog(time);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line"></span><br><span class="line">  &lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Websocket"><a href="#Websocket" class="headerlink" title="Websocket"></a>Websocket</h3><h4 id="使用socket-io库实现简单的连接"><a href="#使用socket-io库实现简单的连接" class="headerlink" title="使用socket.io库实现简单的连接"></a>使用socket.io库实现简单的连接</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//服务端</span></span><br><span class="line"><span class="keyword">const</span> http=<span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> io=<span class="built_in">require</span>(<span class="string">'socket.io'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//1.建立普通http</span></span><br><span class="line"><span class="keyword">let</span> server=http.createServer(<span class="function">(<span class="params">req, res</span>)=&gt;</span>&#123;&#125;);</span><br><span class="line">server.listen(<span class="number">8080</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.建立ws</span></span><br><span class="line"><span class="keyword">let</span> wsServer=io.listen(server);</span><br><span class="line">wsServer.on(<span class="string">'connection'</span>, sock=&gt;&#123;</span><br><span class="line">  <span class="comment">//sock.emit('name', 数据)</span></span><br><span class="line">  <span class="comment">//sock.on('name', function (数据)&#123;&#125;);</span></span><br><span class="line"></span><br><span class="line">  setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    sock.emit(<span class="string">'timer'</span>, <span class="keyword">new</span> <span class="built_in">Date</span>().getTime());</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//客户端</span></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span> dir=<span class="string">"ltr"</span>&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"utf-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;<span class="xml"><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span></span><br><span class="line">    &lt;script src=<span class="string">"http://localhost:8080/socket.io/socket.io.js"</span> charset=<span class="string">"utf-8"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">    <span class="keyword">let</span> sock=io.connect(<span class="string">'ws://localhost:8080/'</span>);</span><br><span class="line">    sock.on(<span class="string">'timer'</span>, time=&gt;&#123;</span><br><span class="line">      <span class="built_in">console</span>.slog(time);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line"></span><br><span class="line">  &lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3><h4 id="JSON的产生"><a href="#JSON的产生" class="headerlink" title="JSON的产生"></a>JSON的产生</h4><p>ajax请求会有跨域的问题，而web页面调用js文件不存在跨域问题，并且带有src属性的标签具有跨域能力。<br>于是就想到了在获取服务端数据的时候，服务端把要返回的数据放在一个js格式的文件里面，客户端调用<br>恰巧JSON这种字符串数据格式不仅常用来描述数据，而且被js原生支持<br>于是最后的方案就是客户端调用服务端的JSON文件，服务器要动态生成JSON文件才能把客户端需要的数据装入<br>这种方式就是JSONP，一种非正式的传输协议<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">客户端html代码</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;<span class="xml"><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span></span><br><span class="line">    &lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">    <span class="comment">// 得到航班信息查询结果后的回调函数</span></span><br><span class="line">    <span class="keyword">var</span> flightHandler = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">'你查询的航班结果是：票价 '</span> + data.price + <span class="string">' 元，'</span> + <span class="string">'余票 '</span> + data.tickets + <span class="string">' 张。'</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// 提供jsonp服务的url地址（不管是什么类型的地址，最终生成的返回值都是一段javascript代码）</span></span><br><span class="line">    <span class="keyword">var</span> url = <span class="string">"http://flightQuery.com/jsonp/flightResult.aspx?code=CA1998&amp;callback=flightHandler"</span>;</span><br><span class="line">    <span class="comment">// 创建script标签，设置其属性</span></span><br><span class="line">    <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line">    script.setAttribute(<span class="string">'src'</span>, url);</span><br><span class="line">    <span class="comment">// 把script标签加入head，此时调用开始</span></span><br><span class="line">    <span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>].appendChild(script); </span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"> </span><br><span class="line">&lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br><span class="line"></span><br><span class="line">服务端对应文件有一个同名的方法,需要返回的数据作为该方法参数填进来</span><br><span class="line">flightHandler(&#123;</span><br><span class="line">    <span class="string">"code"</span>: <span class="string">"CA1998"</span>,</span><br><span class="line">    <span class="string">"price"</span>: <span class="number">1780</span>,</span><br><span class="line">    <span class="string">"tickets"</span>: <span class="number">5</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>如果用jq实现，上文jq章节也有简单提到特殊的参数jsonp，再举个栗子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">            type: <span class="string">"get"</span>,</span><br><span class="line">            <span class="keyword">async</span>: <span class="literal">false</span>,</span><br><span class="line">            url: <span class="string">"http://flightQuery.com/jsonp/flightResult.aspx?code=CA1998"</span>,</span><br><span class="line">            dataType: <span class="string">"jsonp"</span>,</span><br><span class="line">            jsonp: <span class="string">"callback"</span>,<span class="comment">//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)</span></span><br><span class="line">            jsonpCallback:<span class="string">"flightHandler"</span>,<span class="comment">//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据</span></span><br><span class="line">            success: <span class="function"><span class="keyword">function</span>(<span class="params">json</span>)</span>&#123;</span><br><span class="line">                alert(<span class="string">'您查询到航班信息：票价： '</span> + json.price + <span class="string">' 元，余票： '</span> + json.tickets + <span class="string">' 张。'</span>);</span><br><span class="line">            &#125;,</span><br><span class="line">            error: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                alert(<span class="string">'fail'</span>);</span><br></pre></td></tr></table></figure>
 
           
         
@@ -719,1095 +1893,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/小程序初体验/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/29/小程序初体验/" itemprop="url">小程序初体验</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-29T15:30:35+08:00">
-                2019-03-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2019/03/29/小程序初体验/" class="leancloud_visitors" data-flag-title="小程序初体验">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="小程序版本分为"><a href="#小程序版本分为" class="headerlink" title="小程序版本分为"></a>小程序版本分为</h4><p>预览版本 开发版本 体验版本 审核版本 线上版本</p>
-<h4 id="js在不同地方的构成"><a href="#js在不同地方的构成" class="headerlink" title="js在不同地方的构成"></a>js在不同地方的构成</h4><p>浏览器是 ECMAScript NPM DOM BOM<br>NodeJS中 ECMAScript NPM Native<br>小程序中 ECMAScript 小程序框架 小程序API</p>
-<h4 id="App构造器的参数"><a href="#App构造器的参数" class="headerlink" title="App构造器的参数"></a>App构造器的参数</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">App(&#123;</span><br><span class="line">  onLaunch: <span class="function"><span class="keyword">function</span>(<span class="params">options</span>) </span>&#123;&#125;,</span><br><span class="line">  onShow: <span class="function"><span class="keyword">function</span>(<span class="params">options</span>) </span>&#123;&#125;,</span><br><span class="line">  onHide: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">  onError: <span class="function"><span class="keyword">function</span>(<span class="params">msg</span>) </span>&#123;&#125;,</span><br><span class="line">  globalData: <span class="string">'I am global data'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><img src="C3E1CAB28658419DB22CBB686B380E11" alt="image"></p>
-<table>
-<thead>
-<tr>
-<th>场景值</th>
-<th>场景</th>
-<th>appId信息含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1020</td>
-<td>profile</td>
-<td>页相关小程序列表 返回来源公众号 appId</td>
-</tr>
-<tr>
-<td>1035</td>
-<td>公众号自定义菜单</td>
-<td>返回来源公众号appId</td>
-</tr>
-<tr>
-<td>1036</td>
-<td>App 分享消息卡片</td>
-<td>返回来源应用appId</td>
-</tr>
-<tr>
-<td>1037</td>
-<td>小程序打开小程序</td>
-<td>返回来源小程序 appId</td>
-</tr>
-<tr>
-<td>1038</td>
-<td>从另一个小程序返回</td>
-<td>返回来源小程序 appId</td>
-</tr>
-<tr>
-<td>1043</td>
-<td>公众号模板消息</td>
-<td>返回来源公众号 appId</td>
-</tr>
-</tbody>
-</table>
-<h4 id="全局数据"><a href="#全局数据" class="headerlink" title="全局数据"></a>全局数据</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line">App(&#123;</span><br><span class="line">  globalData: <span class="string">'I am global data'</span> <span class="comment">// 全局共享数据</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 其他页面脚本other.js</span></span><br><span class="line"><span class="keyword">var</span> appInstance = getApp()</span><br><span class="line"><span class="built_in">console</span>.log(appInstance.globalData) <span class="comment">// 输出: I am global data</span></span><br></pre></td></tr></table></figure>
-<p>所有页面的脚本逻辑都跑在同一个JsCore线程，页面使用setTimeout或者setInterval的定时器，然后跳转到其他页面时，这些定时器并没有被清除，需要开发者自己在页面离开的时候进行清理。</p>
-<h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><blockquote>
-<p>页面初次加载的时候，微信客户端就会给Page实例派发onLoad事件，Page构造器参数所定义的onLoad方法会被调用，onLoad在页面没被销毁之前只会触发1次，在onLoad的回调中，可以获取当前页面所调用的打开参数option，关于打开参数我们放在这一节的最后再展开阐述。<br>页面显示之后，Page构造器参数所定义的onShow方法会被调用，一般从别的页面返回到当前页面时，当前页的onShow方法都会被调用。<br>在页面初次渲染完成时，Page构造器参数所定义的onReady方法会被调用，onReady在页面没被销毁前只会触发1次，onReady触发时，表示页面已经准备妥当，在逻辑层就可以和视图层进行交互了。<br>以上三个事件触发的时机是onLoad早于 onShow，onShow早于onReady<br>页面不可见时，Page构造器参数所定义的onHide方法会被调用，这种情况会在使用wx.navigateTo切换到其他页面、底部tab切换时触发。<br>当前页面使用wx.redirectTo或wx.navigateBack返回到其他页时，当前页面会被微信客户端销毁回收，此时Page构造器参数所定义的onUnload方法会被调用。</p>
-</blockquote>
-<h4 id="打开参数"><a href="#打开参数" class="headerlink" title="打开参数"></a>打开参数</h4><p>页面Page构造器里onLoad的option可以拿到当前页面的打开参数，其类型是一个Object，其键值对与页面URL上query键值对一一对应</p>
-<h4 id="常见的事件类型"><a href="#常见的事件类型" class="headerlink" title="常见的事件类型"></a>常见的事件类型</h4><table>
-<thead>
-<tr>
-<th>类型</th>
-<th>触发条件</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>touchstart</td>
-<td>手指触摸动作开始</td>
-</tr>
-<tr>
-<td>touchmove</td>
-<td>手指触摸后移动</td>
-</tr>
-<tr>
-<td>touchcancel</td>
-<td>手指触摸动作被打断，如来电提醒，弹窗</td>
-</tr>
-<tr>
-<td>touchend</td>
-<td>手指触摸动作结束</td>
-</tr>
-<tr>
-<td>tap</td>
-<td>手指触摸后马上离开</td>
-</tr>
-<tr>
-<td>longpress</td>
-<td>手指触摸后，超过350ms再离开，如果指定了事件回调函数并触发了这个事件，tap事件将不被触发</td>
-</tr>
-<tr>
-<td>longtap</td>
-<td>手指触摸后，超过350ms再离开（推荐使用longpress事件代替）</td>
-</tr>
-<tr>
-<td>transitionend</td>
-<td>会在 WXSS transition 或 wx.createAnimation 动画结束后触发</td>
-</tr>
-<tr>
-<td>animationstart</td>
-<td>会在一个 WXSS animation 动画开始时触发</td>
-</tr>
-<tr>
-<td>animationiteration</td>
-<td>会在一个 WXSS animation 一次迭代结束时触发</td>
-</tr>
-<tr>
-<td>animationend</td>
-<td>会在一个 WXSS animation 动画完成时触发</td>
-</tr>
-</tbody>
-</table>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/26/关于$emit/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/26/关于$emit/" itemprop="url">关于$emit</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-26T19:46:08+08:00">
-                2018-11-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/11/26/关于$emit/" class="leancloud_visitors" data-flag-title="关于$emit">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="emit"><a href="#emit" class="headerlink" title="$emit"></a>$emit</h2><p>1、父组件可以使用 props 把数据传给子组件。<br>2、子组件可以使用 $emit 触发父组件的自定义事件。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//父组件</span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ratingselect</span> @<span class="attr">select-type</span>=<span class="string">"onSelectType"</span>&gt;</span><span class="tag">&lt;/<span class="name">ratingselect</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    data () &#123;</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="undefined">        selectType: 0,</span></span><br><span class="line"><span class="undefined">    &#125;,</span></span><br><span class="line"><span class="undefined">    methods: &#123;</span></span><br><span class="line"><span class="undefined">      onSelectType (type) &#123;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.selectType = type</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>父组件使用@select-type=”onSelectType”监听由子组件vm.$emit触发的事件，通过onSelectType()接受从子组件传递过来的数据，通知父组件数据改变了。</p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//子组件</span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> @<span class="attr">click</span>=<span class="string">"select(0, $event)"</span>  <span class="attr">:class</span>=<span class="string">"&#123;'active': selectType===0&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> @<span class="attr">click</span>=<span class="string">"select(1, $event)"</span>  <span class="attr">:class</span>=<span class="string">"&#123;'active': selectType===1&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> @<span class="attr">click</span>=<span class="string">"select(2, $event)"</span>  <span class="attr">:class</span>=<span class="string">"&#123;'active': selectType===2&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    data () &#123;</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="undefined">        selectType: 0,</span></span><br><span class="line"><span class="undefined">    &#125;,</span></span><br><span class="line"><span class="undefined">    methods: &#123;</span></span><br><span class="line"><span class="undefined">        select (type, event) &#123;</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">this</span>.selectType = type</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">this</span>.$emit(<span class="string">'select-type'</span>, type)</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>子组件通过$emit来触发事件，将参数传递出去。</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/21/关于vue里面scoped/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/21/关于vue里面scoped/" itemprop="url">关于vue里面scoped</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-21T11:11:38+08:00">
-                2018-11-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/11/21/关于vue里面scoped/" class="leancloud_visitors" data-flag-title="关于vue里面scoped">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>前期概要：在开发这个B2B的时候，在引用其中一位开发者写的组件时，出现了样式上的崩坏，结合之前翻阅文档得出是scoped的问题<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/21/关于vue里面scoped/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/12/11-5-11-11学习笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/12/11-5-11-11学习笔记/" itemprop="url">11.5-11.11学习笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-12T00:54:03+08:00">
-                2018-11-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/11/12/11-5-11-11学习笔记/" class="leancloud_visitors" data-flag-title="11.5-11.11学习笔记">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><del>稍等</del></p>
-<p>你们等不到了</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/30/10.29-11.4学习笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/30/10.29-11.4学习笔记/" itemprop="url">第八周学习报告</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-30T10:39:13+08:00">
-                2018-10-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/10/30/10.29-11.4学习笔记/" class="leancloud_visitors" data-flag-title="第八周学习报告">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="JQ"><a href="#JQ" class="headerlink" title="JQ"></a>JQ</h3><p>把JQ补完了，JQ插件那块了解了下，用起来不复杂，很方便，以下随便提取几点</p>
-<ul>
-<li><p>jQuery 入口函数与 JavaScript 入口函数的区别：<br>jQuery 的入口函数是在 html 所有标签(DOM)都加载之后，就会去执行。</p>
-</li>
-<li><p>JavaScript 的 window.onload 事件是等到所有内容，包括外部图片之类的文件加载完后，才会执行。<br>引入文件写在head</p>
-</li>
-</ul>
-<ul>
-<li>$(‘#p1’).toggle(speed,callback);<br>1.$(selector)选中的元素的个数为n个，则callback函数会执行n次；<br>2.callback函数名后加括号，会立刻执行函数体，而不是等到显示/隐藏完成后才执行；<br>3.callback既可以是函数名，也可以是匿名函数；</li>
-</ul>
-<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>这已经是第三次回顾闭包了，第一次是直接学的时候，第二次是看王福朋的博客，第三次是看了成哥的教学</p>
-<p>闭包出现的情况：内部函数被保存到外部，产生闭包，导致原有的作用域链不被释放，造成内存泄漏</p>
-<p>或者说闭包就是一个函数引用另外一个函数的变量，因为变量被引用着所以不会被回收，因此可以用来封装一个私有变量。这是优点也是缺点，不必要的闭包只会徒增内存消耗</p>
-<ul>
-<li>下面是一道见过无数次的陷阱题<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createFunctions</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">        result[i] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> funcs = createFunctions();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i &lt; funcs.length; i++)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(funcs[i]());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>输出结果大家都知道了是10个10，具体来讲陷阱就是：函数带()才是执行函数！ 单纯的一句 var f = function() { alert(‘ABC’); }; 是不会弹窗的，后面接一句 f(); 才会执行函数内部的代码。</p>
-<h3 id="有关eval-这个函数"><a href="#有关eval-这个函数" class="headerlink" title="有关eval()这个函数"></a>有关eval()这个函数</h3><p>这个函数见过几次，虽然按道理不常用，但是还是查了一下</p>
-<p>1eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。</p>
-<p>2eval()解析JSON字符串为函数-</p>
-<p>为什么要 eval这里要添加 “(“(“+data+”)”);//”呢？</p>
-<p>原因在于：eval本身的问题。 由于json是以”{}”的方式来开始以及结束的，在JS中，它会被当成一个语句块来处理，所以必须强制性的将它转换成一种表达式。</p>
-<p>加上圆括号的目的是迫使eval函数在处理JavaScript代码的时候强制将 括号内的表达式（expression）转化为对象，而不是作为语 句（statement）来执行。举一个例子，例如对象字面量{}，如若不加外层的括号，那么eval会将大括号识别为JavaScript代码块的开始 和结束标记，那么{}将会被认为是执行了一句空语句。所以下面两个执行结果是不同的：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="built_in">eval</span>(<span class="string">"&#123;&#125;"</span>); <span class="comment">// return undefined</span></span><br><span class="line">alert(<span class="built_in">eval</span>(<span class="string">"(&#123;&#125;)"</span>);<span class="comment">// return object[Object]</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="正则去除中文"><a href="#正则去除中文" class="headerlink" title="正则去除中文"></a>正则去除中文</h3><p>有人突然问到的，看看</p>
-<p>验证中文<br>^[\u4e00-\u9fa5]+$</p>
-<p>验证字母<br>^[a-zA-Z]+$</p>
-<p>验证数字<br>^[0-9]+$</p>
-<p>中文，字母，数字组成的字符串，不要求三者同时出现^[a-zA-Z0-9\u4e00-\u9fa5]+$</p>
-<p>\u4e00-\u9fa5这两个unicode值正好是Unicode表中的汉字的头和尾。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/21/css3动画三属性/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/21/css3动画三属性/" itemprop="url">css3动画三属性</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-21T11:21:49+08:00">
-                2018-10-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/10/21/css3动画三属性/" class="leancloud_visitors" data-flag-title="css3动画三属性">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>把css3里与动画有关的三个常见属性归纳到一起<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/21/css3动画三属性/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/14/10-14笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/14/10-14笔记/" itemprop="url">10_14笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-14T11:27:26+08:00">
-                2018-10-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/10/14/10-14笔记/" class="leancloud_visitors" data-flag-title="10_14笔记">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>行级元素只能嵌套行级，块级可以嵌套任何，但是有特殊的↓<br>p标签是块级的，但是嵌套了div进去后，p会被切成两半<br>a标签不能嵌套a标签</p>
-<p>设了absolute和float后 内部元素会变成inline-block（和手动设置display:inline-block再可以对行级元素设宽高一样</p>
-<p>文本类元素一旦里面有了文字，外部文字就会和里面的对齐</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1862,7 +1947,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1875,7 +1960,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

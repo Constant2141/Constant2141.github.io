@@ -253,6 +253,166 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/06/http缓存头/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/06/http缓存头/" itemprop="url">http缓存头</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-06T21:02:30+08:00">
+                2019-09-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/09/06/http缓存头/" class="leancloud_visitors" data-flag-title="http缓存头">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="缓存的优先级"><a href="#缓存的优先级" class="headerlink" title="缓存的优先级"></a>缓存的优先级</h3><p><img src="https://segmentfault.com/img/bV6ido?w=436&amp;h=279" alt="image"></p>
+<h3 id="缓存的作用："><a href="#缓存的作用：" class="headerlink" title="缓存的作用："></a>缓存的作用：</h3><ol>
+<li>减少延迟(页面打开的速度)。</li>
+<li>降低服务器负载(先取缓存，无缓存在请求服务器，有效降低服务器的负担)。</li>
+<li>保证稳定性(有个笑话是手机抢购时为了保证服务器的稳定性，在前端写个随机数限制百分之二十的人发送数据到后台，这也侧面说明了缓存对于稳定性的作用)。</li>
+</ol>
+<h3 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h3><p>指定服务器返回的文件有效期，是一个指定日期(截止日期)，但是会受到本机系统时间影响，比如修改电脑时间到2111年，那么这个缓存就一定会过期了</p>
+<h3 id="Last-Modified"><a href="#Last-Modified" class="headerlink" title="Last-Modified"></a>Last-Modified</h3><p>指服务器文件的最后修改时间，浏览器会带上If-Modified-Since字段(注意在请求头中的字段是这个，响应头中的字段才是Last-Modified)向服务器发送请求，与服务器文件修改时间Last-Modified做对比，如果时间不同，则获取数据返回200，否则返回304后调用浏览器本地硬盘的缓存。</p>
+<p>304状态码，简单的表达就是：服务端已经执行了GET，但文件未变化。</p>
+<p>这种方式也有问题，如果服务端文件频繁修改保存，那么Last-Modified就会频繁更改，每次都从服务端获取，这也就有了http1.1的ETag出现</p>
+<h3 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h3><p>指文件缓存的有效期(持续时间)。</p>
+<p><img src="https://segmentfault.com/img/bV6id9?w=413&amp;h=239" alt="image"></p>
+<ol>
+<li>max-age:单位是s，设置文件最大缓存时间，用得最多。</li>
+<li>public:缓存可以被多用户共享，例如360浏览器可以登录不同账号，电脑系统可以切换不同账号。</li>
+<li>private:仅单用户私有，不被多用户共享。</li>
+<li>no-cache:不会被缓存。</li>
+<li>no-store:不允许被存储。</li>
+</ol>
+<h3 id="ETag"><a href="#ETag" class="headerlink" title="ETag"></a>ETag</h3><p><img src="https://segmentfault.com/img/bV6ig1?w=384&amp;h=277" alt="image"><br><img src="https://segmentfault.com/img/bV6ieI?w=378&amp;h=238" alt="image"></p>
+<p>http1.1推出，对应一个版本号，由服务端随机生成的，浏览器会带上If-None-Match字段向服务器发送请求，与服务器文件修改版本ETag做对比，如果版本号不同，则获取数据返回200，否则返回304后调用浏览器本地硬盘的缓存，这种方式比Last-Modified靠谱。</p>
+<h3 id="其他知识点"><a href="#其他知识点" class="headerlink" title="其他知识点"></a>其他知识点</h3><ol>
+<li>如果浏览器只支持http1.0，那么浏览器只会携带Last-Modified发送给后台</li>
+<li>如果服务器只支持http1.0，那么服务器会以Last-Modified为标准。</li>
+<li>如果浏览器支持http1.1，那么浏览器会携带Cache-Control+Last-Modified+ETag发送给后台</li>
+<li>如果服务器支持http1.1，那么服务器会以Cache-Control+ETag为标准。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/19/ts三体验——类装饰器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1540,8 +1700,8 @@
 <h3 id="fetch使用"><a href="#fetch使用" class="headerlink" title="fetch使用"></a>fetch使用</h3><p>1、 先获取 let res = await fetch(‘xxxx.jpg’)<br><br>2、 再解析 await res.text()/json()/blob()<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一个栗子</span></span><br><span class="line"><span class="comment">//如果是fetch一个二进制文件，res.blob()之后要用 URL.createObjectURL生成一个url才能用</span></span><br><span class="line"><span class="built_in">window</span>.onload= <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">let</span> oBtn = <span class="built_in">document</span>.getElementById(<span class="string">'btn1'</span>);</span><br><span class="line">			<span class="keyword">let</span> img1 = <span class="built_in">document</span>.getElementById(<span class="string">'img1'</span>)</span><br><span class="line">            oBtn.onclick = <span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">let</span> res = <span class="keyword">await</span> fetch(<span class="string">'./1.jpg'</span>)</span><br><span class="line">                <span class="keyword">let</span> data = <span class="keyword">await</span> res.blob(res)</span><br><span class="line">                <span class="keyword">let</span> url = URL.createObjectURL(data)</span><br><span class="line">                img1.src = url;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="Ajax2-0"><a href="#Ajax2-0" class="headerlink" title="Ajax2.0"></a>Ajax2.0</h3><p><i>主要是formdata的使用</i><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、<span class="comment">//原生js获取表单元素传入 </span></span><br><span class="line"><span class="keyword">let</span> oForm=<span class="built_in">document</span>.querySelector(<span class="string">'#form1'</span>);</span><br><span class="line"><span class="keyword">let</span> formdata=<span class="keyword">new</span> FormData(oForm);</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、 <span class="comment">//jq获取表单元素传入</span></span><br><span class="line"> $(<span class="string">'#form1'</span>).on(<span class="string">'submit'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> formdata=<span class="keyword">new</span> FormData(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">      url: <span class="keyword">this</span>.action,</span><br><span class="line">      type: <span class="keyword">this</span>.method,</span><br><span class="line">      data: formdata,</span><br><span class="line">      processData: <span class="literal">false</span>,<span class="comment">//取消jq默认的数据格式转换</span></span><br><span class="line">      contentType: <span class="literal">false</span></span><br><span class="line">    &#125;).then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">      alert(<span class="string">'成功'</span>);</span><br><span class="line">    &#125;, res=&gt;&#123;</span><br><span class="line">      alert(<span class="string">'失败'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>、<span class="comment">//生成一个空的FormData对象,用append('key','value')</span></span><br><span class="line"><span class="keyword">let</span> formdata = <span class="keyword">new</span> FormData();</span><br><span class="line">formdata.append(<span class="string">'xxx'</span>,xxxx)</span><br></pre></td></tr></table></figure></p>
 <h3 id="Websocket"><a href="#Websocket" class="headerlink" title="Websocket"></a>Websocket</h3><h4 id="使用socket-io库实现简单的连接"><a href="#使用socket-io库实现简单的连接" class="headerlink" title="使用socket.io库实现简单的连接"></a>使用socket.io库实现简单的连接</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//服务端</span></span><br><span class="line"><span class="keyword">const</span> http=<span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> io=<span class="built_in">require</span>(<span class="string">'socket.io'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//1.建立普通http</span></span><br><span class="line"><span class="keyword">let</span> server=http.createServer(<span class="function">(<span class="params">req, res</span>)=&gt;</span>&#123;&#125;);</span><br><span class="line">server.listen(<span class="number">8080</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.建立ws</span></span><br><span class="line"><span class="keyword">let</span> wsServer=io.listen(server);</span><br><span class="line">wsServer.on(<span class="string">'connection'</span>, sock=&gt;&#123;</span><br><span class="line">  <span class="comment">//sock.emit('name', 数据)</span></span><br><span class="line">  <span class="comment">//sock.on('name', function (数据)&#123;&#125;);</span></span><br><span class="line"></span><br><span class="line">  setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    sock.emit(<span class="string">'timer'</span>, <span class="keyword">new</span> <span class="built_in">Date</span>().getTime());</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//客户端</span></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span> dir=<span class="string">"ltr"</span>&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"utf-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;<span class="xml"><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span></span><br><span class="line">    &lt;script src=<span class="string">"http://localhost:8080/socket.io/socket.io.js"</span> charset=<span class="string">"utf-8"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">    <span class="keyword">let</span> sock=io.connect(<span class="string">'ws://localhost:8080/'</span>);</span><br><span class="line">    sock.on(<span class="string">'timer'</span>, time=&gt;&#123;</span><br><span class="line">      <span class="built_in">console</span>.slog(time);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line"></span><br><span class="line">  &lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3><h4 id="JSON的产生"><a href="#JSON的产生" class="headerlink" title="JSON的产生"></a>JSON的产生</h4><p>ajax请求会有跨域的问题，而web页面调用js文件不存在跨域问题，并且带有src属性的标签具有跨域能力。<br>于是就想到了在获取服务端数据的时候，服务端把要返回的数据放在一个js格式的文件里面，客户端调用<br>恰巧JSON这种字符串数据格式不仅常用来描述数据，而且被js原生支持<br>于是最后的方案就是客户端调用服务端的JSON文件，服务器要动态生成JSON文件才能把客户端需要的数据装入<br>这种方式就是JSONP，一种非正式的传输协议<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">客户端html代码</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;<span class="xml"><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span></span><br><span class="line">    &lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">    <span class="comment">// 得到航班信息查询结果后的回调函数</span></span><br><span class="line">    <span class="keyword">var</span> flightHandler = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">'你查询的航班结果是：票价 '</span> + data.price + <span class="string">' 元，'</span> + <span class="string">'余票 '</span> + data.tickets + <span class="string">' 张。'</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// 提供jsonp服务的url地址（不管是什么类型的地址，最终生成的返回值都是一段javascript代码）</span></span><br><span class="line">    <span class="keyword">var</span> url = <span class="string">"http://flightQuery.com/jsonp/flightResult.aspx?code=CA1998&amp;callback=flightHandler"</span>;</span><br><span class="line">    <span class="comment">// 创建script标签，设置其属性</span></span><br><span class="line">    <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line">    script.setAttribute(<span class="string">'src'</span>, url);</span><br><span class="line">    <span class="comment">// 把script标签加入head，此时调用开始</span></span><br><span class="line">    <span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>].appendChild(script); </span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"> </span><br><span class="line">&lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br><span class="line"></span><br><span class="line">服务端对应文件有一个同名的方法,需要返回的数据作为该方法参数填进来</span><br><span class="line">flightHandler(&#123;</span><br><span class="line">    <span class="string">"code"</span>: <span class="string">"CA1998"</span>,</span><br><span class="line">    <span class="string">"price"</span>: <span class="number">1780</span>,</span><br><span class="line">    <span class="string">"tickets"</span>: <span class="number">5</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//客户端</span></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span> dir=<span class="string">"ltr"</span>&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"utf-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;&lt;/title&gt;</span><br><span class="line">    &lt;script src=<span class="string">"http://localhost:8080/socket.io/socket.io.js"</span> charset=<span class="string">"utf-8"</span>&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">    <span class="keyword">let</span> sock=io.connect(<span class="string">'ws://localhost:8080/'</span>);</span><br><span class="line">    sock.on(<span class="string">'timer'</span>, time=&gt;&#123;</span><br><span class="line">      <span class="built_in">console</span>.slog(time);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line"></span><br><span class="line">  &lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3><h4 id="JSON的产生"><a href="#JSON的产生" class="headerlink" title="JSON的产生"></a>JSON的产生</h4><p>ajax请求会有跨域的问题，而web页面调用js文件不存在跨域问题，并且带有src属性的标签具有跨域能力。<br>于是就想到了在获取服务端数据的时候，服务端把要返回的数据放在一个js格式的文件里面，客户端调用<br>恰巧JSON这种字符串数据格式不仅常用来描述数据，而且被js原生支持<br>于是最后的方案就是客户端调用服务端的JSON文件，服务器要动态生成JSON文件才能把客户端需要的数据装入<br>这种方式就是JSONP，一种非正式的传输协议<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">客户端html代码</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;&lt;/title&gt;</span><br><span class="line">    &lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">    <span class="comment">// 得到航班信息查询结果后的回调函数</span></span><br><span class="line">    <span class="keyword">var</span> flightHandler = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">'你查询的航班结果是：票价 '</span> + data.price + <span class="string">' 元，'</span> + <span class="string">'余票 '</span> + data.tickets + <span class="string">' 张。'</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// 提供jsonp服务的url地址（不管是什么类型的地址，最终生成的返回值都是一段javascript代码）</span></span><br><span class="line">    <span class="keyword">var</span> url = <span class="string">"http://flightQuery.com/jsonp/flightResult.aspx?code=CA1998&amp;callback=flightHandler"</span>;</span><br><span class="line">    <span class="comment">// 创建script标签，设置其属性</span></span><br><span class="line">    <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line">    script.setAttribute(<span class="string">'src'</span>, url);</span><br><span class="line">    <span class="comment">// 把script标签加入head，此时调用开始</span></span><br><span class="line">    <span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>].appendChild(script); </span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"> </span><br><span class="line">&lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br><span class="line"></span><br><span class="line">服务端对应文件有一个同名的方法,需要返回的数据作为该方法参数填进来</span><br><span class="line">flightHandler(&#123;</span><br><span class="line">    <span class="string">"code"</span>: <span class="string">"CA1998"</span>,</span><br><span class="line">    <span class="string">"price"</span>: <span class="number">1780</span>,</span><br><span class="line">    <span class="string">"tickets"</span>: <span class="number">5</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>如果用jq实现，上文jq章节也有简单提到特殊的参数jsonp，再举个栗子</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">            type: <span class="string">"get"</span>,</span><br><span class="line">            <span class="keyword">async</span>: <span class="literal">false</span>,</span><br><span class="line">            url: <span class="string">"http://flightQuery.com/jsonp/flightResult.aspx?code=CA1998"</span>,</span><br><span class="line">            dataType: <span class="string">"jsonp"</span>,</span><br><span class="line">            jsonp: <span class="string">"callback"</span>,<span class="comment">//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)</span></span><br><span class="line">            jsonpCallback:<span class="string">"flightHandler"</span>,<span class="comment">//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据</span></span><br><span class="line">            success: <span class="function"><span class="keyword">function</span>(<span class="params">json</span>)</span>&#123;</span><br><span class="line">                alert(<span class="string">'您查询到航班信息：票价： '</span> + json.price + <span class="string">' 元，余票： '</span> + json.tickets + <span class="string">' 张。'</span>);</span><br><span class="line">            &#125;,</span><br><span class="line">            error: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                alert(<span class="string">'fail'</span>);</span><br></pre></td></tr></table></figure>
 
@@ -1714,185 +1874,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/正则表达-后续再补充/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/29/正则表达-后续再补充/" itemprop="url">正则表达(后续再补充)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-29T15:31:38+08:00">
-                2019-03-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2019/03/29/正则表达-后续再补充/" class="leancloud_visitors" data-flag-title="正则表达(后续再补充)">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>写法两种<br>js 风格的是</p>
-<p>let reg = new RegExp(‘\d+’,’g’)</p>
-<p>perl 风格的是<br>let reg = /\d+/g;</p>
-<p>/正则表达式主体/修饰符(可选)</p>
-<p>在 JavaScript 中，正则表达式通常用于两个字符串方法 : search() 和 replace()。<br>其他方法test()返回boolean</p>
-<ul>
-<li><p>search() 方法 用于检索字符串中指定的子字符串，或检索与正则表达式相匹配的子字符串，并返回子串的起始位置。</p>
-</li>
-<li><p>replace() 方法 用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。</p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>修饰符</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>i</td>
-<td>大小写不敏感</td>
-</tr>
-<tr>
-<td>g</td>
-<td>全局匹配</td>
-</tr>
-<tr>
-<td>m</td>
-<td>多行匹配</td>
-</tr>
-<tr>
-<td>y</td>
-<td>全局匹配，但是在上一次匹配后紧跟着的下一个开始</td>
-</tr>
-<tr>
-<td>u</td>
-<td>正则表达式中有大于两个字节的情况加</td>
-</tr>
-</tbody>
-</table>
-<p>最常用i,g</p>
-<blockquote>
-<p>es6中<br>flags属性可以获得修饰符<br>sticky属性可以判断是否使用y修饰，返回boolean</p>
-</blockquote>
-<p>处理的正则表达式中有大于两个字节的，要加修饰符u<br>es5中的 /^.$/ 可匹配任意字符，在es6中要加u才能识别超过两个字节的，但是换行回车行分隔段分隔这四个点(.)也不能匹配</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1947,7 +1928,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

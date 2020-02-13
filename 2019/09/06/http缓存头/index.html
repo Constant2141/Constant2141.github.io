@@ -87,15 +87,14 @@
 <meta property="og:site_name" content="星辰在上">
 <meta property="og:description" content="缓存的优先级 缓存的作用： 减少延迟(页面打开的速度)。 降低服务器负载(先取缓存，无缓存在请求服务器，有效降低服务器的负担)。 保证稳定性(有个笑话是手机抢购时为了保证服务器的稳定性，在前端写个随机数限制百分之二十的人发送数据到后台，这也侧面说明了缓存对于稳定性的作用)。  Expires指定服务器返回的文件有效期，是一个指定日期(截止日期)，但是会受到本机系统时间影响，比如修改电脑时间到211">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://segmentfault.com/img/bV6ido?w=436&h=279">
-<meta property="og:image" content="https://segmentfault.com/img/bV6id9?w=413&h=239">
-<meta property="og:image" content="https://segmentfault.com/img/bV6ig1?w=384&h=277">
-<meta property="og:image" content="https://segmentfault.com/img/bV6ieI?w=378&h=238">
-<meta property="og:updated_time" content="2019-09-06T13:06:02.407Z">
+<meta property="og:image" content="http://yoursite.com/2019/09/06/http缓存头/http缓存头/11.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/06/http缓存头/http缓存头/22.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/06/http缓存头/http缓存头/33.png">
+<meta property="og:updated_time" content="2019-09-16T13:58:36.533Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="http缓存头">
 <meta name="twitter:description" content="缓存的优先级 缓存的作用： 减少延迟(页面打开的速度)。 降低服务器负载(先取缓存，无缓存在请求服务器，有效降低服务器的负担)。 保证稳定性(有个笑话是手机抢购时为了保证服务器的稳定性，在前端写个随机数限制百分之二十的人发送数据到后台，这也侧面说明了缓存对于稳定性的作用)。  Expires指定服务器返回的文件有效期，是一个指定日期(截止日期)，但是会受到本机系统时间影响，比如修改电脑时间到211">
-<meta name="twitter:image" content="https://segmentfault.com/img/bV6ido?w=436&h=279">
+<meta name="twitter:image" content="http://yoursite.com/2019/09/06/http缓存头/http缓存头/11.png">
 
 
 
@@ -340,7 +339,7 @@
       
 
       
-        <h3 id="缓存的优先级"><a href="#缓存的优先级" class="headerlink" title="缓存的优先级"></a>缓存的优先级</h3><p><img src="https://segmentfault.com/img/bV6ido?w=436&amp;h=279" alt="image"></p>
+        <h3 id="缓存的优先级"><a href="#缓存的优先级" class="headerlink" title="缓存的优先级"></a>缓存的优先级</h3><p><img src="http缓存头/11.png" alt="image"></p>
 <h3 id="缓存的作用："><a href="#缓存的作用：" class="headerlink" title="缓存的作用："></a>缓存的作用：</h3><ol>
 <li>减少延迟(页面打开的速度)。</li>
 <li>降低服务器负载(先取缓存，无缓存在请求服务器，有效降低服务器的负担)。</li>
@@ -351,7 +350,7 @@
 <p>304状态码，简单的表达就是：服务端已经执行了GET，但文件未变化。</p>
 <p>这种方式也有问题，如果服务端文件频繁修改保存，那么Last-Modified就会频繁更改，每次都从服务端获取，这也就有了http1.1的ETag出现</p>
 <h3 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h3><p>指文件缓存的有效期(持续时间)。</p>
-<p><img src="https://segmentfault.com/img/bV6id9?w=413&amp;h=239" alt="image"></p>
+<p><img src="http缓存头/22.png" alt="image"></p>
 <ol>
 <li>max-age:单位是s，设置文件最大缓存时间，用得最多。</li>
 <li>public:缓存可以被多用户共享，例如360浏览器可以登录不同账号，电脑系统可以切换不同账号。</li>
@@ -359,7 +358,7 @@
 <li>no-cache:不会被缓存。</li>
 <li>no-store:不允许被存储。</li>
 </ol>
-<h3 id="ETag"><a href="#ETag" class="headerlink" title="ETag"></a>ETag</h3><p><img src="https://segmentfault.com/img/bV6ig1?w=384&amp;h=277" alt="image"><br><img src="https://segmentfault.com/img/bV6ieI?w=378&amp;h=238" alt="image"></p>
+<h3 id="ETag"><a href="#ETag" class="headerlink" title="ETag"></a>ETag</h3><p><img src="http缓存头/33.png" alt="image"></p>
 <p>http1.1推出，对应一个版本号，由服务端随机生成的，浏览器会带上If-None-Match字段向服务器发送请求，与服务器文件修改版本ETag做对比，如果版本号不同，则获取数据返回200，否则返回304后调用浏览器本地硬盘的缓存，这种方式比Last-Modified靠谱。</p>
 <h3 id="其他知识点"><a href="#其他知识点" class="headerlink" title="其他知识点"></a>其他知识点</h3><ol>
 <li>如果浏览器只支持http1.0，那么浏览器只会携带Last-Modified发送给后台</li>
@@ -406,6 +405,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/16/预请求/" rel="prev" title="预请求">
+                预请求 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -486,7 +489,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -567,7 +570,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -586,6 +589,7 @@
 
 
   <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+ <div><a href="http://www.beian.miit.gov.cn">粤ICP备19002388号-1</a></div>
 
 
 

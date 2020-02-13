@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-09-06T13:06:02.407Z</updated>
+  <updated>2019-09-16T14:53:40.932Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,19 +17,43 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>http缓存头</title>
-    <link href="http://yoursite.com/2019/09/06/http%E7%BC%93%E5%AD%98%E5%A4%B4/"/>
-    <id>http://yoursite.com/2019/09/06/http缓存头/</id>
-    <published>2019-09-06T13:02:30.000Z</published>
-    <updated>2019-09-06T13:06:02.407Z</updated>
+    <title>预请求</title>
+    <link href="http://yoursite.com/2019/09/16/%E9%A2%84%E8%AF%B7%E6%B1%82/"/>
+    <id>http://yoursite.com/2019/09/16/预请求/</id>
+    <published>2019-09-16T13:59:13.000Z</published>
+    <updated>2019-09-16T14:53:40.932Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="缓存的优先级"><a href="#缓存的优先级" class="headerlink" title="缓存的优先级"></a>缓存的优先级</h3><p><img src="https://segmentfault.com/img/bV6ido?w=436&amp;h=279" alt="image"></p><h3 id="缓存的作用："><a href="#缓存的作用：" class="headerlink" title="缓存的作用："></a>缓存的作用：</h3><ol><li>减少延迟(页面打开的速度)。</li><li>降低服务器负载(先取缓存，无缓存在请求服务器，有效降低服务器的负担)。</li><li>保证稳定性(有个笑话是手机抢购时为了保证服务器的稳定性，在前端写个随机数限制百分之二十的人发送数据到后台，这也侧面说明了缓存对于稳定性的作用)。</li></ol><h3 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h3><p>指定服务器返回的文件有效期，是一个指定日期(截止日期)，但是会受到本机系统时间影响，比如修改电脑时间到2111年，那么这个缓存就一定会过期了</p><h3 id="Last-Modified"><a href="#Last-Modified" class="headerlink" title="Last-Modified"></a>Last-Modified</h3><p>指服务器文件的最后修改时间，浏览器会带上If-Modified-Since字段(注意在请求头中的字段是这个，响应头中的字段才是Last-Modified)向服务器发送请求，与服务器文件修改时间Last-Modified做对比，如果时间不同，则获取数据返回200，否则返回304后调用浏览器本地硬盘的缓存。</p><p>304状态码，简单的表达就是：服务端已经执行了GET，但文件未变化。</p><p>这种方式也有问题，如果服务端文件频繁修改保存，那么Last-Modified就会频繁更改，每次都从服务端获取，这也就有了http1.1的ETag出现</p><h3 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h3><p>指文件缓存的有效期(持续时间)。</p><p><img src="https://segmentfault.com/img/bV6id9?w=413&amp;h=239" alt="image"></p><ol><li>max-age:单位是s，设置文件最大缓存时间，用得最多。</li><li>public:缓存可以被多用户共享，例如360浏览器可以登录不同账号，电脑系统可以切换不同账号。</li><li>private:仅单用户私有，不被多用户共享。</li><li>no-cache:不会被缓存。</li><li>no-store:不允许被存储。</li></ol><h3 id="ETag"><a href="#ETag" class="headerlink" title="ETag"></a>ETag</h3><p><img src="https://segmentfault.com/img/bV6ig1?w=384&amp;h=277" alt="image"><br><img src="https://segmentfault.com/img/bV6ieI?w=378&amp;h=238" alt="image"></p><p>http1.1推出，对应一个版本号，由服务端随机生成的，浏览器会带上If-None-Match字段向服务器发送请求，与服务器文件修改版本ETag做对比，如果版本号不同，则获取数据返回200，否则返回304后调用浏览器本地硬盘的缓存，这种方式比Last-Modified靠谱。</p><h3 id="其他知识点"><a href="#其他知识点" class="headerlink" title="其他知识点"></a>其他知识点</h3><ol><li>如果浏览器只支持http1.0，那么浏览器只会携带Last-Modified发送给后台</li><li>如果服务器只支持http1.0，那么服务器会以Last-Modified为标准。</li><li>如果浏览器支持http1.1，那么浏览器会携带Cache-Control+Last-Modified+ETag发送给后台</li><li>如果服务器支持http1.1，那么服务器会以Cache-Control+ETag为标准。</li></ol>]]></content>
+    <content type="html"><![CDATA[<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>js发送一次ajax请求时,在浏览器那边却会查询到两次请求,第一次的Request Method参数是OPTIONS,还有一次就是我们真正的请求,比如get或是post请求方式</p><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>这是浏览器对复杂跨域请求的一种处理方式,在真正发送请求之前,会先进行一次预请求,就是我们刚刚说到的参数为OPTIONS的第一次请求,他的作用是用于试探服务器响应是否正确,即是否能接受真正的请求,如果在options请求之后获取到的响应是拒绝性质的,例如500等http状态,那么它就会停止第二次的真正请求的访问</p><h3 id="出现预请求的情况"><a href="#出现预请求的情况" class="headerlink" title="出现预请求的情况"></a>出现预请求的情况</h3><p>致说明一下,有三种方式会导致这种现象:</p><ol><li>请求的方法不是GET/HEAD/POST</li><li>请求虽然是POST，但是Content-Type的类型除了下面三种application/x-www-form-urlencoded, multipart/form-data, 或text/plain</li><li>请求设置了自定义的header字段</li><li>XMLHttpRequestUpload 对象注册了任何事件监听器</li><li>请求中使用了ReadableStream对象</li></ol>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h3 id=&quot;缓存的优先级&quot;&gt;&lt;a href=&quot;#缓存的优先级&quot; class=&quot;headerlink&quot; title=&quot;缓存的优先级&quot;&gt;&lt;/a&gt;缓存的优先级&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://segmentfault.com/img/bV6ido?w=436&amp;am
+        &lt;h3 id=&quot;应用场景&quot;&gt;&lt;a href=&quot;#应用场景&quot; class=&quot;headerlink&quot; title=&quot;应用场景&quot;&gt;&lt;/a&gt;应用场景&lt;/h3&gt;&lt;p&gt;js发送一次ajax请求时,在浏览器那边却会查询到两次请求,第一次的Request Method参数是OPTIONS,还有一
+      
+    
+    </summary>
+    
+    
+      <category term="http" scheme="http://yoursite.com/tags/http/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>http缓存头</title>
+    <link href="http://yoursite.com/2019/09/06/http%E7%BC%93%E5%AD%98%E5%A4%B4/"/>
+    <id>http://yoursite.com/2019/09/06/http缓存头/</id>
+    <published>2019-09-06T13:02:30.000Z</published>
+    <updated>2019-09-16T13:58:36.533Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="缓存的优先级"><a href="#缓存的优先级" class="headerlink" title="缓存的优先级"></a>缓存的优先级</h3><p><img src="http缓存头/11.png" alt="image"></p><h3 id="缓存的作用："><a href="#缓存的作用：" class="headerlink" title="缓存的作用："></a>缓存的作用：</h3><ol><li>减少延迟(页面打开的速度)。</li><li>降低服务器负载(先取缓存，无缓存在请求服务器，有效降低服务器的负担)。</li><li>保证稳定性(有个笑话是手机抢购时为了保证服务器的稳定性，在前端写个随机数限制百分之二十的人发送数据到后台，这也侧面说明了缓存对于稳定性的作用)。</li></ol><h3 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h3><p>指定服务器返回的文件有效期，是一个指定日期(截止日期)，但是会受到本机系统时间影响，比如修改电脑时间到2111年，那么这个缓存就一定会过期了</p><h3 id="Last-Modified"><a href="#Last-Modified" class="headerlink" title="Last-Modified"></a>Last-Modified</h3><p>指服务器文件的最后修改时间，浏览器会带上If-Modified-Since字段(注意在请求头中的字段是这个，响应头中的字段才是Last-Modified)向服务器发送请求，与服务器文件修改时间Last-Modified做对比，如果时间不同，则获取数据返回200，否则返回304后调用浏览器本地硬盘的缓存。</p><p>304状态码，简单的表达就是：服务端已经执行了GET，但文件未变化。</p><p>这种方式也有问题，如果服务端文件频繁修改保存，那么Last-Modified就会频繁更改，每次都从服务端获取，这也就有了http1.1的ETag出现</p><h3 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h3><p>指文件缓存的有效期(持续时间)。</p><p><img src="http缓存头/22.png" alt="image"></p><ol><li>max-age:单位是s，设置文件最大缓存时间，用得最多。</li><li>public:缓存可以被多用户共享，例如360浏览器可以登录不同账号，电脑系统可以切换不同账号。</li><li>private:仅单用户私有，不被多用户共享。</li><li>no-cache:不会被缓存。</li><li>no-store:不允许被存储。</li></ol><h3 id="ETag"><a href="#ETag" class="headerlink" title="ETag"></a>ETag</h3><p><img src="http缓存头/33.png" alt="image"></p><p>http1.1推出，对应一个版本号，由服务端随机生成的，浏览器会带上If-None-Match字段向服务器发送请求，与服务器文件修改版本ETag做对比，如果版本号不同，则获取数据返回200，否则返回304后调用浏览器本地硬盘的缓存，这种方式比Last-Modified靠谱。</p><h3 id="其他知识点"><a href="#其他知识点" class="headerlink" title="其他知识点"></a>其他知识点</h3><ol><li>如果浏览器只支持http1.0，那么浏览器只会携带Last-Modified发送给后台</li><li>如果服务器只支持http1.0，那么服务器会以Last-Modified为标准。</li><li>如果浏览器支持http1.1，那么浏览器会携带Cache-Control+Last-Modified+ETag发送给后台</li><li>如果服务器支持http1.1，那么服务器会以Cache-Control+ETag为标准。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;缓存的优先级&quot;&gt;&lt;a href=&quot;#缓存的优先级&quot; class=&quot;headerlink&quot; title=&quot;缓存的优先级&quot;&gt;&lt;/a&gt;缓存的优先级&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http缓存头/11.png&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;缓存的
       
     
     </summary>
@@ -453,32 +477,6 @@
       
         &lt;p&gt;单行文本 height和line-height设为一个值实现单行文本居中&lt;/p&gt;
 &lt;p&gt;文本溢出处理三件套&lt;br&gt;white-space:nowrap;文本溢出不换行&lt;br&gt;overflow:hidden;&lt;br&gt;text-overflow:ellipsis;//省略号&lt;/
-      
-    
-    </summary>
-    
-    
-      <category term="笔记" scheme="http://yoursite.com/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>10_12笔记</title>
-    <link href="http://yoursite.com/2018/10/12/10-12%E7%AC%94%E8%AE%B0/"/>
-    <id>http://yoursite.com/2018/10/12/10-12笔记/</id>
-    <published>2018-10-12T03:27:35.000Z</published>
-    <updated>2018-10-21T04:24:01.364Z</updated>
-    
-    <content type="html"><![CDATA[<p>text-indent : 2em;  首行缩进</p><p>1em=1*font-size </p><p>块级元素独占一行 可以用css改变宽高 而行级元素不能，img是行级块元素 </p><p>初始化ul标签  list-style: none  margin:0  padding:0</p><p>body 天生默认 margin:8px </p><p>定位复习<br>display:absolute  脱离原来位置进行定位，找最近的有定位的父级，没有则相对文档<br>display:relative  保留原来位置进行定位，相对于自己原来的位置定位<br>一般用relative作参照物 用absolute定位</p><p>垂直方向的margin父子嵌套（兄弟结构也会） 取最大的值 这个bug叫做margin塌陷<br>解决方法两个<br>1暴力解法 在父级加一个 border-top:1px solid<br>2使用bfc  但是只是弥补 目前没有一个完美解决的方法</p><p>那么如何触发一个盒子的bfc (block format Context),四种方法<br>position:absolute<br>display:inline-block<br>float:left||right<br>overflow: hidden</p><p>浮动元素产生浮动流，块级元素看不到浮动元素，只有产生了bfc的元素或文本可以看到<br>要取消浮动可以用 伪元素(伪元素天生是行级元素)或bfc</p><p>1可以用伪元素清楚浮动 xx::after{<br>    content:””;<br>    display:block;<br>    clear:both;<br>}<br>2触发bfc<br>原理就是 设了absolute和float后 内部元素会变成inline-block</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;text-indent : 2em;  首行缩进&lt;/p&gt;
-&lt;p&gt;1em=1*font-size &lt;/p&gt;
-&lt;p&gt;块级元素独占一行 可以用css改变宽高 而行级元素不能，img是行级块元素 &lt;/p&gt;
-&lt;p&gt;初始化ul标签  list-style: none  margin:0
       
     
     </summary>

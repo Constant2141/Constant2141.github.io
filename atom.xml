@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-09-16T14:53:40.932Z</updated>
+  <updated>2020-02-28T17:02:51.619Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,43 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>层叠等级vs层叠上下文vs混合模式</title>
+    <link href="http://yoursite.com/2020/02/29/%E5%B1%82%E5%8F%A0%E7%AD%89%E7%BA%A7vs%E5%B1%82%E5%8F%A0%E4%B8%8A%E4%B8%8B%E6%96%87/"/>
+    <id>http://yoursite.com/2020/02/29/层叠等级vs层叠上下文/</id>
+    <published>2020-02-28T16:16:32.000Z</published>
+    <updated>2020-02-28T17:02:51.619Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一个小问题"><a href="#一个小问题" class="headerlink" title="一个小问题"></a>一个小问题</h2><p>故事的是从一个小小的z-index开始的。<br>今天突然看到一个问题。z-index 默认值是啥？以前的确没关注过这个，默认值难道不是auto，既然这么问那肯定有鬼了，盲猜又是IE的锅。</p><p>搜了一下得到答案：IE默认值是0，而FF是auto。那么这个问题算是答完了，但是隐藏在背后的知识点真的只有这些吗？于是乎引出了下面的名词</p><h2 id="一个小例子"><a href="#一个小例子" class="headerlink" title="一个小例子"></a>一个小例子</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"inline-block"</span>&gt;</span>#divA display:inline-block<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"float"</span>&gt;</span> #divB float:left<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure><p>CSS就不写了，看class名字表达意思。注意在这里是inline-block的div先写在写float的div。最后结论是，不管这两个div顺序怎样，永远是inline-block的盒子在上(用背景色区分下就能看到了)。根究原因的话就引出了本文主角之一的<strong>层叠等级</strong></p><h2 id="层叠等级-stacking-level"><a href="#层叠等级-stacking-level" class="headerlink" title="层叠等级(stacking level)"></a>层叠等级(stacking level)</h2><p><img src="/2020/02/29/层叠等级vs层叠上下文/层叠等级.png" alt="image"></p><p>所以display：inline-block会一直在float的上面。但是如果两个div都加一个opacity：0.9，那么结果变成，后面的div永远在前面的div上面</p><h2 id="层叠上下文-stacking-context"><a href="#层叠上下文-stacking-context" class="headerlink" title="层叠上下文(stacking context)"></a>层叠上下文(stacking context)</h2><p>层叠上下文的元素层叠顺序是看z-index。但是这个z-index只在父级层叠上下文有意义。如果父级的z-index小于一个同级的，那么这个父级的子元素z-index设置再大也没用。</p><p>触发层叠上下文的常用的方式有</p><ol><li>根元素 (HTML),</li><li>绝对相对固定定位</li><li>flex的item</li><li>opacity</li><li>transform </li><li>filter</li><li>will-change</li><li>mix-blend-mode</li><li>isolation</li></ol><p>值得一提的是，上面这些不取默认值的才算</p><p>值得二提的是，4-7正好是触发硬件加速的四种css</p><p>值得三提的是，8-9正好的触发混合模式的三种方式之二？这么巧有故事吧</p><h2 id="混合模式"><a href="#混合模式" class="headerlink" title="混合模式"></a>混合模式</h2><p>顺便谈下混合模式，毕竟这和z-index有关系。</p><p>z-index解决的是层叠(元素覆盖)问题，而CSS混合模式解决的是元素覆盖部分如何混合(如何表现)的问题 </p><p>常用的三种css属性</p><ul><li>mix-blend-mode<br>元素内容和元素背景的混合<br><a href="https://www.zhangxinxu.com/study/201505/css3-css4-mix-blend-mode.html" target="_blank" rel="noopener">体验效果戳这里</a></li><li>background-blend-mode<br>背景和背景的混合<br><a href="https://www.zhangxinxu.com/study/201505/css3-css4-background-blend-mode.html" target="_blank" rel="noopener">体验效果戳这里</a></li><li>isolation<br>希望混合模式只影响某一个或一些指定的元素用isolation: isolate。默认值是auto</li></ul><p>其实只要可以创建层叠上下文的都可以起到阻断混合模式mix-blend-mode的效果，怎么创建层叠上下文看上面。特殊的是，background-blend-mode不会受影响，本来就不会影响其他元素</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;一个小问题&quot;&gt;&lt;a href=&quot;#一个小问题&quot; class=&quot;headerlink&quot; title=&quot;一个小问题&quot;&gt;&lt;/a&gt;一个小问题&lt;/h2&gt;&lt;p&gt;故事的是从一个小小的z-index开始的。&lt;br&gt;今天突然看到一个问题。z-index 默认值是啥？以前的确没关注过
+      
+    
+    </summary>
+    
+    
+      <category term="css" scheme="http://yoursite.com/tags/css/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深入了解HMR</title>
+    <link href="http://yoursite.com/2020/02/28/%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3HMR/"/>
+    <id>http://yoursite.com/2020/02/28/深入了解HMR/</id>
+    <published>2020-02-28T15:34:50.000Z</published>
+    <updated>2020-02-28T15:34:50.955Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>预请求</title>
@@ -44,16 +81,15 @@
     <link href="http://yoursite.com/2019/09/06/http%E7%BC%93%E5%AD%98%E5%A4%B4/"/>
     <id>http://yoursite.com/2019/09/06/http缓存头/</id>
     <published>2019-09-06T13:02:30.000Z</published>
-    <updated>2019-09-16T13:58:36.533Z</updated>
+    <updated>2020-02-28T15:29:23.360Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="缓存的优先级"><a href="#缓存的优先级" class="headerlink" title="缓存的优先级"></a>缓存的优先级</h3><p><img src="http缓存头/11.png" alt="image"></p><h3 id="缓存的作用："><a href="#缓存的作用：" class="headerlink" title="缓存的作用："></a>缓存的作用：</h3><ol><li>减少延迟(页面打开的速度)。</li><li>降低服务器负载(先取缓存，无缓存在请求服务器，有效降低服务器的负担)。</li><li>保证稳定性(有个笑话是手机抢购时为了保证服务器的稳定性，在前端写个随机数限制百分之二十的人发送数据到后台，这也侧面说明了缓存对于稳定性的作用)。</li></ol><h3 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h3><p>指定服务器返回的文件有效期，是一个指定日期(截止日期)，但是会受到本机系统时间影响，比如修改电脑时间到2111年，那么这个缓存就一定会过期了</p><h3 id="Last-Modified"><a href="#Last-Modified" class="headerlink" title="Last-Modified"></a>Last-Modified</h3><p>指服务器文件的最后修改时间，浏览器会带上If-Modified-Since字段(注意在请求头中的字段是这个，响应头中的字段才是Last-Modified)向服务器发送请求，与服务器文件修改时间Last-Modified做对比，如果时间不同，则获取数据返回200，否则返回304后调用浏览器本地硬盘的缓存。</p><p>304状态码，简单的表达就是：服务端已经执行了GET，但文件未变化。</p><p>这种方式也有问题，如果服务端文件频繁修改保存，那么Last-Modified就会频繁更改，每次都从服务端获取，这也就有了http1.1的ETag出现</p><h3 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h3><p>指文件缓存的有效期(持续时间)。</p><p><img src="http缓存头/22.png" alt="image"></p><ol><li>max-age:单位是s，设置文件最大缓存时间，用得最多。</li><li>public:缓存可以被多用户共享，例如360浏览器可以登录不同账号，电脑系统可以切换不同账号。</li><li>private:仅单用户私有，不被多用户共享。</li><li>no-cache:不会被缓存。</li><li>no-store:不允许被存储。</li></ol><h3 id="ETag"><a href="#ETag" class="headerlink" title="ETag"></a>ETag</h3><p><img src="http缓存头/33.png" alt="image"></p><p>http1.1推出，对应一个版本号，由服务端随机生成的，浏览器会带上If-None-Match字段向服务器发送请求，与服务器文件修改版本ETag做对比，如果版本号不同，则获取数据返回200，否则返回304后调用浏览器本地硬盘的缓存，这种方式比Last-Modified靠谱。</p><h3 id="其他知识点"><a href="#其他知识点" class="headerlink" title="其他知识点"></a>其他知识点</h3><ol><li>如果浏览器只支持http1.0，那么浏览器只会携带Last-Modified发送给后台</li><li>如果服务器只支持http1.0，那么服务器会以Last-Modified为标准。</li><li>如果浏览器支持http1.1，那么浏览器会携带Cache-Control+Last-Modified+ETag发送给后台</li><li>如果服务器支持http1.1，那么服务器会以Cache-Control+ETag为标准。</li></ol>]]></content>
+    <content type="html"><![CDATA[<h3 id="缓存的优先级"><a href="#缓存的优先级" class="headerlink" title="缓存的优先级"></a>缓存的优先级</h3><p><img src="/2019/09/06/http缓存头/11.png" alt="image"></p><h3 id="缓存的作用："><a href="#缓存的作用：" class="headerlink" title="缓存的作用："></a>缓存的作用：</h3><ol><li>减少延迟(页面打开的速度)。</li><li>降低服务器负载(先取缓存，无缓存在请求服务器，有效降低服务器的负担)。</li><li>保证稳定性(有个笑话是手机抢购时为了保证服务器的稳定性，在前端写个随机数限制百分之二十的人发送数据到后台，这也侧面说明了缓存对于稳定性的作用)。</li></ol><h3 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h3><p>指定服务器返回的文件有效期，是一个指定日期(截止日期)，但是会受到本机系统时间影响，比如修改电脑时间到2111年，那么这个缓存就一定会过期了</p><h3 id="Last-Modified"><a href="#Last-Modified" class="headerlink" title="Last-Modified"></a>Last-Modified</h3><p>指服务器文件的最后修改时间，浏览器会带上If-Modified-Since字段(注意在请求头中的字段是这个，响应头中的字段才是Last-Modified)向服务器发送请求，与服务器文件修改时间Last-Modified做对比，如果时间不同，则获取数据返回200，否则返回304后调用浏览器本地硬盘的缓存。</p><p>304状态码，简单的表达就是：服务端已经执行了GET，但文件未变化。</p><p>这种方式也有问题，如果服务端文件频繁修改保存，那么Last-Modified就会频繁更改，每次都从服务端获取，这也就有了http1.1的ETag出现</p><h3 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h3><p>指文件缓存的有效期(持续时间)。</p><p><img src="/2019/09/06/http缓存头/22.png" alt="image"></p><ol><li>max-age:单位是s，设置文件最大缓存时间，用得最多。</li><li>public:缓存可以被多用户共享，例如360浏览器可以登录不同账号，电脑系统可以切换不同账号。</li><li>private:仅单用户私有，不被多用户共享。</li><li>no-cache:不会被缓存。</li><li>no-store:不允许被存储。</li></ol><h3 id="ETag"><a href="#ETag" class="headerlink" title="ETag"></a>ETag</h3><p><img src="/2019/09/06/http缓存头/33.png" alt="image"></p><p>http1.1推出，对应一个版本号，由服务端随机生成的，浏览器会带上If-None-Match字段向服务器发送请求，与服务器文件修改版本ETag做对比，如果版本号不同，则获取数据返回200，否则返回304后调用浏览器本地硬盘的缓存，这种方式比Last-Modified靠谱。</p><h3 id="其他知识点"><a href="#其他知识点" class="headerlink" title="其他知识点"></a>其他知识点</h3><ol><li>如果浏览器只支持http1.0，那么浏览器只会携带Last-Modified发送给后台</li><li>如果服务器只支持http1.0，那么服务器会以Last-Modified为标准。</li><li>如果浏览器支持http1.1，那么浏览器会携带Cache-Control+Last-Modified+ETag发送给后台</li><li>如果服务器支持http1.1，那么服务器会以Cache-Control+ETag为标准。</li></ol>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h3 id=&quot;缓存的优先级&quot;&gt;&lt;a href=&quot;#缓存的优先级&quot; class=&quot;headerlink&quot; title=&quot;缓存的优先级&quot;&gt;&lt;/a&gt;缓存的优先级&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http缓存头/11.png&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;缓存的
+        &lt;h3 id=&quot;缓存的优先级&quot;&gt;&lt;a href=&quot;#缓存的优先级&quot; class=&quot;headerlink&quot; title=&quot;缓存的优先级&quot;&gt;&lt;/a&gt;缓存的优先级&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/2019/09/06/http缓存头/11.png&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
       
     
     </summary>
@@ -435,54 +471,6 @@
     
     
       <category term="css" scheme="http://yoursite.com/tags/css/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>10_14笔记</title>
-    <link href="http://yoursite.com/2018/10/14/10-14%E7%AC%94%E8%AE%B0/"/>
-    <id>http://yoursite.com/2018/10/14/10-14笔记/</id>
-    <published>2018-10-14T03:27:26.000Z</published>
-    <updated>2018-10-21T04:18:51.457Z</updated>
-    
-    <content type="html"><![CDATA[<p>行级元素只能嵌套行级，块级可以嵌套任何，但是有特殊的↓<br>p标签是块级的，但是嵌套了div进去后，p会被切成两半<br>a标签不能嵌套a标签</p><p>设了absolute和float后 内部元素会变成inline-block（和手动设置display:inline-block再可以对行级元素设宽高一样</p><p>文本类元素一旦里面有了文字，外部文字就会和里面的对齐</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;行级元素只能嵌套行级，块级可以嵌套任何，但是有特殊的↓&lt;br&gt;p标签是块级的，但是嵌套了div进去后，p会被切成两半&lt;br&gt;a标签不能嵌套a标签&lt;/p&gt;
-&lt;p&gt;设了absolute和float后 内部元素会变成inline-block（和手动设置display:inline
-      
-    
-    </summary>
-    
-    
-      <category term="笔记" scheme="http://yoursite.com/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>10_13笔记</title>
-    <link href="http://yoursite.com/2018/10/13/10-13%E7%AC%94%E8%AE%B0/"/>
-    <id>http://yoursite.com/2018/10/13/10-13笔记/</id>
-    <published>2018-10-13T03:27:20.000Z</published>
-    <updated>2018-10-21T04:17:19.228Z</updated>
-    
-    <content type="html"><![CDATA[<p>单行文本 height和line-height设为一个值实现单行文本居中</p><p>文本溢出处理三件套<br>white-space:nowrap;文本溢出不换行<br>overflow:hidden;<br>text-overflow:ellipsis;//省略号</p><p>多行文本溢出处理，PC端没有很好的解决方法，手动打点，截断overflow：hidden</p><p>使用css添加图片时，如果网络不佳，为了应对浏览器默认加载策略(在网速不好的时候会不加载CSS JS)，这个时候采取两种方法</p><p>1、text-indent一定距离让文字跟在图片后，white-space:nowrap,overflow:hidden<br>2、取消图片的height 用padding-top代替 用padding撑开div，再设overflow:hidden</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;单行文本 height和line-height设为一个值实现单行文本居中&lt;/p&gt;
-&lt;p&gt;文本溢出处理三件套&lt;br&gt;white-space:nowrap;文本溢出不换行&lt;br&gt;overflow:hidden;&lt;br&gt;text-overflow:ellipsis;//省略号&lt;/
-      
-    
-    </summary>
-    
-    
-      <category term="笔记" scheme="http://yoursite.com/tags/%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   

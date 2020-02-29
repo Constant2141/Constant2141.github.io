@@ -253,6 +253,303 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/29/层叠等级vs层叠上下文/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/29/层叠等级vs层叠上下文/" itemprop="url">层叠等级vs层叠上下文vs混合模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-29T00:16:32+08:00">
+                2020-02-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2020/02/29/层叠等级vs层叠上下文/" class="leancloud_visitors" data-flag-title="层叠等级vs层叠上下文vs混合模式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一个小问题"><a href="#一个小问题" class="headerlink" title="一个小问题"></a>一个小问题</h2><p>故事的是从一个小小的z-index开始的。<br>今天突然看到一个问题。z-index 默认值是啥？以前的确没关注过这个，默认值难道不是auto，既然这么问那肯定有鬼了，盲猜又是IE的锅。</p>
+<p>搜了一下得到答案：IE默认值是0，而FF是auto。那么这个问题算是答完了，但是隐藏在背后的知识点真的只有这些吗？于是乎引出了下面的名词</p>
+<h2 id="一个小例子"><a href="#一个小例子" class="headerlink" title="一个小例子"></a>一个小例子</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"inline-block"</span>&gt;</span>#divA display:inline-block<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"float"</span>&gt;</span> #divB float:left<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>CSS就不写了，看class名字表达意思。注意在这里是inline-block的div先写在写float的div。最后结论是，不管这两个div顺序怎样，永远是inline-block的盒子在上(用背景色区分下就能看到了)。根究原因的话就引出了本文主角之一的<strong>层叠等级</strong></p>
+<h2 id="层叠等级-stacking-level"><a href="#层叠等级-stacking-level" class="headerlink" title="层叠等级(stacking level)"></a>层叠等级(stacking level)</h2><p><img src="/2020/02/29/层叠等级vs层叠上下文/层叠等级.png" alt="image"></p>
+<p>所以display：inline-block会一直在float的上面。但是如果两个div都加一个opacity：0.9，那么结果变成，后面的div永远在前面的div上面</p>
+<h2 id="层叠上下文-stacking-context"><a href="#层叠上下文-stacking-context" class="headerlink" title="层叠上下文(stacking context)"></a>层叠上下文(stacking context)</h2><p>层叠上下文的元素层叠顺序是看z-index。但是这个z-index只在父级层叠上下文有意义。如果父级的z-index小于一个同级的，那么这个父级的子元素z-index设置再大也没用。</p>
+<p>触发层叠上下文的常用的方式有</p>
+<ol>
+<li>根元素 (HTML),</li>
+<li>绝对相对固定定位</li>
+<li>flex的item</li>
+<li>opacity</li>
+<li>transform </li>
+<li>filter</li>
+<li>will-change</li>
+<li>mix-blend-mode</li>
+<li>isolation</li>
+</ol>
+<p>值得一提的是，上面这些不取默认值的才算</p>
+<p>值得二提的是，4-7正好是触发硬件加速的四种css</p>
+<p>值得三提的是，8-9正好的触发混合模式的三种方式之二？这么巧有故事吧</p>
+<h2 id="混合模式"><a href="#混合模式" class="headerlink" title="混合模式"></a>混合模式</h2><p>顺便谈下混合模式，毕竟这和z-index有关系。</p>
+<p>z-index解决的是层叠(元素覆盖)问题，而CSS混合模式解决的是元素覆盖部分如何混合(如何表现)的问题 </p>
+<p>常用的三种css属性</p>
+<ul>
+<li>mix-blend-mode<br>元素内容和元素背景的混合<br><a href="https://www.zhangxinxu.com/study/201505/css3-css4-mix-blend-mode.html" target="_blank" rel="noopener">体验效果戳这里</a></li>
+<li>background-blend-mode<br>背景和背景的混合<br><a href="https://www.zhangxinxu.com/study/201505/css3-css4-background-blend-mode.html" target="_blank" rel="noopener">体验效果戳这里</a></li>
+<li>isolation<br>希望混合模式只影响某一个或一些指定的元素用isolation: isolate。默认值是auto</li>
+</ul>
+<p>其实只要可以创建层叠上下文的都可以起到阻断混合模式mix-blend-mode的效果，怎么创建层叠上下文看上面。特殊的是，background-blend-mode不会受影响，本来就不会影响其他元素</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/28/深入了解HMR/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/28/深入了解HMR/" itemprop="url">深入了解HMR</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-28T23:34:50+08:00">
+                2020-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2020/02/28/深入了解HMR/" class="leancloud_visitors" data-flag-title="深入了解HMR">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/16/预请求/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -481,7 +778,7 @@
       
         
           
-            <h3 id="缓存的优先级"><a href="#缓存的优先级" class="headerlink" title="缓存的优先级"></a>缓存的优先级</h3><p><img src="http缓存头/11.png" alt="image"></p>
+            <h3 id="缓存的优先级"><a href="#缓存的优先级" class="headerlink" title="缓存的优先级"></a>缓存的优先级</h3><p><img src="/2019/09/06/http缓存头/11.png" alt="image"></p>
 <h3 id="缓存的作用："><a href="#缓存的作用：" class="headerlink" title="缓存的作用："></a>缓存的作用：</h3><ol>
 <li>减少延迟(页面打开的速度)。</li>
 <li>降低服务器负载(先取缓存，无缓存在请求服务器，有效降低服务器的负担)。</li>
@@ -492,7 +789,7 @@
 <p>304状态码，简单的表达就是：服务端已经执行了GET，但文件未变化。</p>
 <p>这种方式也有问题，如果服务端文件频繁修改保存，那么Last-Modified就会频繁更改，每次都从服务端获取，这也就有了http1.1的ETag出现</p>
 <h3 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h3><p>指文件缓存的有效期(持续时间)。</p>
-<p><img src="http缓存头/22.png" alt="image"></p>
+<p><img src="/2019/09/06/http缓存头/22.png" alt="image"></p>
 <ol>
 <li>max-age:单位是s，设置文件最大缓存时间，用得最多。</li>
 <li>public:缓存可以被多用户共享，例如360浏览器可以登录不同账号，电脑系统可以切换不同账号。</li>
@@ -500,7 +797,7 @@
 <li>no-cache:不会被缓存。</li>
 <li>no-store:不允许被存储。</li>
 </ol>
-<h3 id="ETag"><a href="#ETag" class="headerlink" title="ETag"></a>ETag</h3><p><img src="http缓存头/33.png" alt="image"></p>
+<h3 id="ETag"><a href="#ETag" class="headerlink" title="ETag"></a>ETag</h3><p><img src="/2019/09/06/http缓存头/33.png" alt="image"></p>
 <p>http1.1推出，对应一个版本号，由服务端随机生成的，浏览器会带上If-None-Match字段向服务器发送请求，与服务器文件修改版本ETag做对比，如果版本号不同，则获取数据返回200，否则返回304后调用浏览器本地硬盘的缓存，这种方式比Last-Modified靠谱。</p>
 <h3 id="其他知识点"><a href="#其他知识点" class="headerlink" title="其他知识点"></a>其他知识点</h3><ol>
 <li>如果浏览器只支持http1.0，那么浏览器只会携带Last-Modified发送给后台</li>
@@ -1521,367 +1818,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/10/小程序续篇/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/10/小程序续篇/" itemprop="url">小程序续篇</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-10T10:45:08+08:00">
-                2019-07-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2019/07/10/小程序续篇/" class="leancloud_visitors" data-flag-title="小程序续篇">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="有关样式"><a href="#有关样式" class="headerlink" title="有关样式"></a>有关样式</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">内联样式可以配合数据绑定</span><br><span class="line"></span><br><span class="line">&lt;view style=<span class="string">"width:500rpx;height:30px;background-color:&#123;&#123;colorValue&#125;&#125;;"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line">Page(&#123;</span><br><span class="line">    data:&#123;</span><br><span class="line">        colorValue:<span class="string">'red'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">静态样式写入类<span class="class"><span class="keyword">class</span>,动态样式写入<span class="title">style</span>内联样式中</span></span><br><span class="line"><span class="class">选择器权重雷同，!<span class="title">important</span>一般用在修改使用插件的样式</span></span><br></pre></td></tr></table></figure>
-<h3 id="MINA框架"><a href="#MINA框架" class="headerlink" title="MINA框架"></a>MINA框架</h3><p><img src="/2019/07/10/小程序续篇/small1.png" alt=""></p>
-<h3 id="运行机制"><a href="#运行机制" class="headerlink" title="运行机制"></a>运行机制</h3><h4 id="启动-热启动与冷启动-小程序没有重启的概念"><a href="#启动-热启动与冷启动-小程序没有重启的概念" class="headerlink" title="启动(热启动与冷启动)(小程序没有重启的概念)"></a>启动(热启动与冷启动)(小程序没有重启的概念)</h4><p>热启动：假如用户已经打开过某小程序，然后在一定时间内（五分钟）再次打开该小程序，此时无需重新启动，只需将后台态的小程序切换到前台</p>
-<p>冷启动：用户首次打开或小程序被微信主动销毁后再次打开的情况，此时小程序需要重新加载启动。<br>那么什么情况下会销毁，主要是两种情况</p>
-<ol>
-<li>小程序进入后台，客户端会维持一段时间的运行状态，超过一定时间后（目前是5分钟）会被微信主动销毁</li>
-<li>当短时间内（5s）连续收到两次以上收到系统内存告警，会进行小程序的销毁</li>
-</ol>
-<h4 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h4><p>在冷启动的时候如果发现新版本，将会异步下载新版本的代码包，并同时用客户端本地的包进行启动，即新版本的小程序需要等下一次冷启动才会应用上。 如果需要马上应用最新版本，可以使用 wx.getUpdateManager API 进行处理，这个API调用代码放在app.js的onLaunch。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取小程序更新机制兼容</span></span><br><span class="line">    <span class="keyword">if</span> (wx.canIUse(<span class="string">'getUpdateManager'</span>)) &#123;</span><br><span class="line">      <span class="keyword">const</span> updateManager = wx.getUpdateManager()</span><br><span class="line">      updateManager.onCheckForUpdate(<span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 请求完新版本信息的回调</span></span><br><span class="line">        <span class="keyword">if</span> (res.hasUpdate) &#123;</span><br><span class="line">          updateManager.onUpdateReady(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            wx.showModal(&#123;</span><br><span class="line">              title: <span class="string">'更新提示'</span>,</span><br><span class="line">              content: <span class="string">'新版本已经准备好，是否重启应用？'</span>,</span><br><span class="line">              success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (res.confirm) &#123;</span><br><span class="line">                  <span class="comment">// 新的版本已经下载好，调用 applyUpdate 应用新版本并重启</span></span><br><span class="line">                  updateManager.applyUpdate()</span><br><span class="line">                &#125;</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">          &#125;)</span><br><span class="line">          updateManager.onUpdateFailed(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 新的版本下载失败</span></span><br><span class="line">            wx.showModal(&#123;</span><br><span class="line">              title: <span class="string">'已经有新版本了哟~'</span>,</span><br><span class="line">              content: <span class="string">'新版本已经上线啦~，请您删除当前小程序，重新搜索打开哟~'</span>,</span><br><span class="line">            &#125;)</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 如果希望用户在最新版本的客户端上体验您的小程序，可以这样子提示</span></span><br><span class="line">      wx.showModal(&#123;</span><br><span class="line">        title: <span class="string">'提示'</span>,</span><br><span class="line">        content: <span class="string">'当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><h4 id="程序的生命周期"><a href="#程序的生命周期" class="headerlink" title="程序的生命周期"></a>程序的生命周期</h4><p>onLaunch onShow onHide  onError</p>
-<h4 id="页面的生命周期"><a href="#页面的生命周期" class="headerlink" title="页面的生命周期"></a>页面的生命周期</h4><ol>
-<li>onLoad 页面初次加载的时候调用，页面销毁前只调用一次 在回调中可以得到打开参数</li>
-<li>onShow  页面显示后调用 从别的页面到这也会调用</li>
-<li>onReady 初次渲染完成调用 在onShow之后调用  销毁前只有一次</li>
-<li>onHide 打开新界面的时候，当前页面调用</li>
-<li>onUnload 关闭界面的时候调用</li>
-</ol>
-<h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><table>
-<thead>
-<tr>
-<th>路由方式</th>
-<th>触发时间</th>
-<th>路由前页面调用啥</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>初始化</td>
-<td>小程序打开的第一个界面</td>
-</tr>
-<tr>
-<td>打开新界面</td>
-<td>wx.navigateTo == <navigator open-type="navigateTo"></navigator></td>
-<td>onHide</td>
-</tr>
-<tr>
-<td>重定向</td>
-<td>wx.redirectTo == <navigator open-type="redirectTo"></navigator></td>
-<td>onUnload</td>
-</tr>
-<tr>
-<td>返回</td>
-<td>wx.navigateBack == <navigator open-type="navigateBack"></navigator></td>
-<td>onUnload</td>
-</tr>
-<tr>
-<td>Tab切换</td>
-<td>wx.switchTab == <navigator open-type="switchTab"></navigator></td>
-</tr>
-<tr>
-<td>重启</td>
-<td>wx.relaunch == <navigator open-type="relaunch"></navigator></td>
-<td>onUnload</td>
-</tr>
-</tbody>
-</table>
-<h3 id="登录流程图"><a href="#登录流程图" class="headerlink" title="登录流程图"></a>登录流程图</h3><p><img src="/2019/07/10/小程序续篇/small2.png" alt=""></p>
-<p><img src="/2019/07/10/小程序续篇/small3.png" alt=""></p>
-<h3 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h3><p>在用code换取到session_key和openid时，直接data.openid是拿不到的，经过检验类型，此时返回的是json字符串，需要自行JSON.parse()</p>
-<p>wx.getUserInfo 不能用了 需要用button打开类型设定为getUserInfo才能</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/03/ajax-fetch-websocket/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/03/ajax-fetch-websocket/" itemprop="url">ajax,fetch,websocket(7.18日补充JSONP)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-03T14:17:20+08:00">
-                2019-04-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2019/04/03/ajax-fetch-websocket/" class="leancloud_visitors" data-flag-title="ajax,fetch,websocket(7.18日补充JSONP)">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h3><h4 id="AJAX状态值与状态码区别"><a href="#AJAX状态值与状态码区别" class="headerlink" title="AJAX状态值与状态码区别"></a>AJAX状态值与状态码区别</h4><blockquote>
-<p>AJAX状态值是指，运行AJAX所经历过的几种状态，无论访问是否成功都将响应的步骤，可以理解成为AJAX运行步骤。如：正在发送，正在响应等，由AJAX对象与服务器交互时所得；使用“ajax.readyState”获得。（由数字1~4单位数字组成）</p>
-</blockquote>
-<blockquote>
-<p>AJAX状态码是指，无论AJAX访问是否成功，由HTTP协议根据所提交的信息，服务器所返回的HTTP头信息代码，该信息使用“ajax.status”所获得；（由数字1XX,2XX三位数字组成，详细查看RFC）<br>这就是我们在使用AJAX时为什么采用下面的方式判断所获得的信息是否正确的原因。</p>
-</blockquote>
-<h4 id="Ajax写法"><a href="#Ajax写法" class="headerlink" title="Ajax写法"></a>Ajax写法</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//举个例子,原生写法</span></span><br><span class="line"><span class="comment">//如果是post请求，json数据写在send()</span></span><br><span class="line"> <span class="keyword">let</span> ajax=<span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">        ajax.open(<span class="string">'GET'</span>, <span class="string">'http://localhost:8080/a'</span>, <span class="literal">true</span>);</span><br><span class="line">        ajax.send();</span><br><span class="line">        ajax.onreadystatechange=<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">          <span class="keyword">if</span>(ajax.readyState==<span class="number">4</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(ajax.status&gt;=<span class="number">200</span> &amp;&amp; ajax.status&lt;<span class="number">300</span> || ajax.status==<span class="number">304</span>)&#123;</span><br><span class="line">              alert(<span class="string">'成功'</span>);</span><br><span class="line">              <span class="keyword">let</span> json=<span class="built_in">JSON</span>.parse(ajax.responseText);</span><br><span class="line">              <span class="built_in">console</span>.log(json);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">              alert(<span class="string">'失败'</span>);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;;</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//JQ的写法</span></span><br><span class="line"><span class="comment">//url,type,data必备，dataType默认是json，</span></span><br><span class="line"><span class="comment">//如果是发送jsonp数据，额外加一个jsonp:"cb"，值是回调函数的名字</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line">	$.ajax(&#123;</span><br><span class="line">			url:<span class="string">"http://xxxx"</span>,</span><br><span class="line">			type:<span class="string">'post'</span></span><br><span class="line">			data:&#123;<span class="attr">wd</span>:<span class="string">'xxx'</span>&#125;,</span><br><span class="line">			dataType:<span class="string">'text/json/jsonp'</span>,</span><br><span class="line">			jsonp:<span class="string">'cb'</span></span><br><span class="line">		&#125;).then(<span class="function">(<span class="params">&#123;s&#125;</span>) =&gt;</span> &#123;</span><br><span class="line">				<span class="comment">//成功执行函数</span></span><br><span class="line">		&#125; , res =&gt;&#123;</span><br><span class="line">		    <span class="comment">//失败执行函数</span></span><br><span class="line">		&#125;)</span><br></pre></td></tr></table></figure>
-<h4 id="AJAX运行步骤与状态值说明"><a href="#AJAX运行步骤与状态值说明" class="headerlink" title="AJAX运行步骤与状态值说明"></a>AJAX运行步骤与状态值说明</h4><blockquote>
-<p>在AJAX实际运行当中，对于访问XMLHttpRequest（XHR）时并不是一次完成的，而是分别经历了多种状态后取得的结果，对于这种状态在AJAX中共有5种，分别是。</p>
-<ul>
-<li>0 - (未初始化)还没有调用send()方法</li>
-<li>1 - (载入)已调用send()方法，正在发送请求</li>
-<li>2 - (载入完成)send()方法执行完成，</li>
-<li>3 - (交互)正在解析响应内容</li>
-<li>4 - (完成)响应内容解析完成，可以在客户端调用了<br>对于上面的状态，其中“0”状态是在定义后自动具有的状态值，而对于成功访问的状态（得到信息）我们大多数采用“4”进行判断。</li>
-</ul>
-</blockquote>
-<h4 id="AJAX状态码-经常说的服务器status-说明"><a href="#AJAX状态码-经常说的服务器status-说明" class="headerlink" title="AJAX状态码(经常说的服务器status)说明"></a>AJAX状态码(经常说的服务器status)说明</h4><ul>
-<li>1**：请求收到，继续处理</li>
-<li>2**：操作成功收到，分析、接受</li>
-<li>3**：完成此请求必须进一步处理</li>
-<li>4**：请求包含一个错误语法或不能完成</li>
-</ul>
-<ul>
-<li>5**：服务器执行一个完全有效请求失败</li>
-<li>100——客户必须继续发出请求</li>
-</ul>
-<h3 id="fetch使用"><a href="#fetch使用" class="headerlink" title="fetch使用"></a>fetch使用</h3><p>1、 先获取 let res = await fetch(‘xxxx.jpg’)<br><br>2、 再解析 await res.text()/json()/blob()<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一个栗子</span></span><br><span class="line"><span class="comment">//如果是fetch一个二进制文件，res.blob()之后要用 URL.createObjectURL生成一个url才能用</span></span><br><span class="line"><span class="built_in">window</span>.onload= <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">let</span> oBtn = <span class="built_in">document</span>.getElementById(<span class="string">'btn1'</span>);</span><br><span class="line">			<span class="keyword">let</span> img1 = <span class="built_in">document</span>.getElementById(<span class="string">'img1'</span>)</span><br><span class="line">            oBtn.onclick = <span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">let</span> res = <span class="keyword">await</span> fetch(<span class="string">'./1.jpg'</span>)</span><br><span class="line">                <span class="keyword">let</span> data = <span class="keyword">await</span> res.blob(res)</span><br><span class="line">                <span class="keyword">let</span> url = URL.createObjectURL(data)</span><br><span class="line">                img1.src = url;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="Ajax2-0"><a href="#Ajax2-0" class="headerlink" title="Ajax2.0"></a>Ajax2.0</h3><p><i>主要是formdata的使用</i><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、<span class="comment">//原生js获取表单元素传入 </span></span><br><span class="line"><span class="keyword">let</span> oForm=<span class="built_in">document</span>.querySelector(<span class="string">'#form1'</span>);</span><br><span class="line"><span class="keyword">let</span> formdata=<span class="keyword">new</span> FormData(oForm);</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、 <span class="comment">//jq获取表单元素传入</span></span><br><span class="line"> $(<span class="string">'#form1'</span>).on(<span class="string">'submit'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> formdata=<span class="keyword">new</span> FormData(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">      url: <span class="keyword">this</span>.action,</span><br><span class="line">      type: <span class="keyword">this</span>.method,</span><br><span class="line">      data: formdata,</span><br><span class="line">      processData: <span class="literal">false</span>,<span class="comment">//取消jq默认的数据格式转换</span></span><br><span class="line">      contentType: <span class="literal">false</span></span><br><span class="line">    &#125;).then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">      alert(<span class="string">'成功'</span>);</span><br><span class="line">    &#125;, res=&gt;&#123;</span><br><span class="line">      alert(<span class="string">'失败'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>、<span class="comment">//生成一个空的FormData对象,用append('key','value')</span></span><br><span class="line"><span class="keyword">let</span> formdata = <span class="keyword">new</span> FormData();</span><br><span class="line">formdata.append(<span class="string">'xxx'</span>,xxxx)</span><br></pre></td></tr></table></figure></p>
-<h3 id="Websocket"><a href="#Websocket" class="headerlink" title="Websocket"></a>Websocket</h3><h4 id="使用socket-io库实现简单的连接"><a href="#使用socket-io库实现简单的连接" class="headerlink" title="使用socket.io库实现简单的连接"></a>使用socket.io库实现简单的连接</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//服务端</span></span><br><span class="line"><span class="keyword">const</span> http=<span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> io=<span class="built_in">require</span>(<span class="string">'socket.io'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//1.建立普通http</span></span><br><span class="line"><span class="keyword">let</span> server=http.createServer(<span class="function">(<span class="params">req, res</span>)=&gt;</span>&#123;&#125;);</span><br><span class="line">server.listen(<span class="number">8080</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.建立ws</span></span><br><span class="line"><span class="keyword">let</span> wsServer=io.listen(server);</span><br><span class="line">wsServer.on(<span class="string">'connection'</span>, sock=&gt;&#123;</span><br><span class="line">  <span class="comment">//sock.emit('name', 数据)</span></span><br><span class="line">  <span class="comment">//sock.on('name', function (数据)&#123;&#125;);</span></span><br><span class="line"></span><br><span class="line">  setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    sock.emit(<span class="string">'timer'</span>, <span class="keyword">new</span> <span class="built_in">Date</span>().getTime());</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//客户端</span></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span> dir=<span class="string">"ltr"</span>&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"utf-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;&lt;/title&gt;</span><br><span class="line">    &lt;script src=<span class="string">"http://localhost:8080/socket.io/socket.io.js"</span> charset=<span class="string">"utf-8"</span>&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">    <span class="keyword">let</span> sock=io.connect(<span class="string">'ws://localhost:8080/'</span>);</span><br><span class="line">    sock.on(<span class="string">'timer'</span>, time=&gt;&#123;</span><br><span class="line">      <span class="built_in">console</span>.slog(time);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line"></span><br><span class="line">  &lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3><h4 id="JSON的产生"><a href="#JSON的产生" class="headerlink" title="JSON的产生"></a>JSON的产生</h4><p>ajax请求会有跨域的问题，而web页面调用js文件不存在跨域问题，并且带有src属性的标签具有跨域能力。<br>于是就想到了在获取服务端数据的时候，服务端把要返回的数据放在一个js格式的文件里面，客户端调用<br>恰巧JSON这种字符串数据格式不仅常用来描述数据，而且被js原生支持<br>于是最后的方案就是客户端调用服务端的JSON文件，服务器要动态生成JSON文件才能把客户端需要的数据装入<br>这种方式就是JSONP，一种非正式的传输协议<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">客户端html代码</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;&lt;/title&gt;</span><br><span class="line">    &lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">    <span class="comment">// 得到航班信息查询结果后的回调函数</span></span><br><span class="line">    <span class="keyword">var</span> flightHandler = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">'你查询的航班结果是：票价 '</span> + data.price + <span class="string">' 元，'</span> + <span class="string">'余票 '</span> + data.tickets + <span class="string">' 张。'</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// 提供jsonp服务的url地址（不管是什么类型的地址，最终生成的返回值都是一段javascript代码）</span></span><br><span class="line">    <span class="keyword">var</span> url = <span class="string">"http://flightQuery.com/jsonp/flightResult.aspx?code=CA1998&amp;callback=flightHandler"</span>;</span><br><span class="line">    <span class="comment">// 创建script标签，设置其属性</span></span><br><span class="line">    <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line">    script.setAttribute(<span class="string">'src'</span>, url);</span><br><span class="line">    <span class="comment">// 把script标签加入head，此时调用开始</span></span><br><span class="line">    <span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>].appendChild(script); </span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"> </span><br><span class="line">&lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br><span class="line"></span><br><span class="line">服务端对应文件有一个同名的方法,需要返回的数据作为该方法参数填进来</span><br><span class="line">flightHandler(&#123;</span><br><span class="line">    <span class="string">"code"</span>: <span class="string">"CA1998"</span>,</span><br><span class="line">    <span class="string">"price"</span>: <span class="number">1780</span>,</span><br><span class="line">    <span class="string">"tickets"</span>: <span class="number">5</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>如果用jq实现，上文jq章节也有简单提到特殊的参数jsonp，再举个栗子</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">            type: <span class="string">"get"</span>,</span><br><span class="line">            <span class="keyword">async</span>: <span class="literal">false</span>,</span><br><span class="line">            url: <span class="string">"http://flightQuery.com/jsonp/flightResult.aspx?code=CA1998"</span>,</span><br><span class="line">            dataType: <span class="string">"jsonp"</span>,</span><br><span class="line">            jsonp: <span class="string">"callback"</span>,<span class="comment">//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)</span></span><br><span class="line">            jsonpCallback:<span class="string">"flightHandler"</span>,<span class="comment">//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据</span></span><br><span class="line">            success: <span class="function"><span class="keyword">function</span>(<span class="params">json</span>)</span>&#123;</span><br><span class="line">                alert(<span class="string">'您查询到航班信息：票价： '</span> + json.price + <span class="string">' 元，余票： '</span> + json.tickets + <span class="string">' 张。'</span>);</span><br><span class="line">            &#125;,</span><br><span class="line">            error: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                alert(<span class="string">'fail'</span>);</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1936,7 +1872,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

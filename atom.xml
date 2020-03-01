@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-01T07:39:26.912Z</updated>
+  <updated>2020-03-01T06:59:00.397Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,43 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>多角度看待HTTPS</title>
-    <link href="http://yoursite.com/2020/03/01/%E5%A4%9A%E8%A7%92%E5%BA%A6%E7%9C%8B%E5%BE%85HTTPS/"/>
-    <id>http://yoursite.com/2020/03/01/多角度看待HTTPS/</id>
-    <published>2020-03-01T07:00:30.000Z</published>
-    <updated>2020-03-01T07:39:26.912Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="一、HTTPS介绍"><a href="#一、HTTPS介绍" class="headerlink" title="一、HTTPS介绍"></a>一、HTTPS介绍</h1><h2 id="1-作用"><a href="#1-作用" class="headerlink" title="1.作用"></a>1.作用</h2><ul><li>内容加密 保证数据传输的安全；</li><li>身份验证 确认网站的真实性；</li><li>数据完整性 防止内容被第三方冒充或者篡改<h2 id="2-缺点"><a href="#2-缺点" class="headerlink" title="2.缺点"></a>2.缺点</h2></li><li>需要进行非对称的加解密，且需要三次握手。首次连接比较慢</li><li>出于安全考虑，浏览器默认不会在本地对HTTPS缓存。Firefox默认只在内存中缓存HTTPS。但是，只要头命令中有Cache-Control: Public，缓存就会被写到硬盘上。IE只要http头允许就可以缓存https内容</li></ul><h2 id="3-和HTTP的区别"><a href="#3-和HTTP的区别" class="headerlink" title="3.和HTTP的区别"></a>3.和HTTP的区别</h2><ul><li>HTTP明文传输，而后者ssl加密，密文传输</li><li>端口不一样，80and443</li><li>http的连接是无状态的(不验证通信双方)，Https可进行身份认证</li><li>https要到CA申请证书</li></ul><h2 id="4-HTTP无状态无连接"><a href="#4-HTTP无状态无连接" class="headerlink" title="4.HTTP无状态无连接"></a>4.HTTP无状态无连接</h2><ul><li><p>无状态的意思是，协议没有记忆能力，对同一个url的请求没有上下文关系，每个请求都是独立的。后来出现了cookie</p></li><li><p>无连接的含义是限制每次建立连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可尽快释放资源。后来网页复杂了，嵌入图片什么的，每次访问都要建立tcp连接太低效，就出现了keep-alive</p></li></ul><p><img src="https://upload-images.jianshu.io/upload_images/2223007-8fdca151b9f7c456?imageMogr2/auto-orient/strip|imageView2/2/w/640/format/webp" alt=""></p><h1 id="二、相关技术"><a href="#二、相关技术" class="headerlink" title="二、相关技术"></a>二、相关技术</h1><h2 id="1-对称加密"><a href="#1-对称加密" class="headerlink" title="1. 对称加密"></a>1. 对称加密</h2><p>常见的有DES、AES、RC4</p><h2 id="2-非对称加密"><a href="#2-非对称加密" class="headerlink" title="2. 非对称加密"></a>2. 非对称加密</h2><p> 需要公钥私钥。常见算法有RSA。加密内容的长度有限制，不能超过公钥长度。</p><h2 id="3-摘要算法"><a href="#3-摘要算法" class="headerlink" title="3. 摘要算法"></a>3. 摘要算法</h2><p> 单向散列(hash)算法，常见MD5</p><h2 id="4-数字签名"><a href="#4-数字签名" class="headerlink" title="4. 数字签名"></a>4. 数字签名</h2><p>非对称加密和数字摘要的结合应用。明文 ——&gt; hash算法 ——&gt; 摘要 ——&gt; 私钥加密 ——&gt; 数字签名</p><blockquote><p>数字签名只能验证数据的完整性和身份验证，数据本身是否加密不属于数字签名的控制范围</p></blockquote><h2 id="5-数字证书"><a href="#5-数字证书" class="headerlink" title="5. 数字证书"></a>5. 数字证书</h2><h3 id="1）-数字证书的作用"><a href="#1）-数字证书的作用" class="headerlink" title="1） 数字证书的作用"></a>1） 数字证书的作用</h3><p>对请求方来说，要用公钥解密发送方发过来的证书里面的摘要，这个公钥怎么保证就是对方的呢？就要借助权威的值得信赖的第三方机构CA(证书颁发机构)</p><h3 id="2）-颁发证书过程"><a href="#2）-颁发证书过程" class="headerlink" title="2） 颁发证书过程"></a>2） 颁发证书过程</h3><p>用户首先产生自己的密钥对，并将公钥及部分个人身份信息传送给认证中心。认证中心在核实身份后，将执行一些必要的步骤，以确信请求确实由用户发送而来，然后认证中心将发给用户一个数字证书。</p><h3 id="3）-证书包含内容"><a href="#3）-证书包含内容" class="headerlink" title="3） 证书包含内容"></a>3） 证书包含内容</h3><ul><li>证书颁发机构的名称</li><li>证书本身的数字签名</li><li>证书持有者公钥</li><li>证书签名用到的Hash算法<h3 id="4）怎么验证证书有效"><a href="#4）怎么验证证书有效" class="headerlink" title="4）怎么验证证书有效"></a>4）怎么验证证书有效</h3>前提：浏览器默认都会内置CA根证书，根证书包含了CA的公钥</li></ul><ol><li>验证证书颁发的机构是否存在，浏览器不认识，直接认为是危险证书</li><li>存在的话根据CA名，找到对应内置的CA根证书。用证书里面的公钥，对摘要解密，不行表现危险证书</li><li>解密得到摘要A，然后再根据证书提供的的HASH算法计算出证书的摘要B，对比A与B，若相等则正常，否则就是被篡改过的。</li><li>证书可在其过期前被手动吊销，目前较新的浏览器如Chrome、Firefox、Opera和Internet Explorer都实现了在线证书状态协议（OCSP）以避免这种情况：浏览器将目标网站提供的证书的序列号通过OCSP发送给证书颁发机构，后者会告诉浏览器证书是否还是有效的。</li></ol><h1 id="三、SSL与TLS"><a href="#三、SSL与TLS" class="headerlink" title="三、SSL与TLS"></a>三、SSL与TLS</h1><p>TLS建立在SSL 3.0协议规范之上，分为记录协议和握手协议</p><h2 id="TLS比SSL优势"><a href="#TLS比SSL优势" class="headerlink" title="TLS比SSL优势"></a>TLS比SSL优势</h2><ol><li>消息认证使用密钥散列法更安全：TLS使用“消息认证代码的密钥散列法”（HMAC），SSL3.0使用的是键控消息认证（MAC），HMAC比MAC功能更安全。</li><li>伪随机功能增强（PRF）：PRF生成密钥数据(那三个随机数)。在TLS中，PRF使用两种散列算法保证其安全性。</li><li>已完成消息验证改进。TLS将此已完成消息基于PRF和HMAC值之上，</li><li>一致证书处理。与SSLv3.0不同，TLS试图指定必须在TLS之间实现交换的证书类型。</li></ol><h2 id="握手过程"><a href="#握手过程" class="headerlink" title="握手过程"></a>握手过程</h2><p><img src="https://upload-images.jianshu.io/upload_images/2223007-7989d1139ca847c9?imageMogr2/auto-orient/strip|imageView2/2/w/640/format/webp" alt=""></p><h2 id="恢复会话"><a href="#恢复会话" class="headerlink" title="恢复会话"></a>恢复会话</h2><ol><li><p>session ID。每一次对话都有一个编号。如果对话中断，下次重连的时候，只要客户端给出这个编号，且服务器有这个编号的记录，双方就可以重新使用已有的“对话密钥”，而不必重新生成一把。</p><blockquote><p>session ID是目前所有浏览器都支持的方法，缺点在于session ID往往只保留在一台服务器上。所以，如果客户端的请求发送到另一台服务器，就无法恢复对话。</p></blockquote></li><li><p>session ticket。 上一次对话中发送过来的session ticket。这个session ticket是加密的，只有服务器才能解密，包含了对话密钥和加密方法。恢复会话的时候。当服务器收到session ticket以后，如果可以解密，就不必重新生成对话密钥了。</p><blockquote><p>目前只有Firefox和Chrome浏览器支持。</p></blockquote></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;一、HTTPS介绍&quot;&gt;&lt;a href=&quot;#一、HTTPS介绍&quot; class=&quot;headerlink&quot; title=&quot;一、HTTPS介绍&quot;&gt;&lt;/a&gt;一、HTTPS介绍&lt;/h1&gt;&lt;h2 id=&quot;1-作用&quot;&gt;&lt;a href=&quot;#1-作用&quot; class=&quot;headerli
-      
-    
-    </summary>
-    
-    
-      <category term="网络" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>深入了解HMR</title>
-    <link href="http://yoursite.com/2020/02/28/%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3HMR/"/>
-    <id>http://yoursite.com/2020/02/28/深入了解HMR/</id>
-    <published>2020-02-28T15:34:50.000Z</published>
-    <updated>2020-02-28T15:34:50.955Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>z-index引发的思考</title>
@@ -73,6 +36,29 @@
     
     
       <category term="css" scheme="http://yoursite.com/tags/css/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>多角度看待HTTPS</title>
+    <link href="http://yoursite.com/2020/02/26/%E5%A4%9A%E8%A7%92%E5%BA%A6%E7%9C%8B%E5%BE%85HTTPS/"/>
+    <id>http://yoursite.com/2020/02/26/多角度看待HTTPS/</id>
+    <published>2020-02-26T07:00:30.000Z</published>
+    <updated>2020-03-01T07:44:41.141Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一、HTTPS介绍"><a href="#一、HTTPS介绍" class="headerlink" title="一、HTTPS介绍"></a>一、HTTPS介绍</h1><h2 id="1-作用"><a href="#1-作用" class="headerlink" title="1.作用"></a>1.作用</h2><ul><li>内容加密 保证数据传输的安全；</li><li>身份验证 确认网站的真实性；</li><li>数据完整性 防止内容被第三方冒充或者篡改<h2 id="2-缺点"><a href="#2-缺点" class="headerlink" title="2.缺点"></a>2.缺点</h2></li><li>需要进行非对称的加解密，且需要三次握手。首次连接比较慢</li><li>出于安全考虑，浏览器默认不会在本地对HTTPS缓存。Firefox默认只在内存中缓存HTTPS。但是，只要头命令中有Cache-Control: Public，缓存就会被写到硬盘上。IE只要http头允许就可以缓存https内容</li></ul><h2 id="3-和HTTP的区别"><a href="#3-和HTTP的区别" class="headerlink" title="3.和HTTP的区别"></a>3.和HTTP的区别</h2><ul><li>HTTP明文传输，而后者ssl加密，密文传输</li><li>端口不一样，80and443</li><li>http的连接是无状态的(不验证通信双方)，Https可进行身份认证</li><li>https要到CA申请证书</li></ul><h2 id="4-HTTP无状态无连接"><a href="#4-HTTP无状态无连接" class="headerlink" title="4.HTTP无状态无连接"></a>4.HTTP无状态无连接</h2><ul><li><p>无状态的意思是，协议没有记忆能力，对同一个url的请求没有上下文关系，每个请求都是独立的。后来出现了cookie</p></li><li><p>无连接的含义是限制每次建立连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可尽快释放资源。后来网页复杂了，嵌入图片什么的，每次访问都要建立tcp连接太低效，就出现了keep-alive</p></li></ul><p><img src="https://upload-images.jianshu.io/upload_images/2223007-8fdca151b9f7c456?imageMogr2/auto-orient/strip|imageView2/2/w/640/format/webp" alt=""></p><h1 id="二、相关技术"><a href="#二、相关技术" class="headerlink" title="二、相关技术"></a>二、相关技术</h1><h2 id="1-对称加密"><a href="#1-对称加密" class="headerlink" title="1. 对称加密"></a>1. 对称加密</h2><p>常见的有DES、AES、RC4</p><h2 id="2-非对称加密"><a href="#2-非对称加密" class="headerlink" title="2. 非对称加密"></a>2. 非对称加密</h2><p> 需要公钥私钥。常见算法有RSA。加密内容的长度有限制，不能超过公钥长度。</p><h2 id="3-摘要算法"><a href="#3-摘要算法" class="headerlink" title="3. 摘要算法"></a>3. 摘要算法</h2><p> 单向散列(hash)算法，常见MD5</p><h2 id="4-数字签名"><a href="#4-数字签名" class="headerlink" title="4. 数字签名"></a>4. 数字签名</h2><p>非对称加密和数字摘要的结合应用。明文 ——&gt; hash算法 ——&gt; 摘要 ——&gt; 私钥加密 ——&gt; 数字签名</p><blockquote><p>数字签名只能验证数据的完整性和身份验证，数据本身是否加密不属于数字签名的控制范围</p></blockquote><h2 id="5-数字证书"><a href="#5-数字证书" class="headerlink" title="5. 数字证书"></a>5. 数字证书</h2><h3 id="1）-数字证书的作用"><a href="#1）-数字证书的作用" class="headerlink" title="1） 数字证书的作用"></a>1） 数字证书的作用</h3><p>对请求方来说，要用公钥解密发送方发过来的证书里面的摘要，这个公钥怎么保证就是对方的呢？就要借助权威的值得信赖的第三方机构CA(证书颁发机构)</p><h3 id="2）-颁发证书过程"><a href="#2）-颁发证书过程" class="headerlink" title="2） 颁发证书过程"></a>2） 颁发证书过程</h3><p>用户首先产生自己的密钥对，并将公钥及部分个人身份信息传送给认证中心。认证中心在核实身份后，将执行一些必要的步骤，以确信请求确实由用户发送而来，然后认证中心将发给用户一个数字证书。</p><h3 id="3）-证书包含内容"><a href="#3）-证书包含内容" class="headerlink" title="3） 证书包含内容"></a>3） 证书包含内容</h3><ul><li>证书颁发机构的名称</li><li>证书本身的数字签名</li><li>证书持有者公钥</li><li>证书签名用到的Hash算法<h3 id="4）怎么验证证书有效"><a href="#4）怎么验证证书有效" class="headerlink" title="4）怎么验证证书有效"></a>4）怎么验证证书有效</h3>前提：浏览器默认都会内置CA根证书，根证书包含了CA的公钥</li></ul><ol><li>验证证书颁发的机构是否存在，浏览器不认识，直接认为是危险证书</li><li>存在的话根据CA名，找到对应内置的CA根证书。用证书里面的公钥，对摘要解密，不行表现危险证书</li><li>解密得到摘要A，然后再根据证书提供的的HASH算法计算出证书的摘要B，对比A与B，若相等则正常，否则就是被篡改过的。</li><li>证书可在其过期前被手动吊销，目前较新的浏览器如Chrome、Firefox、Opera和Internet Explorer都实现了在线证书状态协议（OCSP）以避免这种情况：浏览器将目标网站提供的证书的序列号通过OCSP发送给证书颁发机构，后者会告诉浏览器证书是否还是有效的。</li></ol><h1 id="三、SSL与TLS"><a href="#三、SSL与TLS" class="headerlink" title="三、SSL与TLS"></a>三、SSL与TLS</h1><p>TLS建立在SSL 3.0协议规范之上，分为记录协议和握手协议</p><h2 id="TLS比SSL优势"><a href="#TLS比SSL优势" class="headerlink" title="TLS比SSL优势"></a>TLS比SSL优势</h2><ol><li>消息认证使用密钥散列法更安全：TLS使用“消息认证代码的密钥散列法”（HMAC），SSL3.0使用的是键控消息认证（MAC），HMAC比MAC功能更安全。</li><li>伪随机功能增强（PRF）：PRF生成密钥数据(那三个随机数)。在TLS中，PRF使用两种散列算法保证其安全性。</li><li>已完成消息验证改进。TLS将此已完成消息基于PRF和HMAC值之上，</li><li>一致证书处理。与SSLv3.0不同，TLS试图指定必须在TLS之间实现交换的证书类型。</li></ol><h2 id="握手过程"><a href="#握手过程" class="headerlink" title="握手过程"></a>握手过程</h2><p><img src="https://upload-images.jianshu.io/upload_images/2223007-7989d1139ca847c9?imageMogr2/auto-orient/strip|imageView2/2/w/640/format/webp" alt=""></p><h2 id="恢复会话"><a href="#恢复会话" class="headerlink" title="恢复会话"></a>恢复会话</h2><ol><li><p>session ID。每一次对话都有一个编号。如果对话中断，下次重连的时候，只要客户端给出这个编号，且服务器有这个编号的记录，双方就可以重新使用已有的“对话密钥”，而不必重新生成一把。</p><blockquote><p>session ID是目前所有浏览器都支持的方法，缺点在于session ID往往只保留在一台服务器上。所以，如果客户端的请求发送到另一台服务器，就无法恢复对话。</p></blockquote></li><li><p>session ticket。 上一次对话中发送过来的session ticket。这个session ticket是加密的，只有服务器才能解密，包含了对话密钥和加密方法。恢复会话的时候。当服务器收到session ticket以后，如果可以解密，就不必重新生成对话密钥了。</p><blockquote><p>目前只有Firefox和Chrome浏览器支持。</p></blockquote></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;一、HTTPS介绍&quot;&gt;&lt;a href=&quot;#一、HTTPS介绍&quot; class=&quot;headerlink&quot; title=&quot;一、HTTPS介绍&quot;&gt;&lt;/a&gt;一、HTTPS介绍&lt;/h1&gt;&lt;h2 id=&quot;1-作用&quot;&gt;&lt;a href=&quot;#1-作用&quot; class=&quot;headerli
+      
+    
+    </summary>
+    
+    
+      <category term="网络" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
@@ -474,6 +460,26 @@
     
     
       <category term="笔记" scheme="http://yoursite.com/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>css3动画三属性</title>
+    <link href="http://yoursite.com/2018/10/21/css3%E5%8A%A8%E7%94%BB%E4%B8%89%E5%B1%9E%E6%80%A7/"/>
+    <id>http://yoursite.com/2018/10/21/css3动画三属性/</id>
+    <published>2018-10-21T03:21:49.000Z</published>
+    <updated>2018-10-21T03:25:18.767Z</updated>
+    
+    <content type="html"><![CDATA[<p>把css3里与动画有关的三个常见属性归纳到一起<br><a id="more"></a></p><h2 id="CSS3制作动画的几个属性：变形-transform-、转换-transition-和动画-animation"><a href="#CSS3制作动画的几个属性：变形-transform-、转换-transition-和动画-animation" class="headerlink" title="CSS3制作动画的几个属性：变形(transform)、转换(transition)和动画(animation)"></a>CSS3制作动画的几个属性：变形(transform)、转换(transition)和动画(animation)</h2><h3 id="transition"><a href="#transition" class="headerlink" title="transition"></a>transition</h3><p>transition主要包含四个属性值：<br>1、执行变换的属性：transition-property<br>2、变换延续的时间：transition-duration<br>3、延续时间内变换的速率：transition-timing-function<br>4、变换延迟时间：transition-delay.</p><h4 id="transition-property"><a href="#transition-property" class="headerlink" title="transition-property"></a>transition-property</h4><p>指定当元素其中一个属性改变时执行transition效果，其主要有以下几个值：none(没有属性改变)；all（所有属性改变）这个也是其默认值；indent（元素属性名）</p><h4 id="transition-duration"><a href="#transition-duration" class="headerlink" title="transition=duration"></a>transition=duration</h4><p>默认值0，也就是即时。设一个延续时间单位s或者ms</p><h4 id="transition-timing-function"><a href="#transition-timing-function" class="headerlink" title="transition-timing-function"></a>transition-timing-function</h4><p>ease 逐渐变慢<br>linear 匀速<br>ease-in 加速<br>ease-out 减速<br>ease-in-out 先加速后减速<br>cubic-bezier 自定义时间曲线</p><h4 id="transition-delay"><a href="#transition-delay" class="headerlink" title="transition-delay"></a>transition-delay</h4><p>默认值0，也就是即时。设一个延迟时间单位s或者ms</p><p>随便一个例子<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a &#123;</span><br><span class="line">  -moz-transition: all <span class="number">0.5</span>s ease-<span class="keyword">in</span>;</span><br><span class="line">  -webkit-transition: all <span class="number">0.5</span>s ease-<span class="keyword">in</span>;</span><br><span class="line">  -o-transition: all <span class="number">0.5</span>s ease-<span class="keyword">in</span>;</span><br><span class="line">  transition: all <span class="number">0.5</span>s ease-<span class="keyword">in</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h3 id="transform"><a href="#transform" class="headerlink" title="transform"></a>transform</h3><p>主要包括以下几种：旋转rotate、移动translate、扭曲skew、缩放scale以及矩阵变形matrix<br>有一点要注意的 在这里叠加多个属性是用空格分开而不是逗号</p><p>通过指定的角度参数进行2D旋转，设置的是正数为顺时针旋转，负的为逆时针旋转，例如<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">transform:rotate(<span class="number">30</span>deg)</span><br><span class="line">transform:translateX(<span class="number">100</span>px):</span><br><span class="line">transform:skew(<span class="number">30</span>deg,<span class="number">10</span>deg):</span><br><span class="line">transform:scale(<span class="number">2</span>,<span class="number">1.5</span>):</span><br></pre></td></tr></table></figure></p><h3 id="animate"><a href="#animate" class="headerlink" title="animate"></a>animate</h3><table><thead><tr><th style="text-align:left">值</th><th style="text-align:left">说明</th><th style="text-align:left">随便备注</th></tr></thead><tbody><tr><td style="text-align:left">animation-name</td><td style="text-align:left">指定@keyframes的名字</td></tr><tr><td style="text-align:left">animation-duration</td><td style="text-align:left">动画指定需要多少秒或毫秒完成</td><td style="text-align:left">0表示无动画，单位可以设s秒或ms毫秒</td></tr><tr><td style="text-align:left">animation-timing-function</td><td style="text-align:left">规定动画的速度曲线</td><td style="text-align:left">ease-in-out、linear等</td></tr><tr><td style="text-align:left">animation-delay</td><td style="text-align:left">规定在动画开始之前的延迟。</td><td style="text-align:left">默认值是0，立即播放动画，设负值表示跳过-2s</td></tr><tr><td style="text-align:left">animation-iteration-count</td><td style="text-align:left">定义动画的播放次数。</td><td style="text-align:left">默认是1，可以设置无限循环infinite</td></tr><tr><td style="text-align:left">animation-direction</td><td style="text-align:left">动画播放的方向</td><td style="text-align:left">normal正常播放，alternate正方向轮转，alternate-reverse与前者相反</td></tr><tr><td style="text-align:left">animation-play-state</td><td style="text-align:left">动画的状态</td><td style="text-align:left">可以设running正在播放,pause暂停动画，通常在JS使用该属性object.style.animationPlayState=”paused”来暂停动画。</td></tr><tr><td style="text-align:left">animation-fill-mode</td><td style="text-align:left">动画时间外属性</td><td style="text-align:left">可设none，forwards，backwards，both，默认值none表示动画播完后，恢复到初始状态，forwards当动画播完后，保持@keyframes里最后一帧的属性。backwards表示开始播动画前(也就是delay时间内)，应用@keyframes里第一帧的属性，both表示forwards和backforwards都应用。</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;把css3里与动画有关的三个常见属性归纳到一起&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="css" scheme="http://yoursite.com/tags/css/"/>
     
   </entry>
   

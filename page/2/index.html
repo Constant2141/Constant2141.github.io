@@ -253,210 +253,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/10/ts初体验——类型系统/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/10/ts初体验——类型系统/" itemprop="url">ts初体验——类型系统</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-10T10:48:45+08:00">
-                2019-07-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2019/07/10/ts初体验——类型系统/" class="leancloud_visitors" data-flag-title="ts初体验——类型系统">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="默认情况下，做出以下假设"><a href="#默认情况下，做出以下假设" class="headerlink" title="默认情况下，做出以下假设"></a>默认情况下，做出以下假设</h3><ol>
-<li>假设当前的执行环境是dom</li>
-<li>如果代码中没有使用模块化语句（import、export），便认为该代码是全局执行</li>
-<li>编译的目标代码是ES3</li>
-</ol>
-<p>两种方式更改以上假设</p>
-<ol>
-<li>使用tsc命令的时候，加上选项参数</li>
-<li>使用ts配置文件，更改编译选项（使用配置文件后，用tsc命令不用跟文件名<br>tsconfig的生成命令是tsc –init</li>
-</ol>
-<h3 id="用到的辅助工具包"><a href="#用到的辅助工具包" class="headerlink" title="用到的辅助工具包"></a>用到的辅助工具包</h3><ol>
-<li>@types/node 官方的类型库，补充类型定义，相同的还有@types/jquery等</li>
-<li>ts-node 编译时运行，不用生成js文件就可以运行</li>
-<li>nodemon 选项参数 -e 只对什么后缀的文件监听</li>
-</ol>
-<p>利用这些辅助工具可以在package.json中自定义命令<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">        <span class="string">"dev"</span>: <span class="string">"nodemon --watch src -e ts --exec ts-node src/index.ts"</span>,</span><br><span class="line">        <span class="string">"build"</span>: <span class="string">"rd /s /q dist &amp; tsc"</span></span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure></p>
-<h3 id="其他类型"><a href="#其他类型" class="headerlink" title="其他类型"></a>其他类型</h3><ol>
-<li>联合类型:多种类型选择一个，类型保护：对某个变量类型判断之后，在判断语句块中可以确定类型，typeof可以触发类型保护</li>
-<li>void 用于约束函数返回值，表示没有返回</li>
-<li>never 用户约束函数返回值，表示函数不能结束，一般是用于抛出异常或者无限循环</li>
-<li><p>字面量类型：限定只能赋值为什么</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">字面量应用场景举例</span><br><span class="line"><span class="keyword">let</span> gender : <span class="string">"男"</span>|<span class="string">"女"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr:[] arr变量只能赋值为空数组</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> user =&#123;</span><br><span class="line">    name:string;</span><br><span class="line">    age:number;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>元组 一个固定长度的数组，数组中每一项的类型确定(明确数组的长度和每一个元素)</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> tuarr :[string , number]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>any 可以绕过类型检查，可以赋值任意类型</p>
-</li>
-</ol>
-<h3 id="函数的相关约束"><a href="#函数的相关约束" class="headerlink" title="函数的相关约束"></a>函数的相关约束</h3><p>函数重载：在函数实现之前，对函数调用的多种情况声明</p>
-<p>可选参数：可以在某些参数名后加上问号，表示该参数可以不用传递,可选参数只能在参数的末尾，可以使用多个？</p>
-<p>默认参数值：在函数形参直接赋值，如下面例子的c初始化为0<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a:number,b:number,c:number = <span class="number">0</span></span>) </span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">sum(<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line">sum(<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)</span><br></pre></td></tr></table></figure></p>
-<h3 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h3><h4 id="首先，为什么要用枚举"><a href="#首先，为什么要用枚举" class="headerlink" title="首先，为什么要用枚举"></a>首先，为什么要用枚举</h4><p>A:字面量类型可以实现一些枚举也能做到的效果，但是会出现大量的重复代码，而类型别名虽然又可以解决代码重复的问题，但是如果要修改某个值，可能会出现大量的改动,并且字面量类型不会进入编译结果，而枚举类型会进入编译结果</p>
-<p>先举个栗子吧<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//字符串枚举</span></span><br><span class="line">enum Gender&#123;</span><br><span class="line">    male:<span class="string">'男'</span>, <span class="comment">//要修改的话是修改后面的真值，使用枚举类型是使用前面的字段名</span></span><br><span class="line">    female:<span class="string">'女'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//数字枚举</span></span><br><span class="line"></span><br><span class="line">enum Permission&#123;</span><br><span class="line">    Read = <span class="number">1</span>,</span><br><span class="line">    Write =<span class="number">2</span> ,</span><br><span class="line">    Create =<span class="number">4</span> ,</span><br><span class="line">    Delete = <span class="number">8</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> gender :Gender = Gender.male</span><br></pre></td></tr></table></figure></p>
-<h4 id="枚举的一些注意事项"><a href="#枚举的一些注意事项" class="headerlink" title="枚举的一些注意事项"></a>枚举的一些注意事项</h4><ol>
-<li>枚举的值只能是字符串或者数字</li>
-<li>枚举会出现在编译结果中，表现为对象</li>
-<li>数字枚举的值会自增，如果数字枚举第一个没有赋值，那就从0开始，如果第一个赋值了，后面的就算没有赋值也会自增</li>
-<li>被数字枚举约束的变量可以直接赋值为数字，但是最好不要</li>
-<li><p>两种(数字，字符串)枚举的编译结果js差别挺大</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">enum Level &#123;</span><br><span class="line">    Level1 =<span class="number">1</span>,</span><br><span class="line">    Level2,</span><br><span class="line">    Level3</span><br><span class="line">&#125;</span><br><span class="line">这是数字枚举的编译结果，可以看出是把键值对方向又赋值了一遍</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Level;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">Level</span>) </span>&#123;</span><br><span class="line">    Level[Level[<span class="string">"Level1"</span>] = <span class="number">1</span>] = <span class="string">"Level1"</span>;</span><br><span class="line">    Level[Level[<span class="string">"Level2"</span>] = <span class="number">2</span>] = <span class="string">"Level2"</span>;</span><br><span class="line">    Level[Level[<span class="string">"Level3"</span>] = <span class="number">3</span>] = <span class="string">"Level3"</span>;</span><br><span class="line">&#125;)(Level || (Level = &#123;&#125;));</span><br><span class="line"></span><br><span class="line">因此在用<span class="built_in">Object</span>.values遍历的时候会发现有<span class="number">6</span>个结果</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>一个枚举中不要同时出现既有字符串字段又有数字字段</p>
-</li>
-<li>尽量使用字段名，而不是真值</li>
-</ol>
-<h3 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h3><p>模块化标准如果设置是ES6：和正常写没有区别<br>模块化标准是commonjs，导出变成exports的属性，默认导出变成exports.default</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">对于引入fs这种模块，使用<span class="built_in">module</span>.exports导出的</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>、 <span class="keyword">import</span> * <span class="keyword">as</span> fs <span class="keyword">from</span> <span class="string">"fs"</span>;</span><br><span class="line"><span class="number">2</span>、 <span class="keyword">import</span> &#123;readFileSync&#125; <span class="keyword">from</span> <span class="string">"fs"</span>;</span><br><span class="line"><span class="number">3</span>、 <span class="string">"esModuleInterop"</span>: <span class="literal">true</span>,  <span class="comment">//启动es模块化交互非es模块导出</span></span><br></pre></td></tr></table></figure>
-<p>如果一定要用commonjs，写法则有点像是commonjs和es6的混合<br>导出 export = {xxx}<br>导入 import xxx = require(‘xxx’)</p>
-<p>有关模块解析得另开一篇章节了</p>
-<h3 id="接口interface"><a href="#接口interface" class="headerlink" title="接口interface"></a>接口interface</h3><p>可以通过接口之间的继承实现多种接口的组合</p>
-<p>使用类型别名可以实现类似的组合效果，通过&amp;，又叫交叉类型</p>
-<p>接口与类型别名异同</p>
-<ol>
-<li>子接口不能覆盖父接口的成员</li>
-<li>交叉类型会把相同成员的类型进行交叉 出现既是string又是number的类型</li>
-<li>都不出现在编译结果</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">接口约束对象，</span><br><span class="line">interface User &#123;</span><br><span class="line">    name :string</span><br><span class="line">    age:number</span><br><span class="line">    say:<span class="function"><span class="params">()</span>=&gt;</span><span class="keyword">void</span>或者是</span><br><span class="line">    say():<span class="keyword">void</span></span><br><span class="line">&#125;</span><br><span class="line">接口约束函数</span><br><span class="line">interface condition &#123;</span><br><span class="line">    (m:number):boolean</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">交叉类型实现interface C extends A,B</span><br><span class="line">type C = &#123;</span><br><span class="line">    T3:boolean</span><br><span class="line">&#125; &amp; A &amp; B</span><br></pre></td></tr></table></figure>
-<h3 id="readonly关键字"><a href="#readonly关键字" class="headerlink" title="readonly关键字"></a>readonly关键字</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> User = &#123;</span><br><span class="line">    readonly id :<span class="built_in">string</span></span><br><span class="line">    name:<span class="built_in">string</span></span><br><span class="line">    age :<span class="built_in">number</span></span><br><span class="line">    readonly arr : readonly <span class="built_in">string</span>[]</span><br><span class="line">&#125;</span><br><span class="line">前面的readonly表示数组不能被重新赋值，但是可以push等，后面的readonly是修饰类型，不可push，pop等</span><br><span class="line"><span class="keyword">const</span> arr: ReadonlyArray&lt;<span class="built_in">number</span>&gt; = [<span class="number">1</span>, <span class="number">23</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br></pre></td></tr></table></figure>
-<h3 id="class类"><a href="#class类" class="headerlink" title="class类"></a>class类</h3><h4 id="类型的初始化检查"><a href="#类型的初始化检查" class="headerlink" title="类型的初始化检查"></a>类型的初始化检查</h4><p>启动严格检查     <code>&quot;strictPropertyInitialization&quot;: true</code></p>
-<p>初始化可以在三个位置进行，构造函数里或者属性位置或者构造函数参数<br>属性可以设置 可选？，只读readonly<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">   readonly id:number  <span class="comment">//只读</span></span><br><span class="line">    name:string</span><br><span class="line">    age : number</span><br><span class="line">    gender: <span class="string">'man'</span>|<span class="string">'female'</span> = <span class="string">'man'</span></span><br><span class="line">    pid ?:string     <span class="comment">//可选</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(name:string,age:number)&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = <span class="built_in">Math</span>.random();</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h4><p>public\private\protect<br>当某个属性通过构造函数传参，没有经过改变就直接赋值给属性的时候，利用修饰符可以属性简写</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">    readonly id:number  </span><br><span class="line">    gender: <span class="string">'man'</span>|<span class="string">'female'</span> = <span class="string">'man'</span></span><br><span class="line">    pid ?:string     </span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(public name:string,public age:number)&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = <span class="built_in">Math</span>.random();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="访问器"><a href="#访问器" class="headerlink" title="访问器"></a>访问器</h4><p>用来控制属性的赋值和读取</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">将上面构造函数中的 public age:number 改成private _age:number</span><br><span class="line">set age(value :number)&#123;</span><br><span class="line">        <span class="keyword">if</span>(value &lt; <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">this</span>._age = <span class="number">0</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">this</span>._age = value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    get age()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.floor(<span class="keyword">this</span>._age)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><p>是指附属于函数、类、接口、类型别名之上的类型，相当于是一个类型变量，在定义时无法预先知道具体的类型，可以用泛型代替，只有调用的时候才能确定类型<br>多数情况下，可以通过类型推导根据传递的参数得出泛型的类型<br>如果无法推导，又没有写具体的泛型类型，默认为空对象</p>
-<p>泛型约束</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; log &#125; <span class="keyword">from</span> <span class="string">"util"</span>;</span><br><span class="line"></span><br><span class="line">interface hasNamePropety &#123;</span><br><span class="line">    name: string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">nameToUpper</span>&lt;<span class="title">T</span> <span class="title">extends</span> <span class="title">hasNamePropety</span>&gt;(<span class="params">obj: T</span>): <span class="title">T</span> </span>&#123;</span><br><span class="line">    obj.name = obj.name</span><br><span class="line">        .split(<span class="string">' '</span>)</span><br><span class="line">        .map(<span class="function"><span class="params">s</span> =&gt;</span> s[<span class="number">0</span>].toUpperCase() + s.substr(<span class="number">1</span>))</span><br><span class="line">        .join(<span class="string">' '</span>);</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> o = &#123;</span><br><span class="line">    name: <span class="string">'zheng qingyi'</span>,</span><br><span class="line">    age: <span class="number">18</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> newo = nameToUpper(o)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(newo);</span><br></pre></td></tr></table></figure>
-<p>多泛型使用<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function mixinArray&lt;T,K&gt;(arr1:T[],arr2:K[]) : (T|K)[] &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/10/小程序续篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1934,6 +1730,144 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/21/css3动画三属性/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/21/css3动画三属性/" itemprop="url">css3动画三属性</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-21T11:21:49+08:00">
+                2018-10-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/10/21/css3动画三属性/" class="leancloud_visitors" data-flag-title="css3动画三属性">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>把css3里与动画有关的三个常见属性归纳到一起<br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/21/css3动画三属性/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -1988,7 +1922,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -272,7 +272,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/03/13/crossorigin和integrity/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2020/03/13/crossorigin和integrity/" itemprop="url">crossorigin和integrity</a></h1>
         
 
         <div class="post-meta">
@@ -302,7 +302,7 @@
 
           
           
-             <span id="/2020/03/13/crossorigin和integrity/" class="leancloud_visitors" data-flag-title="">
+             <span id="/2020/03/13/crossorigin和integrity/" class="leancloud_visitors" data-flag-title="crossorigin和integrity">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -338,11 +338,10 @@
       
         
           
-            <figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: crossorigin和integrity</span><br><span class="line">date: 2020<span class="string">-03</span><span class="string">-13</span> 23:37:35</span><br><span class="line"><span class="keyword">tags:</span> [HTML]</span><br></pre></td></tr></table></figure>
-<p>一次偶然不小心点到查看gayhub某个网址的源代码时，发现了一些以前没有注意过的东西</p>
+            <p>一次偶然不小心点到查看gayhub某个网址的源代码时，发现了一些以前没有注意过的东西</p>
 <h1 id="一、view-source协议"><a href="#一、view-source协议" class="headerlink" title="一、view-source协议"></a>一、view-source协议</h1><p>view-source是一种协议，早期基本上每个浏览器都支持这个协议。后来Microsoft考虑安全性，IE就不再支持此协议。但是这个方法在FireFox和Chrome浏览器都还可以使用。 如果要在IE下查看源代码,只能使用查看中的”查看源代码”命令.。FF、Chrome在在浏览器地址栏中输入<code>view-source: URL</code></p>
 <h1 id="二、link标签的crossorigin、integrity属性"><a href="#二、link标签的crossorigin、integrity属性" class="headerlink" title="二、link标签的crossorigin、integrity属性"></a>二、link标签的crossorigin、integrity属性</h1><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link <span class="attribute">crossorigin</span>=<span class="string">"anonymous"</span> <span class="attribute">media</span>=<span class="string">"all"</span> <span class="attribute">integrity</span>=<span class="string">"sha512-5Bs4ERl99/u2AUfpOZF2F0cdfNby7+Vd9teUshXUBPo5CjwECR7IAEf+weI/eCk5tF7K1h3O8hd8k0+P/HePeg=="</span> <span class="attribute">rel</span>=<span class="string">"stylesheet"</span> <span class="attribute">href</span>=<span class="string">"https://github.githubassets.com/assets/frameworks-e41b3811197df7fbb60147e939917617.css"</span> /&gt;</span><br></pre></td></tr></table></figure>
-<p>那么这两个属性意味着什么呢，其实之前没有注意到，有些网站使用CDN资源的时候，都会在<link><script><img>属性带上这两个属性。</p>
+<p>那么这两个属性意味着什么呢，其实之前没有注意到，有些网站使用CDN资源的时候，都会在\&lt;link>\&lt;script>\&lt;img>属性带上这两个属性。</p>
 <h2 id="crossorigin"><a href="#crossorigin" class="headerlink" title="crossorigin"></a>crossorigin</h2><h3 id="两个属性值"><a href="#两个属性值" class="headerlink" title="两个属性值"></a>两个属性值</h3><p>这个属性指定了加载资源的时候是否使用CORS。有两个值</p>
 <ul>
 <li>anonymous：发起一个跨域请求，请求头带上Origin，但是不会发送任何认证信息(不发送cookie，X.509证书和HTTP基本的认证信息)。如果服务器没有设置Access-Control-Allow-Origin：xxx。这个资源限制使用</li>
@@ -367,7 +366,7 @@
 <p>但是，如果网站以及 CDN 都没有使用 HTTPS，运营商可以将外链资源及 HTML 页面本身一起劫持，并将资源内容和页面中的摘要签名同步修改，让 SRI 彻底失效。</p>
 <h3 id="缺陷-1"><a href="#缺陷-1" class="headerlink" title="缺陷"></a>缺陷</h3><p>大部分运营商劫持，都是为了插入广告代码。如果网站启用了 SRI，会导致篡改后的整个文件无法执行，这很可能让页面变得完全不可用。</p>
 <p>当然，为了提高可用性，也可以增加 fallback 处理。例如，在 CDN 资源被篡改而无法加载时，转为使用本站资源：例如cdn引入JQ库，判断是否引入成功，如果没有就使用自己的资源</p>
-</script></p>
+
           
         
       
@@ -1904,7 +1903,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

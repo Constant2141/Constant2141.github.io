@@ -253,6 +253,169 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/30/10.29-11.4学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/30/10.29-11.4学习笔记/" itemprop="url">第八周学习报告</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-30T10:39:13+08:00">
+                2018-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/10/30/10.29-11.4学习笔记/" class="leancloud_visitors" data-flag-title="第八周学习报告">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="JQ"><a href="#JQ" class="headerlink" title="JQ"></a>JQ</h3><p>把JQ补完了，JQ插件那块了解了下，用起来不复杂，很方便，以下随便提取几点</p>
+<ul>
+<li><p>jQuery 入口函数与 JavaScript 入口函数的区别：<br>jQuery 的入口函数是在 html 所有标签(DOM)都加载之后，就会去执行。</p>
+</li>
+<li><p>JavaScript 的 window.onload 事件是等到所有内容，包括外部图片之类的文件加载完后，才会执行。<br>引入文件写在head</p>
+</li>
+</ul>
+<ul>
+<li>$(‘#p1’).toggle(speed,callback);<br>1.$(selector)选中的元素的个数为n个，则callback函数会执行n次；<br>2.callback函数名后加括号，会立刻执行函数体，而不是等到显示/隐藏完成后才执行；<br>3.callback既可以是函数名，也可以是匿名函数；</li>
+</ul>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>这已经是第三次回顾闭包了，第一次是直接学的时候，第二次是看王福朋的博客，第三次是看了成哥的教学</p>
+<p>闭包出现的情况：内部函数被保存到外部，产生闭包，导致原有的作用域链不被释放，造成内存泄漏</p>
+<p>或者说闭包就是一个函数引用另外一个函数的变量，因为变量被引用着所以不会被回收，因此可以用来封装一个私有变量。这是优点也是缺点，不必要的闭包只会徒增内存消耗</p>
+<ul>
+<li>下面是一道见过无数次的陷阱题<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createFunctions</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">        result[i] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> funcs = createFunctions();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i &lt; funcs.length; i++)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(funcs[i]());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>输出结果大家都知道了是10个10，具体来讲陷阱就是：函数带()才是执行函数！ 单纯的一句 var f = function() { alert(‘ABC’); }; 是不会弹窗的，后面接一句 f(); 才会执行函数内部的代码。</p>
+<h3 id="有关eval-这个函数"><a href="#有关eval-这个函数" class="headerlink" title="有关eval()这个函数"></a>有关eval()这个函数</h3><p>这个函数见过几次，虽然按道理不常用，但是还是查了一下</p>
+<p>1eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。</p>
+<p>2eval()解析JSON字符串为函数-</p>
+<p>为什么要 eval这里要添加 “(“(“+data+”)”);//”呢？</p>
+<p>原因在于：eval本身的问题。 由于json是以”{}”的方式来开始以及结束的，在JS中，它会被当成一个语句块来处理，所以必须强制性的将它转换成一种表达式。</p>
+<p>加上圆括号的目的是迫使eval函数在处理JavaScript代码的时候强制将 括号内的表达式（expression）转化为对象，而不是作为语 句（statement）来执行。举一个例子，例如对象字面量{}，如若不加外层的括号，那么eval会将大括号识别为JavaScript代码块的开始 和结束标记，那么{}将会被认为是执行了一句空语句。所以下面两个执行结果是不同的：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="built_in">eval</span>(<span class="string">"&#123;&#125;"</span>); <span class="comment">// return undefined</span></span><br><span class="line">alert(<span class="built_in">eval</span>(<span class="string">"(&#123;&#125;)"</span>);<span class="comment">// return object[Object]</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="正则去除中文"><a href="#正则去除中文" class="headerlink" title="正则去除中文"></a>正则去除中文</h3><p>有人突然问到的，看看</p>
+<p>验证中文<br>^[\u4e00-\u9fa5]+$</p>
+<p>验证字母<br>^[a-zA-Z]+$</p>
+<p>验证数字<br>^[0-9]+$</p>
+<p>中文，字母，数字组成的字符串，不要求三者同时出现^[a-zA-Z0-9\u4e00-\u9fa5]+$</p>
+<p>\u4e00-\u9fa5这两个unicode值正好是Unicode表中的汉字的头和尾。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/21/css3动画三属性/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1532,144 +1695,6 @@ q:  不保存文件，退出vi
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/20/暑期总结报告/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/20/暑期总结报告/" itemprop="url">迟到的暑期培训总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-20T01:56:56+08:00">
-                2018-08-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/08/20/暑期总结报告/" class="leancloud_visitors" data-flag-title="迟到的暑期培训总结">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>早就应该写的了，拖着拖着就到现在了<br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/20/暑期总结报告/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1724,7 +1749,7 @@ q:  不保存文件，退出vi
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1737,7 +1762,7 @@ q:  不保存文件，退出vi
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

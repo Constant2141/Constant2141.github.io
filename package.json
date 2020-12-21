@@ -6,7 +6,6 @@
     "version": "3.7.1"
   },
   "dependencies": {
-    "fsevents": "^2.2.0",
     "gitment": "0.0.3",
     "hexo": "^3.2.0",
     "hexo-asset-image": "0.0.3",

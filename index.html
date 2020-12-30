@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/04/从ctrl滚动实现原理引发的思考/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/26/常见字符编码区别/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="郑庆义">
@@ -272,7 +272,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/04/04/从ctrl滚动实现原理引发的思考/" itemprop="url">从浏览器ctrl滚动实现原理引发的思考</a></h1>
+                <a class="post-title-link" href="/2020/10/26/常见字符编码区别/" itemprop="url">常见字符编码区别</a></h1>
         
 
         <div class="post-meta">
@@ -284,8 +284,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-04T23:14:24+08:00">
-                2020-04-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-26T13:03:42+08:00">
+                2020-10-26
               </time>
             
 
@@ -302,7 +302,7 @@
 
           
           
-             <span id="/2020/04/04/从ctrl滚动实现原理引发的思考/" class="leancloud_visitors" data-flag-title="从浏览器ctrl滚动实现原理引发的思考">
+             <span id="/2020/10/26/常见字符编码区别/" class="leancloud_visitors" data-flag-title="常见字符编码区别">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -338,9 +338,345 @@
       
         
           
-            <p>今天某位大一的师妹提出来的问题，搜了一下发现还是有点东西的。</p>
+            <p><a href="https://blog.csdn.net/qq_34745204/article/details/83786775" target="_blank" rel="noopener">字符编码的常用种类介绍</a></p>
+<p><a href="https://blog.csdn.net/slx3320612540/article/details/81251642" target="_blank" rel="noopener">微信公众号回复、接收消息中中文乱码问题的分析及解决</a></p>
+<h3 id="1、ISO8859-1-读-Latin-1"><a href="#1、ISO8859-1-读-Latin-1" class="headerlink" title="1、ISO8859-1(读 Latin-1)"></a>1、ISO8859-1(读 Latin-1)</h3><p><strong>最早</strong>的编码，<strong>单字节</strong>，字符范围0-255，应用在<strong>英文</strong>上，<strong>无法表示中文</strong>。</p>
+<p>由于是单字节，和计算机最基础的表示单位(Byte字节)一致，所以很多时候，仍然使用ISO8859-1，其实很多协议也确实是默认使用该编码，尽管不能表示中文，但是可以在另一种编码的基础上做处理，例如虽然”中文”两个字不存在iso8859-1编码，以gb2312编码为例，应该是”d6d0 cec4”两个字符，使用iso8859-1编码的时候则将它拆开为4个字节来表示：”d6 d0 ce c4</p>
+<h3 id="2、ASCII"><a href="#2、ASCII" class="headerlink" title="2、ASCII"></a>2、ASCII</h3><p>如今<strong>最通用</strong>的<strong>单字节</strong>编码，主要应用在<strong>英语</strong>和其他<strong>西欧语言</strong></p>
+<h3 id="3、GB2312"><a href="#3、GB2312" class="headerlink" title="3、GB2312"></a>3、GB2312</h3><p>前面两种编码都不支持中文，于是<strong>中国</strong>制定了GB2312编码，专门表示汉字，考虑到一个字节8位只能表示256个字符，因此该编码是<strong>双字节编码</strong>，英文字母的表示和ISO8859-1一致(也就是兼容了它)，但是只支持<strong>简体汉字</strong>。与之对应的就有BIG5，中华民国制定的繁体汉字编码规范</p>
+<h3 id="4、GBK-大字符集"><a href="#4、GBK-大字符集" class="headerlink" title="4、GBK(大字符集)"></a>4、GBK(大字符集)</h3><p>GBK是GB2312基础上<strong>扩容并兼容</strong>的标准，也是<strong>双字节</strong>,包含<strong>所有亚洲文字</strong>，即简体中文、繁体中文、日语、韩语等，同时收录的汉字也比GB2312和BIG5都要多</p>
+<h3 id="5、Unicode"><a href="#5、Unicode" class="headerlink" title="5、Unicode"></a>5、Unicode</h3><p>如果每个国家、地区都用自己的一套编码规范，不可避免会有冲突，于是乎Unicode就成为了实现大一统的救世主，将<strong>所有的语言统一</strong>到一套编码里面，就不会有乱码问题了。</p>
+<p>Unicode标准不断发展，目前最常用的还是<strong>2个字节表示一个字符</strong>，有些<strong>生僻字4个字节</strong>。现代OS和大多数编程语言都是直接支持Unicode的，而且完全兼容ASCII(就在一个字节的ASCII前面添上8个0嘛)，当然缺点就是，在存储英文字符的时候，浪费了一倍的空间</p>
+<h3 id="6、UTF-16"><a href="#6、UTF-16" class="headerlink" title="6、UTF-16"></a>6、UTF-16</h3><p>UTF-16 用<strong>两个字节</strong>来表示 Unicode 转化格式，这个是<strong>定长</strong>的表示方法，不论什么字符都可以用两个字节表示，两个字节是 16 个 bit，所以叫 UTF-16。UTF-16 表示字符非常方便，每两个字节表示一个字符，这个在字符串操作时就大大<strong>简化了操作</strong>，这也是 <strong>Java 以 UTF-16</strong> 作为内存的字符存储格式的一个很重要的原因。 </p>
+<h3 id="7、UTF-8"><a href="#7、UTF-8" class="headerlink" title="7、UTF-8"></a>7、UTF-8</h3><p>针对Unicode和UTF-16的浪费现象(有很大一部分字符用一个字节就可以表示的现在要两个字节表示，存储空间放大了一倍，并且现在的网络带宽还非常有限，这样会增大网络传输的流量)需要把Unicode编码转为一种“<strong>可变长编码</strong>”的UTF-8。UTF-8在原来Unicode的基础上根据数字大小编码成1-6个字节，常用的英文就是1字节，汉字一般3字节，生僻字4-6字节。</p>
+<p>同时由于英文是1个字节，所以ASCII码是可以当成其中的一部分的，这样的好处就是原来支持ASCII的旧软件可以再UTF-8下继续运行。</p>
+<p>UTF-8 有以下编码规则： </p>
+<ul>
+<li>如果一个字节，最高位（第 8 位）为 0，表示这是一个 ASCII 字符（00 - 7F）。可见，所有 ASCII 编码已经是 UTF-8 了。</li>
+<li>如果一个字节，以 11 开头，连续的 1 的个数暗示这个字符的字节数，例如：110xxxxx 代表它是双字节 UTF-8 字符的首字节。</li>
+<li>如果一个字节，以 10 开始，表示它不是首字节，需要向前查找才能得到当前字符的首字节</li>
+</ul>
+<h3 id="计算机内存的编码转换"><a href="#计算机内存的编码转换" class="headerlink" title="计算机内存的编码转换"></a>计算机内存的编码转换</h3><p>在计算机<strong>内存</strong>中统一使用Unicode编码，当需要保存到<strong>硬盘</strong>或者需要<strong>传输</strong>的时候，就转换为UTF-8编码。</p>
+<p>用记事本编辑的时候，从文件读取的UTF-8字符被转换为Unicode字符到内存里，编辑完成后，保存的时候再把Unicode转换为UTF-8保存到文件</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/23/MongoDB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/23/MongoDB/" itemprop="url">MongoDB</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-23T13:03:42+08:00">
+                2020-09-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2020/09/23/MongoDB/" class="leancloud_visitors" data-flag-title="MongoDB">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="何谓MongoDB"><a href="#何谓MongoDB" class="headerlink" title="何谓MongoDB"></a>何谓MongoDB</h3><p>MongoDB是一款广受欢迎的文档型数据库，数据以BSON（一种类JSON的二进制形式）的格式存储</p>
+<h3 id="对比传统关系型DB优点"><a href="#对比传统关系型DB优点" class="headerlink" title="对比传统关系型DB优点"></a>对比传统关系型DB优点</h3><p>对比传统的关系型数据库，MongoDB有很多独有的优势，比如：</p>
+<ol>
+<li><strong>schema-free，灵活易用的文档模型</strong></li>
+<li><strong>原生分布式支持带来良好的扩展性，支持海量数据的存储</strong></li>
+<li>强大的索引支持，支持多种索引类型，如TTL、文本、地理位置等等</li>
+<li>JSON 格式存储最接近真实对象模型，对开发者友好，方便快速开发迭代</li>
+</ol>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>游戏、UGC、电商、物联网、直播等，支撑了很多核心的业务数据存储</p>
+<h4 id="UGC"><a href="#UGC" class="headerlink" title="UGC"></a>UGC</h4><p>用户生成内容</p>
+<ul>
+<li><p>数据由用户产生，结构多变</p>
+<p>数据结构可能是非结构化的，传统关系型数据库需要事先定义好表结构，无法适应这种场景，就算可以支持，增删字段也是麻烦的，MongoDB没有表结构</p>
+</li>
+<li><p>海量数据存储</p>
+<p>如今单个应用的数据存储已经可以达到TB，甚至PB级别，MongoDB天然支持分布式部署，通过分片集群，将数据分布到不同分片，实现海量存储</p>
+</li>
+<li><p>需要二级索引，按照多个维度查询展示</p>
+<p>MongoDB支持多种索引类型，可以对各个字段建立二级索引，能够高效的对各个维度进行查询展示</p>
+</li>
+<li><p>性能、可用性、数据安全的一个综合考虑</p>
+<p>多副本保证数据安全，完善的故障恢复机制，灵活的数据一致性读写接口</p>
+</li>
+</ul>
+<h4 id="游戏"><a href="#游戏" class="headerlink" title="游戏"></a>游戏</h4><ul>
+<li><p>对复杂结构友好（支持Document，自由模式）</p>
+<p>游戏的迭代速度很快，装备、属性等字段变更非常频繁，且玩家数据存在频繁的联动与刷新，数据结构极其复杂。使用 MongoDB 存储游戏用户信息、装备、积分等时，会直接以内嵌<strong>文档</strong>的形式存储，<strong>无需进行复杂的模式设计</strong>。<br>得益于MongoDB的BSON的文档存储模型，MongoDB具备了<strong>多形性</strong>和<strong>动态性</strong>，多形性表示同一个集合包含不同字段的文档对象，这意味着插入一条数据结构更新后的记录，动态性意味着动态增加、修改字段无需停止数据库服务。这种no-schema模式大大免去了变更表结构的痛苦，大幅度缩短游戏版本的迭代周期。</p>
+</li>
+<li><p>高性能（支持高可用）</p>
+<p>延迟高于几百毫秒之后玩家体验会急剧降低；且游戏业务的用户量存在明显的高低峰期。高峰期对数据库的并发能力和QPS有较高要求。</p>
+</li>
+<li><p>可扩展性（支持Sharding，可扩展）</p>
+<p>随着游戏的发展，玩家数量越来越多，或者在某些运营活动的短时间内，用户量暴增。MongoDB本身支持副本集的纵向扩展，通过多个节点的方式，大大提升集群的读能力，通过分片集群的横向扩展，将数据通过片键存储在多台物理机上，实现存储容量线性快速扩展的目的</p>
+</li>
+</ul>
+<h3 id="什么样的场景适合用MongoDB"><a href="#什么样的场景适合用MongoDB" class="headerlink" title="什么样的场景适合用MongoDB"></a>什么样的场景适合用MongoDB</h3><ol>
+<li><p>业务不是非得用到关系型数据库的一些特性（如事务、join等），大多数情况都可以选择MongoDB，当然MongoDB4.0也支持事务了</p>
+</li>
+<li><p>业务没有固定的数据模型，数据格式变动频繁</p>
+</li>
+<li><p>需要支持海量数据（TB、PB级别）存储</p>
+</li>
+<li><p>对性能和延时有较高要求，例如ms级别</p>
+</li>
+<li><p>游戏一般会考虑Mysql或tcaplus或MongoDB的其中一种，选用MongoDB的大都是代理类业务。一般还是用前两个多</p>
+<blockquote>
+<p>游戏数据库（TcaplusDB）是腾讯自研的，专为游戏设计的<strong>分布式非关系型</strong>数据存储服务。</p>
+</blockquote>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/04/从ctrl滚动实现原理引发的思考/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/04/从ctrl滚动实现原理引发的思考/" itemprop="url">从浏览器ctrl+滚轮实现页面缩放原理引发的思考</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-04T23:14:24+08:00">
+                2020-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2020/04/04/从ctrl滚动实现原理引发的思考/" class="leancloud_visitors" data-flag-title="从浏览器ctrl+滚轮实现页面缩放原理引发的思考">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天下届某位同学提出来的问题，稍微思考一番确实从未考虑过这个问题。</p>
 <hr>
-<h2 id="搜搜万能的互联网怎么说的"><a href="#搜搜万能的互联网怎么说的" class="headerlink" title="搜搜万能的互联网怎么说的"></a>搜搜万能的互联网怎么说的</h2><h3 id="第一种说法-改变html宽高"><a href="#第一种说法-改变html宽高" class="headerlink" title="第一种说法(改变html宽高)"></a>第一种说法(改变html宽高)</h3><blockquote>
+<h2 id="搜一搜万能的互联网怎么说的"><a href="#搜一搜万能的互联网怎么说的" class="headerlink" title="搜一搜万能的互联网怎么说的"></a>搜一搜万能的互联网怎么说的</h2><h3 id="第一种说法-改变html宽高"><a href="#第一种说法-改变html宽高" class="headerlink" title="第一种说法(改变html宽高)"></a>第一种说法(改变html宽高)</h3><blockquote>
 <p>在没有确定html的width和height为px情况下，是<strong>通过缩放html标签的高度和宽度</strong>来实现的。道理不难理解，html作为参照物，当你想放大的时候，其实浏览器执行的是缩小html的宽和高。为html设定一个所谓的绝对宽度和高，即px为单位（虽然这个也并非绝对单位），可以清晰的看到html画布的放大和缩小。<br>但是在设置了HTML的w和h后，其缩放机理还没有摸透，猜测可能是改变了document的宽和高。</p>
 </blockquote>
 <p>利用媒体查询看看例子</p>
@@ -1591,313 +1927,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/19/几种模块化规范比较/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/19/几种模块化规范比较/" itemprop="url">几种模块化规范比较</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-19T10:04:48+08:00">
-                2019-07-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2019/07/19/几种模块化规范比较/" class="leancloud_visitors" data-flag-title="几种模块化规范比较">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="commonjs"><a href="#commonjs" class="headerlink" title="commonjs"></a>commonjs</h3><p>commonjs是node应用的模块规范，每个文件都是一个模块</p>
-<p>每个模块内部，module代表当前模块，也就是文件本身</p>
-<p>module.exports属性是对外的接口，加载一个模块其实就是加载module.exports</p>
-<p>每个模块都有一个exports变量，指向module.exports。相当于var exports = module.exports，但是要用直接用exports的话，只能在成员上添加，例如exports.add = function(){}，不能直接赋值，会切断和module.exports的连接，所以尽量不要直接用exports</p>
-<p>require加载模块，返回的是引入模块的exports对象</p>
-<h3 id="模块加载规则"><a href="#模块加载规则" class="headerlink" title="模块加载规则"></a>模块加载规则</h3><p>根据require字符串参数的不同</p>
-<ol>
-<li>/开头，绝对路径</li>
-<li>./ 相对路径</li>
-<li>一个模块的名字，加载的是核心模块，位于各级目录下的node_modules，寻找的路径是从同级目录下开始往上找</li>
-<li>如果是路径，例如<code>require(&#39;aaa/bbb/ccc&#39;)</code>先找aaa位置，再找后面的</li>
-<li>如果都没有找到，node会给文件名添加.js,.json,.node后缀，再去搜索，分别以js脚本解析，json文本解析，二进制文件解析</li>
-</ol>
-<p>第一次加载该模块，node会缓存该模块。再次加载，直接从缓存中取出该模块的module.exports属性。<br>缓存是保存在<code>require.cache</code><br>删除缓存是用<code>delete require.cache[moduleName];</code>基本不会用到这个的</p>
-<p>模块输出的变量就跟原模块没有关系了，原来的模块变化，不会影响到输出的变量</p>
-<h3 id="AMD与commonjs的区别"><a href="#AMD与commonjs的区别" class="headerlink" title="AMD与commonjs的区别"></a>AMD与commonjs的区别</h3><p>AMD规范则异步加载模块，允许指定回调函数</p>
-<p>CommonJS规范加载模块是同步的，只有加载完成，才能执行后面的操作。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//commonjs写法</span></span><br><span class="line"><span class="keyword">var</span> clock = <span class="built_in">require</span>(<span class="string">'clock'</span>);</span><br><span class="line">clock.start();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//AMD写法</span></span><br><span class="line"><span class="built_in">require</span>([<span class="string">'clock'</span>],<span class="function"><span class="keyword">function</span>(<span class="params">clock</span>)</span>&#123;</span><br><span class="line">  clock.start();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="AMD和CMD的区别"><a href="#AMD和CMD的区别" class="headerlink" title="AMD和CMD的区别"></a>AMD和CMD的区别</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//CMD的写法</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">var</span> clock = <span class="built_in">require</span>(<span class="string">'clock'</span>);</span><br><span class="line">   clock.start();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>AMD和CMD最大的区别是依赖模块的执行时机不同，而不是加载时机或者加载方式不同，其实二者皆为异步加载模块</p>
-<p>AMD依赖前置，js可以方便知道依赖模块是什么，立即加载；而CMD就近依赖，需要把模块变为字符串解析一遍才知道依赖了那些模块，但是解析模块用的时间短到可以忽略</p>
-<h3 id="ES6的模块化"><a href="#ES6的模块化" class="headerlink" title="ES6的模块化"></a>ES6的模块化</h3><p>export后面跟要暴露的对象，export default是缺省，一个模块只能有一个default<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> name <span class="keyword">from</span> <span class="string">"xxx"</span>  <span class="comment">//通配符引入所有export的变量， as作用是重命名</span></span><br><span class="line"><span class="keyword">import</span> &#123;a,b,c&#125; <span class="keyword">from</span> <span class="string">"xxx"</span> <span class="comment">//引入指定的变量</span></span><br><span class="line"><span class="keyword">import</span> x <span class="keyword">from</span> <span class="string">""</span><span class="comment">//没有使用&#123;&#125;的，这样写会引入export default</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"./1.jpg"</span><span class="comment">//模块也可以是图片，js文件，这样直接引入模块的代码，不引入内部成员</span></span><br><span class="line"><span class="keyword">let</span> promise = <span class="keyword">import</span>(<span class="string">"xxx"</span>) <span class="comment">//也支持异步引入，一定要绝对路径，在编译的时候会生成异步的模块，前面带有数字那些文件就是</span></span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/17/koa/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/17/koa/" itemprop="url">koa</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-17T16:26:54+08:00">
-                2019-07-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2019/07/17/koa/" class="leancloud_visitors" data-flag-title="koa">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="ctx里面的常见参数"><a href="#ctx里面的常见参数" class="headerlink" title="ctx里面的常见参数"></a>ctx里面的常见参数</h3><p>ctx.method/url/path/query/ip</p>
-<p>throw()<br>assert(!condition,statuscode,xxxxx)会把错误信息暴露在前端，当第一个参数的条件不满足执行后面的</p>
-<p>ctx.status 设状态码<br>ctx.redirect 重定向<br>ctx.attachment下载文件<br>ctx.state.变量名  用来设置全局变量</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ctx.status = <span class="number">301</span>||<span class="number">302</span></span><br><span class="line">ctx.redirect = <span class="string">'/xx.html'</span></span><br></pre></td></tr></table></figure>
-<h3 id="文件的坑"><a href="#文件的坑" class="headerlink" title="文件的坑"></a>文件的坑</h3><p>使用koa-body 或者koa-better-body 获取上传的文件的坑<br>新版本的koa-body通过ctx.request.files获取上传的文件 。现在用这个<br>旧版本的koa-body通过ctx.request.body.files获取上传的文件 ,史诗巨坑</p>
-<p>读文件可以用await-fa模块</p>
-<p>koa-better-body还可以用ctx.request.fields获取各种类型的请求参数<br>其中文件的写法式ctx.request.fields.file 等价于 ctx.request.files</p>
-<p>能用绝对路径的不要用相对，引入path模块，path.resolve(_dirname,’./xxx’)</p>
-<h3 id="中间件的坑"><a href="#中间件的坑" class="headerlink" title="中间件的坑"></a>中间件的坑</h3><p>使用中间件，一定要写next(),并且next()前面一定要有await()，不然会莫名其妙404</p>
-<p>要做集中处理错误信息router.all(‘*’,async(ctx,next)=&gt; {<br>    try{}catch{}<br>})</p>
-<p>使用中间件是.use   写规则是.all </p>
-<h3 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h3><p>设置cookie<br>ctx.cookies.set(name, value, [options])<br>options里面可以写maxAge</p>
-<p>获取cookie<br>ctx.cookies.get(‘name’);</p>
-<h3 id="session"><a href="#session" class="headerlink" title="session"></a>session</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">在app.js设置</span><br><span class="line">app.keys = [<span class="string">'some secret hurr'</span>];<span class="comment">//放置一堆key</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> CONFIG = &#123;</span><br><span class="line">   key: <span class="string">'koa:sess'</span>,   <span class="comment">//修改key的名字</span></span><br><span class="line">   maxAge: <span class="number">86400000</span>,  <span class="comment">// cookie的过期时间 </span></span><br><span class="line">   signed: <span class="literal">true</span>,   <span class="comment">//签名默认true</span></span><br><span class="line">   renew: <span class="literal">true</span>,  <span class="comment">//过期自动刷新</span></span><br><span class="line">&#125;;</span><br><span class="line">app.use(session(CONFIG, app)); <span class="comment">//第二个参数是app，注意</span></span><br></pre></td></tr></table></figure>
-<p>设置值 ctx.session.username = “张三”;</p>
-<p>获取值 ctx.session.username</p>
-<h3 id="允许跨域"><a href="#允许跨域" class="headerlink" title="允许跨域"></a>允许跨域</h3><p>有专门的中间件，不用写那一串了<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cors = <span class="built_in">require</span>(<span class="string">'koa2-cors'</span>);</span><br><span class="line">app.use(cors())</span><br></pre></td></tr></table></figure></p>
-<h3 id="gzip压缩页面"><a href="#gzip压缩页面" class="headerlink" title="gzip压缩页面"></a>gzip压缩页面</h3><p>加快网页的加载速度<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> compress = <span class="built_in">require</span>(<span class="string">'koa-compress'</span>);</span><br><span class="line"><span class="keyword">const</span> app = koa()；</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> options = &#123; <span class="attr">threshold</span>: <span class="number">2048</span> &#125;;</span><br><span class="line"> app.use(compress(options));</span><br></pre></td></tr></table></figure></p>
-<p>websock，reg，webpack，es6</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1952,7 +1981,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1965,7 +1994,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

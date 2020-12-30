@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="今天某位大一的师妹提出来的问题，搜了一下发现还是有点东西的。  搜搜万能的互联网怎么说的第一种说法(改变html宽高) 在没有确定html的width和height为px情况下，是通过缩放html标签的高度和宽度来实现的。道理不难理解，html作为参照物，当你想放大的时候，其实浏览器执行的是缩小html的宽和高。为html设定一个所谓的绝对宽度和高，即px为单位（虽然这个也并非绝对单位），可以清晰">
+<meta name="description" content="今天下届某位同学提出来的问题，稍微思考一番确实从未考虑过这个问题。  搜一搜万能的互联网怎么说的第一种说法(改变html宽高) 在没有确定html的width和height为px情况下，是通过缩放html标签的高度和宽度来实现的。道理不难理解，html作为参照物，当你想放大的时候，其实浏览器执行的是缩小html的宽和高。为html设定一个所谓的绝对宽度和高，即px为单位（虽然这个也并非绝对单位），">
 <meta name="keywords" content="浏览器">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从浏览器ctrl滚动实现原理引发的思考">
+<meta property="og:title" content="从浏览器ctrl+滚轮实现页面缩放原理引发的思考">
 <meta property="og:url" content="http://yoursite.com/2020/04/04/从ctrl滚动实现原理引发的思考/index.html">
 <meta property="og:site_name" content="星辰在上">
-<meta property="og:description" content="今天某位大一的师妹提出来的问题，搜了一下发现还是有点东西的。  搜搜万能的互联网怎么说的第一种说法(改变html宽高) 在没有确定html的width和height为px情况下，是通过缩放html标签的高度和宽度来实现的。道理不难理解，html作为参照物，当你想放大的时候，其实浏览器执行的是缩小html的宽和高。为html设定一个所谓的绝对宽度和高，即px为单位（虽然这个也并非绝对单位），可以清晰">
+<meta property="og:description" content="今天下届某位同学提出来的问题，稍微思考一番确实从未考虑过这个问题。  搜一搜万能的互联网怎么说的第一种说法(改变html宽高) 在没有确定html的width和height为px情况下，是通过缩放html标签的高度和宽度来实现的。道理不难理解，html作为参照物，当你想放大的时候，其实浏览器执行的是缩小html的宽和高。为html设定一个所谓的绝对宽度和高，即px为单位（虽然这个也并非绝对单位），">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.17qq.com/img_biaoqing/75719236.jpeg">
-<meta property="og:updated_time" content="2020-12-21T10:06:53.429Z">
+<meta property="og:updated_time" content="2020-12-29T09:41:12.501Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="从浏览器ctrl滚动实现原理引发的思考">
-<meta name="twitter:description" content="今天某位大一的师妹提出来的问题，搜了一下发现还是有点东西的。  搜搜万能的互联网怎么说的第一种说法(改变html宽高) 在没有确定html的width和height为px情况下，是通过缩放html标签的高度和宽度来实现的。道理不难理解，html作为参照物，当你想放大的时候，其实浏览器执行的是缩小html的宽和高。为html设定一个所谓的绝对宽度和高，即px为单位（虽然这个也并非绝对单位），可以清晰">
+<meta name="twitter:title" content="从浏览器ctrl+滚轮实现页面缩放原理引发的思考">
+<meta name="twitter:description" content="今天下届某位同学提出来的问题，稍微思考一番确实从未考虑过这个问题。  搜一搜万能的互联网怎么说的第一种说法(改变html宽高) 在没有确定html的width和height为px情况下，是通过缩放html标签的高度和宽度来实现的。道理不难理解，html作为参照物，当你想放大的时候，其实浏览器执行的是缩小html的宽和高。为html设定一个所谓的绝对宽度和高，即px为单位（虽然这个也并非绝对单位），">
 <meta name="twitter:image" content="http://www.17qq.com/img_biaoqing/75719236.jpeg">
 
 
@@ -128,7 +128,7 @@
 
 
 
-  <title>从浏览器ctrl滚动实现原理引发的思考 | 星辰在上</title>
+  <title>从浏览器ctrl+滚轮实现页面缩放原理引发的思考 | 星辰在上</title>
   
 
 
@@ -273,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">从浏览器ctrl滚动实现原理引发的思考</h1>
+          <h1 class="post-title" itemprop="name headline">从浏览器ctrl+滚轮实现页面缩放原理引发的思考</h1>
         
 
         <div class="post-meta">
@@ -303,7 +303,7 @@
 
           
           
-             <span id="/2020/04/04/从ctrl滚动实现原理引发的思考/" class="leancloud_visitors" data-flag-title="从浏览器ctrl滚动实现原理引发的思考">
+             <span id="/2020/04/04/从ctrl滚动实现原理引发的思考/" class="leancloud_visitors" data-flag-title="从浏览器ctrl+滚轮实现页面缩放原理引发的思考">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -337,9 +337,9 @@
       
 
       
-        <p>今天某位大一的师妹提出来的问题，搜了一下发现还是有点东西的。</p>
+        <p>今天下届某位同学提出来的问题，稍微思考一番确实从未考虑过这个问题。</p>
 <hr>
-<h2 id="搜搜万能的互联网怎么说的"><a href="#搜搜万能的互联网怎么说的" class="headerlink" title="搜搜万能的互联网怎么说的"></a>搜搜万能的互联网怎么说的</h2><h3 id="第一种说法-改变html宽高"><a href="#第一种说法-改变html宽高" class="headerlink" title="第一种说法(改变html宽高)"></a>第一种说法(改变html宽高)</h3><blockquote>
+<h2 id="搜一搜万能的互联网怎么说的"><a href="#搜一搜万能的互联网怎么说的" class="headerlink" title="搜一搜万能的互联网怎么说的"></a>搜一搜万能的互联网怎么说的</h2><h3 id="第一种说法-改变html宽高"><a href="#第一种说法-改变html宽高" class="headerlink" title="第一种说法(改变html宽高)"></a>第一种说法(改变html宽高)</h3><blockquote>
 <p>在没有确定html的width和height为px情况下，是<strong>通过缩放html标签的高度和宽度</strong>来实现的。道理不难理解，html作为参照物，当你想放大的时候，其实浏览器执行的是缩小html的宽和高。为html设定一个所谓的绝对宽度和高，即px为单位（虽然这个也并非绝对单位），可以清晰的看到html画布的放大和缩小。<br>但是在设置了HTML的w和h后，其缩放机理还没有摸透，猜测可能是改变了document的宽和高。</p>
 </blockquote>
 <p>利用媒体查询看看例子</p>
@@ -434,6 +434,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2020/09/23/MongoDB/" rel="prev" title="MongoDB">
+                MongoDB <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -513,7 +517,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -526,7 +530,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -574,7 +578,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#搜搜万能的互联网怎么说的"><span class="nav-number">1.</span> <span class="nav-text">搜搜万能的互联网怎么说的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一种说法-改变html宽高"><span class="nav-number">1.1.</span> <span class="nav-text">第一种说法(改变html宽高)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二种说法-改变逻辑尺寸"><span class="nav-number">1.2.</span> <span class="nav-text">第二种说法(改变逻辑尺寸?)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三种说法-改变zoom值"><span class="nav-number">1.3.</span> <span class="nav-text">第三种说法(改变zoom值)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四种说法-改变分辨率"><span class="nav-number">1.4.</span> <span class="nav-text">第四种说法(改变分辨率)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第五种说法-这和操作系统有关"><span class="nav-number">1.5.</span> <span class="nav-text">第五种说法(这和操作系统有关)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#顺便谈下zoom这个属性"><span class="nav-number">2.</span> <span class="nav-text">顺便谈下zoom这个属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在非IE下的作用"><span class="nav-number">2.1.</span> <span class="nav-text">在非IE下的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在IE下的作用"><span class="nav-number">2.2.</span> <span class="nav-text">在IE下的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#和transform-scale的差异"><span class="nav-number">2.3.</span> <span class="nav-text">和transform:scale的差异</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何检查浏览器的缩放状态-兼容各种浏览器"><span class="nav-number">3.</span> <span class="nav-text">如何检查浏览器的缩放状态(兼容各种浏览器)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何禁用浏览器的缩放"><span class="nav-number">4.</span> <span class="nav-text">如何禁用浏览器的缩放</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#搜一搜万能的互联网怎么说的"><span class="nav-number">1.</span> <span class="nav-text">搜一搜万能的互联网怎么说的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一种说法-改变html宽高"><span class="nav-number">1.1.</span> <span class="nav-text">第一种说法(改变html宽高)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二种说法-改变逻辑尺寸"><span class="nav-number">1.2.</span> <span class="nav-text">第二种说法(改变逻辑尺寸?)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三种说法-改变zoom值"><span class="nav-number">1.3.</span> <span class="nav-text">第三种说法(改变zoom值)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四种说法-改变分辨率"><span class="nav-number">1.4.</span> <span class="nav-text">第四种说法(改变分辨率)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第五种说法-这和操作系统有关"><span class="nav-number">1.5.</span> <span class="nav-text">第五种说法(这和操作系统有关)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#顺便谈下zoom这个属性"><span class="nav-number">2.</span> <span class="nav-text">顺便谈下zoom这个属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在非IE下的作用"><span class="nav-number">2.1.</span> <span class="nav-text">在非IE下的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在IE下的作用"><span class="nav-number">2.2.</span> <span class="nav-text">在IE下的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#和transform-scale的差异"><span class="nav-number">2.3.</span> <span class="nav-text">和transform:scale的差异</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何检查浏览器的缩放状态-兼容各种浏览器"><span class="nav-number">3.</span> <span class="nav-text">如何检查浏览器的缩放状态(兼容各种浏览器)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何禁用浏览器的缩放"><span class="nav-number">4.</span> <span class="nav-text">如何禁用浏览器的缩放</span></a></li></ol></div>
             
 
           </div>

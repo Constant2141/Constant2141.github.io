@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="今天下届某位同学提出来的问题，稍微思考一番确实从未考虑过这个问题。  搜一搜万能的互联网怎么说的第一种说法(改变html宽高) 在没有确定html的width和height为px情况下，是通过缩放html标签的高度和宽度来实现的。道理不难理解，html作为参照物，当你想放大的时候，其实浏览器执行的是缩小html的宽和高。为html设定一个所谓的绝对宽度和高，即px为单位（虽然这个也并非绝对单位），">
+<meta name="description" content="今天有人提问，刚好做个笔记  搜一搜万能的互联网怎么说的第一种说法(改变html宽高) 在没有确定html的width和height为px情况下，是通过缩放html标签的高度和宽度来实现的。道理不难理解，html作为参照物，当你想放大的时候，其实浏览器执行的是缩小html的宽和高。为html设定一个所谓的绝对宽度和高，即px为单位（虽然这个也并非绝对单位），可以清晰的看到html画布的放大和缩小。">
 <meta name="keywords" content="浏览器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浏览器页面缩放原理引发的思考">
 <meta property="og:url" content="http://yoursite.com/2020/04/04/浏览器页面缩放原理引发的思考/index.html">
 <meta property="og:site_name" content="星辰在上">
-<meta property="og:description" content="今天下届某位同学提出来的问题，稍微思考一番确实从未考虑过这个问题。  搜一搜万能的互联网怎么说的第一种说法(改变html宽高) 在没有确定html的width和height为px情况下，是通过缩放html标签的高度和宽度来实现的。道理不难理解，html作为参照物，当你想放大的时候，其实浏览器执行的是缩小html的宽和高。为html设定一个所谓的绝对宽度和高，即px为单位（虽然这个也并非绝对单位），">
+<meta property="og:description" content="今天有人提问，刚好做个笔记  搜一搜万能的互联网怎么说的第一种说法(改变html宽高) 在没有确定html的width和height为px情况下，是通过缩放html标签的高度和宽度来实现的。道理不难理解，html作为参照物，当你想放大的时候，其实浏览器执行的是缩小html的宽和高。为html设定一个所谓的绝对宽度和高，即px为单位（虽然这个也并非绝对单位），可以清晰的看到html画布的放大和缩小。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-01-05T08:04:53.837Z">
+<meta property="og:updated_time" content="2021-01-05T08:08:57.496Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浏览器页面缩放原理引发的思考">
-<meta name="twitter:description" content="今天下届某位同学提出来的问题，稍微思考一番确实从未考虑过这个问题。  搜一搜万能的互联网怎么说的第一种说法(改变html宽高) 在没有确定html的width和height为px情况下，是通过缩放html标签的高度和宽度来实现的。道理不难理解，html作为参照物，当你想放大的时候，其实浏览器执行的是缩小html的宽和高。为html设定一个所谓的绝对宽度和高，即px为单位（虽然这个也并非绝对单位），">
+<meta name="twitter:description" content="今天有人提问，刚好做个笔记  搜一搜万能的互联网怎么说的第一种说法(改变html宽高) 在没有确定html的width和height为px情况下，是通过缩放html标签的高度和宽度来实现的。道理不难理解，html作为参照物，当你想放大的时候，其实浏览器执行的是缩小html的宽和高。为html设定一个所谓的绝对宽度和高，即px为单位（虽然这个也并非绝对单位），可以清晰的看到html画布的放大和缩小。">
 
 
 
@@ -335,7 +335,7 @@
       
 
       
-        <p>今天下届某位同学提出来的问题，稍微思考一番确实从未考虑过这个问题。</p>
+        <p>今天有人提问，刚好做个笔记</p>
 <hr>
 <h2 id="搜一搜万能的互联网怎么说的"><a href="#搜一搜万能的互联网怎么说的" class="headerlink" title="搜一搜万能的互联网怎么说的"></a>搜一搜万能的互联网怎么说的</h2><h3 id="第一种说法-改变html宽高"><a href="#第一种说法-改变html宽高" class="headerlink" title="第一种说法(改变html宽高)"></a>第一种说法(改变html宽高)</h3><blockquote>
 <p>在没有确定html的width和height为px情况下，是<strong>通过缩放html标签的高度和宽度</strong>来实现的。道理不难理解，html作为参照物，当你想放大的时候，其实浏览器执行的是缩小html的宽和高。为html设定一个所谓的绝对宽度和高，即px为单位（虽然这个也并非绝对单位），可以清晰的看到html画布的放大和缩小。<br>但是在设置了HTML的w和h后，其缩放机理还没有摸透，猜测可能是改变了document的宽和高。</p>

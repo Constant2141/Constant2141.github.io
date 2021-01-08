@@ -253,6 +253,162 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/08/网络性能测试的主要概念/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/01/08/网络性能测试的主要概念/" itemprop="url">网络性能测试的主要概念</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-08T16:55:16+08:00">
+                2021-01-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2021/01/08/网络性能测试的主要概念/" class="leancloud_visitors" data-flag-title="网络性能测试的主要概念">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="重要常见概念"><a href="#重要常见概念" class="headerlink" title="重要常见概念"></a>重要常见概念</h2><h3 id="并发量"><a href="#并发量" class="headerlink" title="并发量"></a>并发量</h3><p>系统<strong>同时</strong>能处理的请求数量,反应了系统的负载能力</p>
+<h3 id="吞吐量"><a href="#吞吐量" class="headerlink" title="吞吐量"></a>吞吐量</h3><p><strong>单位时间</strong>内系统能处理的请求数量，体现系统处理请求的能力，这是目前<strong>最常用</strong>的性能测试指标</p>
+<h3 id="响应时间RT-Response-time"><a href="#响应时间RT-Response-time" class="headerlink" title="响应时间RT(Response-time)"></a>响应时间RT(Response-time)</h3><p>响应时间是一个系统最重要的指标之一，它的数值大小直接反应了系统的快慢。响应时间是指执行一个请求从开始到最后收到响应数据所花费的总体时间,即从客户端发起请求到收到服务器响应结果的时间</p>
+<h3 id="TPS-Transactions-Per-Second"><a href="#TPS-Transactions-Per-Second" class="headerlink" title="TPS(Transactions Per Second)"></a>TPS(Transactions Per Second)</h3><p>事物数/秒。它是软件测试结果的测量单位。一个事务是指一个客户机向服务器发送请求然后服务器做出反应的过程。客户机在发送请求时开始计时，收到服务器响应后结束计时，以此来计算使用的时间和完成的事务个数</p>
+<blockquote>
+<p>QPS基本类似于TPS，但是不同的是，对于一个页面的一次访问，形成一个TPS；但一次页面请求，可能产生多次对服务器的请求，服务器对这些请求，就可计入“QPS”之中<br>例：访问一个页面会请求服务器3次，一次放，产生一个“T”，产生3个“Q”</p>
+</blockquote>
+<h3 id="QPS-Queries-Per-Second"><a href="#QPS-Queries-Per-Second" class="headerlink" title="QPS(Queries Per Second)"></a>QPS(Queries Per Second)</h3><p>每秒查询率，是一台服务器每秒能够相应的查询次数，即1秒内完成的请求数量，是对一个特定的查询服务器在规定时间内所处理流量多少的衡量标准</p>
+<h4 id="QPS计算公式"><a href="#QPS计算公式" class="headerlink" title="QPS计算公式"></a>QPS计算公式</h4><p>QPS = 并发量 / 平均响应时间 = 某段时间内PV/这段时间秒数</p>
+<p>单线程QPS=1000ms/RT </p>
+<p>多线程QPS= n * （1000ms/RT）</p>
+<blockquote>
+<p>按照公式可见QPS随着线程的增加而线性增长，但是现实肯定不是线性增长的,毕竟服务器资源有限</p>
+</blockquote>
+<h4 id="QPS与RT关系"><a href="#QPS与RT关系" class="headerlink" title="QPS与RT关系"></a>QPS与RT关系</h4><p>1.对于大部分web系统，响应时间一般由CPU执行时间，线程等待时间（IO等待，sleep, wait）时间组成。QPS和RT成反比关系</p>
+<p><img src="/2021/01/08/网络性能测试的主要概念/1515293-20190621163227304-811436624.jpg" alt="img"></p>
+<p>2.在实际的测试环境中，QPS和RT并不是非常直接的反比关系</p>
+<p><img src="/2021/01/08/网络性能测试的主要概念/1515293-20190621163235306-1914371029.jpg" alt="img"></p>
+<h3 id="最佳线程数量"><a href="#最佳线程数量" class="headerlink" title="最佳线程数量"></a>最佳线程数量</h3><p>刚好消耗完服务器的瓶颈资源的临界线程数<br>公式：最佳线程数量=（（线程等待时间+线程cpu时间）/线程cpu时间）* cpu数量</p>
+<p>特性：<br>1.在达到最佳线程数的时候，线程数量继续递增，则QPS不变，而响应时间变长，持续递增线程数量，则QPS开始下降<br>2.每个系统都有其最佳线程数量，但是不同状态下，最佳线程数量是会变化的<br>3.瓶颈资源可以是CPU,可以是内存，可以是锁资源，IO资源</p>
+<h2 id="其他概念"><a href="#其他概念" class="headerlink" title="其他概念"></a>其他概念</h2><h3 id="bps"><a href="#bps" class="headerlink" title="bps"></a>bps</h3><p>比特率，路单位，表示bit(比特)/second(秒)。在计算机网络或者是网络运营商中，一般，<strong>宽带速率</strong>的单位用bps(或b/s)表示；bps表示比特每秒即表示每秒钟传输多少位信息。</p>
+<h3 id="pps"><a href="#pps" class="headerlink" title="pps"></a>pps</h3><p>包转发率单位，表示包/秒，<strong>交换机</strong>每秒可以转发多少百万个数据包（Mpps），即交换机能同时转发的数据包的数量，表示交换机的交换能力。</p>
+<h3 id="Bps"><a href="#Bps" class="headerlink" title="Bps"></a>Bps</h3><p>用户在网上<strong>下载</strong>时显示的速率单位，表示Byte(字节)/second(秒)</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/26/常见字符编码区别/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -589,7 +745,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/04/浏览器页面缩放原理引发的思考/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/04/从ctrl滚动实现原理引发的思考/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="郑庆义">
@@ -608,7 +764,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/04/04/浏览器页面缩放原理引发的思考/" itemprop="url">浏览器页面缩放原理引发的思考</a></h1>
+                <a class="post-title-link" href="/2020/04/04/从ctrl滚动实现原理引发的思考/" itemprop="url">浏览器页面缩放原理引发的思考</a></h1>
         
 
         <div class="post-meta">
@@ -638,7 +794,7 @@
 
           
           
-             <span id="/2020/04/04/浏览器页面缩放原理引发的思考/" class="leancloud_visitors" data-flag-title="浏览器页面缩放原理引发的思考">
+             <span id="/2020/04/04/从ctrl滚动实现原理引发的思考/" class="leancloud_visitors" data-flag-title="浏览器页面缩放原理引发的思考">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1741,181 +1897,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/19/ts三体验——类装饰器/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑庆义">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰在上">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/19/ts三体验——类装饰器/" itemprop="url">ts三体验——装饰器和演算</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-19T10:07:26+08:00">
-                2019-07-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2019/07/19/ts三体验——类装饰器/" class="leancloud_visitors" data-flag-title="ts三体验——装饰器和演算">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h3><p>运行时间：在定义后直接运行<br>执行顺序：从下到上</p>
-<h4 id="类装饰器"><a href="#类装饰器" class="headerlink" title="类装饰器"></a>类装饰器</h4><p>接受一个参数<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">target:new(...args:any[]</span>) =&gt; <span class="title">object</span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">target:Function</span>)  </span>&#123;&#125;</span><br></pre></td></tr></table></figure></p>
-<p>返回值类型分两种</p>
-<ul>
-<li>void：仅仅运行函数</li>
-<li>返回一个新的类：新类替换旧类。利用这个可以给新类extends旧类(target)来增强功能，但是会失去类型检查，尽量不适用</li>
-<li></li>
-</ul>
-<h4 id="属性装饰器"><a href="#属性装饰器" class="headerlink" title="属性装饰器"></a>属性装饰器</h4><p>接受两个参数<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">d</span>(<span class="params">target: any, key: string</span>) </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li>如果是静态属性，表示类本身（构造函数），如果是实例属性，表示类的原型（prototype）</li>
-<li>一个string，表示属性的名字</li>
-</ol>
-<h4 id="方法装饰器"><a href="#方法装饰器" class="headerlink" title="方法装饰器"></a>方法装饰器</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">target: any, key: string, descriptor: PropertyDescriptor</span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>接受三个参数</p>
-<ol>
-<li>如果是静态属性，表示类本身（构造函数），如果是实例属性，表示类的原型（prototype）</li>
-<li>一个string，表示属性的名字</li>
-<li>描述符对象</li>
-</ol>
-<h4 id="参数装饰器"><a href="#参数装饰器" class="headerlink" title="参数装饰器"></a>参数装饰器</h4><p>接受三个参数</p>
-<ol>
-<li>如果是静态属性，表示类本身（构造函数），如果是实例属性，表示类的原型（prototype）</li>
-<li>方法名称</li>
-<li>在参数列表中的索引</li>
-</ol>
-<h4 id="自动注入元数据"><a href="#自动注入元数据" class="headerlink" title="自动注入元数据"></a>自动注入元数据</h4><p>前提条件是：安装reflect-metadata，导入该库，在某个成员添加了元数据，并启动了emitDecoratorMetadata<br>在编译结果中，约束的类型会作为元数据加入，这样类型检查有机会在与运行时进行</p>
-<h4 id="工具库"><a href="#工具库" class="headerlink" title="工具库"></a>工具库</h4><h5 id="reflect-metadata"><a href="#reflect-metadata" class="headerlink" title="reflect-metadata"></a>reflect-metadata</h5><p>作用:保存元数据<br>使用方法：安装后，import “reflect-meatdata”,就可以使用全局变量</p>
-<ul>
-<li>在需要装饰的地方用 @Reflect.metadata(Key, Value)</li>
-<li>要获取定义过的元数据，Reflect.getMetadata(Key, target,prop?)</li>
-<li>判断是否具有某个元数据Reflect.hasMetadata(Key, target, prop?);</li>
-<li>直接定义元数据Reflect.defineMetadata(Key, Value, target，prop?);<h5 id="class-validator"><a href="#class-validator" class="headerlink" title="class-validator"></a>class-validator</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"reflect-metadata"</span></span><br><span class="line"><span class="keyword">import</span>&#123; IsNotEmpty, validate, MinLength, MaxLength &#125;<span class="keyword">from</span> <span class="string">"class-validator"</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RegUser</span></span>&#123;</span><br><span class="line">    @IsNotEmpty(&#123;<span class="attr">message</span>:<span class="string">"账号不能为空"</span>&#125;)</span><br><span class="line">    @MinLength(<span class="number">5</span>,&#123;<span class="attr">message</span>:<span class="string">"至少5个字"</span>&#125;)</span><br><span class="line">    @MaxLength(<span class="number">12</span>,&#123;<span class="attr">message</span>:<span class="string">"至多12个字"</span>&#125;)</span><br><span class="line">    loginId:string</span><br><span class="line">    loginPwd:string</span><br><span class="line">    </span><br><span class="line">    age:number</span><br><span class="line">    gender:<span class="string">'male'</span>|<span class="string">'female'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> post = <span class="keyword">new</span> RegUser()</span><br><span class="line"><span class="comment">// post.loginId = "asfsd"</span></span><br><span class="line">validate(post).then(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err);</span><br><span class="line">    </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="class-transformer"><a href="#class-transformer" class="headerlink" title="class-transformer"></a>class-transformer</h5><p>作用：将平面对象转换为类<br>应用：假设一个应用场景，有一个用户数组，每个元素都是一个用户对象<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[&#123;</span><br><span class="line">  <span class="string">"id"</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="string">"firstName"</span>: <span class="string">"Johny"</span>,</span><br><span class="line">  <span class="string">"lastName"</span>: <span class="string">"Cage"</span>,</span><br><span class="line">  <span class="string">"age"</span>: <span class="number">27</span></span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"id"</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="string">"firstName"</span>: <span class="string">"Ismoil"</span>,</span><br><span class="line">  <span class="string">"lastName"</span>: <span class="string">"Somoni"</span>,</span><br><span class="line">  <span class="string">"age"</span>: <span class="number">50</span></span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"id"</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="string">"firstName"</span>: <span class="string">"Luke"</span>,</span><br><span class="line">  <span class="string">"lastName"</span>: <span class="string">"Dacascos"</span>,</span><br><span class="line">  <span class="string">"age"</span>: <span class="number">12</span></span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure></p>
-<p>现在有一个用户类<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    id: number;</span><br><span class="line">    firstName: string;</span><br><span class="line">    lastName: string;</span><br><span class="line">    age: number;</span><br><span class="line"> </span><br><span class="line">    getName() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="string">" "</span> + <span class="keyword">this</span>.lastName;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    isAdult() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.age &gt; <span class="number">36</span> &amp;&amp; <span class="keyword">this</span>.age &lt; <span class="number">60</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>当拿到用户数组的时候，就算类型约束成为User类，即使我们知道这里的每个元素的的确确都是用户类，但是ts不会把对象转换为类，所以不能访问类定义的方法，依旧只能访问自身的属性。此时使用class-transformer库里面的 plainToClass()方法可以把平面对象转换为class<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">"users.json"</span>).then(<span class="function">(<span class="params">users: <span class="built_in">Object</span>[]</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> realUsers = plainToClass(User, users);</span><br><span class="line">    <span class="comment">// 现在realUsers数组里面的每个元素就都是User类了</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<h4 id="类型演算"><a href="#类型演算" class="headerlink" title="类型演算"></a>类型演算</h4><p>typeof作用于类的时候，得到的是类的构造函数</p>
-<p>keyof作用于类、接口、类型别名，可以获取这些类型的所有成员名组成的联合类型<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> User&#123;</span><br><span class="line">    id:<span class="built_in">string</span></span><br><span class="line">    pwd:<span class="built_in">string</span></span><br><span class="line">    age:<span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printProp</span>(<span class="params">obj:User,prop:keyof User</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(obj[prop]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>in 通常和 keyof联用，限制索引器的取值范围，类型演算</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> User&#123;</span><br><span class="line">    id:<span class="built_in">string</span></span><br><span class="line">    pwd:<span class="built_in">string</span></span><br><span class="line">    age:<span class="built_in">number</span></span><br><span class="line">    createDate:<span class="built_in">Date</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Userstring= &#123;</span><br><span class="line"><span class="comment">//将user的成员类型都转换成string</span></span><br><span class="line">    [prop <span class="keyword">in</span> keyof User]:<span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//下面三个在lib有定义，可以直接作为泛型类型使用</span></span><br><span class="line"><span class="comment">//将user的成员都设置为可选</span></span><br><span class="line"><span class="keyword">type</span> Partial&lt;T&gt; = &#123;</span><br><span class="line">    [P <span class="keyword">in</span> keyof T]?: T[P];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//只读</span></span><br><span class="line"><span class="keyword">type</span> Readonly&lt;T&gt; = &#123;</span><br><span class="line">    readonly [P <span class="keyword">in</span> keyof T]: T[P];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//非空</span></span><br><span class="line"><span class="keyword">type</span> Required&lt;T&gt; = &#123;</span><br><span class="line">    [P <span class="keyword">in</span> keyof T]-?: T[P];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//剔除T中能赋值给U的类型</span></span><br><span class="line"><span class="keyword">type</span> Exclude&lt;T, U&gt; = T <span class="keyword">extends</span> U ? never : T;</span><br><span class="line"></span><br><span class="line"><span class="comment">//只保留T中能复制给U的类型</span></span><br><span class="line"><span class="keyword">type</span> Extract&lt;T, U&gt; = T <span class="keyword">extends</span> U ? T : never;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">NonNullable&lt;T&gt; 去掉<span class="literal">null</span>和<span class="literal">undefined</span>类型</span><br><span class="line"></span><br><span class="line">ReturnType&lt;T&gt; 得到函数返回值的类型  传入的T是函数的类型，不是函数，可以用<span class="keyword">typeof</span></span><br><span class="line"></span><br><span class="line">InstanceType&lt;T&gt;  得到构造函数的实例类型</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1970,7 +1951,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1983,7 +1964,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-12-30T09:05:53.930Z</updated>
+  <updated>2021-01-08T09:23:54.158Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>网络性能测试的主要概念</title>
+    <link href="http://yoursite.com/2021/01/08/%E7%BD%91%E7%BB%9C%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%9A%84%E4%B8%BB%E8%A6%81%E6%A6%82%E5%BF%B5/"/>
+    <id>http://yoursite.com/2021/01/08/网络性能测试的主要概念/</id>
+    <published>2021-01-08T08:55:16.000Z</published>
+    <updated>2021-01-08T09:23:54.158Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="重要常见概念"><a href="#重要常见概念" class="headerlink" title="重要常见概念"></a>重要常见概念</h2><h3 id="并发量"><a href="#并发量" class="headerlink" title="并发量"></a>并发量</h3><p>系统<strong>同时</strong>能处理的请求数量,反应了系统的负载能力</p><h3 id="吞吐量"><a href="#吞吐量" class="headerlink" title="吞吐量"></a>吞吐量</h3><p><strong>单位时间</strong>内系统能处理的请求数量，体现系统处理请求的能力，这是目前<strong>最常用</strong>的性能测试指标</p><h3 id="响应时间RT-Response-time"><a href="#响应时间RT-Response-time" class="headerlink" title="响应时间RT(Response-time)"></a>响应时间RT(Response-time)</h3><p>响应时间是一个系统最重要的指标之一，它的数值大小直接反应了系统的快慢。响应时间是指执行一个请求从开始到最后收到响应数据所花费的总体时间,即从客户端发起请求到收到服务器响应结果的时间</p><h3 id="TPS-Transactions-Per-Second"><a href="#TPS-Transactions-Per-Second" class="headerlink" title="TPS(Transactions Per Second)"></a>TPS(Transactions Per Second)</h3><p>事物数/秒。它是软件测试结果的测量单位。一个事务是指一个客户机向服务器发送请求然后服务器做出反应的过程。客户机在发送请求时开始计时，收到服务器响应后结束计时，以此来计算使用的时间和完成的事务个数</p><blockquote><p>QPS基本类似于TPS，但是不同的是，对于一个页面的一次访问，形成一个TPS；但一次页面请求，可能产生多次对服务器的请求，服务器对这些请求，就可计入“QPS”之中<br>例：访问一个页面会请求服务器3次，一次放，产生一个“T”，产生3个“Q”</p></blockquote><h3 id="QPS-Queries-Per-Second"><a href="#QPS-Queries-Per-Second" class="headerlink" title="QPS(Queries Per Second)"></a>QPS(Queries Per Second)</h3><p>每秒查询率，是一台服务器每秒能够相应的查询次数，即1秒内完成的请求数量，是对一个特定的查询服务器在规定时间内所处理流量多少的衡量标准</p><h4 id="QPS计算公式"><a href="#QPS计算公式" class="headerlink" title="QPS计算公式"></a>QPS计算公式</h4><p>QPS = 并发量 / 平均响应时间 = 某段时间内PV/这段时间秒数</p><p>单线程QPS=1000ms/RT </p><p>多线程QPS= n * （1000ms/RT）</p><blockquote><p>按照公式可见QPS随着线程的增加而线性增长，但是现实肯定不是线性增长的,毕竟服务器资源有限</p></blockquote><h4 id="QPS与RT关系"><a href="#QPS与RT关系" class="headerlink" title="QPS与RT关系"></a>QPS与RT关系</h4><p>1.对于大部分web系统，响应时间一般由CPU执行时间，线程等待时间（IO等待，sleep, wait）时间组成。QPS和RT成反比关系</p><p><img src="/2021/01/08/网络性能测试的主要概念/1515293-20190621163227304-811436624.jpg" alt="img"></p><p>2.在实际的测试环境中，QPS和RT并不是非常直接的反比关系</p><p><img src="/2021/01/08/网络性能测试的主要概念/1515293-20190621163235306-1914371029.jpg" alt="img"></p><h3 id="最佳线程数量"><a href="#最佳线程数量" class="headerlink" title="最佳线程数量"></a>最佳线程数量</h3><p>刚好消耗完服务器的瓶颈资源的临界线程数<br>公式：最佳线程数量=（（线程等待时间+线程cpu时间）/线程cpu时间）* cpu数量</p><p>特性：<br>1.在达到最佳线程数的时候，线程数量继续递增，则QPS不变，而响应时间变长，持续递增线程数量，则QPS开始下降<br>2.每个系统都有其最佳线程数量，但是不同状态下，最佳线程数量是会变化的<br>3.瓶颈资源可以是CPU,可以是内存，可以是锁资源，IO资源</p><h2 id="其他概念"><a href="#其他概念" class="headerlink" title="其他概念"></a>其他概念</h2><h3 id="bps"><a href="#bps" class="headerlink" title="bps"></a>bps</h3><p>比特率，路单位，表示bit(比特)/second(秒)。在计算机网络或者是网络运营商中，一般，<strong>宽带速率</strong>的单位用bps(或b/s)表示；bps表示比特每秒即表示每秒钟传输多少位信息。</p><h3 id="pps"><a href="#pps" class="headerlink" title="pps"></a>pps</h3><p>包转发率单位，表示包/秒，<strong>交换机</strong>每秒可以转发多少百万个数据包（Mpps），即交换机能同时转发的数据包的数量，表示交换机的交换能力。</p><h3 id="Bps"><a href="#Bps" class="headerlink" title="Bps"></a>Bps</h3><p>用户在网上<strong>下载</strong>时显示的速率单位，表示Byte(字节)/second(秒)</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;重要常见概念&quot;&gt;&lt;a href=&quot;#重要常见概念&quot; class=&quot;headerlink&quot; title=&quot;重要常见概念&quot;&gt;&lt;/a&gt;重要常见概念&lt;/h2&gt;&lt;h3 id=&quot;并发量&quot;&gt;&lt;a href=&quot;#并发量&quot; class=&quot;headerlink&quot; title=&quot;并发量
+      
+    
+    </summary>
+    
+    
+      <category term="计网" scheme="http://yoursite.com/tags/%E8%AE%A1%E7%BD%91/"/>
+    
+  </entry>
   
   <entry>
     <title>常见字符编码区别</title>
@@ -65,8 +88,8 @@
   
   <entry>
     <title>浏览器页面缩放原理引发的思考</title>
-    <link href="http://yoursite.com/2020/04/04/%E6%B5%8F%E8%A7%88%E5%99%A8%E9%A1%B5%E9%9D%A2%E7%BC%A9%E6%94%BE%E5%8E%9F%E7%90%86%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/"/>
-    <id>http://yoursite.com/2020/04/04/浏览器页面缩放原理引发的思考/</id>
+    <link href="http://yoursite.com/2020/04/04/%E4%BB%8Ectrl%E6%BB%9A%E5%8A%A8%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/"/>
+    <id>http://yoursite.com/2020/04/04/从ctrl滚动实现原理引发的思考/</id>
     <published>2020-04-04T15:14:24.000Z</published>
     <updated>2021-01-05T08:08:57.496Z</updated>
     
@@ -464,30 +487,6 @@
     
     
       <category term="ES6" scheme="http://yoursite.com/tags/ES6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>小程序初体验</title>
-    <link href="http://yoursite.com/2019/03/29/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%9D%E4%BD%93%E9%AA%8C/"/>
-    <id>http://yoursite.com/2019/03/29/小程序初体验/</id>
-    <published>2019-03-29T07:30:35.000Z</published>
-    <updated>2020-12-21T10:06:53.432Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="小程序版本分为"><a href="#小程序版本分为" class="headerlink" title="小程序版本分为"></a>小程序版本分为</h4><p>预览版本 开发版本 体验版本 审核版本 线上版本</p><h4 id="js在不同地方的构成"><a href="#js在不同地方的构成" class="headerlink" title="js在不同地方的构成"></a>js在不同地方的构成</h4><p>浏览器是 ECMAScript NPM DOM BOM<br>NodeJS中 ECMAScript NPM Native<br>小程序中 ECMAScript 小程序框架 小程序API</p><h4 id="App构造器的参数"><a href="#App构造器的参数" class="headerlink" title="App构造器的参数"></a>App构造器的参数</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">App(&#123;</span><br><span class="line">  onLaunch: <span class="function"><span class="keyword">function</span>(<span class="params">options</span>) </span>&#123;&#125;,</span><br><span class="line">  onShow: <span class="function"><span class="keyword">function</span>(<span class="params">options</span>) </span>&#123;&#125;,</span><br><span class="line">  onHide: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">  onError: <span class="function"><span class="keyword">function</span>(<span class="params">msg</span>) </span>&#123;&#125;,</span><br><span class="line">  globalData: <span class="string">'I am global data'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p><img src="/2019/03/29/小程序初体验/C3E1CAB28658419DB22CBB686B380E11" alt="image"></p><table><thead><tr><th>场景值</th><th>场景</th><th>appId信息含义</th></tr></thead><tbody><tr><td>1020</td><td>profile</td><td>页相关小程序列表 返回来源公众号 appId</td></tr><tr><td>1035</td><td>公众号自定义菜单</td><td>返回来源公众号appId</td></tr><tr><td>1036</td><td>App 分享消息卡片</td><td>返回来源应用appId</td></tr><tr><td>1037</td><td>小程序打开小程序</td><td>返回来源小程序 appId</td></tr><tr><td>1038</td><td>从另一个小程序返回</td><td>返回来源小程序 appId</td></tr><tr><td>1043</td><td>公众号模板消息</td><td>返回来源公众号 appId</td></tr></tbody></table><h4 id="全局数据"><a href="#全局数据" class="headerlink" title="全局数据"></a>全局数据</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line">App(&#123;</span><br><span class="line">  globalData: <span class="string">'I am global data'</span> <span class="comment">// 全局共享数据</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 其他页面脚本other.js</span></span><br><span class="line"><span class="keyword">var</span> appInstance = getApp()</span><br><span class="line"><span class="built_in">console</span>.log(appInstance.globalData) <span class="comment">// 输出: I am global data</span></span><br></pre></td></tr></table></figure><p>所有页面的脚本逻辑都跑在同一个JsCore线程，页面使用setTimeout或者setInterval的定时器，然后跳转到其他页面时，这些定时器并没有被清除，需要开发者自己在页面离开的时候进行清理。</p><h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><blockquote><p>页面初次加载的时候，微信客户端就会给Page实例派发onLoad事件，Page构造器参数所定义的onLoad方法会被调用，onLoad在页面没被销毁之前只会触发1次，在onLoad的回调中，可以获取当前页面所调用的打开参数option，关于打开参数我们放在这一节的最后再展开阐述。<br>页面显示之后，Page构造器参数所定义的onShow方法会被调用，一般从别的页面返回到当前页面时，当前页的onShow方法都会被调用。<br>在页面初次渲染完成时，Page构造器参数所定义的onReady方法会被调用，onReady在页面没被销毁前只会触发1次，onReady触发时，表示页面已经准备妥当，在逻辑层就可以和视图层进行交互了。<br>以上三个事件触发的时机是onLoad早于 onShow，onShow早于onReady<br>页面不可见时，Page构造器参数所定义的onHide方法会被调用，这种情况会在使用wx.navigateTo切换到其他页面、底部tab切换时触发。<br>当前页面使用wx.redirectTo或wx.navigateBack返回到其他页时，当前页面会被微信客户端销毁回收，此时Page构造器参数所定义的onUnload方法会被调用。</p></blockquote><h4 id="打开参数"><a href="#打开参数" class="headerlink" title="打开参数"></a>打开参数</h4><p>页面Page构造器里onLoad的option可以拿到当前页面的打开参数，其类型是一个Object，其键值对与页面URL上query键值对一一对应</p><h4 id="常见的事件类型"><a href="#常见的事件类型" class="headerlink" title="常见的事件类型"></a>常见的事件类型</h4><table><thead><tr><th>类型</th><th>触发条件</th></tr></thead><tbody><tr><td>touchstart</td><td>手指触摸动作开始</td></tr><tr><td>touchmove</td><td>手指触摸后移动</td></tr><tr><td>touchcancel</td><td>手指触摸动作被打断，如来电提醒，弹窗</td></tr><tr><td>touchend</td><td>手指触摸动作结束</td></tr><tr><td>tap</td><td>手指触摸后马上离开</td></tr><tr><td>longpress</td><td>手指触摸后，超过350ms再离开，如果指定了事件回调函数并触发了这个事件，tap事件将不被触发</td></tr><tr><td>longtap</td><td>手指触摸后，超过350ms再离开（推荐使用longpress事件代替）</td></tr><tr><td>transitionend</td><td>会在 WXSS transition 或 wx.createAnimation 动画结束后触发</td></tr><tr><td>animationstart</td><td>会在一个 WXSS animation 动画开始时触发</td></tr><tr><td>animationiteration</td><td>会在一个 WXSS animation 一次迭代结束时触发</td></tr><tr><td>animationend</td><td>会在一个 WXSS animation 动画完成时触发</td></tr></tbody></table>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h4 id=&quot;小程序版本分为&quot;&gt;&lt;a href=&quot;#小程序版本分为&quot; class=&quot;headerlink&quot; title=&quot;小程序版本分为&quot;&gt;&lt;/a&gt;小程序版本分为&lt;/h4&gt;&lt;p&gt;预览版本 开发版本 体验版本 审核版本 线上版本&lt;/p&gt;
-&lt;h4 id=&quot;js在不同地方的构成&quot;&gt;&lt;
-      
-    
-    </summary>
-    
-    
-      <category term="小程序" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
   </entry>
   

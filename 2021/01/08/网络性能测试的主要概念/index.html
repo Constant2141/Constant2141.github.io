@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/star.png?v=5.1.4">
+
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="计网," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="星辰在上" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="重要常见概念并发量系统同时能处理的请求数量,反应了系统的负载能力 吞吐量单位时间内系统能处理的请求数量，体现系统处理请求的能力，这是目前最常用的性能测试指标 响应时间RT(Response-time)响应时间是一个系统最重要的指标之一，它的数值大小直接反应了系统的快慢。响应时间是指执行一个请求从开始到最后收到响应数据所花费的总体时间,即从客户端发起请求到收到服务器响应结果的时间 TPS(Trans">
+<meta name="keywords" content="计网">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络性能测试的主要概念">
+<meta property="og:url" content="http://yoursite.com/2021/01/08/网络性能测试的主要概念/index.html">
+<meta property="og:site_name" content="星辰在上">
+<meta property="og:description" content="重要常见概念并发量系统同时能处理的请求数量,反应了系统的负载能力 吞吐量单位时间内系统能处理的请求数量，体现系统处理请求的能力，这是目前最常用的性能测试指标 响应时间RT(Response-time)响应时间是一个系统最重要的指标之一，它的数值大小直接反应了系统的快慢。响应时间是指执行一个请求从开始到最后收到响应数据所花费的总体时间,即从客户端发起请求到收到服务器响应结果的时间 TPS(Trans">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2021/01/08/网络性能测试的主要概念/1515293-20190621163227304-811436624.jpg">
+<meta property="og:image" content="http://yoursite.com/2021/01/08/网络性能测试的主要概念/1515293-20190621163235306-1914371029.jpg">
+<meta property="og:updated_time" content="2021-01-08T09:23:54.158Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网络性能测试的主要概念">
+<meta name="twitter:description" content="重要常见概念并发量系统同时能处理的请求数量,反应了系统的负载能力 吞吐量单位时间内系统能处理的请求数量，体现系统处理请求的能力，这是目前最常用的性能测试指标 响应时间RT(Response-time)响应时间是一个系统最重要的指标之一，它的数值大小直接反应了系统的快慢。响应时间是指执行一个请求从开始到最后收到响应数据所花费的总体时间,即从客户端发起请求到收到服务器响应结果的时间 TPS(Trans">
+<meta name="twitter:image" content="http://yoursite.com/2021/01/08/网络性能测试的主要概念/1515293-20190621163227304-811436624.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/01/08/网络性能测试的主要概念/"/>
+
+
+
+
+
+  <title>网络性能测试的主要概念 | 星辰在上</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/Constant2141"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">星辰在上</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">万物皆虚，万物皆允</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/08/网络性能测试的主要概念/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑庆义">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰在上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">网络性能测试的主要概念</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-08T16:55:16+08:00">
+                2021-01-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2021/01/08/网络性能测试的主要概念/" class="leancloud_visitors" data-flag-title="网络性能测试的主要概念">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="重要常见概念"><a href="#重要常见概念" class="headerlink" title="重要常见概念"></a>重要常见概念</h2><h3 id="并发量"><a href="#并发量" class="headerlink" title="并发量"></a>并发量</h3><p>系统<strong>同时</strong>能处理的请求数量,反应了系统的负载能力</p>
+<h3 id="吞吐量"><a href="#吞吐量" class="headerlink" title="吞吐量"></a>吞吐量</h3><p><strong>单位时间</strong>内系统能处理的请求数量，体现系统处理请求的能力，这是目前<strong>最常用</strong>的性能测试指标</p>
+<h3 id="响应时间RT-Response-time"><a href="#响应时间RT-Response-time" class="headerlink" title="响应时间RT(Response-time)"></a>响应时间RT(Response-time)</h3><p>响应时间是一个系统最重要的指标之一，它的数值大小直接反应了系统的快慢。响应时间是指执行一个请求从开始到最后收到响应数据所花费的总体时间,即从客户端发起请求到收到服务器响应结果的时间</p>
+<h3 id="TPS-Transactions-Per-Second"><a href="#TPS-Transactions-Per-Second" class="headerlink" title="TPS(Transactions Per Second)"></a>TPS(Transactions Per Second)</h3><p>事物数/秒。它是软件测试结果的测量单位。一个事务是指一个客户机向服务器发送请求然后服务器做出反应的过程。客户机在发送请求时开始计时，收到服务器响应后结束计时，以此来计算使用的时间和完成的事务个数</p>
+<blockquote>
+<p>QPS基本类似于TPS，但是不同的是，对于一个页面的一次访问，形成一个TPS；但一次页面请求，可能产生多次对服务器的请求，服务器对这些请求，就可计入“QPS”之中<br>例：访问一个页面会请求服务器3次，一次放，产生一个“T”，产生3个“Q”</p>
+</blockquote>
+<h3 id="QPS-Queries-Per-Second"><a href="#QPS-Queries-Per-Second" class="headerlink" title="QPS(Queries Per Second)"></a>QPS(Queries Per Second)</h3><p>每秒查询率，是一台服务器每秒能够相应的查询次数，即1秒内完成的请求数量，是对一个特定的查询服务器在规定时间内所处理流量多少的衡量标准</p>
+<h4 id="QPS计算公式"><a href="#QPS计算公式" class="headerlink" title="QPS计算公式"></a>QPS计算公式</h4><p>QPS = 并发量 / 平均响应时间 = 某段时间内PV/这段时间秒数</p>
+<p>单线程QPS=1000ms/RT </p>
+<p>多线程QPS= n * （1000ms/RT）</p>
+<blockquote>
+<p>按照公式可见QPS随着线程的增加而线性增长，但是现实肯定不是线性增长的,毕竟服务器资源有限</p>
+</blockquote>
+<h4 id="QPS与RT关系"><a href="#QPS与RT关系" class="headerlink" title="QPS与RT关系"></a>QPS与RT关系</h4><p>1.对于大部分web系统，响应时间一般由CPU执行时间，线程等待时间（IO等待，sleep, wait）时间组成。QPS和RT成反比关系</p>
+<p><img src="/2021/01/08/网络性能测试的主要概念/1515293-20190621163227304-811436624.jpg" alt="img"></p>
+<p>2.在实际的测试环境中，QPS和RT并不是非常直接的反比关系</p>
+<p><img src="/2021/01/08/网络性能测试的主要概念/1515293-20190621163235306-1914371029.jpg" alt="img"></p>
+<h3 id="最佳线程数量"><a href="#最佳线程数量" class="headerlink" title="最佳线程数量"></a>最佳线程数量</h3><p>刚好消耗完服务器的瓶颈资源的临界线程数<br>公式：最佳线程数量=（（线程等待时间+线程cpu时间）/线程cpu时间）* cpu数量</p>
+<p>特性：<br>1.在达到最佳线程数的时候，线程数量继续递增，则QPS不变，而响应时间变长，持续递增线程数量，则QPS开始下降<br>2.每个系统都有其最佳线程数量，但是不同状态下，最佳线程数量是会变化的<br>3.瓶颈资源可以是CPU,可以是内存，可以是锁资源，IO资源</p>
+<h2 id="其他概念"><a href="#其他概念" class="headerlink" title="其他概念"></a>其他概念</h2><h3 id="bps"><a href="#bps" class="headerlink" title="bps"></a>bps</h3><p>比特率，路单位，表示bit(比特)/second(秒)。在计算机网络或者是网络运营商中，一般，<strong>宽带速率</strong>的单位用bps(或b/s)表示；bps表示比特每秒即表示每秒钟传输多少位信息。</p>
+<h3 id="pps"><a href="#pps" class="headerlink" title="pps"></a>pps</h3><p>包转发率单位，表示包/秒，<strong>交换机</strong>每秒可以转发多少百万个数据包（Mpps），即交换机能同时转发的数据包的数量，表示交换机的交换能力。</p>
+<h3 id="Bps"><a href="#Bps" class="headerlink" title="Bps"></a>Bps</h3><p>用户在网上<strong>下载</strong>时显示的速率单位，表示Byte(字节)/second(秒)</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计网/" rel="tag"><i class="fa fa-tag"></i> 计网</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/10/26/常见字符编码区别/" rel="next" title="常见字符编码区别">
+                <i class="fa fa-chevron-left"></i> 常见字符编码区别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="郑庆义" />
+            
+              <p class="site-author-name" itemprop="name">郑庆义</p>
+              <p class="site-description motion-element" itemprop="description">这是朕的世界</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          <!--音乐播放器-->
+          <div>
+          
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=210 height=110 src="//music.163.com/outchain/player?type=2&id=32408263&auto=0&height=32"></iframe>
+          
+          </div>
+
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#重要常见概念"><span class="nav-number">1.</span> <span class="nav-text">重要常见概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#并发量"><span class="nav-number">1.1.</span> <span class="nav-text">并发量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#吞吐量"><span class="nav-number">1.2.</span> <span class="nav-text">吞吐量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应时间RT-Response-time"><span class="nav-number">1.3.</span> <span class="nav-text">响应时间RT(Response-time)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TPS-Transactions-Per-Second"><span class="nav-number">1.4.</span> <span class="nav-text">TPS(Transactions Per Second)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#QPS-Queries-Per-Second"><span class="nav-number">1.5.</span> <span class="nav-text">QPS(Queries Per Second)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#QPS计算公式"><span class="nav-number">1.5.1.</span> <span class="nav-text">QPS计算公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#QPS与RT关系"><span class="nav-number">1.5.2.</span> <span class="nav-text">QPS与RT关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最佳线程数量"><span class="nav-number">1.6.</span> <span class="nav-text">最佳线程数量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他概念"><span class="nav-number">2.</span> <span class="nav-text">其他概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bps"><span class="nav-number">2.1.</span> <span class="nav-text">bps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pps"><span class="nav-number">2.2.</span> <span class="nav-text">pps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bps"><span class="nav-number">2.3.</span> <span class="nav-text">Bps</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">郑庆义</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+ <div><a href="http://www.beian.miit.gov.cn">粤ICP备19002388号-1</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("65bDCIBlOcVEjvNaMiY89JF0-gzGzoHsz", "m5otPtQDkXVad6Q1glpjecPc");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

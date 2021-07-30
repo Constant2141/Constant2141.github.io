@@ -38,7 +38,7 @@
     #}NexT.{{ theme.scheme }}{#
   #}</a>{% if theme.footer.theme.version %} v{{ theme.version }}{% endif %}{#
 #}</div>
- <div><a href="http://www.beian.miit.gov.cn">粤ICP备19002388号-1</a></div>
+ <div><a href="http://beian.miit.gov.cn">粤ICP备19002388号-1</a></div>
 {% endif %}
 
 {% if theme.footer.custom_text %}

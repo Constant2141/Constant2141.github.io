@@ -1,5 +1,5 @@
 ---
 title: categories
-date: 2018-08-18 19:42:51
-type: categories
+date: 2021-07-30 16:04:07
+type: "categories"
 ---

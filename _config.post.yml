@@ -1,15 +1,18 @@
 widgets:
     -
+        type: profile
+        position: right
+    -
         type: toc
         position: right
-    -
-        type: recent_posts
-        position: right
+        collapsed: true
+        depth: 3
+
     -
         type: categories
-        position: left
-    -
-        type: tags
-        position: left
+        position: right
+    # -
+    #     type: tags
+    #     position: right
    
         

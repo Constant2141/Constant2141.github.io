@@ -4,10 +4,17 @@ date: 2021-08-16 16:47:04
 tags: [JavaScript]
 categories: 
 - 规范
+disqusId: 21081701
+cover: https://cdn.jsdelivr.net/npm/dejavumoe@0.1.6/windows-terminal.webp
+thumbnail: https://cdn.jsdelivr.net/npm/dejavumoe@0.1.6/windows-terminal.webp
+toc: true
+
 ---
 规范你的JavaScript代码，仅列举一些个人觉得对日常coding中有帮助的点。推荐使用（非必须）
 <!-- more -->
 
+
+### 数组
 1. 使用 `Array.from` 代替展开符 `...` 映射迭代器，因为它避免了创建一个中间数组。
 ```js
 // bad
@@ -71,3 +78,5 @@ function concatenateAll(...args) {
   return args.join('');
 }
 ```
+
+### 函数

@@ -4,6 +4,10 @@ date: 2018-11-21 11:11:38
 tags: [vue]
 categories: 
 - 前端
+- vue
+cover: https://picsum.photos/seed/20181121/500/300
+thumbnail: https://picsum.photos/seed/20181121/500/300
+toc: true
 ---
 前期概要：在开发这个B2B的时候，在引用其中一位开发者写的组件时，出现了样式上的崩坏，结合之前翻阅文档得出是scoped的问题
 <!-- more -->

@@ -1,7 +1,13 @@
 ---
 title: prototype和和_proto_的区别
 date: 2019-07-11 16:11:49
-tags: [js]
+tags: [Js]
+categories: 
+- 前端
+- 基础
+cover: https://picsum.photos/seed/20190711/500/300
+thumbnail: https://picsum.photos/seed/20190711/500/300
+toc: true
 ---
 
 

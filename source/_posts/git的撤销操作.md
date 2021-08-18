@@ -1,7 +1,13 @@
 ---
 title: git的撤销操作
 date: 2018-08-20 19:55:46
-tags: [git]
+tags: [Git]
+categories: 
+- 笔记
+- 探索者
+cover: https://picsum.photos/seed/20180820/500/300
+thumbnail: https://picsum.photos/seed/20180820/500/300
+toc: true
 ---
 刚刚在使用git commit之后要push，提示报错，原因就不多说了。特意总结了一下如果要撤销add或者commit操作应该怎么做,当然在git status的时候也会自动提示可以用什么操作(5月28日也有过一次对撤销的小结，当时仅仅是撤销文件的更改)
 <!-- more -->

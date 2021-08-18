@@ -1,7 +1,13 @@
 ---
-title: token机制二次学习
+title: Token机制
 date: 2018-07-31 15:59:34
-tags: [node]
+tags: [Token]
+categories: 
+- 后端
+- Node
+cover: https://picsum.photos/seed/2018073101/500/300
+thumbnail: https://picsum.photos/seed/2018073101/500/300
+toc: true
 ---
 
 ## 传统的session认证

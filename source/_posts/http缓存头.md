@@ -2,6 +2,11 @@
 title: http缓存头
 date: 2019-09-06 21:02:30
 tags: [http]
+categories:
+- 计算机
+cover: https://picsum.photos/seed/20190906/500/300
+thumbnail: https://picsum.photos/seed/20190906/500/300
+toc: true
 ---
 
 ### 缓存的优先级

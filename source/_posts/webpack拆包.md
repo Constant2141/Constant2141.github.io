@@ -1,7 +1,13 @@
 ---
-title: webpack拆包
+title: Webpack拆包
 date: 2020-03-15 16:44:28
-tags: [webpack]
+tags: [Webpack]
+categories: 
+- 前端
+- Webpack
+cover: https://picsum.photos/seed/201907101050/500/300
+thumbnail: https://picsum.photos/seed/201907101050/500/300
+toc: true
 ---
 
 webpack打包文件vendor体积大怎么解决一直以来都是前端优化的一个关注问题，今天翻资料的时候发现webpack有一个**拆包**的功能也可以解决这个问题。

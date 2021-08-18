@@ -2,6 +2,12 @@
 title: ES6
 date: 2019-03-29 15:33:56
 tags: [ES6]
+categories: 
+- 前端
+- ES6
+cover: https://picsum.photos/seed/20190329/500/300
+thumbnail: https://picsum.photos/seed/20190329/500/300
+toc: true
 ---
 #### 模块化引入
 ```js

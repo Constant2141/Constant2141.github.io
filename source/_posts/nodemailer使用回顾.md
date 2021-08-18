@@ -1,7 +1,13 @@
 ---
 title: nodemailer使用回顾
 date: 2018-09-17 22:28:58
-tags: [node]
+tags: [Node]
+categories: 
+- 后端
+- Node
+cover: https://picsum.photos/seed/20180917/500/300
+thumbnail: https://picsum.photos/seed/20180917/500/300
+toc: true
 ---
 
 ```js

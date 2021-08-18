@@ -1,7 +1,13 @@
 ---
 title: ts三体验——装饰器和演算
 date: 2019-07-19 10:07:26
-tags: [ts]
+tags: [Ts]
+categories: 
+- 前端
+- Ts
+cover: https://picsum.photos/seed/2019071903/500/300
+thumbnail: https://picsum.photos/seed/2019071903/500/300
+toc: true
 ---
 
 

@@ -1,7 +1,12 @@
 ---
 title: 多角度看待HTTPS
 date: 2020-02-26 15:00:30
-tags: [网络]
+tag: [HTTP,网络]
+categories: 
+- 计算机
+cover: https://picsum.photos/seed/20200226/500/300
+thumbnail: https://picsum.photos/seed/20200226/500/300
+toc: true
 ---
 
 # 一、HTTPS介绍

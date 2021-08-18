@@ -1,7 +1,12 @@
 ---
-title: 'ajax,fetch,websocket(7.18日补充JSONP)'
+title: 'ajax|fetch|websocket'
 date: 2019-04-03 14:17:20
-tags: [服务端]
+tags: [计网]
+categories: 
+- 计算机
+cover: https://picsum.photos/seed/20190403/500/300
+thumbnail: https://picsum.photos/seed/20190403/500/300
+toc: true
 ---
 ### Ajax
 #### AJAX状态值与状态码区别

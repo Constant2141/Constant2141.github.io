@@ -2,9 +2,10 @@
 title: JavaScript代码规范
 date: 2021-08-16 16:47:04
 tags: [JavaScript]
+disqusId: 21081701
 categories: 
 - 规范
-disqusId: 21081701
+- JavaScript
 cover: https://picsum.photos/seed/20210816/500/300
 thumbnail: https://picsum.photos/seed/20210816/500/300
 toc: true

@@ -1,7 +1,13 @@
 ---
 title: ts初体验——类型系统
 date: 2019-07-10 10:48:45
-tags: [ts]
+tags: [Ts]
+categories: 
+- 前端
+- Ts
+cover: https://picsum.photos/seed/20190710/500/300
+thumbnail: https://picsum.photos/seed/20190710/500/300
+toc: true
 ---
 ### 默认情况下，做出以下假设
 

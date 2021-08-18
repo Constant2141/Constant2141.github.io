@@ -1,7 +1,12 @@
 ---
 title: https协议二次了解
 date: 2018-08-19 17:49:15
-tags: [https]
+tags: [http]
+categories:
+- 计算机
+cover: https://picsum.photos/seed/20180819/500/300
+thumbnail: https://picsum.photos/seed/20180819/500/300
+toc: true
 ---
 7月14日的时候学习到了http的一些事项，三次握手，跨域，缓存,csp等等，以及https相比http的一些优势，在这里再次深入了解一下https
 <!--more-->

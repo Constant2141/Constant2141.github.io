@@ -2,6 +2,12 @@
 title: pscp操作方法概括
 date: 2018-09-17 15:24:10
 tags: [ECS]
+categories: 
+- 笔记
+- 探索者
+cover: https://picsum.photos/seed/2018091701/500/300
+thumbnail: https://picsum.photos/seed/2018091701/500/300
+toc: true
 ---
 虽然是很早以前就掌握的东西了，但是一直懒得整理
 ————————————————————————————

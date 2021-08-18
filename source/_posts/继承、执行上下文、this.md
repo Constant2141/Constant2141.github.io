@@ -1,7 +1,13 @@
 ---
 title: 继承、执行上下文、this浅理解
 date: 2018-07-17 22:16:23
-tags: [js]
+tags: [Js]
+categories: 
+- 前端
+- 基础
+cover: https://picsum.photos/seed/20180717/500/300
+thumbnail: https://picsum.photos/seed/20180717/500/300
+toc: true
 ---
 
 早上瀚程扔了一个王福朋的博客，里面讲了很多有关JS CSS的东西。早上听讲了原型链，this，执行上下文等，回头也结合王福朋的博客看了一点。

@@ -1,7 +1,13 @@
 ---
 title: css3动画三属性
 date: 2018-10-21 11:21:49
-tags: [css]
+tags: [CSS]
+categories: 
+- 前端
+- CSS
+cover: https://picsum.photos/seed/20181021/500/300
+thumbnail: https://picsum.photos/seed/20181021/500/300
+toc: true
 ---
 把css3里与动画有关的三个常见属性归纳到一起
 <!-- more -->

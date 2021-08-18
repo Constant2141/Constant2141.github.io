@@ -2,9 +2,15 @@
 title: crossorigin和integrity
 date: 2020-03-13 23:37:35
 tags: [HTML]
+categories: 
+- 前端
+- HTML
+cover: https://picsum.photos/seed/20200313/500/300
+thumbnail: https://picsum.photos/seed/20200313/500/300
+toc: true
 ---
 
-一次偶然不小心点到查看gayhub某个网址的源代码时，发现了一些以前没有注意过的东西
+一次偶然不小心点到查看github某个网址的源代码时，发现了一些以前没有注意过的东西
 
 # 一、view-source协议
 

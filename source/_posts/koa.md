@@ -1,7 +1,13 @@
 ---
-title: koa
+title: Koa
 date: 2019-07-17 16:26:54
-tags: [koa]
+tags: [Koa]
+categories: 
+- 后端
+- Node
+cover: https://picsum.photos/seed/20190717/500/300
+thumbnail: https://picsum.photos/seed/20190717/500/300
+toc: true
 ---
 ###  ctx里面的常见参数
 ctx.method/url/path/query/ip

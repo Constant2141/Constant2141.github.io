@@ -1,7 +1,13 @@
 ---
 title: z-index引发的思考
 date: 2020-02-27 00:16:32
-tags: [css]
+tags: [CSS]
+categories: 
+- 前端
+- CSS
+cover: https://picsum.photos/seed/20200227/500/300
+thumbnail: https://picsum.photos/seed/20200227/500/300
+toc: true
 ---
 ## 一个小问题
 故事的是从一个小小的z-index开始的。

@@ -1,7 +1,13 @@
 ---
 title: Affair开发初步想法
 date: 2018-07-24 23:41:03
-tags: [Affair]
+tags: [杂谈]
+categories: 
+- 笔记
+- 初行者
+cover: https://picsum.photos/seed/20180724/500/300
+thumbnail: https://picsum.photos/seed/20180724/500/300
+toc: true
 ---
 今天学到的和初步想法
 <!--more-->

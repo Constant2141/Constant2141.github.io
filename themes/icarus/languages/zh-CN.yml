@@ -27,7 +27,7 @@ widget:
 article:
     created_at: '%s发表'
     updated_at: '%s更新'
-    more: '查看原文'
+    more: '阅读更多'
     comments: '评论'
     read_time: '%s读完'
     word_count:

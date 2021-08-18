@@ -2,6 +2,12 @@
 title: 浏览器页面缩放原理引发的思考
 date: 2020-04-04 23:14:24
 tags: [浏览器]
+categories: 
+- 前端
+- 浏览器
+cover: https://picsum.photos/seed/20200404/500/300
+thumbnail: https://picsum.photos/seed/20200404/500/300
+toc: true
 ---
 
 今天有人提问，刚好做个笔记

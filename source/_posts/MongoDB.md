@@ -1,7 +1,13 @@
 ---
-title: MongoDB
+title: Mongo
 date: 2020-9-23 13:03:42
-tags: [MongoDB]
+tags: [Mongo]
+categories: 
+- 后端
+- db
+cover: https://picsum.photos/seed/20200923/500/300
+thumbnail: https://picsum.photos/seed/20200923/500/300
+toc: true
 ---
 
 

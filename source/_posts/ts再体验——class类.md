@@ -1,7 +1,13 @@
 ---
 title: ts再体验——class类
 date: 2019-07-10 10:50:11
-tags: [ts]
+tags: [Ts]
+categories: 
+- 前端
+- Ts
+cover: https://picsum.photos/seed/20190710105011/500/300
+thumbnail: https://picsum.photos/seed/20190710105011/500/300
+toc: true
 ---
 ### 抽象成员
 

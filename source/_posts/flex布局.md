@@ -1,7 +1,13 @@
 ---
 title: flex布局
 date: 2018-07-21 23:47:03
-tags: [css]
+tags: [CSS]
+categories: 
+- 前端
+- CSS
+cover: https://picsum.photos/seed/20180721/500/300
+thumbnail: https://picsum.photos/seed/20180721/500/300
+toc: true
 ---
 今天学习了flex布局，这个布局还是挺方便的，不然老是float太多问题了
 <!-- more -->

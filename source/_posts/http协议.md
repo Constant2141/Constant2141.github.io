@@ -2,6 +2,11 @@
 title: http协议
 date: 2018-07-14 23:08:28
 tags: [http]
+categories:
+- 计算机
+cover: https://picsum.photos/seed/20180714/500/300
+thumbnail: https://picsum.photos/seed/20180714/500/300
+toc: true
 ---
 ### 三次握手
 第一次握手：建立连接时，客户端发送SYN(同步序列编号)包（syn=j）到服务器

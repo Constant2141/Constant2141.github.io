@@ -2,6 +2,12 @@
 title: 关于$emit
 date: 2018-11-26 19:46:08
 tags: [vue]
+categories: 
+- 前端
+- vue
+cover: https://picsum.photos/seed/20181126/500/300
+thumbnail: https://picsum.photos/seed/20181126/500/300
+toc: true
 ---
 
 ## $emit

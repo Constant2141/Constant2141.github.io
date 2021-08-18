@@ -1,7 +1,13 @@
 ---
 title: express处理表单浅理解
 date: 2018-07-16 22:25:56
-tags: [express]
+tags: [Express]
+categories: 
+- 后端
+- Node
+cover: https://picsum.photos/seed/20180716/500/300
+thumbnail: https://picsum.photos/seed/20180716/500/300
+toc: true
 ---
 
 <font  face="Georgia" size=4 color=cray>了解了使用express框架如何处理表单请求

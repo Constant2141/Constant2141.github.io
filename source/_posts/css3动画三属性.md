@@ -9,7 +9,7 @@ cover: https://picsum.photos/seed/20181021/500/300
 thumbnail: https://picsum.photos/seed/20181021/500/300
 toc: true
 ---
-把css3里与动画有关的三个常见属性归纳到一起
+把css3里与动画有关的三个常见属性的介绍（transition、transform、animate）
 <!-- more -->
 ## CSS3制作动画的几个属性：变形(transform)、转换(transition)和动画(animation)
 

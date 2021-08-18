@@ -10,7 +10,8 @@ thumbnail: https://picsum.photos/seed/2019071903/500/300
 toc: true
 ---
 
-
+学习ts的类装饰器。
+<!-- more -->
 
 ### 装饰器
 运行时间：在定义后直接运行

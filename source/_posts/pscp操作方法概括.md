@@ -9,7 +9,8 @@ cover: https://picsum.photos/seed/2018091701/500/300
 thumbnail: https://picsum.photos/seed/2018091701/500/300
 toc: true
 ---
-虽然是很早以前就掌握的东西了，但是一直懒得整理
+pscp为window与Linux之间的文件传输工具，使用和Linux下scp命令相似。
+<!-- more -->
 ————————————————————————————
 ### linux 删除命令
 删除常用操作 rm -rf 目录名字

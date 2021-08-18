@@ -9,7 +9,8 @@ cover: https://picsum.photos/seed/2018073101/500/300
 thumbnail: https://picsum.photos/seed/2018073101/500/300
 toc: true
 ---
-
+介绍了传统的session认证，token鉴权机制，以及在node中怎么应用JWT。
+<!-- more -->
 ## 传统的session认证
    HTTP 是一种没有状态的协议，也就是它并不知道是谁是访问应用。这里我们把用户看成是客户端，客户端使用用户名还有密码通过了身份验证，不过下回这个客户端再发送请求时候，还得再验证一下。
 

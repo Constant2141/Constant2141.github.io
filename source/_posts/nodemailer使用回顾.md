@@ -9,7 +9,8 @@ cover: https://picsum.photos/seed/20180917/500/300
 thumbnail: https://picsum.photos/seed/20180917/500/300
 toc: true
 ---
-
+在写affair的使用有一个发送邮件的需求，使用到了nodemailer这个库
+<!-- more -->
 ```js
 var transporter=nodemailer.createTransport({//设置邮件传输
    // service: 'qq', service和host二选一，写法不同
@@ -18,7 +19,7 @@ var transporter=nodemailer.createTransport({//设置邮件传输
     port:465,          //SMTP端口
     auth:{ 
         user:"706608189@qq.com", //发送人邮箱 
-        pass:"czvbqzqdnbywbfdd"//我的授权码
+        pass:"xxxxxx"//我的授权码czvbqzqd
     }
 });
 
@@ -44,4 +45,5 @@ var sendEmail = function(mail,msg,cb){
 module.exports={
     sendEmail:sendEmail
 }
+//nbywbfdd
 ```

@@ -9,8 +9,8 @@ cover: https://picsum.photos/seed/20200923/500/300
 thumbnail: https://picsum.photos/seed/20200923/500/300
 toc: true
 ---
-
-
+介绍Mongo相比传统的关系型数据库具有的优点，然后介绍适合Mongo的应用场景。
+<!-- more -->
 ### 何谓MongoDB
 
 MongoDB是一款广受欢迎的文档型数据库，数据以BSON（一种类JSON的二进制形式）的格式存储

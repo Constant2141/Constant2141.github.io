@@ -9,6 +9,8 @@ cover: https://picsum.photos/seed/20190329/500/300
 thumbnail: https://picsum.photos/seed/20190329/500/300
 toc: true
 ---
+稍微总结一下ES6新语法特性
+<!-- more -->
 #### 模块化引入
 ```js
 import * as name from "xxx"  //通配符引入所有export的变量， as作用是重命名

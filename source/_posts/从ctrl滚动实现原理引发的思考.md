@@ -10,8 +10,8 @@ thumbnail: https://picsum.photos/seed/20200404/500/300
 toc: true
 ---
 
-今天有人提问，刚好做个笔记
-
+浏览器按住ctrl和鼠标滚轮缩放原理。
+<!-- more -->
 ----
 
 ## 搜一搜万能的互联网怎么说的

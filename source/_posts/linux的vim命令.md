@@ -9,6 +9,8 @@ cover: https://picsum.photos/seed/20180917/500/300
 thumbnail: https://picsum.photos/seed/20180917/500/300
 toc: true
 ---
+收集常用的在linux系统上可能会用到的vim命令。
+<!-- more -->
 ### 进入vi的命令
      
     vi filename :打开或新建文件,并将光标置于第一行首

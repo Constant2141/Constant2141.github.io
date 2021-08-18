@@ -1,5 +1,5 @@
 ---
-title: express处理表单浅理解
+title: Express处理表单浅理解
 date: 2018-07-16 22:25:56
 tags: [Express]
 categories: 
@@ -9,8 +9,10 @@ cover: https://picsum.photos/seed/20180716/500/300
 thumbnail: https://picsum.photos/seed/20180716/500/300
 toc: true
 ---
-
 <font  face="Georgia" size=4 color=cray>了解了使用express框架如何处理表单请求
+<!-- more -->
+
+
 ### 编码
 当表单被提交（通过浏览器或AJAX）时，必须被编码。如果没有明确地指定编码，则默认为application/x-wwwform-urlencoded。
 如果需要上传文件，使用multipart/form-data编码类型（并不被建议使用）。

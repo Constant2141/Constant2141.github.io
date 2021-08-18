@@ -8,7 +8,8 @@ cover: https://picsum.photos/seed/20200226/500/300
 thumbnail: https://picsum.photos/seed/20200226/500/300
 toc: true
 ---
-
+本文从HTTPS的作用、缺点、与HTTP的区别、加密算法、数字证书、SSL/TLS等角度介绍HTTPS的知识点
+ <!--more-->
 # 一、HTTPS介绍
 ## 1.作用
 + 内容加密 保证数据传输的安全；

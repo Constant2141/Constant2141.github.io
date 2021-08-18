@@ -9,6 +9,8 @@ cover: https://picsum.photos/seed/20190710/500/300
 thumbnail: https://picsum.photos/seed/20190710/500/300
 toc: true
 ---
+学习ts的类型系统。
+<!-- more -->
 ### 默认情况下，做出以下假设
 
 1. 假设当前的执行环境是dom

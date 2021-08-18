@@ -10,8 +10,8 @@ thumbnail: https://picsum.photos/seed/20200313/500/300
 toc: true
 ---
 
-一次偶然不小心点到查看github某个网址的源代码时，发现了一些以前没有注意过的东西
-
+一次偶然不小心点到查看github某个网址的源代码时，发现了以前从未见过的html属性crossorigin和integrity
+<!-- more -->
 # 一、view-source协议
 
 view-source是一种协议，早期基本上每个浏览器都支持这个协议。后来Microsoft考虑安全性，IE就不再支持此协议。但是这个方法在FireFox和Chrome浏览器都还可以使用。 如果要在IE下查看源代码,只能使用查看中的"查看源代码"命令.。FF、Chrome在在浏览器地址栏中输入`view-source: URL`

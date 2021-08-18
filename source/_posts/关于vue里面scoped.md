@@ -1,7 +1,7 @@
 ---
 title: 关于vue里面scoped
 date: 2018-11-21 11:11:38
-tags: [vue]
+tags: [Vue]
 categories: 
 - 前端
 - vue

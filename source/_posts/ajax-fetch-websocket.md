@@ -1,5 +1,5 @@
 ---
-title: 'ajax|fetch|websocket'
+title: 'Ajax|fetch|Websocket'
 date: 2019-04-03 14:17:20
 tags: [计网]
 categories: 
@@ -8,6 +8,8 @@ cover: https://picsum.photos/seed/20190403/500/300
 thumbnail: https://picsum.photos/seed/20190403/500/300
 toc: true
 ---
+常见的三种前端发送请求的方式，介绍其使用方法和相关要点。
+<!-- more -->
 ### Ajax
 #### AJAX状态值与状态码区别
 >AJAX状态值是指，运行AJAX所经历过的几种状态，无论访问是否成功都将响应的步骤，可以理解成为AJAX运行步骤。如：正在发送，正在响应等，由AJAX对象与服务器交互时所得；使用“ajax.readyState”获得。（由数字1~4单位数字组成）
@@ -116,8 +118,8 @@ let formdata=new FormData(oForm);
 3、//生成一个空的FormData对象,用append('key','value')
 let formdata = new FormData();
 formdata.append('xxx',xxxx)
-
 ```
+
 
 
 

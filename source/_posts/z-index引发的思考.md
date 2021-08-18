@@ -9,12 +9,12 @@ cover: https://picsum.photos/seed/20200227/500/300
 thumbnail: https://picsum.photos/seed/20200227/500/300
 toc: true
 ---
-## 一个小问题
+
 故事的是从一个小小的z-index开始的。
 今天突然看到一个问题。z-index 默认值是啥？以前的确没关注过这个，默认值难道不是auto，既然这么问那肯定有鬼了，盲猜又是IE的锅。
 
 搜了一下得到答案：IE默认值是0，而FF是auto。那么这个问题算是答完了，但是隐藏在背后的知识点真的只有这些吗？于是乎引出了下面的名词
-
+<!-- more -->
 ## 一个小例子
 ```html
 <div class="container">

@@ -9,6 +9,8 @@ cover: https://picsum.photos/seed/20190710105011/500/300
 thumbnail: https://picsum.photos/seed/20190710105011/500/300
 toc: true
 ---
+学习ts的class。
+<!-- more -->
 ### 抽象成员
 
 应用场景：父类中，知道有些成员必须要存在，但是不知道具体的值是什么，在成员前面加abstract强约束在子类中一定要实现这个成员

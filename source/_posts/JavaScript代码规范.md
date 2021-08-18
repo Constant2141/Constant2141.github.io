@@ -1,7 +1,7 @@
 ---
 title: JavaScript代码规范
 date: 2021-08-16 16:47:04
-tags: [JavaScript]
+tags: [Js]
 disqusId: 21081701
 categories: 
 - 规范
@@ -11,7 +11,7 @@ thumbnail: https://picsum.photos/seed/20210816/500/300
 toc: true
 
 ---
-规范你的JavaScript代码，仅列举一些个人觉得对日常coding中有帮助的点。推荐使用（非必须）
+规范你的JavaScript代码，仅列举一些个人觉得对日常coding中有帮助的点。推荐使用（非必须）。
 <!-- more -->
 
 

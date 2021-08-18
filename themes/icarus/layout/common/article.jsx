@@ -43,16 +43,19 @@ module.exports = class extends Component {
                     {page.layout !== 'page' ? <div class="article-meta is-size-7 is-uppercase level is-mobile">
                         <div class="level-left">
                             {/* Creation Date */}
-                            {page.date && <span class="level-item" dangerouslySetInnerHTML={{
-                                __html: _p('article.created_at', `<time dateTime="${date_xml(page.date)}" title="${new Date(page.date).toLocaleString()}">${date(page.date)}</time>`)
-                            }}></span>}
+                            <i class="far fa-calendar-alt">&nbsp;</i>
+                            {/* dangerouslySetInnerHTML={{
+                                __html: _p('article.created_at', `<time dateTime="${date_xml(page.date)}" title="${new Date(page.date).toLocaleString()}"></time>`)
+                            }} */}
+                            {page.date && <span class="level-item"> {new Date(page.date).toLocaleDateString()} </span>}
                             {/* Last Update Date */}
-                            {page.updated && <span class="level-item" dangerouslySetInnerHTML={{
+                            {/* {page.updated && <span class="level-item" dangerouslySetInnerHTML={{
                                 __html: _p('article.updated_at', `<time dateTime="${date_xml(page.updated)}" title="${new Date(page.updated).toLocaleString()}">${date(page.updated)}</time>`)
-                            }}></span>}
+                            }}></span>} */}
                             {/* author */}
                             {page.author ? <span class="level-item"> {page.author} </span> : null}
                             {/* Categories */}
+                            <i class="far fa-folder-open has-text-grey">&nbsp;</i>
                             {page.categories && page.categories.length ? <span class="level-item">
                                 {(() => {
                                     const categories = [];
@@ -66,6 +69,7 @@ module.exports = class extends Component {
                                 })()}
                             </span> : null}
                             {/* Read time */}
+                            <i class="far fa-clock has-text-grey">&nbsp;</i>
                             {article && article.readtime && article.readtime === true ? <span class="level-item">
                                 {(() => {
                                     const words = getWordCount(page._content);
@@ -85,18 +89,23 @@ module.exports = class extends Component {
                     </h1> : null}
                     {/* Content/Excerpt */}
                     <div class="content" dangerouslySetInnerHTML={{ __html: index && page.excerpt ? page.excerpt : page.content }}></div>
+                    <hr style="height:1px;margin:1rem 0;" />
                     {/* Licensing block */}
                     {!index && article && article.licenses && Object.keys(article.licenses)
                         ? <ArticleLicensing.Cacheable page={page} config={config} helper={helper} /> : null}
-                    {/* Tags */}
-                    {!index && page.tags && page.tags.length ? <div class="article-tags is-size-7 mb-4">
-                        <span class="mr-2">#</span>
+                  <div class="is-flex is-mobile level">
+                      {/* Tags */}
+                      {index && page.tags && page.tags.length ? <div class="article-tags is-size-7 is-uppercase">
+                        <i class="fas fa-tags has-text-grey"></i>&nbsp;&nbsp;
                         {page.tags.map(tag => {
                             return <a class="link-muted mr-2" rel="tag" href={url_for(tag.path)}>{tag.name}</a>;
                         })}
                     </div> : null}
                     {/* "Read more" button */}
-                    {index && page.excerpt ? <a class="article-more button is-small is-size-7" href={`${url_for(page.link || page.path)}#more`}>{__('article.more')}</a> : null}
+                    {index && page.excerpt ? <a class="article-more button is-small is-size-7" href={`${url_for(page.link || page.path)}#more`}>
+                      <i class="fas fa-book-reader has-text-grey">&nbsp;&nbsp;{__('article.more')}</i>
+                    </a> : null}
+                  </div>
                     {/* Share button */}
                     {!index ? <Share config={config} page={page} helper={helper} /> : null}
                 </article>

@@ -5,7 +5,7 @@ tags: [Js]
 disqusId: 21081701
 categories: 
 - 规范
-- JavaScript
+- Js
 cover: https://picsum.photos/seed/20210816/500/300
 thumbnail: https://picsum.photos/seed/20210816/500/300
 toc: true

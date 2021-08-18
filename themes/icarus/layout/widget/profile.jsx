@@ -76,6 +76,8 @@ class Profile extends Component {
                     <a class="level-item button is-primary is-rounded" href={followLink} target="_blank" rel="noopener">{followTitle}</a>
                 </div> : null}
                 {socialLinks ? this.renderSocialLinks(socialLinks) : null}
+                <hr style="height:1px;margin:1rem 0;" />
+                <p style="text-align:center">技术丨成长丨记录丨分享</p>
             </div>
         </div>;
     }

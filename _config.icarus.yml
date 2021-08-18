@@ -15,7 +15,7 @@ head:
         name: Petrichor
         # The displayed name of the web application
         # when there is not enough space to display full name
-        short_name: 711
+        short_name: Petrichor
         # The start URL of the web application
         start_url: http://zqyy.site
         # The default theme color for the application
@@ -229,28 +229,27 @@ widgets:
         # Author name
         author: Sleven
         # Author title
-        author_title: 前端仔一枚
+        author_title:  Frontend Engineer
         # Author's current location
-        location: 广州
+        location: Earth
         # URL or path to the avatar image
-        avatar: /img/avatar.jpg
+        avatar: /images/avatar.jpg
         # Whether show the rounded avatar image
         avatar_rounded: true
         # Email address for the Gravatar
         gravatar: 
         # URL or path for the follow button
         follow_link: 'https://github.com/Constant2141'
-        # Links to be shown on the bottom of the profile widget
-        # social_links:
-            # Github:
-            #     icon: fab fa-github
-            #     url: 'https://github.com/Constant2141'
-            # Facebook:
-            #     icon: fab fa-facebook
-            #     url: 'https://facebook.com'
-            # Twitter:
-            #     icon: fab fa-twitter
-            #     url: 'https://twitter.com'
+        social_links:
+            Github:
+                icon: fab fa-github
+                url: 'https://github.com/Constant2141'
+            Facebook:
+                icon: fab fa-facebook
+                url: 'https://facebook.com'
+            Twitter:
+                icon: fab fa-twitter
+                url: 'https://twitter.com'
             # Dribbble:
             #     icon: fab fa-dribbble
             #     url: 'https://dribbble.com'
@@ -269,14 +268,13 @@ widgets:
         # Maximum level of headings to show (1-6)
         depth: 3
     # Recommendation links widget configurations
-    -
-        # 使用友站链接挂件来展示外部网站的列表
-        # position: left
-        # type: links
-        # position: left
-        # links:
-        #     Hexo: 'https://hexo.io'
-        #     Bulma: 'https://bulma.io'
+    # -
+    #     # 使用友站链接挂件来展示外部网站的列表
+    #     position: left
+    #     type: links
+    #     links:
+    #         Hexo: 'https://hexo.io'
+    #         Bulma: 'https://bulma.io'
         
     # Categories widget configurations
     -
@@ -296,22 +294,22 @@ widgets:
     # Tags widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
-        position: left
+        position: right
         type: tags
     # Google FeedBurner email subscription widget configurations
-    -
-        # Where should the widget be placed, left sidebar or right sidebar
-        position: right
-        type: subscribe_email
-        # Hint text under the email input
-        description: 
-        # Feedburner ID
-        feedburner_id: ''
+    # -
+    #     # Where should the widget be placed, left sidebar or right sidebar
+    #     position: right
+    #     type: subscribe_email
+    #     # Hint text under the email input
+    #     description: 
+    #     # Feedburner ID
+    #     feedburner_id: ''
     # Google AdSense unit configurations
-    -
+    # -
         # Where should the widget be placed, left sidebar or right sidebar
         # position: left
-        type: adsense
+        # type: adsense
         # AdSense client ID
         # client_id: ''
         # AdSense AD unit ID

@@ -5,8 +5,8 @@ tags: [JavaScript]
 categories: 
 - 规范
 disqusId: 21081701
-cover: https://cdn.jsdelivr.net/npm/dejavumoe@0.1.6/windows-terminal.webp
-thumbnail: https://cdn.jsdelivr.net/npm/dejavumoe@0.1.6/windows-terminal.webp
+cover: https://picsum.photos/seed/20210816/500/300
+thumbnail: https://picsum.photos/seed/20210816/500/300
 toc: true
 
 ---

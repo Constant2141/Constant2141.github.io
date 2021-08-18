@@ -1,16 +1,39 @@
 widgets:
     -
+        position: left
         type: profile
-        position: right
+        # Author name
+        author: Sleven
+        # Author title
+        author_title:  Frontend Engineer
+        # Author's current location
+        location: Earth
+        # URL or path to the avatar image
+        avatar: /images/幻界战线1.jpg
+        # Whether show the rounded avatar image
+        avatar_rounded: true
+        # Email address for the Gravatar
+        gravatar: 
+        # URL or path for the follow button
+        follow_link: 'https://github.com/Constant2141'
+        social_links:
+          Github:
+              icon: fab fa-github
+              url: 'https://github.com/Constant2141'
+          Facebook:
+              icon: fab fa-facebook
+              url: 'https://facebook.com'
+          Twitter:
+              icon: fab fa-twitter
+              url: 'https://twitter.com'
     -
         type: toc
-        position: right
+        position: left
         collapsed: true
         depth: 3
-
-    -
-        type: categories
-        position: right
+    # -
+    #     type: categories
+    #     position: right
     # -
     #     type: tags
     #     position: right

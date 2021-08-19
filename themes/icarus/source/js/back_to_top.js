@@ -149,4 +149,6 @@ $(document).ready(() => {
             $('body, html').animate({ scrollTop: 0 }, 400);
         }
     });
+
+    
 });

@@ -10982,6 +10982,13 @@ a.article-nav-next span {
 .navbar-logo img {
   max-height: 1.75rem;
 }
+body{ background-color:#f7f7f7}
+body.dark-mode {
+  filter: invert(1) hue-rotate(180deg)
+}
+body.dark-mode img,video,.hignlight{filter: invert(1) hue-rotate(180deg) !important;}
+body.dark-mode .fa-lightbulb:before{content:"\f186"}
+
 @media screen and (max-width: 768px) {
   footer.footer .level-start {
     text-align: center;

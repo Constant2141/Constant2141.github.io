@@ -51,3 +51,19 @@ $navbar-item-margin-h ?= 0
 .navbar-logo
     img
         max-height: $logo-height
+
+body
+  background-color:#f7f7f7
+
+body.dark-mode
+  filter: invert(1) hue-rotate(180deg)
+
+  img,
+  video,
+  .highlight{
+    filter: invert(1) hue-rotate(180deg) !important;
+  }
+
+  .fa-lightbulb
+    &:before
+      content:"\f186"

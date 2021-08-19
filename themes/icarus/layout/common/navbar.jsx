@@ -54,16 +54,19 @@ class Navbar extends Component {
                         })}
                     </div> : null}
                     <div class="navbar-end">
-                        {Object.keys(links).length ? <Fragment>
+                        {/* {Object.keys(links).length ? <Fragment>
                             {Object.keys(links).map(name => {
                                 const link = links[name];
                                 return <a class="navbar-item" target="_blank" rel="noopener" title={name} href={link.url}>
                                     {link.icon ? <i class={link.icon}></i> : name}
                                 </a>;
                             })}
-                        </Fragment> : null}
+                        </Fragment> : null} */}
                         {showToc ? <a class="navbar-item is-hidden-tablet catalogue" title={tocTitle} href="javascript:;">
                             <i class="fas fa-list-ul"></i>
+                        </a> : null}
+                        {showSearch ? <a class="navbar-item dark-mode-icon" id="darkMode" title="暗黑模式" href="javascript:;">
+                            <i class="fas fa-lightbulb"></i>
                         </a> : null}
                         {showSearch ? <a class="navbar-item search" title={searchTitle} href="javascript:;">
                             <i class="fas fa-search"></i>

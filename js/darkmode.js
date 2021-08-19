@@ -1,8 +1,3 @@
-
-
-
-
-
 $(document).ready(() => {
   const $darkMode = $('#darkMode')
   if ($darkMode.length > 0) {
